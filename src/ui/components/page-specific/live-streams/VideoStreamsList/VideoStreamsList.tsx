@@ -1,5 +1,6 @@
 import React from 'react';
 import YouTubePlayer from '@/ui/components/YouTubePlayer/YouTubePlayer';
+import ReactPlayer from 'react-player/youtube'
 
 import styles from './styles/videostreams-list.module.scss';
 
@@ -15,13 +16,9 @@ export interface VideoItem {
 
 const VideoStreamsList:React.FC<VideoStreamsListProps> = ({ data }) => {
   // console.log(data)
-  if (typeof window === 'undefined') {
-    return null; // или что-то другое, если нужно
-  }
-  
   return (
     <div className={styles['videostreams-list']}>
-      {data.map((video: VideoItem) => <YouTubePlayer videoId={video.id} key={video.id} />)}
+      {data.map((video: VideoItem) => <ReactPlayer url={video.url} key={video.id} />)}
     </div>
   )
 }

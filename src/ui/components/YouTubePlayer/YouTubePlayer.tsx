@@ -9,7 +9,7 @@ interface YouTubePlayerProps {
 }
 
 const YouTubePlayer:React.FC<YouTubePlayerProps> = ({ videoId }) => {
-  console.log(window.location.href)
+  // console.log(window.location.href)
   const { locale } = useRouter();
   const onPlayerReady: YouTubeProps['onReady'] = (event) => {
     event.target.pauseVideo();
@@ -21,10 +21,10 @@ const YouTubePlayer:React.FC<YouTubePlayerProps> = ({ videoId }) => {
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
-      enablejsapi: 1,
-      hl: locale,
-      widget_referrer: window.location.href,
-      origin:window.location.href,
+      // enablejsapi: 1,
+      // hl: locale,
+      // widget_referrer: window.location.href,
+      // origin:window.location.href,
       // cc_lang_pref: locale,
     },
   };
