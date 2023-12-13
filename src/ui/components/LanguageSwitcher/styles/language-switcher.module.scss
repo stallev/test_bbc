@@ -1,0 +1,13 @@
+@import "../../../../styles/variables.scss";
+
+.language-switcher {
+  background-color: $color-black;
+  padding: $gutter-xs;
+  font-style: normal;
+  font-weight: $font-weight-default;
+  font-size: $font-size-ms;
+  line-height: $line-height-ms;
+  text-transform: uppercase;
+  color: $color-white;
+  cursor: pointer;
+}

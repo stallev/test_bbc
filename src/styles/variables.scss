@@ -1,0 +1,109 @@
+//Screen Sizes
+$largeDesktop: 1440px;
+$desktop: 1280px;
+$smallDesktop: 1024px;
+$tablet: 768px;
+$mobile: 426px;
+$smallMobile: 326px;
+
+// Gutters
+$gutter-base: 16px;
+$gutter-xxs: $gutter-base * 0.125; // 2
+$gutter-xs: $gutter-base * 0.25; // 4
+$gutter-sm: $gutter-base * 0.5; // 8
+$gutter-ms: $gutter-base * 0.75; // 12
+$gutter-md: $gutter-base;
+$gutter-ml: $gutter-base * 1.5; // 24
+$gutter-lg: $gutter-base * 2; // 32
+$gutter-xl: $gutter-base * 3; // 48
+$gutter-xlg: $gutter-base * 4; // 64
+$gutter-xxlg: $gutter-base * 5; // 80
+
+// Font Sizes
+$font-size-xxxs: 8px;
+$font-size-xxs: 10px;
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-ms: 16px;
+$font-size-md: 24px;
+$font-size-lg: 32px;
+$font-size-xl: 40px;
+$font-size-xlg: 48px;
+$font-size-xxl: 64px;
+
+// Line-height
+$line-height-xs: 12px;
+$line-height-sm: 16px;
+$line-height-ms: 20px;
+$line-height-md: 40px;
+$line-height-lg: 48px;
+$line-height-xl: 56px;
+$line-height-xxl: 82px;
+$line-height-xxl: 88px;
+
+// Font-weight
+$font-weight-light: 300;
+$font-weight-default: 400;
+$font-weight-semi-bold: 500;
+$font-weight-bold: 700;
+
+//Colors
+$color-white: #fff;
+$color-black: #000;
+$color-dark-green: #4e594a;
+$color-gold: #dbb047;
+$color-light-gray: #fefefe;
+$color-gray: #a9a9a9;
+$color-dark-blue: #1c1d28;
+$color-dark-greeting-bg: #131519;
+$color-black-opacity: rgba(0, 0, 0, 0.64);
+$color-black-opacity-full: rgba(0, 0, 0, 0.08);
+$color-black-opacity-double-full: rgba(0, 0, 0, 0.16);
+
+$color-light-orange: #fff5eb;
+$color-primary: #ffd2a4;
+$color-orange: #faab5c;
+$color-extra-light-gray: #f5f2f0;
+
+// Border
+$border-radius-sm: 8px;
+$border-radius-ms: 4px;
+$border-radius-md: 6px;
+$border-radius-lg: 12px;
+$border-radius-xl: 32px;
+$border-radius-circle: 50%;
+
+//shadows
+$nav-link-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+$button-shadow: 0 4px 24px $color-black-opacity-full;
+$button-shadow-focus: inset 0 0 0 1px $color-black;
+
+//z-indexes
+$z-index-over-images: 10;
+
+//Elements sizes
+$header-height: 80px;
+$BottomNav-height: 40px;
+
+//NavPopUp
+$z-index-navPopUp: 1000;
+$navPopUp-width: 100%;
+$navPopUp-height: calc(100vh - $header-height);
+$navPopUp-Blur: blur(10px);
+$navPopUp-bg-color: rgba(255, 255, 255, 0.4);
+$navPopUp-padding: 20px;
+
+//Hamburger
+$hamburger-width: 30px;
+$hamburger-height: 20px;
+$hamburger-bar-width: 100%;
+$hamburger-bar-height: 3px;
+
+//bottomHamburgerMenu
+$bottom-menu-width: 50px;
+$bottom-menu-height: 50px;
+$bottom-menu-border-radius: 50%;
+$bottom-menu-bg-color: gray;
+$bottom-menu-bottom-position: 2%;
+$botton-menu-right-positon: 5%;
+$z-index-bottom-menu: 2000;

@@ -1,0 +1,27 @@
+@import '../../../../../styles/variables.scss';
+
+.custom-button {
+  display: flex;
+  align-items: center;
+  outline: none;
+  border: none;
+  width: fit-content;
+  background-color: $color-white;
+  border-radius: 16px;
+  color: $color-black;
+  padding: $gutter-sm $gutter-ms;
+  transition: all .3s linear;
+  cursor: pointer;
+  font-size: $font-size-xs;
+  line-height: $line-height-xs;
+  white-space: nowrap;
+  box-shadow: $button-shadow;
+  gap: $gutter-ms;
+
+  @media screen and (min-width: $tablet) {
+    border-radius: 32px;
+    padding: $gutter-ms $gutter-ml;
+    font-size: $font-size-ms;
+    line-height: $line-height-sm;
+  }
+}

@@ -1,0 +1,14 @@
+@import "../../../../styles/variables.scss";
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: $hamburger-width;
+  height: $hamburger-height;
+  cursor: pointer;
+}
+.hamburger-bar {
+  width: $hamburger-bar-width;
+  height: $hamburger-bar-height;
+  background-color: $color-white;
+}

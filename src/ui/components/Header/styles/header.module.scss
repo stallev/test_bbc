@@ -1,0 +1,30 @@
+@import "../../../../styles/variables.scss";
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  background-color: $color-black;
+  width: 100%;
+  z-index: 1000;
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: $header-height;
+    padding: $gutter-ms;
+
+    @media screen and (max-width: $mobile) {
+      justify-content: center;
+    }
+  }
+
+  &__tooglers {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+}

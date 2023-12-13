@@ -1,0 +1,18 @@
+@import '../../../../../../styles/variables.scss';
+
+.videostreams-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $gutter-lg;
+  padding-top: $gutter-xl;
+  
+  @media screen and (min-width: $desktop) {
+    grid-template-columns: 1fr 1fr;
+    column-gap: $gutter-lg;
+    row-gap: $gutter-xl;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    grid-template-columns: repeat(3fr);
+  }
+}

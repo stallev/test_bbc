@@ -1,0 +1,35 @@
+@import '../../../../../styles/variables.scss';
+
+.custom-link {
+  display: inline-block;
+  transition: all ease .3s;
+  cursor: pointer;
+
+  &--nav-link {
+    &:hover {
+      color: $color-orange;
+    }
+  }
+
+  &--primary {
+    padding: $gutter-ms $gutter-ml;
+    border-radius: $border-radius-md;
+    font-weight: $font-weight-default;
+    font-size: $font-size-xs;
+    line-height: $line-height-sm;
+    color: $color-black;
+    text-transform: uppercase;
+    background-color: $color-primary;
+
+    &:hover {
+      background-color: $color-orange;
+    }
+
+    @media screen and (min-width: $tablet) {
+      border-radius: $border-radius-lg;
+      padding: $gutter-ml $gutter-xlg;
+      font-size: $font-size-ms;
+      line-height: $line-height-sm;
+    }
+  }
+}

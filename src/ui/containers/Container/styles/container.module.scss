@@ -1,0 +1,26 @@
+@import "../../../../styles/variables.scss";
+
+.container {
+  margin: 0 auto;
+  width: calc(100% - 50px);
+
+  @media screen and (min-width: $mobile) {
+    width: 370px;
+  }
+
+  @media screen and (min-width: $tablet) {
+    width: 650px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    width: 850px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: 1100px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    width: 1280px;
+  }
+}

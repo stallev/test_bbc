@@ -1,0 +1,36 @@
+@import "../../../../styles/variables.scss";
+
+.navPopUp {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: $navPopUp-width;
+  height: $navPopUp-height;
+  backdrop-filter: $navPopUp-Blur;
+  background-color: $navPopUp-bg-color;
+  overflow-y: auto;
+  padding: $navPopUp-padding;
+  z-index: $z-index-navPopUp;
+  position: fixed;
+}
+.popUpLinks {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 10px;
+}
+
+.navbar__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  text-decoration: none;
+
+  color: white;
+  font-size: 3rem;
+  padding: 15px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
