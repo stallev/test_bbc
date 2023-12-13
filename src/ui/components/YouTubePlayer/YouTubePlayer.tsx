@@ -22,6 +22,8 @@ const YouTubePlayer:React.FC<YouTubePlayerProps> = ({ videoId }) => {
       autoplay: 1,
       enablejsapi: 1,
       hl: locale,
+      widget_referrer: window.location.href,
+      origin:window.location.href,
       // cc_lang_pref: locale,
     },
   };
