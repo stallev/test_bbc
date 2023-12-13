@@ -9,6 +9,7 @@ interface YouTubePlayerProps {
 }
 
 const YouTubePlayer:React.FC<YouTubePlayerProps> = ({ videoId }) => {
+  console.log(window.location.href)
   const { locale } = useRouter();
   const onPlayerReady: YouTubeProps['onReady'] = (event) => {
     event.target.pauseVideo();

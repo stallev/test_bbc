@@ -14,13 +14,14 @@ export interface VideoItem {
 }
 
 const VideoStreamsList:React.FC<VideoStreamsListProps> = ({ data }) => {
-  console.log(data)
+  // console.log(data)
+  if (typeof window === 'undefined') {
+    return null; // или что-то другое, если нужно
+  }
+  
   return (
     <div className={styles['videostreams-list']}>
       {data.map((video: VideoItem) => <YouTubePlayer videoId={video.id} key={video.id} />)}
-      {/* {data.map((video: VideoItem) => <iframe key={video.id} width="420" height="315"
-src={video.url}>
-</iframe>)} */}
     </div>
   )
 }
