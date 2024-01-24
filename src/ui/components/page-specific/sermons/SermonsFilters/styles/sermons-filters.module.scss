@@ -1,5 +1,8 @@
 @import '../../../../../../styles/variables.scss';
 
 .sermons-filters {
-  display: flex;  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: $gutter-lg;
 }

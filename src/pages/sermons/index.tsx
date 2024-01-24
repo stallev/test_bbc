@@ -12,16 +12,16 @@ import { PagesIDs } from "@/constants";
 import styles from '../../styles/pages/sermons.module.scss'
 
 export default function Sermons({ data }: any) {
-  console.log('page data is', data)
+  // console.log('page data is', data)
   
-  useEffect(() => {
-    const fetchSermons = async () => {
-      const data = await SermonsDataApi.getSermonsList('en');
-      console.log(data)
-      return data;
-    }
-    fetchSermons();
-  }, [])
+  // useEffect(() => {
+  //   const fetchSermons = async () => {
+  //     const data = await SermonsDataApi.getSermonsList('en');
+  //     console.log(data)
+  //     return data;
+  //   }
+  //   fetchSermons();
+  // }, [])
   return (
     <>
       <Head>
