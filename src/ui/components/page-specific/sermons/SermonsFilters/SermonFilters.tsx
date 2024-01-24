@@ -27,16 +27,19 @@ const SermonFilters: React.FC<SermonsFiltersProps> = ({ data }) => {
           id="long-value-select"
           instanceId="long-value-select"
           options={booksOptions}
+          className={styles["sermons-filters__item"]}
          />
         <Select
           id="long-value-select2"
           instanceId="long-value-select2"
           options={preachersOptions}
+          className={styles["sermons-filters__item"]}
          />
         <Select
           id="long-value-select3"
           instanceId="long-value-select3"
           options={topicsOptions}
+          className={styles["sermons-filters__item"]}
          />
       </div>
     </Container>

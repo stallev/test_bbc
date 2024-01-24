@@ -2,7 +2,21 @@
 
 .sermons-filters {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  row-gap: $gutter-lg;
+  flex-direction: column;
+  gap: $gutter-lg;
+
+  @media screen and (min-width: $tablet) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  &__item {
+    flex-grow: 2;
+    width: 100%;
+
+    @media screen and (min-width: $tablet) {
+      width: auto
+    }
+  }
 }
