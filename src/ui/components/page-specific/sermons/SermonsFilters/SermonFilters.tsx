@@ -1,5 +1,5 @@
 import React from 'react';
-// import Select from 'react-select';
+import Select from 'react-select';
 import Container from '@/ui/containers/Container/Container';
 
 import styles from './styles/sermons-filters.module.scss';
@@ -23,7 +23,7 @@ const SermonFilters: React.FC<SermonsFiltersProps> = ({ data }) => {
   return (
     <Container>
       <div className={styles["sermons-filters"]}>
-        {/* <Select
+        <Select
           id="long-value-select"
           instanceId="long-value-select"
           options={booksOptions}
@@ -37,7 +37,7 @@ const SermonFilters: React.FC<SermonsFiltersProps> = ({ data }) => {
           id="long-value-select3"
           instanceId="long-value-select3"
           options={topicsOptions}
-         /> */}
+         />
       </div>
     </Container>
   )
