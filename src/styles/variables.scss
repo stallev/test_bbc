@@ -3,7 +3,7 @@ $largeDesktop: 1440px;
 $desktop: 1280px;
 $smallDesktop: 1024px;
 $tablet: 768px;
-$mobile: 426px;
+$mobile: 550px;
 $smallMobile: 326px;
 
 // Gutters
@@ -35,8 +35,8 @@ $font-size-xxl: 64px;
 $line-height-xs: 12px;
 $line-height-sm: 16px;
 $line-height-ms: 20px;
-$line-height-md: 40px;
-$line-height-lg: 48px;
+$line-height-md: 25px;
+$line-height-lg: 36px;
 $line-height-xl: 56px;
 $line-height-xxl: 82px;
 $line-height-xxl: 88px;
@@ -50,9 +50,14 @@ $font-weight-bold: 700;
 //Colors
 $color-white: #fff;
 $color-black: #000;
+//$color-header: rgba(0, 0, 0, 0.6);
 $color-dark-green: #4e594a;
 $color-gold: #dbb047;
+$color-red: red;
 $color-light-gray: #fefefe;
+$color-light-backgrond-gray: #e3e2e2;
+$color-medium-gray: #595959;
+$color-footer-bg: #d9d9d9;
 $color-gray: #a9a9a9;
 $color-dark-blue: #1c1d28;
 $color-dark-greeting-bg: #131519;
@@ -61,11 +66,13 @@ $color-black-opacity-full: rgba(0, 0, 0, 0.08);
 $color-black-opacity-double-full: rgba(0, 0, 0, 0.16);
 
 $color-light-orange: #fff5eb;
+$color-success: rgb(9, 166, 9);
 $color-primary: #ffd2a4;
 $color-orange: #faab5c;
 $color-extra-light-gray: #f5f2f0;
 
 // Border
+$border-radius-xs: 2px;
 $border-radius-sm: 8px;
 $border-radius-ms: 4px;
 $border-radius-md: 6px;
@@ -77,27 +84,34 @@ $border-radius-circle: 50%;
 $nav-link-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 $button-shadow: 0 4px 24px $color-black-opacity-full;
 $button-shadow-focus: inset 0 0 0 1px $color-black;
+$quot-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+$full-block-shadow: inset 50vw 50vh 50vw 50vh rgba(0, 0, 0, 0.25);
 
 //z-indexes
 $z-index-over-images: 10;
 
 //Elements sizes
 $header-height: 80px;
+$desctop-footer-height: 180px;
 $BottomNav-height: 40px;
+$upcomingEventsSectionHeightOnMobile: 350px;
 
 //NavPopUp
 $z-index-navPopUp: 1000;
 $navPopUp-width: 100%;
-$navPopUp-height: calc(100vh - $header-height);
-$navPopUp-Blur: blur(10px);
-$navPopUp-bg-color: rgba(255, 255, 255, 0.4);
+$navPopUp-height: calc(100% - $header-height);
+$navPopUp-Blur: blur(20px);
+$navPopUp-bg-color: rgba(0, 0, 0, 0.5);
 $navPopUp-padding: 20px;
 
 //Hamburger
-$hamburger-width: 30px;
-$hamburger-height: 20px;
+$hamburger-width: 40px;
+$hamburger-height: 40px;
 $hamburger-bar-width: 100%;
 $hamburger-bar-height: 3px;
+$hamburger-border-radius: 4px;
+$hamburger-color: #ffff;
+$hamburger-font-size: 2rem;
 
 //bottomHamburgerMenu
 $bottom-menu-width: 50px;
@@ -107,3 +121,25 @@ $bottom-menu-bg-color: gray;
 $bottom-menu-bottom-position: 2%;
 $botton-menu-right-positon: 5%;
 $z-index-bottom-menu: 2000;
+
+//Gospelpage
+
+$gospel-main-height: 100vh;
+$quote-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+$gospel-content-width: 70%;
+$gospel-content-padding: 20px;
+$gospel-content-height: calc(100% - $header-height);
+$gospel-title-margin: 20px;
+$gospel-quote-width: 100%;
+$gospel-quote-margin: 50px 0 50px 0;
+$gospel-quote-border-radius: 10px;
+$gospel-quote-padding: 20px;
+
+//NavDropdown
+
+$navDropDown-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+$navDropDown-padding: 10px;
+$navDropDown-z-index: 1000;
+
+$navDropDown-link-width: 100%;
+$navDropDown-link-padding: 8px;

@@ -1,6 +1,6 @@
 import React from "react";
 import { CustomLink } from "../../ui-kit";
-import { NavBarLinks } from "@/constants/NavBarLinks";
+import { MainNavBarLinks } from "@/constants/NavBarLinks";
 import { LinkTypes } from "@/constants/LinkTypes";
 import cx from "classnames";
 interface Props {
@@ -13,7 +13,7 @@ const CustomNav: React.FC<Props> = ({ mainDiv, secondDiv, linkStyle }) => {
   return (
     <div className={cx(mainDiv)}>
       <div className={secondDiv}>
-        {Object.values(NavBarLinks).map(({ link, label }, index) => (
+        {Object.values(MainNavBarLinks).map(({ link, label }, index) => (
           <CustomLink
             key={index}
             to={link}

@@ -1,13 +1,31 @@
 import { ActionType } from "./../Actions/action";
 
 export interface State {
-  isMenuOpen: boolean;
+  isMenuOpen: boolean
+  notificationData: {
+    isVisibleNotification: boolean
+    notificationText: string,
+    notificationType: string,
+  }
 }
 
-type Action = { type: ActionType };
+export interface NotificationData {
+  isVisibleNotification?: boolean
+  notificationText?: string
+  notificationType?: string
+}
+
+type Action =
+  | { type: ActionType.TOGGLE_MENU }
+  | { type: ActionType.UPDATE_NOTIFICATION; payload: NotificationData };
 
 export const initialState: State = {
   isMenuOpen: false,
+  notificationData: {
+    isVisibleNotification: false,
+    notificationText: '',
+    notificationType: '',
+  },
 };
 
 export const reducer = (state: State, action: Action): State => {
@@ -17,6 +35,16 @@ export const reducer = (state: State, action: Action): State => {
         ...state,
         isMenuOpen: !state.isMenuOpen,
       };
+
+      case ActionType.UPDATE_NOTIFICATION:
+        return {
+          ...state,
+          notificationData: {
+            ...state.notificationData,
+            ...action.payload,
+          },
+        };
+
     default:
       return state;
   }

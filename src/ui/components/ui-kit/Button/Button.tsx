@@ -4,31 +4,39 @@ import cx from 'classnames';
 import styles from './styles/button.module.scss';
 
 interface CustomButtonProps {
-  buttonTitle: string,
-  className: string,
+  buttonTitle?: string,
+  className?: string,
   isSubmit?: boolean,
   onClick?: () => void,
-  background?: string,
-  disabled: string | undefined,
+  type?: string,
+  disabled?: boolean,
   tabIndex?: number,
+  children?: React.ReactNode
 }
 
 const Button: FC<CustomButtonProps> = ({
   buttonTitle,
   className,
-  isSubmit,
+  isSubmit = false,
   onClick,
-  background,
+  type,
   tabIndex = 0,
+  children,
+  disabled = false,
 }) => {
   return (
     <button
-      className={cx(styles['custom-button'], styles[`custom-button--${background}`], className)}
+      className={cx(
+        styles['custom-button'],
+        styles[`custom-button--${type}`],
+        className
+      )}
       type={isSubmit ? 'submit' : 'button'}
       onClick={onClick || undefined}
       tabIndex={tabIndex}
     >
-      {buttonTitle}
+      {buttonTitle && buttonTitle}
+      {children && children}
     </button>
   );
 };

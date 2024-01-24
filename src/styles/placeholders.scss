@@ -1,0 +1,72 @@
+@import './variables.scss';
+
+%h2Style {
+  margin-top: $gutter-lg;
+  font-size: $font-size-md;
+  line-height: $line-height-md;
+  font-weight: $font-weight-bold;
+
+  @media screen and (min-width: $tablet) {
+    font-size: $font-size-lg;
+    line-height: $line-height-lg;
+  }
+}
+
+%paragraphStyle {
+  margin-top: $gutter-ms;
+  font-size: $font-size-ms;
+  line-height: $line-height-md;
+}
+
+%paddingTopHeader {
+  padding-top: calc($header-height + $gutter-ml);
+
+  @media screen and (min-width: $tablet) {
+    padding-top: calc($header-height + $gutter-lg);
+  }
+}
+
+%pageTitleStyles {
+  font-size: $font-size-lg;
+  line-height: $line-height-lg;
+  text-align: center;
+  font-weight: $font-weight-bold;
+
+  @media screen and (min-width: $tablet) {
+    font-size: $font-size-xl;
+    line-height: $line-height-xl;
+  }
+}
+
+%blockquoteStyles {
+  margin-top: $gutter-ml;
+  padding: $gutter-md;
+  font-style: italic;
+  border: 1px solid $color-light-backgrond-gray;
+  font-weight: 400;
+  border-radius: $border-radius-md;
+  box-shadow: $quot-shadow;
+}
+
+%primaryBtnLink {
+  display: inline-block;
+  padding: $gutter-md $gutter-ml;
+  border-radius: $border-radius-md;
+  font-weight: $font-weight-default;
+  font-size: $font-size-xs;
+  line-height: $line-height-xs;
+  color: $color-black;
+  text-transform: uppercase;
+  background-color: $color-primary;
+
+  &:hover {
+    background-color: $color-orange;
+  }
+
+  @media screen and (min-width: $tablet) {
+    border-radius: $border-radius-lg;
+    padding: $gutter-ml $gutter-xlg;
+    font-size: $font-size-ms;
+    line-height: $line-height-sm;
+  }
+}

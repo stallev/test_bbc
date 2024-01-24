@@ -1,0 +1,50 @@
+@import "../../../../styles/variables.scss";
+
+.footer {
+  padding: $gutter-lg 0;
+  background-color: $color-footer-bg;
+
+  &__top {
+    display: flex;
+    gap: $gutter-md;
+    flex-direction: column;
+    padding: 0 $gutter-ms;
+    color: $color-black;
+
+    @media screen and (min-width: $mobile) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    svg {
+      display: inline-block;
+
+      @media screen and (min-width: $tablet) {
+        width: 250px !important;
+        height: auto !important;
+      }
+    }
+  }
+
+  &__address {
+    max-width: 240px;
+    font-size: $font-size-sm;
+    line-height: $line-height-ms;
+
+    @media screen and (min-width: $tablet) {
+      font-size: $font-size-ms;
+      line-height: $font-size-md;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    padding: 0 $gutter-ms;
+    margin-top: $gutter-ml;
+
+    @media screen and (min-width: $mobile) {
+      justify-content: center;
+    }
+  }
+}

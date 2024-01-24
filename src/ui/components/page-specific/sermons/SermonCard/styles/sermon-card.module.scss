@@ -1,0 +1,98 @@
+@import '../../../../../../styles/variables.scss';
+
+.sermon-card {
+  display: flex;
+  flex-direction: column;
+
+  &--active {
+    .sermon-card__info {
+      background: hsla(33, 100%, 53%, 1);
+      background: linear-gradient(90deg, hsla(33, 100%, 53%, 1) 0%, hsla(58, 100%, 68%, 1) 100%);
+    }
+  }
+
+  &__image-wrap {
+    position: relative;
+  }
+
+  &__start {
+    position: absolute;
+    display: flex;
+    bottom: 10px;
+    left: 25px;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: hsla(33, 100%, 53%, 1);
+    background: linear-gradient(90deg, hsla(33, 100%, 53%, 1) 0%, hsla(58, 100%, 68%, 1) 100%);
+    cursor: pointer;
+  }
+
+  &__image {
+    display: block;
+    height: 180px;
+    cursor: pointer;
+
+    &::before {
+      position: absolute;
+      display: block;
+      content: "";
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1px;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    row-gap: $gutter-sm;
+    flex-shrink: 2;
+    padding: $gutter-ms $gutter-ms;
+    background-color: $color-light-backgrond-gray;
+  }
+
+  &__title {
+    color: $color-black;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-md;
+    line-height: $line-height-md;
+  }
+
+  &__text-data {
+    display: flex;
+    flex-direction: column;
+    row-gap: $gutter-sm;
+  }
+
+  &__description-data {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $gutter-md;
+  }
+
+  &__preacher {
+    font-weight: $font-weight-bold;
+  }
+
+  &__source-data {
+    display: flex;
+    gap: $gutter-sm;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-default;
+    line-height: $line-height-ms;
+  }
+
+  &__video-link {
+    display: inline-block;
+
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+  }
+}

@@ -1,15 +1,16 @@
-@import '../../../../../../styles/variables.scss';
+@import "../../../../../../styles/variables.scss";
 
 .greeting-screen {
   position: relative;
-  height: calc(100vh - $header-height);
+  height: 100svh;
   width: 100%;
-  background: $color-dark-greeting-bg;
+  background: $color-light-backgrond-gray;
 
   &__image {
     position: absolute;
     width: 100%;
     height: 100%;
+    filter: brightness(80%);
   }
 
   &__content-wrap {

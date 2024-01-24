@@ -1,35 +1,60 @@
-import React from "react";
-import styles from "./styles/NavPopUp.module.scss";
-import { CustomLink } from "../ui-kit";
-import { NavBarLinks } from "@/constants/NavBarLinks";
-import { LinkTypes } from "@/constants/LinkTypes";
-import useTranslationFunction from '@/hooks/useTranslationFunction';
-import { useAppContext } from "../../globalState/ContextHook/contextHook";
+import React, { useState } from "react";
+import useTranslationFunction from "@/hooks/useTranslationFunction";
+import ParentLinks from "./ParentLinks";
+import ChildrenLinks from "./ChildrenLinks";
 import { toggleMenu } from "@/ui/globalState/GlobalFunctions/useGlobalFunctions";
+import { useAppContext } from "../../globalState/ContextHook/contextHook";
+import styles from "./styles/NavPopUp.module.scss";
 
-const NavPopUp: React.FC = () => {
+interface NavBarLinks {
+  [key: string]: {
+    link: string;
+    label: string;
+    children?: Record<string, { link: string; label: string }>;
+  };
+}
+
+interface NavPopUpProps {
+  navBarLinks: NavBarLinks;
+}
+const NavPopUp: React.FC<NavPopUpProps> = ({ navBarLinks }) => {
+  const translate = useTranslationFunction();
   const { dispatch } = useAppContext();
 
-  const translate = useTranslationFunction();
-
-  const handleClose = () => {
+  const toggleMenuButton = () => {
     toggleMenu(dispatch);
   };
 
+  const [activeChildrenLinks, setActiveChildrenLinks] = useState(false);
+  const [childrenLinks, setChildrenLinks] = useState({});
+
+  const handleBackClick = () => {
+    setActiveChildrenLinks(false);
+  };
+
+  const handleViewChildren = (children: any) => {
+    setActiveChildrenLinks(true);
+    setChildrenLinks(children);
+  };
+
   return (
-    <div className={`${styles.navPopUp}`}>
+    <div className={styles.navPopUp}>
       <div className={styles.popUpLinks}>
-        {Object.values(NavBarLinks).map(({ link, label }, index) => (
-          <CustomLink
-            key={index}
-            to={link}
-            ariaLabel={translate(label) as string}
-            className={styles.navbar__link}
-            type={LinkTypes.navLink}
-          >
-            {translate(label)}
-          </CustomLink>
-        ))}
+        {activeChildrenLinks ? (
+          <ChildrenLinks
+            childrenLinks={Object.values(childrenLinks)}
+            translate={translate}
+            handleLinkClick={toggleMenuButton}
+            handleBackClick={handleBackClick}
+          />
+        ) : (
+          <ParentLinks
+            parentLinks={navBarLinks}
+            translate={translate}
+            handleLinkClick={toggleMenuButton}
+            handleDropdownClick={handleViewChildren}
+          />
+        )}
       </div>
     </div>
   );

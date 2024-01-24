@@ -1,7 +1,9 @@
 @import "../styles/variables.scss";
 .main {
-  min-height: 100vh;
-  padding-top: $header-height;
+  //min-height: 100vh;
+  min-height: calc(100dvh - $desctop-footer-height);
+  height: 100%;
+  // padding-top: $header-height; //test to show that scrolling works
 }
 
 .description {

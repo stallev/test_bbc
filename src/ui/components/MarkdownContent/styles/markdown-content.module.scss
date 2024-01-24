@@ -1,0 +1,32 @@
+@import "../../../../styles/variables.scss";
+@import "../../../../styles/placeholders.scss";
+
+.markdown-content {
+  h2 {
+    @extend %h2Style;
+    margin-bottom: $gutter-ml;
+  }
+
+  p {
+    @extend %paragraphStyle;
+  }
+
+  blockquote {
+    @extend %blockquoteStyles;
+    margin-bottom: $gutter-ml;
+
+    p {
+      font-style: italic;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    cite {
+      display: inline-block;
+      margin-top: $gutter-xs;
+      font-size: smaller;
+    }
+  }
+}

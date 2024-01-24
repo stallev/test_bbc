@@ -1,3 +1,4 @@
 export enum ActionType {
   TOGGLE_MENU = "TOGGLE_MENU",
+  UPDATE_NOTIFICATION = "UPDATE_NOTIFICATION",
 }

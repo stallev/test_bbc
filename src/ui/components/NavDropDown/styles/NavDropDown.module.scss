@@ -1,0 +1,30 @@
+@import "../../../../styles/variables.scss";
+
+.navDropDown {
+  position: absolute;
+  background-color: $color-medium-gray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: $navDropDown-box-shadow;
+  padding: $navDropDown-padding;
+  z-index: $navDropDown-z-index;
+  @media screen and (max-width: $smallDesktop) {
+    width: 100%;
+    margin: auto;
+  }
+}
+
+.navDropDown__link {
+  display: flex;
+  justify-content: center;
+  width: $navDropDown-link-width;
+  padding: $navDropDown-link-padding;
+  color: $color-white;
+  text-decoration: none;
+}
+
+.navDropDown__link:hover {
+  background-color: $color-medium-gray;
+}

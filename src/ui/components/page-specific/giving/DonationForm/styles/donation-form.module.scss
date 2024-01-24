@@ -1,0 +1,9 @@
+@import '../../../../../../styles/variables.scss';
+
+.donation-form {
+  margin-top: $gutter-xl;
+
+  .fixed.bottom-0.left-0.w-full.pointer-events-none {
+    width: 0 !important;
+  }
+}

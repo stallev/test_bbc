@@ -1,0 +1,55 @@
+@import "../../../../../../styles/variables.scss";
+
+.staff-person-card {
+  display: flex;
+
+  a {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+  }
+
+  &__image {
+    height: 400px;
+    border-radius: $border-radius-sm;
+    border: 1px solid $color-gray;
+    overflow: hidden;
+  
+    @media screen and (min-width: 450px) {
+      height: 300px;
+    }
+
+    @media screen and (min-width: $mobile) {
+      height: 350px;
+    }
+
+    @media screen and (min-width: $tablet) {
+      height: 250px;
+    }
+
+    @media screen and (min-width: $smallDesktop) {
+      height: 380px;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 2;
+    padding: $gutter-ms;
+    text-align: center;
+  }
+
+  &__name {
+    font-size: $font-size-md;
+    line-height: $line-height-lg;
+    font-weight: $font-weight-bold;
+  }
+
+  &__position {
+    font-size: $font-size-ms;
+    line-height: $line-height-md;
+    font-style: italic;
+  }
+}

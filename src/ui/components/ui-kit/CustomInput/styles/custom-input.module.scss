@@ -1,0 +1,54 @@
+@import "../../../../../styles/variables.scss";
+
+.custom-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  background: $color-light-gray;
+  width: 100%;
+
+  &:not(:first-child) {
+    margin-top: $gutter-ml;
+
+    @media screen and (min-width: $desktop) {
+      margin-top: 0;
+    }
+  }
+
+  &__field {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    flex: 1;
+    padding: $gutter-ms $gutter-base;
+    z-index: 1;
+    width: 100%;
+    border: none;
+    font-size: $font-size-ms;
+    background-color: transparent;
+    border: 1px solid $color-medium-gray;
+    border-radius: $border-radius-sm;
+    color: $color-gray;
+
+    &:focus {
+      border-color: $color-black;
+      background: $color-light-gray;
+      outline: none;
+      outline-offset: 0;
+    }
+  }
+
+  &--error input,
+  &--error input:focus {
+    border: 1px solid $color-red;
+  }
+
+  &__error-message {
+    position: absolute;
+    left: 10px;
+    bottom: -20px;
+    font-size: $font-size-xs;
+    color: $color-red;
+  }
+}

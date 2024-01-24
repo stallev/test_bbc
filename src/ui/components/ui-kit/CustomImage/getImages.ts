@@ -1,6 +1,6 @@
 import { StaticImageData } from 'next/image';
 
-import logoHeader from '../../../assets/images/logo_modified.png';
+import logoHeader from '../../../assets/images/Logo + text 2.svg';
 import greetingSreenImage from '../../../assets/images/bg-header-3.webp';
 
 interface Images {

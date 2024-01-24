@@ -22,3 +22,15 @@
     display: none;
   }
 }
+
+.link_div {
+  display: flex;
+  align-items: center;
+}
+
+.arrowIcon {
+  display: flex;
+  color: $color-white;
+  justify-content: center;
+  margin: 5px;
+}

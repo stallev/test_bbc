@@ -1,0 +1,31 @@
+@import '../../../../../../styles/variables.scss';
+
+.sermon-cards-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $gutter-lg;
+  padding: $gutter-xl 0;
+  align-items: stretch;
+  
+  @media screen and (min-width: $tablet) {
+    grid-template-columns: 1fr 1fr;
+    column-gap: $gutter-lg;
+    row-gap: $gutter-xl;
+  }
+
+  @media screen and (min-width: $desktop) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &__no-more-items-text {
+    font-size: $font-size-md;
+  }
+
+  &__player {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    z-index: 10;
+    background-color: $color-white;
+  }
+}

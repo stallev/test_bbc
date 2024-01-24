@@ -1,0 +1,10 @@
+@import "../../../../../styles/variables.scss";
+
+.icon {
+  display: flex;
+  align-items: center;
+
+  &--hover {
+    cursor: pointer;
+  }
+}

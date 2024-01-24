@@ -1,14 +1,33 @@
 @import "../../../../styles/variables.scss";
+
 .hamburger {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: $hamburger-width;
-  height: $hamburger-height;
   cursor: pointer;
-}
-.hamburger-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: $hamburger-bar-width;
   height: $hamburger-bar-height;
-  background-color: $color-white;
+  border-radius: $hamburger-border-radius;
+
+  svg {
+    font-size: $hamburger-font-size;
+    color: $hamburger-color;
+    transition: transform 0.5s ease;
+  }
+}
+
+.hamburger svg:last-child {
+  transform: rotate(0deg);
+}
+
+.hamburger svg:first-child {
+  transform: rotate(0deg);
+}
+
+.hamburger:hover svg:first-child {
+  transform: rotate(45deg);
+}
+
+.hamburger:hover svg:last-child {
+  transform: rotate(-45deg);
 }

@@ -1,20 +1,18 @@
 const SiteUrl = 'https://testchurchapi.stallevs.ru/';
 
+export const PostsQueryMaxCount = 10000;
+
 export const EndpointsList = {
   PagesStandartRestEndpoint: `${SiteUrl}wp-json/wp/v2/pages/`,
   MediaStandartRestEndpoint: `${SiteUrl}wp-json/wp/v2/media/`,
+  UpcomingEventsCustomRestEndpoint: `${SiteUrl}wp-json/carbonfields/v1/upcoming_events_association`,
+  MinistersCustomRestEndpoint: `${SiteUrl}wp-json/carbonfields/v1/selected-ministers-list`,
 }
 
-export const PagesIDs = {
-  Home: {
-    en: '60',
-    ru: '70',
-  },
+export const PrayerRequestEndpoint = {
+  dev: 'https://2coz8t7e9k.execute-api.us-east-1.amazonaws.com/default/PrayerRequest',
 }
 
-export const YouTubePlaylistIDs = {
-  generalLiveStreams: 'PLfkn9DhA379wUhQYnCuLvP_PnX_lGXz9I',
-  youthCamp2023Streams: 'PLfkn9DhA379xhQ8QEpv9CDNl2QKn8VS_7',
-  sermonsStreams: 'PLfkn9DhA379zFa0oPmxfDeMpmEkrEEBBx',
-  songsStreams: 'PLfkn9DhA379y_KkaIzkRKvdtG6Z8_KdO3',
+export const WordpressGraphQLEndpoint = {
+  dev: 'https://testchurchapi.stallevs.ru/graphql',
 }

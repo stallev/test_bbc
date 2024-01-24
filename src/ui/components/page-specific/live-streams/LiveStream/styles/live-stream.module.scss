@@ -1,0 +1,23 @@
+@import '../../../../../../styles/variables.scss';
+
+.live-stream {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: $gutter-ml auto 0;
+
+  &__service-title {
+    text-align: center;
+    font-size: $font-size-md;
+    line-height: $line-height-md;
+    font-weight: $font-weight-bold;
+    margin-top: $gutter-xs;
+  }
+
+  &__service-description {
+    text-align: center;
+    font-size: $font-size-sm;
+    line-height: $line-height-sm;
+    text-transform: uppercase;
+  }
+}

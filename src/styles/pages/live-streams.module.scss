@@ -1,0 +1,9 @@
+@import '../variables.scss';
+@import '../placeholders.scss';
+
+.live-streams {
+  &__title {
+    @extend %pageTitleStyles;
+    @extend %paddingTopHeader;
+  }
+}

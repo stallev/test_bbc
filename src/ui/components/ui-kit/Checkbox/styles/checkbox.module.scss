@@ -1,0 +1,20 @@
+@import "../../../../../styles/variables.scss";
+@import "../../../../../styles/placeholders.scss";
+
+.checkbox {
+  cursor: pointer;
+
+  input {
+    display: none;
+  }
+
+  label {
+    display: flex;
+    gap: $gutter-ms;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}

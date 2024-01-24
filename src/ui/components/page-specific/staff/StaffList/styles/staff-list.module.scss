@@ -1,0 +1,30 @@
+@import "../../../../../../styles/variables.scss";
+
+.staff-list {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: minmax(100px, auto);
+  row-gap: $gutter-ml;
+  grid-auto-rows: minmax(100px, auto);
+  padding: $gutter-ml 0;
+
+  @media screen and (min-width: 450px) {
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: flex-start;
+    column-gap: $gutter-xl;
+  }
+
+  @media screen and (min-width: $tablet) {
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: flex-start;
+    column-gap: $gutter-xl;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and (min-width: $desktop) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
