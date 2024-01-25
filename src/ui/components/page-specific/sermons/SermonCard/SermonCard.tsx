@@ -32,8 +32,6 @@ const SermonCard = ({
           className={styles["sermon-card__image"]}
           imageURL={data.imageLinks.medium || data.imageLinks.thumbnail}
           priority={index < 2}
-          placeholder='blur'
-          blurDataURL={blurDataURL}
           sizes='420px'
         />
 
