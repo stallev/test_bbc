@@ -25,17 +25,18 @@
     display: flex;
     flex-direction: column;
     gap: $gutter-lg;
-    margin-top: $gutter-lg;
 
     @media screen and (min-width: $tablet) {
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: space-between;
+      flex-grow: 2;
     }
   }
 
   &__dates {
     display: flex;
     justify-content: space-between;
+    gap: $gutter-ml;
   }
 }

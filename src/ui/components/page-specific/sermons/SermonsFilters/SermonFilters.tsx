@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import Select from 'react-select';
-import DatePicker from 'react-datepicker';
+import React from 'react';
+import dynamic from 'next/dynamic';
 import Container from '@/ui/containers/Container/Container';
 
 import styles from './styles/sermons-filters.module.scss';
-import "react-datepicker/dist/react-datepicker.css";
 
 import { SermonsFiltersProps } from './types';
 
+const Select = dynamic(() => import('react-select'));
+const DatePicker = dynamic(() => import('../CustomDatePicker/CustomDatePicker'));
+
 const SermonFilters: React.FC<SermonsFiltersProps> = ({ data }) => {
-  const [startDate, setStartDate] = useState<Date | null>(new Date());
 
   console.log(data)
   const booksOptions = data.biblebooks ? data.biblebooks.map((book: string) => {
@@ -49,8 +49,8 @@ const SermonFilters: React.FC<SermonsFiltersProps> = ({ data }) => {
         </div>
 
          <div className={styles["sermons-filters__dates"]}>
-            <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
-            <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+            <DatePicker />
+            <DatePicker />
          </div>
       </div>
     </Container>
