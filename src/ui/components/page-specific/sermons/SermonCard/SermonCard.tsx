@@ -20,6 +20,8 @@ const SermonCard = ({
   stopPlayingSermon: () => void
   isActive: boolean
 }) => {
+  const blurDataURL = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPcsHtDPQAG2gKcgjPHewAAAABJRU5ErkJggg==";
+
   return (
     <article className={`${styles["sermon-card"]} ${isActive && styles["sermon-card--active"]}`}>
       <div
@@ -30,6 +32,8 @@ const SermonCard = ({
           className={styles["sermon-card__image"]}
           imageURL={data.imageLinks.medium || data.imageLinks.thumbnail}
           priority={index < 2}
+          placeholder='blur'
+          blurDataURL={blurDataURL}
           sizes='420px'
         />
 

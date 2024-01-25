@@ -5,6 +5,11 @@ import getImages from './getImages';
 
 import styles from './styles/custom-image.module.scss';
 
+enum PlaceholderValue {
+  'empty' = 'empty',
+  'blur' = 'blur'
+}
+
 interface CustomImageProps {
   className?: string, 
   imageName?: string, 
@@ -14,6 +19,8 @@ interface CustomImageProps {
   ariaLabel?: string,
   priority?: boolean,
   sizes?: string,
+  placeholder?: string
+  blurDataURL?: string
 }
 
 const CustomImage: React.FC<CustomImageProps> = ({ 
@@ -25,6 +32,8 @@ const CustomImage: React.FC<CustomImageProps> = ({
   ariaLabel = '',
   priority,
   sizes = '100vw',
+  placeholder = 'empty',
+  blurDataURL,
 }) => {
   return (
     <div
@@ -43,6 +52,8 @@ const CustomImage: React.FC<CustomImageProps> = ({
         alt={alt || ''}
         priority={priority}
         sizes={sizes}
+        placeholder={placeholder as PlaceholderValue}
+        blurDataURL={blurDataURL || ''}
       />
     </div>
   );
