@@ -1,0 +1,33 @@
+@import '../../../../../../styles/variables.scss';
+
+.custom-simple-select {
+  position: relative;
+
+  @media screen and (min-width: $tablet) {
+    width: calc(50% - $gutter-md);
+    max-width: 260px;
+  }
+
+  &::after {
+    // content: "➧";
+    // transform: rotate(90deg);
+    // font-size: 18px;
+    // position: absolute;
+    // right: 0;
+    // margin-top: -2px;
+    // pointer-events: none;
+  }
+
+  select {
+    // appearance: none;
+    width: 100%;
+    padding: $gutter-sm;
+    border-color: #aaa;
+    border-radius: 3px;
+  }
+
+  select option {
+    padding: 4px;
+    font-size: $font-size-ms;
+  }
+}

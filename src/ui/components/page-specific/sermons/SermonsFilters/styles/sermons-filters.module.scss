@@ -6,10 +6,11 @@
   gap: $gutter-lg;
   margin-top: $gutter-lg;
 
-  @media screen and (min-width: $desktop) {
+  @media screen and (min-width: $smallDesktop) {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
+    align-items: stretch;
   }
 
   &__item {
@@ -28,8 +29,7 @@
 
     @media screen and (min-width: $tablet) {
       flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: space-between;
+      justify-content: flex-start;
       flex-grow: 2;
     }
   }
