@@ -1,15 +1,21 @@
 import { useState } from 'react';
-import DatePicker from 'react-datepicker';
+import DatePicker from 'react-date-picker';
 
-import "react-datepicker/dist/react-datepicker.css";
+type ValuePiece = Date | null;
+
+type Value = ValuePiece | [ValuePiece, ValuePiece];
+
+import 'react-date-picker/dist/DatePicker.css';
+import 'react-calendar/dist/Calendar.css';
 
 const CustomDatePicker = () => {
-  const [startDate, setStartDate] = useState<Date | null>(new Date());
+  const [value, onChange] = useState<Value>(new Date());
+
   return (
     <div>
-      <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+      <DatePicker onChange={onChange} value={value} />
     </div>
-  )
-}
+  );
+};
 
 export default CustomDatePicker;
