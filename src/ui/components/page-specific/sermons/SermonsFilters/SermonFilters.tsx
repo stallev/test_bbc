@@ -6,7 +6,8 @@ import styles from './styles/sermons-filters.module.scss';
 
 import { SermonsFiltersProps } from './types';
 
-const Select = dynamic(() => import('react-select'));
+// const Select = dynamic(() => import('react-select'));
+const CustomSelect = dynamic(() => import('../CustomSelect/CustomSelect'));
 const DatePicker = dynamic(() => import('../CustomDatePicker/CustomDatePicker'));
 
 const SermonFilters: React.FC<SermonsFiltersProps> = ({ data }) => {
@@ -28,7 +29,7 @@ const SermonFilters: React.FC<SermonsFiltersProps> = ({ data }) => {
     <Container>
       <div className={styles["sermons-filters"]}>
         <div className={styles["sermons-filters__categories"]}>
-          <Select
+          {/* <Select
             id="long-value-select"
             instanceId="long-value-select"
             options={booksOptions}
@@ -45,6 +46,21 @@ const SermonFilters: React.FC<SermonsFiltersProps> = ({ data }) => {
             instanceId="long-value-select3"
             options={topicsOptions}
             className={styles["sermons-filters__item"]}
+          /> */}
+          <CustomSelect
+            options={data.biblebooks}
+            name='Books'
+            action='Change book'
+          />
+          <CustomSelect
+            options={data.preachers}
+            name='Preachers'
+            action='Change preacher'
+          />
+          <CustomSelect
+            options={data.topics}
+            name='Topics'
+            action='Change topic'
           />
         </div>
 

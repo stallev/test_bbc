@@ -1,7 +1,7 @@
 export interface SermonsCategoriesListProps {
-  biblebooks?: string[]
-  preachers?: string[]
-  topics?: string[]
+  biblebooks: string[]
+  preachers: string[]
+  topics: string[]
 }
 
 export interface SermonsFiltersProps {
