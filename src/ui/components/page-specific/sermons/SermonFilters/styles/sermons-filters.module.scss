@@ -61,6 +61,7 @@
     @media screen and (min-width: $desktop) {
       width: auto;
       flex-grow: 1;
+      align-items: flex-end;
     }
   }
 
