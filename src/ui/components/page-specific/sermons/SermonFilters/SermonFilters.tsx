@@ -116,7 +116,7 @@ const SermonFilters: React.FC<SermonsFiltersComponentProps> = ({
     <Container>
       <div className={styles["sermons-filters"]}>
         <div className={styles["sermons-filters__categories"]}>
-          <CustomSimpleSelect
+          {/* <CustomSimpleSelect
             options={categoriesData.biblebooks}
             name='Books'
             title={translate("bible_books_list_name")}
@@ -133,7 +133,7 @@ const SermonFilters: React.FC<SermonsFiltersComponentProps> = ({
             onChangeValue={handlePreachersOnChange}
             selectedValue={filters.preachers}
             ariaLabel={translate("preachers_list_name")}
-          />
+          /> */}
           <CustomSimpleSelect
             options={categoriesData.topics}
             name='Topics'
