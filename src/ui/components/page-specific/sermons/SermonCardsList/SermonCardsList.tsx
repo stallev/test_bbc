@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import useTranslationFunction from '@/hooks/useTranslationFunction';
 import { Loader, Text } from '@/ui/components/ui-kit';
@@ -11,7 +11,7 @@ import styles from './styles/sermon-cards-list.module.scss';
 import { SermonCardsListProps } from './types';
 import { SermonCardProps } from '../SermonCard/types';
 
-const Player = dynamic(() => import('../Player/Player'));
+// const Player = dynamic(() => import('../Player/Player'));
 
 const SermonCardsList: React.FC<SermonCardsListProps> = ({ data, fetchMoreData, hasMore }) => {
   const translate = useTranslationFunction();
@@ -52,14 +52,14 @@ const SermonCardsList: React.FC<SermonCardsListProps> = ({ data, fetchMoreData, 
         </InfiniteScroll>
       </Container>
 
-      {
+      {/* {
         playingSermon?.sermonAudio && 
           <Player
             onClose={closePlayer(null)}
             trackName={playingSermon?.title}
             trackSrc={playingSermon?.sermonAudio}
           />
-      }
+      } */}
     </>
   );
 };
