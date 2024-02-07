@@ -34,7 +34,7 @@ const SermonCard = ({
         <CustomImage
           className={styles["sermon-card__image"]}
           imageURL={data.imageLinks.medium || data.imageLinks.thumbnail}
-          priority={index < 1}
+          priority={index < 2}
           sizes="(max-width: 550px) 100vw, (max-width: 768px) 480px, (max-width: 1024px) 409px, 405px"
         />
 
