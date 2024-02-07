@@ -22,7 +22,7 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
   const { locale } = useRouter();
 
   return (
-    <div className={styles["custom-date-picker"]}>
+    <div className={`${styles["custom-date-picker"]} ${className}`}>
       <Text
         textType='span'
         className={styles["custom-date-picker__name"]}

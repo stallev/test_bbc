@@ -115,4 +115,5 @@ footer svg path.logo-book {
 .react-date-picker__wrapper {
   border: 1px solid #aaa;
   border-radius: 5px;
+  padding: 0 4px;
 }
