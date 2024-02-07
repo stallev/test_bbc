@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
-import InfiniteScroll from 'react-infinite-scroll-component';
+// import InfiniteScroll from 'react-infinite-scroll-component';
 import useTranslationFunction from '@/hooks/useTranslationFunction';
 import { Loader, Text } from '@/ui/components/ui-kit';
 import Container from '@/ui/containers/Container/Container';
@@ -32,7 +32,7 @@ const SermonCardsList: React.FC<SermonCardsListProps> = ({ data, fetchMoreData, 
           !data.length && <Text textType='p'>{translate("no_searched_sermons")}</Text>
         }
 
-        <InfiniteScroll
+        {/* <InfiniteScroll
           className={styles['sermon-cards-list']}
           dataLength={data.length}
           next={fetchMoreData}
@@ -49,7 +49,7 @@ const SermonCardsList: React.FC<SermonCardsListProps> = ({ data, fetchMoreData, 
               isActive={playingSermon === item}
             />
           ))}
-        </InfiniteScroll>
+        </InfiniteScroll> */}
       </Container>
 
       {
