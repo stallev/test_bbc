@@ -35,7 +35,8 @@ const SermonCard = ({
           className={styles["sermon-card__image"]}
           imageURL={data.imageLinks.medium || data.imageLinks.thumbnail}
           priority={index < 2}
-          sizes="(max-width: 550px) 100vw, (max-width: 768px) 480px, (max-width: 1024px) 409px, 405px"
+          sizes="50vw"
+          // sizes="(max-width: 550px) 100vw, (max-width: 768px) 480px, (max-width: 1024px) 409px, 405px"
         />
 
         <div className={styles["sermon-card__start"]}>
