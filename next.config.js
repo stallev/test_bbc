@@ -8,22 +8,10 @@ module.exports = () => {
       deviceSizes: [425, 570, 768, 1024],
       imageSizes: [16, 64, 96, 128, 256, 384, 512],
       domains: ['testchurchapi.stallevs.ru', 'testwordpressmedia1.s3.amazonaws.com'],
+      minimumCacheTTL: 3600,
     },
     reactStrictMode: true,
     compress: true,
     i18n,
-    async headers() {
-      return [
-        {
-          source: '/:path*',
-          headers: [
-            {
-              key: 'Cache-Control',
-              value: 'public, max-age=3600', // Cache external images for 1 hour
-            },
-          ],
-        },
-      ];
-    },
   };
 };
