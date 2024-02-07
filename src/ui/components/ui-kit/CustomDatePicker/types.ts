@@ -8,7 +8,7 @@ export interface CustomDatePickerProps {
   selectedValue: Date
   maxDate?: Date
   minDate?: Date
-  onChangeValue: (value: Value) => void
+  onChangeValue?: (value: Value) => void
   clearIcon?: null
-  calendarAriaLabel: string
+  calendarAriaLabel?: string
 }

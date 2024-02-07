@@ -1,6 +1,6 @@
 import React from 'react';
 // import DatePicker from 'react-date-picker';
-import DatePicker from "react-datepicker";
+import { DayPicker } from 'react-day-picker';
 import { useRouter } from 'next/router';
 import { Text } from '..';
 import { CustomDatePickerProps } from './types';
@@ -32,16 +32,9 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
         {title}
       </Text>
 
-      <DatePicker
-        className={styles["custom-date-picker__picker"]}
-        onChange={onChangeValue}
+      <DayPicker
+        mode="single"
         selected={selectedValue}
-        locale={locale}
-        dateFormat="Pp"
-        maxDate={maxDate && maxDate}
-        minDate={minDate && minDate}
-        // clearIcon={clearIcon}
-        // calendarAriaLabel={calendarAriaLabel}
       />
       {/* <DatePicker
         className={styles["custom-date-picker__picker"]}

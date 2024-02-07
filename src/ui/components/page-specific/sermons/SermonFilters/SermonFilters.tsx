@@ -87,11 +87,11 @@ const SermonFilters: React.FC<SermonsFiltersComponentProps> = ({
     getSearchedSermons(filterKey, event.target.value);
   };
 
-  const handleStartDateOnChange = (dateValue: Value) => {
+  const handleStartDateOnChange = (dateValue: any) => {
     getSearchedSermons('startDate', dateValue);
   };
 
-  const handleEndDateOnChange = (dateValue: Value) => {
+  const handleEndDateOnChange = (dateValue: any) => {
     getSearchedSermons('endDate', dateValue);
   };
 
@@ -147,24 +147,10 @@ const SermonFilters: React.FC<SermonsFiltersComponentProps> = ({
 
          <div className={styles["sermons-filters__dates"]}>
             <CustomDatePicker
-              className={styles["sermons-filters__date-picker"]}
-              title={translate("start_dates_range")}
               selectedValue={filters.startDate}
-              minDate={DEFAULT_SERMONS_FILTER_STATE.startDate}
-              maxDate={filters.endDate}
-              onChangeValue={handleStartDateOnChange}
-              clearIcon={null}
-              calendarAriaLabel="start date"
             />
             <CustomDatePicker
-              className={styles["sermons-filters__date-picker"]}
-              title={translate("end_dates_range")}
               selectedValue={filters.endDate}
-              onChangeValue={handleEndDateOnChange}
-              minDate={filters.startDate}
-              maxDate={DEFAULT_SERMONS_FILTER_STATE.endDate}
-              clearIcon={null}
-              calendarAriaLabel="end date"
             />
 
             <Button
