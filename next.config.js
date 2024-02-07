@@ -12,5 +12,29 @@ module.exports = () => {
     reactStrictMode: true,
     compress: true,
     i18n,
+    async headers() {
+      return [
+        {
+          // Cache static assets (like JS, CSS, images) for 1 day
+          source: '/_next/static/:path*',
+          headers: [
+            {
+              key: 'Cache-Control',
+              value: 'public, max-age=86400, immutable',
+            },
+          ],
+        },
+        {
+          // Cache images for 10 minutes
+          source: '/image/',
+          headers: [
+            {
+              key: 'Cache-Control',
+              value: 'public, max-age=600, immutable',
+            },
+          ],
+        },
+      ];
+    },
   };
 };
