@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import useTranslationFunction from '@/hooks/useTranslationFunction';
 import Container from '@/ui/containers/Container/Container';
-// import { CustomDatePicker } from '@/ui/components/ui-kit';
+import { CustomDatePicker } from '@/ui/components/ui-kit';
 import { DEFAULT_SERMONS_FILTER_STATE } from '@/constants/mock';
 
 import styles from './styles/sermons-filters.module.scss';
 
 import { SermonsFiltersComponentProps, SermonsFiltersProps } from './types';
 import { SermonCardProps } from '../SermonCard/types';
-// import { Button } from '@/ui/components/ui-kit';
+import { Button } from '@/ui/components/ui-kit';
 
 type ValuePiece = Date | null;
 
@@ -145,7 +145,7 @@ const SermonFilters: React.FC<SermonsFiltersComponentProps> = ({
           />
         </div>
 
-         {/* <div className={styles["sermons-filters__dates"]}>
+         <div className={styles["sermons-filters__dates"]}>
             <CustomDatePicker
               className={styles["sermons-filters__date-picker"]}
               title={translate("start_dates_range")}
@@ -172,7 +172,7 @@ const SermonFilters: React.FC<SermonsFiltersComponentProps> = ({
               buttonTitle={translate("reset")}
               onClick={resetFilters}
             />
-         </div> */}
+         </div>
       </div>
     </Container>
   )
