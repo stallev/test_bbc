@@ -6,7 +6,7 @@ import { VscDebugStart, VscDebugStop } from "react-icons/vsc";
 import { SermonCardProps } from './types';
 
 import styles from './styles/sermon-card.module.scss';
-import { CustomImage, Text } from '@/ui/components/ui-kit';
+import { Text } from '@/ui/components/ui-kit';
 import { getLocaleFormattedDate } from '@/hooks/useLocaleFormattedDate';
 
 const SermonCard = ({
@@ -18,27 +18,25 @@ const SermonCard = ({
 } : {
   data: SermonCardProps,
   index: number,
-  onChangePlayingSermon: () => void
-  stopPlayingSermon: () => void
+  onChangePlayingSermon: () => void,
+  stopPlayingSermon: () => void,
   isActive: boolean
 }) => {
   const { locale } = useRouter();
 
   const sermonDate = getLocaleFormattedDate(data.sermonDate, locale)
+  
+  const imageWrapStyle = {
+    backgroundImage: `url(${data.imageLinks.medium || data.imageLinks.thumbnail})`,
+  };
+
   return (
     <article className={`${styles["sermon-card"]} ${isActive && styles["sermon-card--active"]}`}>
       <div
         onClick={isActive ? stopPlayingSermon : onChangePlayingSermon}
         className={styles["sermon-card__image-wrap"]}
+        style={imageWrapStyle}
       >
-        <CustomImage
-          className={styles["sermon-card__image"]}
-          imageURL={data.imageLinks.medium || data.imageLinks.thumbnail}
-          priority={index < 2}
-          sizes="50vw"
-          // sizes="(max-width: 550px) 100vw, (max-width: 768px) 480px, (max-width: 1024px) 409px, 405px"
-        />
-
         <div className={styles["sermon-card__start"]}>
           {isActive ? <VscDebugStop /> : <VscDebugStart />}
         </div>
@@ -87,7 +85,7 @@ const SermonCard = ({
         </div>
       </div>
     </article>
-  )
-}
+  );
+};
 
 export default SermonCard;

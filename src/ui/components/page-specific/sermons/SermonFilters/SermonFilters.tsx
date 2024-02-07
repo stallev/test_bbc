@@ -87,11 +87,11 @@ const SermonFilters: React.FC<SermonsFiltersComponentProps> = ({
     getSearchedSermons(filterKey, event.target.value);
   };
 
-  const handleStartDateOnChange = (dateValue: any) => {
+  const handleStartDateOnChange = (dateValue: Value) => {
     getSearchedSermons('startDate', dateValue);
   };
 
-  const handleEndDateOnChange = (dateValue: any) => {
+  const handleEndDateOnChange = (dateValue: Value) => {
     getSearchedSermons('endDate', dateValue);
   };
 
@@ -116,7 +116,7 @@ const SermonFilters: React.FC<SermonsFiltersComponentProps> = ({
     <Container>
       <div className={styles["sermons-filters"]}>
         <div className={styles["sermons-filters__categories"]}>
-          {/* <CustomSimpleSelect
+          <CustomSimpleSelect
             options={categoriesData.biblebooks}
             name='Books'
             title={translate("bible_books_list_name")}
@@ -133,7 +133,7 @@ const SermonFilters: React.FC<SermonsFiltersComponentProps> = ({
             onChangeValue={handlePreachersOnChange}
             selectedValue={filters.preachers}
             ariaLabel={translate("preachers_list_name")}
-          /> */}
+          />
           <CustomSimpleSelect
             options={categoriesData.topics}
             name='Topics'
@@ -147,11 +147,25 @@ const SermonFilters: React.FC<SermonsFiltersComponentProps> = ({
 
          <div className={styles["sermons-filters__dates"]}>
             <CustomDatePicker
+              className={styles["sermons-filters__date-picker"]}
+              title={translate("start_dates_range")}
               selectedValue={filters.startDate}
+              minDate={DEFAULT_SERMONS_FILTER_STATE.startDate}
+              maxDate={filters.endDate}
+              onChangeValue={handleStartDateOnChange}
+              clearIcon={null}
+              calendarAriaLabel="start date"
             />
-            {/* <CustomDatePicker
+            <CustomDatePicker
+              className={styles["sermons-filters__date-picker"]}
+              title={translate("end_dates_range")}
               selectedValue={filters.endDate}
-            /> */}
+              onChangeValue={handleEndDateOnChange}
+              minDate={filters.startDate}
+              maxDate={DEFAULT_SERMONS_FILTER_STATE.endDate}
+              clearIcon={null}
+              calendarAriaLabel="end date"
+            />
 
             <Button
               className={styles["sermons-filters__reset-btn"]}
