@@ -17,6 +17,7 @@
   gap: $gutter-ms;
 
   @media screen and (min-width: $tablet) {
+    width: auto;
     border-radius: 24px;
     font-size: $font-size-ms;
   }

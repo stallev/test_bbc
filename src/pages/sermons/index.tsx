@@ -1,10 +1,8 @@
-import { useEffect } from "react";
 import Head from "next/head";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Container from "@/ui/containers/Container/Container";
 import { Text } from "@/ui/components/ui-kit";
 import SermonsContent from "@/ui/components/page-specific/sermons/SermonsContent/SermonsContent";
-import SermonCardsList from "@/ui/components/page-specific/sermons/SermonCardsList/SermonCardsList";
 import RestApiService from "@/services/RestApi";
 import SermonsDataApi from "@/services/SermonsDataApi";
 import { PagesIDs } from "@/constants";
@@ -12,16 +10,6 @@ import { PagesIDs } from "@/constants";
 import styles from '../../styles/pages/sermons.module.scss'
 
 export default function Sermons({ data }: any) {
-  // console.log('page data is', data)
-  
-  // useEffect(() => {
-  //   const fetchSermons = async () => {
-  //     const data = await SermonsDataApi.getSermonsList('en');
-  //     console.log(data)
-  //     return data;
-  //   }
-  //   fetchSermons();
-  // }, [])
   return (
     <>
       <Head>

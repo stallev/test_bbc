@@ -1,5 +1,5 @@
 import { YouTubePlaylistIDs, YouTubeVideoStatuses, YouTubeLiveStreamsUrls } from './YouTubeConstants';
-export { EndpointsList, PrayerRequestEndpoint, WordpressGraphQLEndpoint, PostsQueryMaxCount } from './EndpointsList';
+export { EndpointsList, PrayerRequestEndpoint, ContactUsEndpoint, WordpressGraphQLEndpoint, PostsQueryMaxCount } from './EndpointsList';
 export { PagesIDs } from './PagesIDs';
 export { LinkTypes } from './LinkTypes';
 export { ButtonTypes } from './ButtonTypes';

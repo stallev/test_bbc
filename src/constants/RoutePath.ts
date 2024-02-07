@@ -3,7 +3,7 @@ export const RoutePath = {
   Ministers: "/ministers",
   Broadcasts: "/broadcasts",
   Sermons: "/sermons",
-  ContactUs: "/contacts",
+  ContactUs: "/contact-us",
   Blog: "/blog",
   AboutUs: "/about-us",
   Giving: "/giving",

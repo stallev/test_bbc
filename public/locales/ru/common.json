@@ -6,7 +6,7 @@
   "about_us_nav_link_text": "О нас",
   "giving_nav_link_text": "Пожертвовать",
   "prayer_request_nav_link_text": "Просьба о молитве",
-  "contact_us_nav_link_text": "контакты",
+  "contact_us_nav_link_text": "Контакты",
   "broadcasts_us_nav_link_text": "трансляции",
   "home_nav_link_text": "Главная",
   "blog_nav_link_text": "блог",
@@ -25,6 +25,7 @@
 
   "success_form_submit_notification": "Сообщение отправлено",
   "error_form_submit_notification": "Что-то пошло не так ...",
+  "send_button": "Отправить",
 
   "first_name_field": "Имя",
   "last_name_field": "Фамилия",
@@ -39,6 +40,19 @@
   "email_field_error": "Email: email@domain.com",
   "user_message_field_error": "Сообщение: не менее 6 символов",
   "user_willing_to_be_contacted": "Я хотел бы, чтобы со мной связались",
+
+  "all_list": "Все",
+  "topics_list_name": "Темы",
+  "preachers_list_name": "Проповедники",
+  "bible_books_list_name": "Книги Библии",
+  "all_preachers": "Все проповедники",
+  "all_topics": "Все темы",
+  "all_bible_books": "Все книги Библии",
+  "dates_range_name": "Дата",
+  "start_dates_range": "с",
+  "end_dates_range": "по",
+  "reset": "сбросить",
+  "no_searched_sermons": "Проповедей, которые бы соответствовали вашим критериям, не обнаружено.",
 
   "stream_meta_title": "Трансляции богослужений | Библейская баптистская церковь",
   "stream_meta_description": "Просмотрите трансляции богослужений Библейской баптистской церкви в режиме реального времени. Погрузитесь в духовную обстановку служения, прослушайте проповеди и восхититесь богослужениями, доступными онлайн.",

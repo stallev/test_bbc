@@ -1,6 +1,6 @@
 import { getSermonsList, getSermonsCategoriesList } from "@/graphql/sermonsQueries";
 import { fetchAPI } from "./WordPressFetchAPI";
-import { getFormattedDate } from "@/hooks/useLocaleFormattedDate";
+import { getFormattedDate, getDateWithoutTime } from "@/hooks/useLocaleFormattedDate";
 
 class SermonsDataApi {
   static getOtherImagesSizesUrls(item: any) {
@@ -23,7 +23,16 @@ class SermonsDataApi {
   static formattDate(item: any, locale: string) {
     if (!!item?.sermonDate) {
       const formattedDate = getFormattedDate(item.sermonDate, locale);
+      const date = getDateWithoutTime(item.sermonDate);
       item.sermonDate = formattedDate;
+    }
+  
+    return item;
+  }
+
+  static getSermonDate(item: any) {
+    if (!!item?.sermonDate) {
+      item.sermonDate = getDateWithoutTime(item.sermonDate).toISOString();
     }
   
     return item;
@@ -39,15 +48,27 @@ class SermonsDataApi {
     const sermonsList = edges
       .map(({ node }: {node: any}) => node)
       .map((item: any) => this.getOtherImagesSizesUrls(item))
-      .map((item: any) => this.formattDate(item, locale))
+      .map((item: any) => this.getSermonDate(item))
       .map((item: any) => {
         return { 
           ...item,
-          sermonsTopics: item.sermonsTopics.nodes.map((node: { name: string}) => node.name),
-          sermonsPreachers: item.sermonsPreachers.nodes.map((node: { name: string}) => node.name),
+          topics: item.sermonsTopics.nodes.map((node: { name: string}) => node.name),
+          preachers: item.sermonsPreachers.nodes.map((node: { name: string}) => node.name),
           biblebooks: item.biblebooks.nodes.map((node: { name: string}) => node.name),
         };
-      });
+      })
+      .map((item:any) => {
+        delete item.sermonsTopics;
+        delete item.sermonsPreachers;
+
+        return item;
+      })
+      .sort((a: any, b: any) => {
+        const dateA = new Date(a.sermonDate).getTime();
+        const dateB = new Date(b.sermonDate).getTime();
+
+        return dateB - dateA;
+      })
       
     return sermonsList;
   }

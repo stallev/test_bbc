@@ -102,3 +102,12 @@ footer svg path.logo-text {
 footer svg path.logo-book {
   stroke: #5f5f5f;
 }
+
+.react-date-picker__inputGroup__divider {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.react-date-picker__inputGroup__input {
+  padding: 0 3px;
+}

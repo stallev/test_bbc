@@ -12,22 +12,5 @@
   svg {
     font-size: $hamburger-font-size;
     color: $hamburger-color;
-    transition: transform 0.5s ease;
   }
-}
-
-.hamburger svg:last-child {
-  transform: rotate(0deg);
-}
-
-.hamburger svg:first-child {
-  transform: rotate(0deg);
-}
-
-.hamburger:hover svg:first-child {
-  transform: rotate(45deg);
-}
-
-.hamburger:hover svg:last-child {
-  transform: rotate(-45deg);
 }

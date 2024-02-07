@@ -42,7 +42,7 @@ const NavBar: React.FC<NavBarProps> = ({ translate }) => {
                   ))}
               </div>
             </div>
-            {activeDropdown === label && (
+            {activeDropdown === label && Object.keys(children).length > 0 && (
               <NavDropDown childrenLinks={children} translate={translate} />
             )}
           </div>

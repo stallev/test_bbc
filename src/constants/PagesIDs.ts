@@ -27,4 +27,20 @@ export const PagesIDs = {
     en: '264',
     ru: '266',
   },
+  Contacts: {
+    en: '287',
+    ru: '289',
+  },
+  AboutUs: {
+    en: '328',
+    ru: '330',
+  },
+  Privacy: {
+    en: '333',
+    ru: '335',
+  },
+  Terms: {
+    en: '337',
+    ru: '339',
+  },
 }

@@ -6,8 +6,8 @@ export interface SermonCardProps {
     sermonYoutubeLink: string
     sermonBookChapter: string
     sermonBookChapterTextNumber: string
-    sermonsTopics: string[]
-    sermonsPreachers: string[]
+    topics: string[]
+    preachers: string[]
     biblebooks: string[]
     imageLinks: ImageLinks
 }

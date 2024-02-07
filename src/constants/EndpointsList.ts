@@ -13,6 +13,10 @@ export const PrayerRequestEndpoint = {
   dev: 'https://2coz8t7e9k.execute-api.us-east-1.amazonaws.com/default/PrayerRequest',
 }
 
+export const ContactUsEndpoint = {
+  dev: 'https://u6gzu94upe.execute-api.us-east-1.amazonaws.com/default/ContactUsRequest',
+}
+
 export const WordpressGraphQLEndpoint = {
   dev: 'https://testchurchapi.stallevs.ru/graphql',
 }

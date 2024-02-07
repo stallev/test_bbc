@@ -12,7 +12,19 @@ export const useLocaleFormattedTime = (date: Date, locale: string):string => {
   return formatter.format(date);
 }
 
-export const useLocaleFormattedDate = (date: Date, locale: string):string => {
+export const getDateWithoutTime = (dateString: string): Date => {
+  const dateParts = dateString.split('-');
+  const year = parseInt(dateParts[0]);
+  const month = parseInt(dateParts[1]) - 1;
+  const day = parseInt(dateParts[2]);
+  
+  const date = new Date(year, month, day);
+  date.setHours(0, 0, 0, 0);
+  
+  return date;
+}
+
+export const getLocaleFormattedDate = (date: string, locale: string | undefined):string => {
   const options = {
     day: 'numeric' as const,
     month: 'long' as const, 
@@ -20,7 +32,7 @@ export const useLocaleFormattedDate = (date: Date, locale: string):string => {
   };
   
   const formatter = new Intl.DateTimeFormat(locale, options);
-  return formatter.format(date);
+  return formatter.format(new Date(date));
 }
 
 export const getFormattedDate = (dateString:string, locale:string) => {

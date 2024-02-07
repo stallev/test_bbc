@@ -1,0 +1,38 @@
+@import '../../../../../styles/variables.scss';
+
+.custom-date-picker {
+  display: flex;
+  flex-direction: column;
+  gap: $gutter-sm;
+  max-width: 260px;
+
+  @media screen and (min-width: 350px) {
+    flex-grow: 2;
+  }
+
+  @media screen and (min-width: $tablet) {
+    width: 100%;
+    max-width: 260px;
+    flex-grow: 2;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: auto;
+    flex-grow: 1;
+  }
+  
+  &__name {
+    display: inline-block;
+    padding-left: $gutter-sm;
+    font-size: $font-size-ms;
+    line-height: $line-height-ms;
+    text-transform: capitalize;
+  }
+
+  &__picker {
+    border-radius: 5px;
+    height: 35px;
+    width: 100%;
+    font-size: $font-size-sm;
+  }
+}

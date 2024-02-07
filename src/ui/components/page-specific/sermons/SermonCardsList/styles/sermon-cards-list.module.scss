@@ -4,13 +4,12 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: $gutter-lg;
-  padding-bottom: $gutter-xl 0;
+  padding-bottom: $gutter-xl;
   align-items: stretch;
   
   @media screen and (min-width: $tablet) {
     grid-template-columns: 1fr 1fr;
-    column-gap: $gutter-lg;
-    row-gap: $gutter-xl;
+    gap: $gutter-lg;
   }
 
   @media screen and (min-width: $desktop) {

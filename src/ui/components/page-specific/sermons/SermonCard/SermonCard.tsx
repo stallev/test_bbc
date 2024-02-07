@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import { IoVideocam } from "react-icons/io5";
 import { VscDebugStart, VscDebugStop } from "react-icons/vsc";
 
@@ -6,6 +7,7 @@ import { SermonCardProps } from './types';
 
 import styles from './styles/sermon-card.module.scss';
 import { CustomImage, Text } from '@/ui/components/ui-kit';
+import { getLocaleFormattedDate } from '@/hooks/useLocaleFormattedDate';
 
 const SermonCard = ({
   data,
@@ -20,8 +22,9 @@ const SermonCard = ({
   stopPlayingSermon: () => void
   isActive: boolean
 }) => {
-  const blurDataURL = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPcsHtDPQAG2gKcgjPHewAAAABJRU5ErkJggg==";
+  const { locale } = useRouter();
 
+  const sermonDate = getLocaleFormattedDate(data.sermonDate, locale)
   return (
     <article className={`${styles["sermon-card"]} ${isActive && styles["sermon-card--active"]}`}>
       <div
@@ -31,7 +34,7 @@ const SermonCard = ({
         <CustomImage
           className={styles["sermon-card__image"]}
           imageURL={data.imageLinks.medium || data.imageLinks.thumbnail}
-          priority={index < 2}
+          priority={index < 1}
           sizes='420px'
         />
 
@@ -52,7 +55,7 @@ const SermonCard = ({
             textType='p'
             className={styles["sermon-card__preacher"]}
           >
-            {data.sermonsPreachers[0]}
+            {data.preachers[0]}
           </Text>
           <div className={styles["sermon-card__description-data"]}>
             <div className={styles["sermon-card__source-data"]}>
@@ -60,7 +63,7 @@ const SermonCard = ({
                 textType='span'
                 className={styles["sermon-card__date"]}
               >
-                {data.sermonDate}
+                {sermonDate}
               </Text>
               <Text
                 textType='span'

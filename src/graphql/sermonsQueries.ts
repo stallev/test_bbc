@@ -37,12 +37,17 @@ export const getSermonsList = `query getSermonsList ($language: LanguageCodeFilt
 `;
 
 export const getSermonsCategoriesList = `query getSermonsCategoriesList ($language: LanguageCodeFilterEnum!) {
-  biblebooks(where: {hideEmpty: true, language: $language}, first: ${PostsQueryMaxCount}) {
+  biblebooks(where: {
+    hideEmpty: true,
+    language: $language
+  }, first: ${PostsQueryMaxCount}) {
     nodes {
       name
     }
   }
-  sermonsPreachers(where: {hideEmpty: true, language: $language}, first: ${PostsQueryMaxCount}) {
+  sermonsPreachers(where: {
+    language: $language
+  }, first: ${PostsQueryMaxCount}) {
     nodes {
       name
     }
@@ -54,3 +59,5 @@ export const getSermonsCategoriesList = `query getSermonsCategoriesList ($langua
   }
 }
 `;
+
+// string 42 hideEmpty: true - hide biblebooks without sermons
