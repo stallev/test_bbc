@@ -8,7 +8,7 @@ module.exports = () => {
       deviceSizes: [425, 570, 768, 1024],
       imageSizes: [16, 64, 96, 128, 256, 384, 512],
       domains: ['testchurchapi.stallevs.ru', 'testwordpressmedia1.s3.amazonaws.com'],
-      minimumCacheTTL: 3600,
+      minimumCacheTTL: 86400,
     },
     reactStrictMode: true,
     compress: true,
