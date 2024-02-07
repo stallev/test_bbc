@@ -149,9 +149,9 @@ const SermonFilters: React.FC<SermonsFiltersComponentProps> = ({
             <CustomDatePicker
               selectedValue={filters.startDate}
             />
-            <CustomDatePicker
+            {/* <CustomDatePicker
               selectedValue={filters.endDate}
-            />
+            /> */}
 
             <Button
               className={styles["sermons-filters__reset-btn"]}
