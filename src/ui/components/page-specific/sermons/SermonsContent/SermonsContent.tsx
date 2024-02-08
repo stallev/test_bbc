@@ -54,6 +54,12 @@ const SermonsContent:React.FC<SermonsContentProps> = ({ contentData, sermonsData
 
   return (
     <div className={styles["sermons-content"]}>
+      <Container>
+        <MarkdownContent
+          content={contentData}
+        />
+      </Container>
+      
       <SermonFilters
         categoriesData={sermonsCategories}
         fullSermonsList={sermonsData}
@@ -62,12 +68,6 @@ const SermonsContent:React.FC<SermonsContentProps> = ({ contentData, sermonsData
         setSermons={setSermons}
         sermons={sermons}
       />
-
-      <Container isMarkdownContent>
-        <MarkdownContent
-          content={contentData}
-        />
-      </Container>
 
       {
         isActiveSearchedSermons &&

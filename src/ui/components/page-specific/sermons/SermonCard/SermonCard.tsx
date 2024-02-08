@@ -36,7 +36,7 @@ const SermonCard = ({
           src={data.imageLinks.medium || data.imageLinks.thumbnail}
           fill
           alt=''
-          priority={index < 1}
+          priority={true}
           sizes='50vw'
         />
         
