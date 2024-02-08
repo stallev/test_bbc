@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import useTranslationFunction from '@/hooks/useTranslationFunction';
 import Container from '@/ui/containers/Container/Container';
-import { CustomDatePicker } from '@/ui/components/ui-kit';
+import { InputTypes } from '@/constants';
+import { CustomDatePicker, CustomInput } from '@/ui/components/ui-kit';
 import { DEFAULT_SERMONS_FILTER_STATE } from '@/constants/mock';
 
 import styles from './styles/sermons-filters.module.scss';
@@ -87,11 +88,11 @@ const SermonFilters: React.FC<SermonsFiltersComponentProps> = ({
     getSearchedSermons(filterKey, event.target.value);
   };
 
-  const handleStartDateOnChange = (dateValue: Value) => {
+  const handleStartDateOnChange = (dateValue: Date) => {
     getSearchedSermons('startDate', dateValue);
   };
 
-  const handleEndDateOnChange = (dateValue: Value) => {
+  const handleEndDateOnChange = (dateValue: Date) => {
     getSearchedSermons('endDate', dateValue);
   };
 
@@ -153,7 +154,6 @@ const SermonFilters: React.FC<SermonsFiltersComponentProps> = ({
               minDate={DEFAULT_SERMONS_FILTER_STATE.startDate}
               maxDate={filters.endDate}
               onChangeValue={handleStartDateOnChange}
-              clearIcon={null}
               calendarAriaLabel="start date"
             />
             <CustomDatePicker
@@ -163,7 +163,6 @@ const SermonFilters: React.FC<SermonsFiltersComponentProps> = ({
               onChangeValue={handleEndDateOnChange}
               minDate={filters.startDate}
               maxDate={DEFAULT_SERMONS_FILTER_STATE.endDate}
-              clearIcon={null}
               calendarAriaLabel="end date"
             />
 

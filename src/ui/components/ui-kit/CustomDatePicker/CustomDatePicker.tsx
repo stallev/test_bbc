@@ -1,11 +1,4 @@
-import React from 'react';
-import DatePicker from 'react-date-picker';
-import { useRouter } from 'next/router';
-import { Text } from '..';
 import { CustomDatePickerProps } from './types';
-
-import 'react-date-picker/dist/DatePicker.css';
-import 'react-calendar/dist/Calendar.css';
 
 import styles from './styles/custom-date-picker.module.scss';
 
@@ -17,30 +10,28 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
   maxDate,
   minDate,
   calendarAriaLabel,
-  clearIcon
 }) => {
-  const { locale } = useRouter();
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const date = e.target.valueAsDate;
+    if (date !== null) {
+      onChangeValue(date);
+    }
+  };
 
   return (
-    <div className={`${styles["custom-date-picker"]} ${className}`}>
-      <Text
-        textType='span'
-        className={styles["custom-date-picker__name"]}
-      >
-        {title}
-      </Text>
+    <label className={`${styles["custom-date-picker"]} ${className}`}>
+      <span className={styles["custom-date-picker__name"]}>{title}</span>
 
-      <DatePicker
-        className={styles["custom-date-picker__picker"]}
-        onChange={onChangeValue}
-        value={selectedValue}
-        locale={locale}
-        maxDate={maxDate && maxDate}
-        minDate={minDate && minDate}
-        clearIcon={clearIcon}
-        calendarAriaLabel={calendarAriaLabel}
+      <input
+        type="date"
+        className={styles["custom-date-picker__input"]}
+        value={selectedValue.toISOString().slice(0, 10)} 
+        onChange={handleDateChange}
+        min={minDate?.toISOString().slice(0, 10)}
+        max={maxDate?.toISOString().slice(0, 10)}
+        aria-label={calendarAriaLabel}
       />
-    </div>
+    </label>
   );
 };
 
