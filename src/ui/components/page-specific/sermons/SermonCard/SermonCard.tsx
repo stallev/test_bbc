@@ -39,13 +39,7 @@ const SermonCard = ({
           priority={index < 1}
           sizes='50vw'
         />
-        {/* <CustomImage
-          className={styles["sermon-card__image"]}
-          imageURL={data.imageLinks.medium || data.imageLinks.thumbnail}
-          priority={index < 1}
-          sizes='50vw'
-        /> */}
-
+        
         <div className={styles["sermon-card__start"]}>
           {isActive ? <VscDebugStop /> : <VscDebugStart />}
         </div>
@@ -80,18 +74,17 @@ const SermonCard = ({
                 {`${data.biblebooks[0]} ${data.sermonBookChapter}: ${data.sermonBookChapterTextNumber}`}
               </Text>
             </div>
-
-            <a
-              className={styles["sermon-card__video-link"]}
-              href={data.sermonYoutubeLink}
-              aria-label='video' 
-              tabIndex={0}
-              target='_blank'
-            >
-              <IoVideocam />
-            </a>
           </div>
         </div>
+        <a
+          className={styles["sermon-card__video-link"]}
+          href={data.sermonYoutubeLink}
+          aria-label='video' 
+          tabIndex={0}
+          target='_blank'
+        >
+          <IoVideocam />
+        </a>
       </div>
     </article>
   )

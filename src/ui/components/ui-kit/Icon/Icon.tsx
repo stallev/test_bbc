@@ -22,18 +22,7 @@ const Icon:React.FC<IconProps> = ({
 
   const IconComponent = ComponentsMap[iconName];
 
-  return (
-    <div
-      className={cx(styles[`${iconName}`], className)}
-      aria-label={ariaLabel}
-      onClick={onClick && onClick}
-      role={onClick ? 'button' : 'none'}
-      tabIndex={onClick ? 1 : 0}
-      style={{ width: size, height: size }}
-    >
-      <IconComponent />
-    </div>
-  );
+  return <IconComponent />;
 };
 
 export default Icon;

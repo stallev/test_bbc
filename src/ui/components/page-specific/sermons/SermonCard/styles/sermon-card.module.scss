@@ -52,6 +52,7 @@
   }
 
   &__info {
+    position: relative;
     display: flex;
     flex-direction: column;
     row-gap: $gutter-sm;
@@ -94,6 +95,9 @@
   }
 
   &__video-link {
+    position: absolute;
+    right: 12px;
+    bottom: 8px;
     display: inline-block;
 
     svg {
