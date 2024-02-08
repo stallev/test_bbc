@@ -1,13 +1,16 @@
 import React from "react";
-import Link from "next/link";
 import { RoutePath } from "@/constants/RoutePath";
+import Link from "next/link";
 import { Icon } from "../ui-kit";
+import useTranslationFunction from "@/hooks/useTranslationFunction";
 import { toggleMenu } from "@/ui/globalState/GlobalFunctions/useGlobalFunctions";
 import { useAppContext } from "../../globalState/ContextHook/contextHook";
+
 import styles from "./styles/logo.module.scss";
 
 const Logo: React.FC = () => {
   const { state, dispatch } = useAppContext();
+  const translate = useTranslationFunction();
 
   const toggleMenuButton = () => {
     state.isMenuOpen && toggleMenu(dispatch);
@@ -15,14 +18,8 @@ const Logo: React.FC = () => {
 
   return (
     <div className={styles.logo} onClick={toggleMenuButton}>
-      {/* <CustomLink
-        className={styles.logo__link}
-        to={RoutePath.Home}
-      >
-        
-      </CustomLink> */}
-      <Link href={RoutePath.Home} >
-        <Icon className={styles.logo__icon} iconName="logo" />
+      <Link aria-label={translate("site_name")} href={RoutePath.Home} >
+        <Icon iconName="logo" />
       </Link>
     </div>
   );
