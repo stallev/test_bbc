@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { ALL_TAXONOMY_ITEMS_NAME } from '@/constants/mock';
 import { Text } from '..';
 

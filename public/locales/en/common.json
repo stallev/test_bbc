@@ -53,6 +53,7 @@
   "end_dates_range": "to",
   "reset": "reset",
   "no_searched_sermons": "No sermons were found that match your criteria.",
+  "yes_searched_sermons": "Number of sermons that meet your criteria: ",
 
   "stream_meta_title": "Live Streams | Bible Baptist Church",
   "stream_meta_description": "Experience live streaming of services at the Biblical Baptist Church. Immerse yourself in the spiritual atmosphere of worship, listen to inspiring sermons, and enjoy online church services.",

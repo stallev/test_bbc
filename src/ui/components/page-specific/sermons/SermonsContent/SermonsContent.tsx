@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import useTranslationFunction from '@/hooks/useTranslationFunction';
+import Container from '@/ui/containers/Container/Container';
+import { Text } from '@/ui/components/ui-kit';
 import SermonCardsList from '../SermonCardsList/SermonCardsList';
 import SermonFilters from '../SermonFilters/SermonFilters';
 import { SermonsContentProps, SermonsListProps } from './types';
@@ -6,10 +9,14 @@ import { DEFAULT_SERMONS_FILTER_STATE } from '@/constants/mock';
 import { SermonsFiltersProps } from '../SermonFilters/types';
 
 import styles from './styles/sermons-content.module.scss';
+import MarkdownContent from '@/ui/components/MarkdownContent/MarkdownContent';
 
 const CARDS_PORTION = 10;
 
-const SermonsContent:React.FC<SermonsContentProps> = ({ sermonsData, sermonsCategories }) => {
+const SermonsContent:React.FC<SermonsContentProps> = ({ contentData, sermonsData, sermonsCategories }) => {
+  console.log(contentData)
+  const translate = useTranslationFunction();
+
   const [sermons, setSermons] = useState<SermonsListProps>({
     currentSermons: sermonsData.slice(0, CARDS_PORTION),
     searchedSermons: [],
@@ -19,6 +26,10 @@ const SermonsContent:React.FC<SermonsContentProps> = ({ sermonsData, sermonsCate
   const [offset, setOffset] = useState(CARDS_PORTION);
 
   const isActiveSearchedSermons = filters != DEFAULT_SERMONS_FILTER_STATE;
+
+  const searchedSermonsMessage = isActiveSearchedSermons && !!sermons.searchedSermons.length
+    ? translate("yes_searched_sermons") + sermons.searchedSermons.length.toString()
+    : translate("no_searched_sermons");
 
   const fetchMoreData = () => {
     const newData = sermonsData.slice(offset, offset + CARDS_PORTION); 
@@ -51,6 +62,19 @@ const SermonsContent:React.FC<SermonsContentProps> = ({ sermonsData, sermonsCate
         setSermons={setSermons}
         sermons={sermons}
       />
+
+      <Container isMarkdownContent>
+        <MarkdownContent
+          content={contentData}
+        />
+      </Container>
+
+      {
+        isActiveSearchedSermons &&
+          <Container>
+            <Text textType='p'>{searchedSermonsMessage}</Text>
+          </Container>
+      }
       
       <SermonCardsList
         fetchMoreData={fetchMoreData}

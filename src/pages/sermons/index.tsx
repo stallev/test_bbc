@@ -24,7 +24,7 @@ export default function Sermons({ data }: any) {
         </Text>
       </Container>
 
-      <SermonsContent sermonsCategories={data.categories} sermonsData={data.sermonsData} />
+      <SermonsContent contentData={data.pageData.contentData} sermonsCategories={data.categories} sermonsData={data.sermonsData} />
     </>
   );
 }

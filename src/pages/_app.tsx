@@ -1,6 +1,6 @@
 import { appWithTranslation } from 'next-i18next';
 import type { AppProps } from 'next/app';
-import { Montserrat, Montserrat_Alternates } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import Layout from '@/ui/containers/Layout/Layout';
 import { AppProvider } from '@/ui/globalState/AppContext';
 

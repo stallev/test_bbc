@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import useTranslationFunction from '@/hooks/useTranslationFunction';
-import { Loader, Text } from '@/ui/components/ui-kit';
+import { Loader } from '@/ui/components/ui-kit';
 import Container from '@/ui/containers/Container/Container';
 import SermonCard from '../SermonCard/SermonCard';
 
@@ -14,7 +13,6 @@ import { SermonCardProps } from '../SermonCard/types';
 const Player = dynamic(() => import('../Player/Player'));
 
 const SermonCardsList: React.FC<SermonCardsListProps> = ({ data, fetchMoreData, hasMore }) => {
-  const translate = useTranslationFunction();
   const [playingSermon, setPlayingSermon] = useState<SermonCardProps | null>(null);
 
   const onChangePlayingSermon = (sermon: SermonCardProps | null) => () => {
@@ -28,10 +26,6 @@ const SermonCardsList: React.FC<SermonCardsListProps> = ({ data, fetchMoreData, 
   return (
     <>
       <Container>
-        {
-          !data.length && <Text textType='p'>{translate("no_searched_sermons")}</Text>
-        }
-
         <InfiniteScroll
           className={styles['sermon-cards-list']}
           dataLength={data.length}
