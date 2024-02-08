@@ -14,8 +14,10 @@
   &__image-wrap {
     position: relative;
     height: 180px;
-    background-size: cover;
-    background-position: center;
+
+    img {
+      object-fit: cover;
+    }
   }
 
   &__start {

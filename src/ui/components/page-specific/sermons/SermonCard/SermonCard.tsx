@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 import { IoVideocam } from "react-icons/io5";
 import { VscDebugStart, VscDebugStop } from "react-icons/vsc";
 
@@ -18,25 +19,33 @@ const SermonCard = ({
 } : {
   data: SermonCardProps,
   index: number,
-  onChangePlayingSermon: () => void,
-  stopPlayingSermon: () => void,
+  onChangePlayingSermon: () => void
+  stopPlayingSermon: () => void
   isActive: boolean
 }) => {
   const { locale } = useRouter();
 
   const sermonDate = getLocaleFormattedDate(data.sermonDate, locale)
-  
-  const imageWrapStyle = {
-    backgroundImage: `url(${data.imageLinks.medium || data.imageLinks.thumbnail})`,
-  };
-
   return (
     <article className={`${styles["sermon-card"]} ${isActive && styles["sermon-card--active"]}`}>
       <div
         onClick={isActive ? stopPlayingSermon : onChangePlayingSermon}
         className={styles["sermon-card__image-wrap"]}
-        style={imageWrapStyle}
       >
+        <Image
+          src={data.imageLinks.medium || data.imageLinks.thumbnail}
+          fill
+          alt=''
+          priority={index < 1}
+          sizes='50vw'
+        />
+        {/* <CustomImage
+          className={styles["sermon-card__image"]}
+          imageURL={data.imageLinks.medium || data.imageLinks.thumbnail}
+          priority={index < 1}
+          sizes='50vw'
+        /> */}
+
         <div className={styles["sermon-card__start"]}>
           {isActive ? <VscDebugStop /> : <VscDebugStart />}
         </div>
@@ -85,7 +94,7 @@ const SermonCard = ({
         </div>
       </div>
     </article>
-  );
-};
+  )
+}
 
 export default SermonCard;
