@@ -1,4 +1,5 @@
 import React from "react";
+import dynamic from "next/dynamic";
 import useTranslationFunction from "@/hooks/useTranslationFunction";
 import Header from "@/ui/components/Header/Header";
 import BottomNav from "@/ui/components/BottomNav/BottomNav";
@@ -19,6 +20,8 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
+const Player = dynamic(() => import('../../components/Player/Player'));
+
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const translate = useTranslationFunction();
 
@@ -38,6 +41,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <Footer />
       {isPhone && <BottomNav />}
       <Notification />
+
+      {
+        state.playerData.isVisiblePlayer && 
+          <Player
+            trackName={state.playerData.trackName}
+            trackSrc={state.playerData.trackSrc}
+          />
+      }
     </div>
   );
 };

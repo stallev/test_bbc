@@ -1,0 +1,23 @@
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/placeholders.scss';
+
+.blockquote {
+  @extend %blockquoteStyles;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+
+    p {
+      font-style: italic;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    cite {
+      display: inline-block;
+      margin-top: $gutter-xs;
+      font-size: smaller;
+    }
+}

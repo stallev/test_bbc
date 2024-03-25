@@ -1,0 +1,24 @@
+@import '../variables.scss';
+@import '../placeholders.scss';
+
+.success-subscription {
+  &__title {
+    @extend %paddingTopHeader;
+    @extend %pageTitleStyles;
+  }
+
+  &__page-content {
+    margin-top: $gutter-xl;
+  }
+
+  &__success-message {
+    font-size: $font-size-ms;
+    line-height: 1.4;
+  }
+
+  &__to-main-page-link {
+    display: inline-block;
+    font-size: $font-size-md;
+    line-height: 1.4;
+  }
+}

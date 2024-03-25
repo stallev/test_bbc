@@ -1,0 +1,79 @@
+@import "../../../../styles/variables.scss";
+@import "../../../../styles/placeholders.scss";
+
+.media-slider {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  &__active-img-wrap {
+    position: relative;
+    height: calc(100% - $gutter-xl);
+    width: 100%;
+
+    @media screen and (min-width: $tablet) {
+      height: calc(100% - $gutter-xl);
+    }
+
+    img {
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      object-fit: cover;
+    }
+  }
+
+  &__points-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 2;
+    gap: $gutter-md;
+  }
+
+  &__item-point {
+    display: block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 1px solid $color-gray;
+    cursor: pointer;
+
+    &--active {
+      background-color: $color-gray;
+    }
+  }
+
+  &__button-prev {
+    left: -18px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__button-next {
+    right: -57px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__button-prev,
+  &__button-next {
+    @extend %btnStyles;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    padding: $gutter-xs;
+    border-radius: 5px;
+    background-color: transparent;
+    z-index: $z-index-level3;
+
+    svg {
+      width: 30px;
+      height: 30px;
+      fill: $color-white;
+    }
+  }
+}

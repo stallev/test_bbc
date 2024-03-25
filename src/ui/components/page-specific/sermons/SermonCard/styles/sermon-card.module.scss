@@ -3,6 +3,19 @@
 .sermon-card {
   display: flex;
   flex-direction: column;
+  width: 270px;
+
+  @media screen and (min-width: $smallDesktop) {
+    width: 260px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: 250px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    width: 296px;
+  }
 
   &--active {
     .sermon-card__info {
@@ -13,7 +26,7 @@
 
   &__image-wrap {
     position: relative;
-    height: 180px;
+    height: 400px;
 
     img {
       object-fit: cover;
@@ -35,22 +48,6 @@
     cursor: pointer;
   }
 
-  &__image {
-    display: block;
-    height: 180px;
-    cursor: pointer;
-
-    &::before {
-      position: absolute;
-      display: block;
-      content: "";
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      border: 1px;
-    }
-  }
-
   &__info {
     position: relative;
     display: flex;
@@ -65,20 +62,14 @@
     color: $color-black;
     font-weight: $font-weight-bold;
     font-size: $font-size-md;
-    line-height: $line-height-md;
+    line-height: $line-height-lg;
   }
 
   &__text-data {
     display: flex;
     flex-direction: column;
     row-gap: $gutter-sm;
-  }
-
-  &__description-data {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: $gutter-md;
+    flex-grow: 2;
   }
 
   &__preacher {
@@ -92,6 +83,8 @@
     font-size: $font-size-sm;
     font-weight: $font-weight-default;
     line-height: $line-height-ms;
+    padding-right: $gutter-xl;
+    margin-top: auto;
   }
 
   &__video-link {

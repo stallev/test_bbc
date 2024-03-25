@@ -1,0 +1,13 @@
+@import '../variables.scss';
+@import '../placeholders.scss';
+
+.timeline-event {
+  &__title {
+    @extend %paddingTopHeader;
+    @extend %pageTitleStyles;
+  }
+
+  &__page-content {
+    margin: $gutter-xl 0;
+  }
+}

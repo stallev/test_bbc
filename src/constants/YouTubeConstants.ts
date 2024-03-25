@@ -2,6 +2,11 @@ export const YouTubeVideoStatuses = {
   deleted: 'Deleted video',
 };
 
+export const YouTubeStreamStatus = {
+  live: 'live',
+  upcoming: 'upcoming',
+};
+
 export const YouTubePlaylistIDs = {
   generalLiveStreams: 'PLfkn9DhA379wUhQYnCuLvP_PnX_lGXz9I',
   youthCamp2023Streams: 'PLfkn9DhA379xhQ8QEpv9CDNl2QKn8VS_7',
@@ -12,6 +17,7 @@ export const YouTubePlaylistIDs = {
 
 export const YouTubeApiKeys = {
   alexander: 'AIzaSyBQWqiv9opcoTkYFyzkAcWgPaKcdLUryYQ',
+  bbc: 'AIzaSyDbTDnuAf3Hw119neyOL7xT6xhlKtlx-8I',
 }
 
 export const YouTubeLiveStreamsUrls = {

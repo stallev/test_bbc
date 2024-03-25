@@ -1,5 +1,10 @@
 import { ActionType } from "./../Actions/action";
 
+export interface PlayerData {
+  isVisiblePlayer: boolean
+  trackName: string
+  trackSrc: string
+}
 export interface State {
   isMenuOpen: boolean
   notificationData: {
@@ -7,6 +12,7 @@ export interface State {
     notificationText: string,
     notificationType: string,
   }
+  playerData: PlayerData
 }
 
 export interface NotificationData {
@@ -17,7 +23,8 @@ export interface NotificationData {
 
 type Action =
   | { type: ActionType.TOGGLE_MENU }
-  | { type: ActionType.UPDATE_NOTIFICATION; payload: NotificationData };
+  | { type: ActionType.UPDATE_NOTIFICATION; payload: NotificationData }
+  | { type: ActionType.UPDATE_PLAYER_DATA; payload: PlayerData };
 
 export const initialState: State = {
   isMenuOpen: false,
@@ -25,6 +32,12 @@ export const initialState: State = {
     isVisibleNotification: false,
     notificationText: '',
     notificationType: '',
+  },
+  
+  playerData: {
+    isVisiblePlayer: false,
+    trackName: '',
+    trackSrc: '',
   },
 };
 
@@ -41,6 +54,15 @@ export const reducer = (state: State, action: Action): State => {
           ...state,
           notificationData: {
             ...state.notificationData,
+            ...action.payload,
+          },
+        };
+
+      case ActionType.UPDATE_PLAYER_DATA:
+        return {
+          ...state,
+          playerData: {
+            ...state.playerData,
             ...action.payload,
           },
         };

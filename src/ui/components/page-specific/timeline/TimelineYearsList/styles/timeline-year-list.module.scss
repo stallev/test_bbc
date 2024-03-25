@@ -1,0 +1,8 @@
+@import "../../../../../../styles/variables.scss";
+@import "../../../../../../styles/placeholders.scss";
+
+.timeline-year-list {
+  display: flex;
+  flex-direction: column;
+  gap: $gutter-lg;
+}

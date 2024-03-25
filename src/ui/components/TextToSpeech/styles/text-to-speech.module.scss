@@ -1,0 +1,36 @@
+@import "../../../../styles/variables.scss";
+@import "../../../../styles/placeholders.scss";
+
+.text-to-speech {
+  display: block;
+  margin-top: $gutter-lg;
+  
+
+  &__general-button {
+    
+    svg {
+      display: inline-block;
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+    }
+  }
+
+  &__audio-buttons-list {
+    display: flex;
+    gap: $gutter-md;
+  }
+
+  &__audio-button {
+    background-color: transparent;
+    @extend %btnStyles;
+
+    svg {
+      display: inline-block;
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+    }
+  }
+
+}

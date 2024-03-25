@@ -3,6 +3,7 @@ export const FormFieldLangCodes = {
   lastName: 'last_name_field',
   phone: 'phone_field',
   email: 'email_field',
+  emailRequired: 'email_field_reqired',
   userMessageField: 'user_message_field',
 }
 

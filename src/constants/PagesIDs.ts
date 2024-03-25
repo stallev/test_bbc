@@ -43,4 +43,32 @@ export const PagesIDs = {
     en: '337',
     ru: '339',
   },
+  KidsMinistry: {
+    en: '460',
+    ru: '463',
+  },
+  YouthMinistry: {
+    en: '485',
+    ru: '488',
+  },
+  WorshipMinistry: {
+    en: '491',
+    ru: '495',
+  },
+  FamilyMinistry: {
+    en: '523',
+    ru: '525',
+  },
+  Participation: {
+    en: '498',
+    ru: '501',
+  },
+  SuccessSubscription: {
+    en: '508',
+    ru: '510',
+  },
+  Timeline: {
+    en: '577',
+    ru: '580',
+  },
 }

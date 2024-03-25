@@ -6,7 +6,7 @@ import styles from "./styles/NavPopUp.module.scss";
 interface ChildrenLinksProps {
   childrenLinks: any[];
   translate: (term: string) => React.ReactNode;
-  handleLinkClick: (label: string) => void;
+  handleLinkClick: () => void;
   handleBackClick: () => void;
 }
 
@@ -21,7 +21,7 @@ const ChildrenLinks: React.FC<ChildrenLinksProps> = ({
       <div className={styles.backButton_div}>
         <div className={styles.backButton} onClick={handleBackClick}>
           <IoIosArrowBack />
-          <p>Back</p>
+          <p>{translate("back_link_label")}</p>
         </div>
       </div>
       {childrenLinks.map(({ link, label }, index) => (
@@ -32,7 +32,7 @@ const ChildrenLinks: React.FC<ChildrenLinksProps> = ({
               ariaLabel={translate(label) as string}
               className={styles.navbar__link}
               type={LinkTypes.navLink}
-              onCLick={() => handleLinkClick(label)}
+              onCLick={() => handleLinkClick()}
             >
               {translate(label)}
             </CustomLink>

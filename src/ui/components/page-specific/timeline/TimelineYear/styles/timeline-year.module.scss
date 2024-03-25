@@ -1,0 +1,29 @@
+@import "../../../../../../styles/variables.scss";
+@import "../../../../../../styles/placeholders.scss";
+
+.timeline-year {
+  display: flex;
+  flex-direction: column;
+  gap: $gutter-md;
+
+  &__year-number {
+    text-align: center;
+    font-size: $font-size-lg;
+    line-height: 1.4;
+
+    @media screen and (min-width: $tablet) {
+      text-align: left;
+    }
+  }
+
+  &__events-list {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: minmax(auto, 300px);
+    gap: $gutter-xl;
+
+    @media screen and (min-width: $tablet) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}

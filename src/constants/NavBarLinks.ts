@@ -17,6 +17,12 @@ export const NavBarLinksNames = {
   ResourcesLinkName: "resources_nav_link",
   OurBeliefs: "beliefs_nav_link",
   Staff: "staff_nav_link",
+  KidsMinistry: "kids_ministry_nav_link",
+  YouthMinistry: "youth_ministry_nav_link",
+  WorshipMinistry: "worship_ministry_nav_link",
+  FamilyMinistry: "family_ministry_nav_link",
+  Participation: "participation_nav_link",
+  Timeline: "timeline_nav_link",
 };
 
 export const MainNavBarLinks = {
@@ -85,9 +91,33 @@ export const MainNavBarLinks = {
         link: RoutePath.Sermons,
         label: NavBarLinksNames.SermonsLinkName,
       },
+      KidsMinistryLink: {
+        link: RoutePath.KidsMinistry,
+        label: NavBarLinksNames.KidsMinistry,
+      },
+      YouthMinistryLink: {
+        link: RoutePath.YouthMinistry,
+        label: NavBarLinksNames.YouthMinistry,
+      },
+      FamilyMinistryLink: {
+        link: RoutePath.FamilyMinistry,
+        label: NavBarLinksNames.FamilyMinistry,
+      },
+      WorshipMinistryLink: {
+        link: RoutePath.WorshipMinistry,
+        label: NavBarLinksNames.WorshipMinistry,
+      },
+      // ParticipationLink: {
+      //   link: RoutePath.Participation,
+      //   label: NavBarLinksNames.Participation,
+      // },
       ContactUsLink: {
         link: RoutePath.ContactUs,
         label: NavBarLinksNames.ContactUsLinkName,
+      },
+      TimelineLink: {
+        link: RoutePath.Timeline,
+        label: NavBarLinksNames.Timeline,
       },
     },
   },

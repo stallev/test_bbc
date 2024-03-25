@@ -25,6 +25,7 @@ $font-size-xxs: 10px;
 $font-size-xs: 12px;
 $font-size-sm: 14px;
 $font-size-ms: 16px;
+$font-size-lms: 20px;
 $font-size-md: 24px;
 $font-size-lg: 32px;
 $font-size-xl: 40px;
@@ -66,7 +67,7 @@ $color-black-opacity-full: rgba(0, 0, 0, 0.08);
 $color-black-opacity-double-full: rgba(0, 0, 0, 0.16);
 
 $color-light-orange: #fff5eb;
-$color-success: rgb(9, 166, 9);
+$color-success: rgb(8 127 8);
 $color-primary: #ffd2a4;
 $color-orange: #faab5c;
 $color-extra-light-gray: #f5f2f0;
@@ -83,12 +84,16 @@ $border-radius-circle: 50%;
 //shadows
 $nav-link-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 $button-shadow: 0 4px 24px $color-black-opacity-full;
+$shadows-dark: 0px 4px 24px rgba(0, 0, 0, 0.15);
 $button-shadow-focus: inset 0 0 0 1px $color-black;
 $quot-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 $full-block-shadow: inset 50vw 50vh 50vw 50vh rgba(0, 0, 0, 0.25);
 
 //z-indexes
-$z-index-over-images: 10;
+$z-index-level1: 10;
+$z-index-level2: 20;
+$z-index-level3: 30;
+$z-index-level4: 40;
 
 //Elements sizes
 $header-height: 80px;
@@ -97,7 +102,6 @@ $BottomNav-height: 40px;
 $upcomingEventsSectionHeightOnMobile: 350px;
 
 //NavPopUp
-$z-index-navPopUp: 1000;
 $navPopUp-width: 100%;
 $navPopUp-height: calc(100% - $header-height);
 $navPopUp-Blur: blur(20px);

@@ -2,9 +2,9 @@
 
 .navPopUp {
   width: $navPopUp-width;
-  min-height: 100%;
+  height: 100vh;
   backdrop-filter: $navPopUp-Blur;
-  background-color: $navPopUp-bg-color;
+  background-color: $color-gray;
   overflow-y: auto;
   z-index: 500;
   position: fixed;
@@ -63,7 +63,7 @@
 .backButton {
   display: flex;
   align-items: center;
-  color: black;
+  color: $color-dark-greeting-bg;
   font-size: $font-size-md;
   cursor: pointer;
 }

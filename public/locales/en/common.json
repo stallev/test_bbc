@@ -2,7 +2,7 @@
   "site_name": "Bible Baptist Church",
   "ministers_nav_link_text": "ministers",
   "sermons_nav_link_text": "Sermons",
-  "live_streams_nav_link_text": "live streams",
+  "live_streams_nav_link_text": "Live streams",
   "about_us_nav_link_text": "About Us",
   "giving_nav_link_text": "Giving",
   "prayer_request_nav_link_text": "Prayer Request",
@@ -16,9 +16,17 @@
   "resources_nav_link": "Resources",
   "beliefs_nav_link": "Our Beliefs",
   "staff_nav_link": "Our Pastors",
+  "kids_ministry_nav_link": "Kids Ministry",
+  "youth_ministry_nav_link": "Youth Ministry",
+  "worship_ministry_nav_link": "Worship Ministry",
+  "family_ministry_nav_link": "Family Ministry",
+  "participation_nav_link": "Participation in Worship",
+  "timeline_nav_link": "Timeline",
 
-  "more_link_label": "more",
+  "back_link_label": "Back",
+  "more_link_label": "Read more",
   "event_link_label": "Read more about the event",
+  "download_label": "Download",
 
   "aria_label_link_go_to": "Go to ",
   "aria_label_page": "page ",
@@ -26,12 +34,14 @@
   "success_form_submit_notification": "Message sent",
   "error_form_submit_notification": "Something went wrong ...",
   "send_button": "Send",
+  "subscribe_button": "Subscribe",
 
   "first_name_field": "First name",
   "last_name_field": "Last name",
   "user_message_field": "Your message",
   "phone_field": "Your phone, optional",
   "email_field": "Your email, optional",
+  "email_field_reqired": "Your email",
   "share_prayer_request": "Share prayer request",
 
   "first_name_field_error": "Name: minimum 2 characters",
@@ -40,6 +50,10 @@
   "email_field_error": "Email as 'email@domain.com'",
   "user_message_field_error": "Message: minimum 6 characters",
   "user_willing_to_be_contacted": "I would like to be contacted",
+
+  "subscribed_text": "A letter has been sent to your email. Follow the link in that email to confirm your subscription to receive information about Bible Baptist Church events.",
+  "already_subscribed_text": "Your email is already on the list of addresses to which information about Bible Baptist Church events is sent.",
+
 
   "all_list": "All",
   "topics_list_name": "Topics",

@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { convertMillisecondsToTimeData, getServiceTimeDifference } from '@/hooks/useTimerData';
 import { RegularLiveStreamsEventsData } from '@/constants/TimerData';
 import useTranslationFunction from '@/hooks/useTranslationFunction';
 import { EventTimerData } from '@/hooks/useTimerData';
 import { Text } from '@/ui/components/ui-kit';
-import YouTubeCurrentLiveStream from '../YouTubeCurrentLiveStream/YouTubeCurrentLiveStream';
 import { YouTubeLiveStreamsUrls } from '@/constants';
 import Timer from '../Timer/Timer';
+import { LiveStreamTypes } from './types';
+
+const YouTubeCurrentLiveStream = dynamic(() => import('../YouTubeCurrentLiveStream/YouTubeCurrentLiveStream'));
 
 import styles from './styles/live-stream.module.scss';
 
-const LiveStream:React.FC = () => {
+const LiveStream:React.FC<LiveStreamTypes> = ({ data }) => {
   const [timerData, setTimerData] = useState<EventTimerData>({
     start: {
       daysCount: 0,
@@ -28,10 +31,20 @@ const LiveStream:React.FC = () => {
     },
     eventName: '',
   });
-
   const translate = useTranslationFunction();
 
-  const isLiveStreamVisible = timerData.start.totalMillisecondsCount < 0;
+  const streamUrls = [...data.liveVideos, ...data.upcomingVideos];
+
+  const isPromisedStream = !!streamUrls.length;
+
+  const isLiveStreamVisible = isPromisedStream || timerData.start.totalMillisecondsCount < 0;
+  
+  const serviceTitle = !!streamUrls.length ? streamUrls[0].title : timerData.eventName;
+
+  const livestreamData = {
+    url: isPromisedStream ? `https://www.youtube.com/embed/${streamUrls[0].id}?autoplay=1&amp` : YouTubeLiveStreamsUrls.main,
+    title: serviceTitle
+  };
 
   const sortedEventsArray = RegularLiveStreamsEventsData.sort( (a, b) =>
     getServiceTimeDifference(a).totalMillisecondsCount.endServiceTimeDifference
@@ -62,10 +75,10 @@ const LiveStream:React.FC = () => {
         textType='h2'
         className={styles['live-stream__service-title']}
       >
-        {translate(timerData.eventName)}
+        {translate(serviceTitle)}
       </Text>
-
-      {isLiveStreamVisible ? <YouTubeCurrentLiveStream url={YouTubeLiveStreamsUrls.main} /> : <Timer data={timerData.start} /> }
+      
+      {isLiveStreamVisible ? <YouTubeCurrentLiveStream data={livestreamData} /> : <Timer data={timerData.start} /> }
     </div>
   )
 }

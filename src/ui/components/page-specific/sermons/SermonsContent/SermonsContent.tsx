@@ -4,7 +4,6 @@ import useTranslationFunction from '@/hooks/useTranslationFunction';
 import Container from '@/ui/containers/Container/Container';
 import MarkdownContent from '@/ui/components/MarkdownContent/MarkdownContent';
 import { Text } from '@/ui/components/ui-kit';
-import SermonCardsList from '../SermonCardsList/SermonCardsList';
 import SermonFilters from '../SermonFilters/SermonFilters';
 import { SermonsContentProps, SermonsListProps } from './types';
 import { DEFAULT_SERMONS_FILTER_STATE } from '@/constants/mock';
@@ -14,7 +13,7 @@ import styles from './styles/sermons-content.module.scss';
 
 const CARDS_PORTION = 10;
 
-const DynamicSermonsCardList = dynamic(() => import('../SermonCardsList/SermonCardsList'));
+const SermonCardsList = dynamic(() => import('../SermonCardsList/SermonCardsList'));
 
 const SermonsContent:React.FC<SermonsContentProps> = ({ contentData, sermonsData, sermonsCategories }) => {
   const translate = useTranslationFunction();
@@ -48,11 +47,7 @@ const SermonsContent:React.FC<SermonsContentProps> = ({ contentData, sermonsData
       searchedSermons: [],
     });
 
-  }, [sermonsData])
-
-  useEffect(() => {
-    console.log(filters)
-  }, [filters])
+  }, [sermonsData]);
 
   return (
     <div className={styles["sermons-content"]}>
@@ -78,7 +73,7 @@ const SermonsContent:React.FC<SermonsContentProps> = ({ contentData, sermonsData
           </Container>
       }
       
-      <DynamicSermonsCardList
+      <SermonCardsList
         fetchMoreData={fetchMoreData}
         data={!isActiveSearchedSermons ? sermons.currentSermons : sermons.searchedSermons}
         hasMore={offset < sermonsData.length}

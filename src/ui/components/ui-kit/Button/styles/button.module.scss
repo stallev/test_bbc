@@ -2,18 +2,15 @@
 @import '../../../../../styles/placeholders.scss';
 
 .custom-button {
+  @extend %btnStyles;
   display: flex;
   align-items: center;
-  outline: none;
-  border: none;
   width: fit-content;
   border-radius: 16px;
   color: $color-black;
-  transition: all .3s linear;
   cursor: pointer;
   font-size: $font-size-xs;
   white-space: nowrap;
-  box-shadow: $button-shadow;
   gap: $gutter-ms;
 
   @media screen and (min-width: $tablet) {

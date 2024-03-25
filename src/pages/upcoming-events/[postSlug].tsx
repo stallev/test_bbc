@@ -21,6 +21,7 @@ export default function UpcomingEvent({ postData }: any) {
           content={translate("stream_meta_description")}
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="noindex, nofollow" />
         <link rel="icon" href="/Logofavicon.svg" />
       </Head>
       <Container isMarkdownContent={true}>

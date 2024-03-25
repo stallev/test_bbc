@@ -3,6 +3,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import StaffDataApi from "@/services/StaffDataApi";
 import useTranslationFunction from "@/hooks/useTranslationFunction";
 import Container from "@/ui/containers/Container/Container";
+import TextToSpeech from "@/ui/components/TextToSpeech/TextToSpeech";
 import { PathProps } from "@/types/globalTypes";
 import MarkdownContent from "@/ui/components/MarkdownContent/MarkdownContent";
 import { CustomImage, Text } from "@/ui/components/ui-kit";
@@ -10,7 +11,6 @@ import { CustomImage, Text } from "@/ui/components/ui-kit";
 import styles from "../../styles/pages/staff-person.module.scss";
 
 export default function StaffPerson({ postData }: any) {
-  console.log(postData)
   const translate = useTranslationFunction();
   const ministerName = postData.ministerFirstName + ' ' + postData.ministerLastName;
 
@@ -23,6 +23,7 @@ export default function StaffPerson({ postData }: any) {
           content={translate("stream_meta_description")}
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="noindex, nofollow" />
         <link rel="icon" href="/Logofavicon.svg" />
       </Head>
       <Container isMarkdownContent={true}>
@@ -48,6 +49,8 @@ export default function StaffPerson({ postData }: any) {
             </Text>
           </div>
         </div>
+
+        <TextToSpeech data={postData.ministerDescription} />
 
         <MarkdownContent
           content={postData.ministerDescription}

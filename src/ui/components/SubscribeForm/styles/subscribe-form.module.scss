@@ -1,0 +1,42 @@
+@import '../../../../styles/variables.scss';
+
+.subscribe-form {
+  display: flex;
+  flex-direction: column;
+  margin: $gutter-ml 0 $gutter-ml;
+  align-items: center;
+  gap: $gutter-ml;
+
+  @media screen and (min-width: $tablet) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: $gutter-ml;
+  }
+
+  &__container {
+    padding: $gutter-lg 0;
+  }
+
+  &__title {
+    font-size: $font-size-md;
+  }
+
+  &__input-field {
+    display: block;
+
+    &:not(:first-child) {
+      margin-top: 0;
+    }
+
+    @media screen and (min-width: $tablet) {
+      width: calc(50% - $gutter-ms);
+      max-width: 350px;
+    }
+  }
+
+  &__submit {
+    margin-top: 0 !important;
+    padding: $gutter-ms $gutter-ml;
+    font-size: $font-size-ms;
+  }
+}

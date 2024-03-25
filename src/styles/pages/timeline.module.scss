@@ -1,0 +1,17 @@
+@import '../variables.scss';
+@import '../placeholders.scss';
+
+.timeline {
+  padding-bottom: $gutter-xl;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: $gutter-xl;
+  }
+
+  &__title {
+    @extend %paddingTopHeader;
+    @extend %pageTitleStyles;
+  }
+}

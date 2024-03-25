@@ -16,4 +16,11 @@ export const RoutePath = {
   OurBeliefs: "/our-beliefs",
   Staff: "/staff",
   UpcomingEvents: "/upcoming-events",
+  SuccessSubscription: "/success-subscription",
+  KidsMinistry: "/ministries/kids",
+  YouthMinistry: "/ministries/youth",
+  WorshipMinistry: "/ministries/worship",
+  FamilyMinistry: "/ministries/family",
+  Participation: "/participation",
+  Timeline: "/timeline",
 };

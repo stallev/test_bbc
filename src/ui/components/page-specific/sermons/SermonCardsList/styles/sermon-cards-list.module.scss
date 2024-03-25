@@ -1,19 +1,22 @@
 @import '../../../../../../styles/variables.scss';
 
 .sermon-cards-list {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
   gap: $gutter-lg;
   padding-bottom: $gutter-xl;
   align-items: stretch;
-  
-  @media screen and (min-width: $tablet) {
-    grid-template-columns: 1fr 1fr;
-    gap: $gutter-lg;
+
+  @media screen and (min-width: $smallDesktop) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: flex-start;
   }
 
   @media screen and (min-width: $desktop) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: flex-start;
   }
 
   &__no-more-items-text {

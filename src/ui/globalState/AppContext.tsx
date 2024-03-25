@@ -1,13 +1,14 @@
 import React, { createContext, useReducer, Dispatch } from "react";
 import { ActionType } from "./Actions/action";
 import { initialState, reducer, State } from "./Reducer/reducer";
-import { NotificationData } from "./Reducer/reducer";
+import { NotificationData, PlayerData } from "./Reducer/reducer";
 
 interface AppContextProps {
   state: State;
   dispatch: Dispatch<
     { type: ActionType.TOGGLE_MENU }
     | { type: ActionType.UPDATE_NOTIFICATION; payload: NotificationData }
+    | { type: ActionType.UPDATE_PLAYER_DATA; payload: PlayerData }
   >;
 }
 

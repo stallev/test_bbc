@@ -1,35 +1,49 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { IoVideocam } from "react-icons/io5";
 import { VscDebugStart, VscDebugStop } from "react-icons/vsc";
-
+import { AppContext } from '@/ui/globalState/AppContext';
+import { useUpdatePlayerInformation } from '@/hooks/useUpdatePlayerInformation';
+import { getLocaleFormattedDate } from '@/hooks/useLocaleFormattedDate';
+import { Text } from '@/ui/components/ui-kit';
 import { SermonCardProps } from './types';
 
 import styles from './styles/sermon-card.module.scss';
-import { Text } from '@/ui/components/ui-kit';
-import { getLocaleFormattedDate } from '@/hooks/useLocaleFormattedDate';
 
 const SermonCard = ({
   data,
-  index,
-  onChangePlayingSermon,
-  stopPlayingSermon,
-  isActive
 } : {
   data: SermonCardProps,
-  index: number,
-  onChangePlayingSermon: () => void
-  stopPlayingSermon: () => void
-  isActive: boolean
 }) => {
   const { locale } = useRouter();
+  const setPlayingSermon = useUpdatePlayerInformation();
+  
+  const { state: { playerData: { trackSrc } } } = useContext(AppContext);
+
+  const isActiveSermon = trackSrc === data.sermonAudio;
+
+  const onChangeActiveSermon = () => {
+    setPlayingSermon({
+      isVisiblePlayer: true,
+      trackName: data.title,
+      trackSrc: data.sermonAudio,
+    });
+  };
+
+  const onStopSermonPlaying = () => {
+    setPlayingSermon({
+      isVisiblePlayer: false,
+      trackName: '',
+      trackSrc: '',
+    });
+  };
 
   const sermonDate = getLocaleFormattedDate(data.sermonDate, locale)
   return (
-    <article className={`${styles["sermon-card"]} ${isActive && styles["sermon-card--active"]}`}>
+    <article className={`${styles["sermon-card"]} ${isActiveSermon && styles["sermon-card--active"]}`}>
       <div
-        onClick={isActive ? stopPlayingSermon : onChangePlayingSermon}
+        onClick={isActiveSermon ? onStopSermonPlaying : onChangeActiveSermon}
         className={styles["sermon-card__image-wrap"]}
       >
         <Image
@@ -40,7 +54,7 @@ const SermonCard = ({
         />
         
         <div className={styles["sermon-card__start"]}>
-          {isActive ? <VscDebugStop /> : <VscDebugStart />}
+          {isActiveSermon ? <VscDebugStop /> : <VscDebugStart />}
         </div>
       </div>
       
@@ -51,6 +65,7 @@ const SermonCard = ({
         >
           {data.title}
         </Text>
+
         <div className={styles["sermon-card__text-data"]}>
           <Text
             textType='p'
@@ -58,21 +73,23 @@ const SermonCard = ({
           >
             {data.preachers[0]}
           </Text>
-          <div className={styles["sermon-card__description-data"]}>
-            <div className={styles["sermon-card__source-data"]}>
-              <Text
-                textType='span'
-                className={styles["sermon-card__date"]}
-              >
-                {sermonDate}
-              </Text>
-              <Text
-                textType='span'
-                className={styles["sermon-card__scripture"]}
-              >
-                {`${data.biblebooks[0]} ${data.sermonBookChapter}: ${data.sermonBookChapterTextNumber}`}
-              </Text>
-            </div>
+          <div className={styles["sermon-card__source-data"]}>
+            <Text
+              textType='span'
+              className={styles["sermon-card__date"]}
+            >
+              {sermonDate}
+            </Text>
+            {!!data.biblebooks[0] && <Text
+              textType='span'
+              className={styles["sermon-card__scripture"]}
+            >
+              {
+                `${data.biblebooks[0]}
+                ${!!data?.sermonBookChapter ? data.sermonBookChapter : ''}
+                ${!!data?.sermonBookChapterTextNumber ? `: ${data.sermonBookChapterTextNumber}` : ''}`
+              }
+            </Text>}
           </div>
         </div>
         <a

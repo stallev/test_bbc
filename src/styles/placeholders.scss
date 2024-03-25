@@ -12,10 +12,23 @@
   }
 }
 
+%h3Style {
+  margin-top: $gutter-lg;
+  font-size: $font-size-ms;
+  line-height: 1.4;
+  font-weight: $font-weight-bold;
+
+  @media screen and (min-width: $tablet) {
+    font-size: $font-size-md;
+  }
+}
+
 %paragraphStyle {
+  width: 100%;
   margin-top: $gutter-ms;
   font-size: $font-size-ms;
-  line-height: $line-height-md;
+  // line-height: $line-height-md;
+  line-height: 1.4;
 }
 
 %paddingTopHeader {
@@ -69,4 +82,79 @@
     font-size: $font-size-ms;
     line-height: $line-height-sm;
   }
+}
+
+%secondaryBtnLink {
+  display: inline-block;
+  padding: $gutter-ms $gutter-md;
+  border-radius: $border-radius-ms;
+  font-weight: $font-weight-default;
+  font-size: $font-size-xxs;
+  line-height: 1.4;
+  color: $color-black;
+  text-transform: uppercase;
+  background-color: $color-success;
+
+  &:hover {
+    background-color: $color-orange;
+  }
+
+  @media screen and (min-width: $tablet) {
+    border-radius: $border-radius-md;
+    padding: $gutter-md $gutter-lg;
+    font-size: $font-size-sm;
+  }
+}
+
+%btnStyles {
+  outline: none;
+  border: none;
+  transition: all .3s linear;
+  cursor: pointer;
+  box-shadow: $button-shadow;
+}
+
+%iconBtnStyles {
+  border: 1px solid $color-gray;
+  background-color: $color-footer-bg;
+  outline: none;
+  cursor: pointer;
+  box-shadow: $button-shadow;
+  transition: all .3s ease;
+
+  &:hover {
+    background-color: $color-gray;
+  }
+}
+
+%structuredSingleMediaItem {
+  position: relative;
+  height: 180px;
+  width: 250px;
+
+  @media screen and (min-width: $mobile) {
+    height: 300px;
+    width: 400px;
+  }
+
+  @media screen and (min-width: $tablet) {
+    height: 400px;
+    width: 530px;
+  }
+
+  img {
+    object-fit: cover;
+  }
+
+  iframe {
+    object-fit: cover;
+  }
+}
+
+%textOverflowEllipsis {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

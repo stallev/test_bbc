@@ -16,7 +16,9 @@
       justify-content: space-between;
       align-items: center;
     }
+  }
 
+  &__logo {
     svg {
       display: inline-block;
 
@@ -27,14 +29,21 @@
     }
   }
 
-  &__address {
-    max-width: 240px;
+  &__address-link {
+    display: flex;
+    gap: $gutter-xs;
+    max-width: 260px;
     font-size: $font-size-sm;
     line-height: $line-height-ms;
 
     @media screen and (min-width: $tablet) {
       font-size: $font-size-ms;
       line-height: $font-size-md;
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
     }
   }
 

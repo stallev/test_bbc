@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import useTranslationFunction from '@/hooks/useTranslationFunction';
 import Container from '@/ui/containers/Container/Container';
-import { InputTypes } from '@/constants';
-import { CustomDatePicker, CustomInput } from '@/ui/components/ui-kit';
+import { CustomDatePicker } from '@/ui/components/ui-kit';
 import { DEFAULT_SERMONS_FILTER_STATE } from '@/constants/mock';
 
 import styles from './styles/sermons-filters.module.scss';
@@ -107,11 +105,6 @@ const SermonFilters: React.FC<SermonsFiltersComponentProps> = ({
   const handleTopicsOnChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
     handleCategoriesOnChange('topics', event);
   };
-
-  // useEffect(() => {
-  //   sermons.searchedSermons.map((item) => console.log(item.biblebooks))
-  //   console.log('sermons list', sermons)
-  // }, [sermons])
 
   return (
     <Container>

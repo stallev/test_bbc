@@ -16,4 +16,8 @@
   &--error {
     background-color: $color-red;
   }
+
+  &--warning {
+    background-color: $color-orange;
+  }
 }

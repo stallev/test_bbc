@@ -10,7 +10,17 @@ import LiveStream from "@/ui/components/page-specific/live-streams/LiveStream/Li
 
 import styles from "../styles/pages/live-streams.module.scss";
 
-export default function Home({ streamsVideos }: any) {
+export default function Home({ data }: any) {
+  const {
+    finishedVideos,
+    liveVideos,
+    upcomingVideos,
+  } = data;
+  
+  const LiveStreamData = {
+    liveVideos,
+    upcomingVideos,
+  }
   const translate = useTranslationFunction();
 
   return (
@@ -22,30 +32,33 @@ export default function Home({ streamsVideos }: any) {
           content={translate("stream_meta_description")}
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="noindex, nofollow" />
         <link rel="icon" href="/Logofavicon.svg" />
       </Head>
       <Container>
         <Text textType="h1" className={styles["live-streams__title"]}>
           {translate("streams_page_title")}
         </Text>
-        <LiveStream />
-        <VideoStreamsList data={streamsVideos} />
+
+        <LiveStream data={LiveStreamData} />
+
+        <VideoStreamsList data={finishedVideos} />
       </Container>
     </>
   );
 }
 
 export async function getStaticProps({ locale }: any) {
-  const streamsVideos = await YouTubeApiService.getAllYouTubePlaylistItems(
+  const data = await YouTubeApiService.getAllYouTubePlaylistItems(
     YouTubePlaylistIDs.generalLiveStreams,
-    YouTubeApiKeys.alexander
+    YouTubeApiKeys.bbc
   );
 
   return {
     props: {
-      streamsVideos,
+      data,
       ...(await serverSideTranslations(locale, ["common"])),
     },
-    revalidate: 60 * 30,
+    revalidate: 60 * 7,
   };
 }

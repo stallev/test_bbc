@@ -19,7 +19,7 @@ export const RegularLiveStreamsEventsData = [
   },
 ];
 
-export const UtcTimezoneShiftValue = 8;
+export const UtcTimezoneShiftValue = 7;
 
 export const TimersIntervals = {
   waitingTime: 10 * 60,

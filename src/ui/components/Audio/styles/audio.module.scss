@@ -1,0 +1,40 @@
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/placeholders.scss';
+
+.audio {
+  display: flex;
+  align-items: center;
+  gap: $gutter-ml;
+  width: 100%;
+
+  &__label {
+    @extend %paragraphStyle;
+    width: fit-content !important;
+    margin-top: 0 !important;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: $gutter-md;
+
+    button {
+      @extend %iconBtnStyles;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: $border-radius-xs;
+    }
+  }
+
+  &__play-icon {
+    @extend %btnStyles;
+    width: 30px;
+    height: 30px;
+  }
+
+  &__download-icon {
+    @extend %btnStyles;
+    width: 30px;
+    height: 30px;
+  }
+}

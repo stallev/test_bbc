@@ -1,0 +1,58 @@
+@import "../../../../styles/variables.scss";
+@import "../../../../styles/placeholders.scss";
+
+.structured-markdown-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $gutter-ml;
+
+  h2 {
+    @extend %h2Style;
+    margin-bottom: $gutter-ml;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h3 {
+    @extend %h2Style;
+    margin-bottom: $gutter-sm;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  p {
+    @extend %paragraphStyle;
+    
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  blockquote {
+    @extend %blockquoteStyles;
+    margin-bottom: $gutter-ml;
+
+    p {
+      font-style: italic;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    cite {
+      display: inline-block;
+      margin-top: $gutter-xs;
+      font-size: smaller;
+    }
+  }
+
+  &__single-image-wrap {
+    @extend %structuredSingleMediaItem;
+  }
+}

@@ -1,0 +1,23 @@
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/placeholders.scss';
+
+.video {
+  display: flex;
+  flex-direction: column;
+  gap: $gutter-sm;
+  width: fit-content;
+
+  &__video-wrap {
+    @extend %structuredSingleMediaItem;
+  }
+
+  &__caption {
+    font-size: $font-size-sm;
+    font-style: italic;
+    text-align: center;
+
+    @media screen and (max-width: $tablet) {
+      font-size: $font-size-ms;
+    }
+  }
+}

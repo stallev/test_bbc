@@ -7,3 +7,5 @@ export const DEFAULT_SERMONS_FILTER_STATE = {
   startDate: new Date('1990-01-01'),
   endDate: new Date(),
 }
+
+export const S3_BUCKET_URL = 'https://testwordpressmedia1.s3.amazonaws.com/';
