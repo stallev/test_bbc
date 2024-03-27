@@ -27,7 +27,7 @@
   additionalLinkTags: [
     {
       rel: 'icon',
-      href: '/Logifavicon.svg',
+      href: '/Logofavicon.svg',
     },
   ],
 };
