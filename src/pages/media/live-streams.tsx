@@ -8,7 +8,7 @@ import Container from "@/ui/containers/Container/Container";
 import { Text } from "@/ui/components/ui-kit";
 import LiveStream from "@/ui/components/page-specific/live-streams/LiveStream/LiveStream";
 
-import styles from "../styles/pages/live-streams.module.scss";
+import styles from "../../styles/pages/live-streams.module.scss";
 
 export default function Home({ data }: any) {
   const {

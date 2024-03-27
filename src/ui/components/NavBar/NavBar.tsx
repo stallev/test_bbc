@@ -1,5 +1,6 @@
 import React from "react";
-import { CustomLink } from "../ui-kit";
+import CustomLink from "../ui-kit/CustomLink";
+import Text from "../ui-kit/Text";
 import { MainNavBarLinks } from "@/constants/NavBarLinks";
 import { LinkTypes } from "@/constants/LinkTypes";
 import styles from "./styles/navbar.module.scss";
@@ -25,14 +26,26 @@ const NavBar: React.FC<NavBarProps> = ({ translate }) => {
             onMouseLeave={handleMouseLeave}
           >
             <div className={styles.link_div}>
-              <CustomLink
-                to={link}
-                ariaLabel={translate(label) as string}
-                className={styles.navbar__link}
-                type={LinkTypes.navLink}
-              >
-                {translate(label)}
-              </CustomLink>
+              {
+                !!link ? (
+                  <CustomLink
+                    to={link}
+                    ariaLabel={translate(label) as string}
+                    className={styles.navbar__link}
+                    type={LinkTypes.navLink}
+                  >
+                    {translate(label)}
+                  </CustomLink>
+                ) : (
+                  <Text
+                    textType="span"
+                    className={styles.navbar__link}
+                  >
+                    {translate(label)}
+                  </Text>
+                )
+              }
+              
               <div className={styles.arrowIcon}>
                 {Object.keys(children).length > 0 &&
                   (activeDropdown === label ? (

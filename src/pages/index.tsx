@@ -4,6 +4,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import GreetingScreen from "@/ui/components/page-specific/home/GreetingScreen/GreetingScreen";
 import RestApiService from "../services/RestApi";
 import PostsDataApi from "@/services/PostsDataApi";
+import PageContentDataApi from "@/services/PageMarkdownContentDataApi";
 import useTranslationFunction from "@/hooks/useTranslationFunction";
 import { PagesIDs } from "@/constants";
 import { SubscribeToEventsEndpoint } from "@/constants/EndpointsList";
@@ -24,6 +25,7 @@ export default function Home({ data }: any) {
     subscription_title, 
     subscription_descr,
   } = data.pageData.complex[2];
+  console.log('data.contentData', data.contentData);
   
   return (
     <>
@@ -58,12 +60,14 @@ export async function getStaticProps({ locale }: any) {
 
   const pageData= await RestApiService.getPageData(pageId);
   const upcomingEventsData = await PostsDataApi.getUpcomingEvents(locale);
+  const contentData = await PageContentDataApi.getPageContentData(pageId);
 
   return {
     props: {
       data: {
         pageData,
         upcomingEventsData,
+        contentData,
       },
       ...(await serverSideTranslations(locale, ["common"])),
     },

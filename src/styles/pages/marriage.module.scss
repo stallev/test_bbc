@@ -1,0 +1,19 @@
+@import '../variables.scss';
+@import '../placeholders.scss';
+
+.marriage {
+  padding-bottom: $gutter-lg;
+
+  @media screen and (min-width: $smallDesktop) {
+    padding-bottom: $gutter-xl;
+  }
+
+  &__title {
+    @extend %paddingTopHeader;
+    @extend %pageTitleStyles;
+  }
+
+  &__page-content {
+    margin-top: $gutter-xl;
+  }
+}

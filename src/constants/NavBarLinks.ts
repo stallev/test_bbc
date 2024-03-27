@@ -17,12 +17,23 @@ export const NavBarLinksNames = {
   ResourcesLinkName: "resources_nav_link",
   OurBeliefs: "beliefs_nav_link",
   Staff: "staff_nav_link",
+  Ministries: "ministries_page_nav_link",
   KidsMinistry: "kids_ministry_nav_link",
   YouthMinistry: "youth_ministry_nav_link",
   WorshipMinistry: "worship_ministry_nav_link",
   FamilyMinistry: "family_ministry_nav_link",
+  MissionaryMinistry: "missionary_ministry_nav_link",
+  SmallGroupsMinistry: "small_groups_ministry_nav_link",
   Participation: "participation_nav_link",
   Timeline: "timeline_nav_link",
+  Media: "media_nav_link",
+  Calendar: "calendar_nav_link",
+  OurPlans: "our_plans_nav_link",
+  Phones: "phones_nav_link",
+  SpititualLife: "spiritual_life_nav_link",
+  PastorsBlog: "pastors_blog_nav_link",
+  Baptism: "baptism_blog_nav_link",
+  Marriage: "marriage_blog_nav_link",
 };
 
 export const MainNavBarLinks = {
@@ -38,26 +49,135 @@ export const MainNavBarLinks = {
   //   link: RoutePath.Broadcasts,
   //   label: NavBarLinksNames.BroadcastsLinkName,
   // },
+  MinistriesLink: {
+    link: RoutePath.Ministries,
+    label: NavBarLinksNames.Ministries,
+    children: {
+      KidsMinistryLink: {
+        link: RoutePath.KidsMinistry,
+        label: NavBarLinksNames.KidsMinistry,
+      },
+      YouthMinistryLink: {
+        link: RoutePath.YouthMinistry,
+        label: NavBarLinksNames.YouthMinistry,
+      },
+      SmallGroupsMinistryLink: {
+        link: RoutePath.SmallGroupsMinistry,
+        label: NavBarLinksNames.SmallGroupsMinistry,
+      },
+      MissionaryMinistryLink: {
+        link: RoutePath.MissionaryMinistry,
+        label: NavBarLinksNames.MissionaryMinistry,
+      },
+      FamilyMinistryLink: {
+        link: RoutePath.FamilyMinistry,
+        label: NavBarLinksNames.FamilyMinistry,
+      },
+      WorshipMinistryLink: {
+        link: RoutePath.WorshipMinistry,
+        label: NavBarLinksNames.WorshipMinistry,
+      },
+    },
+  },
 
-  PrayerRequestLink: {
-    link: RoutePath.PrayerRequest,
-    label: NavBarLinksNames.PrayerRequestLinkName,
-    children: {},
+  AboutUsLink: {
+    link: RoutePath.AboutUs,
+    label: NavBarLinksNames.AboutUsLinkName,
+    children: {
+      StaffPageLinkName: {
+        link: RoutePath.Staff,
+        label: NavBarLinksNames.Staff,
+      },
+      OurBeliefs: {
+        link: RoutePath.OurBeliefs,
+        label: NavBarLinksNames.OurBeliefs,
+      },
+      TimelineLink: {
+        link: RoutePath.Timeline,
+        label: NavBarLinksNames.Timeline,
+      },
+      GospelPageLinkName: {
+        link: RoutePath.GospelPage,
+        label: NavBarLinksNames.GospelPageLinkName,
+      },
+      // ParticipationLink: {
+      //   link: RoutePath.Participation,
+      //   label: NavBarLinksNames.Participation,
+      // },
+    },
   },
-  // MinistersLink: {
-  //   link: RoutePath.Ministers,
-  //   label: NavBarLinksNames.MinistersLinkName,
-  // },
-  LiveStreamsLink: {
-    link: RoutePath.LiveStreams,
-    label: NavBarLinksNames.LiveStreamsLinkName,
-    children: {},
+
+  MediaLink: {
+    link: RoutePath.Media,
+    label: NavBarLinksNames.Media,
+    children: {
+      LiveStreamsLink: {
+        link: RoutePath.LiveStreams,
+        label: NavBarLinksNames.LiveStreamsLinkName,
+      },
+      SermonsLink: {
+        link: RoutePath.Sermons,
+        label: NavBarLinksNames.SermonsLinkName,
+      },
+    },
   },
+
   GivingLinkName: {
     link: RoutePath.Giving,
     label: NavBarLinksNames.GivingLinkName,
     children: {},
   },
+
+  OurPlans: {
+    link: "",
+    label: NavBarLinksNames.OurPlans,
+    children: {
+      CalendarLink: {
+        link: RoutePath.Calendar,
+        label: NavBarLinksNames.Calendar,
+      },
+    },
+  },
+
+  Contacts: {
+    link: RoutePath.ContactUs,
+    label: NavBarLinksNames.ContactUsLinkName,
+    children: {
+      PrayerRequestLink: {
+        link: RoutePath.PrayerRequest,
+        label: NavBarLinksNames.PrayerRequestLinkName,
+      },
+      PhonesListLink: {
+        link: RoutePath.Phones,
+        label: NavBarLinksNames.Phones,
+      },
+    },
+  },
+
+  SpiritualLife: {
+    link: "",
+    label: NavBarLinksNames.SpititualLife,
+    children: {
+      PastorsBlog: {
+        link: RoutePath.PastorsBlog,
+        label: NavBarLinksNames.PastorsBlog,
+      },
+      Baptism: {
+        link: RoutePath.Baptism,
+        label: NavBarLinksNames.Baptism,
+      },
+      Marriage: {
+        link: RoutePath.Marriage,
+        label: NavBarLinksNames.Marriage,
+      },
+    },
+  },
+
+  // MinistersLink: {
+  //   link: RoutePath.Ministers,
+  //   label: NavBarLinksNames.MinistersLinkName,
+  // },
+  
 
   // SermonsLink: {
   //   link: RoutePath.Sermons,
@@ -71,54 +191,4 @@ export const MainNavBarLinks = {
   //   link: RoutePath.Blog,
   //   label: NavBarLinksNames.BlogLinkName,
   // },
-  AboutUsLink: {
-    link: RoutePath.AboutUs,
-    label: NavBarLinksNames.AboutUsLinkName,
-    children: {
-      OurBeliefs: {
-        link: RoutePath.OurBeliefs,
-        label: NavBarLinksNames.OurBeliefs,
-      },
-      GospelPageLinkName: {
-        link: RoutePath.GospelPage,
-        label: NavBarLinksNames.GospelPageLinkName,
-      },
-      StaffPageLinkName: {
-        link: RoutePath.Staff,
-        label: NavBarLinksNames.Staff,
-      },
-      SermonsLink: {
-        link: RoutePath.Sermons,
-        label: NavBarLinksNames.SermonsLinkName,
-      },
-      KidsMinistryLink: {
-        link: RoutePath.KidsMinistry,
-        label: NavBarLinksNames.KidsMinistry,
-      },
-      YouthMinistryLink: {
-        link: RoutePath.YouthMinistry,
-        label: NavBarLinksNames.YouthMinistry,
-      },
-      FamilyMinistryLink: {
-        link: RoutePath.FamilyMinistry,
-        label: NavBarLinksNames.FamilyMinistry,
-      },
-      WorshipMinistryLink: {
-        link: RoutePath.WorshipMinistry,
-        label: NavBarLinksNames.WorshipMinistry,
-      },
-      // ParticipationLink: {
-      //   link: RoutePath.Participation,
-      //   label: NavBarLinksNames.Participation,
-      // },
-      ContactUsLink: {
-        link: RoutePath.ContactUs,
-        label: NavBarLinksNames.ContactUsLinkName,
-      },
-      TimelineLink: {
-        link: RoutePath.Timeline,
-        label: NavBarLinksNames.Timeline,
-      },
-    },
-  },
 };

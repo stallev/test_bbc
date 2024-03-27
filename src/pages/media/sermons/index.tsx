@@ -7,7 +7,7 @@ import RestApiService from "@/services/RestApi";
 import SermonsDataApi from "@/services/SermonsDataApi";
 import { PagesIDs } from "@/constants";
 
-import styles from '../../styles/pages/sermons.module.scss'
+import styles from '../../../styles/pages/sermons.module.scss'
 
 export default function Sermons({ data }: any) {
   return (

@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { NextSeo } from 'next-seo';
 import useTranslationFunction from "@/hooks/useTranslationFunction";
 import MarkdownContent from "@/ui/components/MarkdownContent/MarkdownContent";
 import { Text } from "@/ui/components/ui-kit";
@@ -10,28 +9,21 @@ import RestApiService from "../services/RestApi";
 
 import styles from '../styles/pages/gospel.module.scss';
 
-export default function Gospel({ data, key5 }: any) {
-  if(key5) console.log('key', key5);
-  console.log('process.env.NEXT_PUBLIC_YOUTUBE_API_KEY', process.env.NEXT_PUBLIC_YOUTUBE_API_KEY);
-
+export default function Gospel({ data }: any) {
   const translate = useTranslationFunction();
 
   return (
     <>
       <Head>
-        {/* <title>{translate("gospel_title")}</title>
+        <title>{translate("gospel_title")}</title>
         <meta
           name="description"
-          content={translate("HELLO1245678")}
-        /> */}
+          content={translate("stream_meta_description")}
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="noindex, nofollow" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <NextSeo
-        title="Simple Usage Example"
-        description="A short description goes here."
-      />
       
       <div className={styles.gospel}>
         <Container isMarkdownContent={true}>
@@ -60,7 +52,6 @@ export async function getStaticProps({ locale }: any) {
   return {
     props: {
       data,
-      key5: process.env.NEXT_PUBLIC_YOUTUBE_API_KEY2,
       ...(await serverSideTranslations(locale, ["common"])),
     },
     revalidate: 360,

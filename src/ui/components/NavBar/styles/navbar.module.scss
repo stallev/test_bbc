@@ -3,7 +3,7 @@
 .navbar {
   display: flex;
   flex-wrap: wrap;
-  column-gap: $gutter-xl;
+  column-gap: $gutter-ml;
 
   &__link {
     padding: $gutter-xs 0;
@@ -16,6 +16,12 @@
     color: $color-white;
     opacity: 0.9;
     text-shadow: $nav-link-shadow;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      color: $color-orange;
+    }
   }
 
   @media (max-width: $smallDesktop) {
