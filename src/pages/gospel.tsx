@@ -10,8 +10,10 @@ import RestApiService from "../services/RestApi";
 
 import styles from '../styles/pages/gospel.module.scss';
 
-export default function Gospel({ data }: any) {
-  console.log('process.env.custom_url', process.env.custom_url);
+export default function Gospel({ data, key5 }: any) {
+  if(key5) console.log('key', key5);
+  console.log('process.env.NEXT_PUBLIC_YOUTUBE_API_KEY', process.env.NEXT_PUBLIC_YOUTUBE_API_KEY);
+
   const translate = useTranslationFunction();
 
   return (
@@ -58,6 +60,7 @@ export async function getStaticProps({ locale }: any) {
   return {
     props: {
       data,
+      key5: process.env.NEXT_PUBLIC_YOUTUBE_API_KEY2,
       ...(await serverSideTranslations(locale, ["common"])),
     },
     revalidate: 360,
