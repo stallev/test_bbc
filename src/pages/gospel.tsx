@@ -11,6 +11,7 @@ import RestApiService from "../services/RestApi";
 import styles from '../styles/pages/gospel.module.scss';
 
 export default function Gospel({ data }: any) {
+  console.log('process.env.custom_url', process.env.custom_url);
   const translate = useTranslationFunction();
 
   return (
