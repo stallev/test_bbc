@@ -32,8 +32,6 @@ export default function Home({ data }: any) {
           content={translate("stream_meta_description")}
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="robots" content="noindex, nofollow" />
-        <link rel="icon" href="/Logofavicon.svg" />
       </Head>
       <Container>
         <Text textType="h1" className={styles["live-streams__title"]}>

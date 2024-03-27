@@ -1,7 +1,8 @@
  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
 
  const DefaultSeoData = {
-  title: "Using More of Config2",
+  title: "BBC",
+  titleTemplate: 'Bible Baptist Church | %s',
   description: "Bible Baptist Church: faithfulness to the Bible, love for others, serving God and people. Join us!",
   openGraph: {
     type: 'website',
@@ -21,6 +22,14 @@
   twitter: {
     cardType: 'summary',
   },
+  dangerouslySetAllPagesToNoIndex: true,
+  dangerouslySetAllPagesToNoFollow: true,
+  additionalLinkTags: [
+    {
+      rel: 'icon',
+      href: `${siteUrl}/Logifavicon.svg`,
+    },
+  ],
 };
 
 export default DefaultSeoData;
