@@ -2,6 +2,7 @@ import Head from "next/head";
 import dynamic from 'next/dynamic';
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import GreetingScreen from "@/ui/components/page-specific/home/GreetingScreen/GreetingScreen";
+import Seo from "@/ui/components/Seo/Seo";
 import RestApiService from "../services/RestApi";
 import PostsDataApi from "@/services/PostsDataApi";
 import PageContentDataApi from "@/services/PageMarkdownContentDataApi";
@@ -25,7 +26,6 @@ export default function Home({ data }: any) {
     subscription_title, 
     subscription_descr,
   } = data.pageData.complex[2];
-  console.log('data.contentData', data.contentData);
   
   return (
     <>
@@ -33,6 +33,9 @@ export default function Home({ data }: any) {
         <title>{translate("site_name")}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
+
+      <Seo pageData={data.contentData} />
+      
       <>
         <GreetingScreen
           header_h1_title={header_h1_title}

@@ -25,9 +25,7 @@
 
 %paragraphStyle {
   width: 100%;
-  margin-top: $gutter-ms;
   font-size: $font-size-ms;
-  // line-height: $line-height-md;
   line-height: 1.4;
 }
 
@@ -52,7 +50,6 @@
 }
 
 %blockquoteStyles {
-  margin-top: $gutter-ml;
   padding: $gutter-md;
   font-style: italic;
   border: 1px solid $color-light-backgrond-gray;

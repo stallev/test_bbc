@@ -12,7 +12,6 @@ class PageContentDataApi {
     const { page } = await fetchAPI(getMarkdownPageContentData, { variables });
 
     const pageContent = convertGutenbergBlocksData(page.blocks);
-    const seoData = {}
 
     return {
       title: page.title,
@@ -21,7 +20,6 @@ class PageContentDataApi {
       seo: page.seo,
       translations: page?.translations,
       featuredImage: page?.featuredImage,
-      seoData,
     };
   }
 }

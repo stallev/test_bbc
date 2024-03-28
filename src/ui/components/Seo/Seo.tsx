@@ -1,44 +1,63 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
+import useTranslationFunction from '@/hooks/useTranslationFunction';
 
- const Seo:React.FC = ({data}: any) => {
+import { SeoProps } from './types';
+
+ const Seo:React.FC<SeoProps> = ({
+  pageData,
+ }: SeoProps) => {
+  console.log('pageData is ', pageData);
+  const {asPath, locale, defaultLocale} = useRouter();
+  const translate = useTranslationFunction();
+
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  const ogImageUrl = !!pageData?.featuredImage
+    ? pageData.featuredImage.node.mediaItemUrl
+    : `${siteUrl}/default-og-image.jpg`;
+
+  const canonicalUrl = locale == defaultLocale 
+    ? `${siteUrl}${asPath}`
+    : `${siteUrl}/${locale}${asPath}`;
+  
+  const ogLocale = `${locale}_${locale?.toUpperCase()}`
+
+  const data = {
+    title: pageData.title,
+    titleTemplate: `%s | ${translate("site_name")}`,
+    description: pageData.seo.metaDesc,
+    canonical: canonicalUrl,
+    openGraph: {
+      url: canonicalUrl,
+      title: pageData.title,
+      description: pageData.seo.metaDesc,
+      locale: ogLocale,
+      images: [
+        {
+          url: ogImageUrl,
+          width: 800,
+          height: 600,
+          alt: pageData.title,
+          type: 'image/jpeg',
+        }
+      ],
+      siteName: translate("site_name"),
+    },
+    twitter: {
+      cardType: 'summary',
+    },
+    additionalLinkTags: [
+      {
+        rel: 'icon',
+        href: '/Logofavicon.svg',
+      },
+    ],
+  }
+  console.log('Seo data', data);
 
   return (
-    <NextSeo
-      title={data.title}
-      description="This example uses more of the available config options."
-      canonical={data.canonical}
-      openGraph={{
-        url: 'https://www.url.ie/a',
-        title: 'Open Graph Title',
-        description: 'Open Graph Description',
-        images: [
-          {
-            url: 'https://www.example.ie/og-image-01.jpg',
-            width: 800,
-            height: 600,
-            alt: 'Og Image Alt',
-            type: 'image/jpeg',
-          },
-          {
-            url: 'https://www.example.ie/og-image-02.jpg',
-            width: 900,
-            height: 800,
-            alt: 'Og Image Alt Second',
-            type: 'image/jpeg',
-          },
-          { url: 'https://www.example.ie/og-image-03.jpg' },
-          { url: 'https://www.example.ie/og-image-04.jpg' },
-        ],
-        siteName: 'SiteName',
-      }}
-      twitter={{
-        handle: '@handle',
-        site: '@site',
-        cardType: 'summary_large_image',
-      }}
-    />
+    <NextSeo {...data} />
   )
 }
 
