@@ -2,16 +2,14 @@ import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import useTranslationFunction from '@/hooks/useTranslationFunction';
 import Container from '@/ui/containers/Container/Container';
-import MarkdownContent from '@/ui/components/MarkdownContent/MarkdownContent';
+import StructuredMarkdownContent from '@/ui/components/StructuredMarkdownContent/StructuredMarkdownContent';
 import { Text } from '@/ui/components/ui-kit';
 import SermonFilters from '../SermonFilters/SermonFilters';
 import { SermonsContentProps, SermonsListProps } from './types';
-import { DEFAULT_SERMONS_FILTER_STATE } from '@/constants/mock';
+import { DEFAULT_SERMONS_FILTER_STATE, CARDS_PORTION } from '@/constants/mock';
 import { SermonsFiltersProps } from '../SermonFilters/types';
 
 import styles from './styles/sermons-content.module.scss';
-
-const CARDS_PORTION = 10;
 
 const SermonCardsList = dynamic(() => import('../SermonCardsList/SermonCardsList'));
 
@@ -52,8 +50,9 @@ const SermonsContent:React.FC<SermonsContentProps> = ({ contentData, sermonsData
   return (
     <div className={styles["sermons-content"]}>
       <Container>
-        <MarkdownContent
+        <StructuredMarkdownContent
           content={contentData}
+          className={styles["sermons-content__markdown"]}
         />
       </Container>
       

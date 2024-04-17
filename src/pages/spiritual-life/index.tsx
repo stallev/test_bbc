@@ -9,7 +9,6 @@ import { PagesIDs } from "@/constants";
 import styles from '../../styles/pages/spiritual-life.module.scss';
 
 export default function SpiritualLife({ pageData }: any) {
-  console.log(pageData)
   return (
     <>
       <Head>

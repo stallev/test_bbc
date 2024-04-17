@@ -1,4 +1,6 @@
 import React from 'react';
+import { stripHtmlTags } from '@/utils';
+import { DefaultParagraphFontSize } from '@/constants/TextConstants';
 import { BlockquoteProps } from './types';
 
 import styles from './styles/blockquote.module.scss';
@@ -6,12 +8,16 @@ import styles from './styles/blockquote.module.scss';
 const Blockquote:React.FC<BlockquoteProps> = ({
   text,
   citation ='',
+  fontSize = DefaultParagraphFontSize,
 }) => {
   return (
-    <blockquote className={styles.blockquote}>
-      <p>{text}</p>
+    <blockquote
+      style={{ fontSize: `${fontSize}px` }}
+      className={styles.blockquote}
+    >
+      <p style={{ fontSize: `${fontSize}px` }}>{stripHtmlTags(text)}</p>
       
-      <cite>{citation}</cite>
+      <cite>{stripHtmlTags(citation)}</cite>
     </blockquote>
   )
 }

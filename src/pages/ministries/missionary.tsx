@@ -9,7 +9,6 @@ import { PagesIDs } from "@/constants";
 import styles from '../../styles/pages/ministry.module.scss';
 
 export default function MissionaryMinistry({ pageData }: any) {
-  console.log(pageData)
   return (
     <>
       <Head>

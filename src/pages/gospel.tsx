@@ -1,27 +1,31 @@
+import { useEffect } from "react";
 import Head from "next/head";
-import useTranslationFunction from "@/hooks/useTranslationFunction";
-import MarkdownContent from "@/ui/components/MarkdownContent/MarkdownContent";
+import StructuredMarkdownContent from "@/ui/components/StructuredMarkdownContent/StructuredMarkdownContent";
+import Seo from "@/ui/components/Seo/Seo";
+import PageContentDataApi from "@/services/PageMarkdownContentDataApi";
+import BlogDataApi from "@/services/BlogDataApi";
 import { Text } from "@/ui/components/ui-kit";
 import Container from "@/ui/containers/Container/Container";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { PagesIDs } from "@/constants";
-import RestApiService from "../services/RestApi";
 
 import styles from '../styles/pages/gospel.module.scss';
 
 export default function Gospel({ data }: any) {
-  const translate = useTranslationFunction();
-
+  useEffect(() => {
+    const getBlogData = async() => {
+      const data = await BlogDataApi.getPostsDataByLang('en');
+      console.log(data)
+    }
+    getBlogData();
+  }, [])
   return (
     <>
       <Head>
-        <title>{translate("gospel_title")}</title>
-        <meta
-          name="description"
-          content={translate("stream_meta_description")}
-        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
+
+      <Seo pageData={data} />
       
       <div className={styles.gospel}>
         <Container isMarkdownContent={true}>
@@ -29,11 +33,11 @@ export default function Gospel({ data }: any) {
             textType="h1"
             className={styles.gospel__title}
           >
-            {data.titleData}
+            {data.title}
           </Text>
 
-          <MarkdownContent
-            content={data.contentData}
+          <StructuredMarkdownContent
+            content={data.pageContent}
             className={styles["gospel__page-content"]}
           />
         </Container>
@@ -45,7 +49,7 @@ export default function Gospel({ data }: any) {
 export async function getStaticProps({ locale }: any) {
   const pageId = locale == "en" ? PagesIDs.Gospel.en : PagesIDs.Gospel.ru;
 
-  const data = await RestApiService.getPageData(pageId);
+  const data = await PageContentDataApi.getPageContentData(pageId);
 
   return {
     props: {

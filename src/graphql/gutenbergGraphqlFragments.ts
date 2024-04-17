@@ -2,11 +2,7 @@ export const GutenbergParagraphBlock = `
   ... on CoreParagraphBlock {
     name
     order
-    attributes {
-      ... on CoreParagraphBlockAttributes {
-        content
-      }
-    }
+    saveContent
   }
 `;
 
@@ -26,9 +22,9 @@ export const GutenbergHeadingBlock = `
   ... on CoreHeadingBlock {
     name
     order
+    saveContent
     attributes {
       ... on CoreHeadingBlockAttributes {
-        content
         level
       }
     }
@@ -78,7 +74,6 @@ export const GutenbergFileBlock = `
     attributes {
       ... on CoreFileBlockAttributes {
         href
-        fileName
         textLinkHref
       }
     }
@@ -92,7 +87,6 @@ export const GutenbergVideoBlock = `
     attributes {
       ... on CoreVideoBlockAttributes {
         src
-        caption
       }
     }
     name
@@ -102,13 +96,9 @@ export const GutenbergVideoBlock = `
 
 export const GutenbergQuoteBlock = `
   ... on CoreQuoteBlock {
-    attributes {
-      ... on CoreQuoteBlockAttributes {
-        citation
-      }
-    }
     name
     order
+    originalContent
     innerBlocks {
       originalContent
     }

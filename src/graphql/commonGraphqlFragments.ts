@@ -1,3 +1,11 @@
+export const FeaturedImageBlock = `
+  featuredImage {
+    node {
+      mediaItemUrl
+    }
+  }
+`;
+
 export const SeoBlock = `
   seo {
     metaDesc
@@ -23,6 +31,7 @@ export const GeneralInfoBlock = `
     }
     slug
   }
+  date
   featuredImage {
     node {
       mediaItemUrl
@@ -30,3 +39,18 @@ export const GeneralInfoBlock = `
   }
 `;
 
+export const AuthorInfoBlock = `
+  author {
+    node {
+      slug
+      id
+      firstName
+      lastName
+      name
+      avatar {
+        url
+      }
+      description
+    }
+  }
+`;

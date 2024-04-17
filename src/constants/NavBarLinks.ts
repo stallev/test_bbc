@@ -5,7 +5,8 @@ export const NavBarLinksNames = {
   MinistersLinkName: "ministers_nav_link_text",
   BroadcastsLinkName: "Broadcasts",
   SermonsLinkName: "sermons_nav_link_text",
-  ContactUsLinkName: "contact_us_nav_link_text",
+  ContactsLinkName: "contacts_nav_link_text",
+  GetInTouchLinkName: "contact_us_nav_link_text",
   GivingLinkName: "giving_nav_link_text",
   PrayerRequestLinkName: "prayer_request_nav_link_text",
   BlogLinkName: "blog_nav_link_text",
@@ -27,7 +28,7 @@ export const NavBarLinksNames = {
   Participation: "participation_nav_link",
   Timeline: "timeline_nav_link",
   Media: "media_nav_link",
-  Calendar: "calendar_nav_link",
+  UpcomingEvents: "upcoming_events_nav_link",
   OurPlans: "our_plans_nav_link",
   Phones: "phones_nav_link",
   SpititualLife: "spiritual_life_nav_link",
@@ -50,7 +51,7 @@ export const MainNavBarLinks = {
   //   label: NavBarLinksNames.BroadcastsLinkName,
   // },
   MinistriesLink: {
-    link: RoutePath.Ministries,
+    link: "",
     label: NavBarLinksNames.Ministries,
     children: {
       KidsMinistryLink: {
@@ -81,7 +82,7 @@ export const MainNavBarLinks = {
   },
 
   AboutUsLink: {
-    link: RoutePath.AboutUs,
+    link: "",
     label: NavBarLinksNames.AboutUsLinkName,
     children: {
       StaffPageLinkName: {
@@ -108,7 +109,7 @@ export const MainNavBarLinks = {
   },
 
   MediaLink: {
-    link: RoutePath.Media,
+    link: "",
     label: NavBarLinksNames.Media,
     children: {
       LiveStreamsLink: {
@@ -129,20 +130,19 @@ export const MainNavBarLinks = {
   },
 
   OurPlans: {
-    link: "",
-    label: NavBarLinksNames.OurPlans,
-    children: {
-      CalendarLink: {
-        link: RoutePath.Calendar,
-        label: NavBarLinksNames.Calendar,
-      },
-    },
+    link: RoutePath.UpcomingEvents,
+    label: NavBarLinksNames.UpcomingEvents,
+    children: {},
   },
 
   Contacts: {
-    link: RoutePath.ContactUs,
-    label: NavBarLinksNames.ContactUsLinkName,
+    link: "",
+    label: NavBarLinksNames.ContactsLinkName,
     children: {
+      GetInTouchLink: {
+        link: RoutePath.GetInTouch,
+        label: NavBarLinksNames.GetInTouchLinkName,
+      },
       PrayerRequestLink: {
         link: RoutePath.PrayerRequest,
         label: NavBarLinksNames.PrayerRequestLinkName,
@@ -172,23 +172,4 @@ export const MainNavBarLinks = {
       },
     },
   },
-
-  // MinistersLink: {
-  //   link: RoutePath.Ministers,
-  //   label: NavBarLinksNames.MinistersLinkName,
-  // },
-  
-
-  // SermonsLink: {
-  //   link: RoutePath.Sermons,
-  //   label: NavBarLinksNames.SermonsLinkName
-  // },
-  // ContactUsLink: {
-  //   link: RoutePath.ContactUs,
-  //   label: NavBarLinksNames.ContactUsLinkName
-  // },
-  // BlogLink: {
-  //   link: RoutePath.Blog,
-  //   label: NavBarLinksNames.BlogLinkName,
-  // },
 };

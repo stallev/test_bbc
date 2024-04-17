@@ -1,13 +1,13 @@
-const SiteUrl = 'https://testchurchapi.stallevs.ru/';
+const SiteUrl = 'http://ec2-18-205-106-197.compute-1.amazonaws.com/';
 
 export const PostsQueryMaxCount = 10000;
 
 export const EndpointsList = {
   PagesStandartRestEndpoint: `${SiteUrl}wp-json/wp/v2/pages/`,
   MediaStandartRestEndpoint: `${SiteUrl}wp-json/wp/v2/media/`,
-  UpcomingEventsCustomRestEndpoint: `${SiteUrl}wp-json/carbonfields/v1/upcoming_events_association`,
-  MinistersCustomRestEndpoint: `${SiteUrl}wp-json/carbonfields/v1/selected-ministers-list`,
-  TimelineCustomRestEndpoint: `${SiteUrl}wp-json/carbonfields/v1/timeline`,
+  UpcomingEventsCustomRestEndpoint: `${SiteUrl}wp-json/events/upcoming-events-list`,
+  MinistersCustomRestEndpoint: `${SiteUrl}wp-json/ministers/selected-ministers-list`,
+  TimelineCustomRestEndpoint: `${SiteUrl}wp-json/timeline/timeline-data`,
 }
 
 export const PrayerRequestEndpoint = {
@@ -27,5 +27,5 @@ export const SubscribeToEventsEndpoint = {
 }
 
 export const WordpressGraphQLEndpoint = {
-  dev: 'https://testchurchapi.stallevs.ru/graphql',
+  dev: `${SiteUrl}graphql`,
 }

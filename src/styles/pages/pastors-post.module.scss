@@ -1,0 +1,42 @@
+@import '../variables.scss';
+@import '../placeholders.scss';
+
+.pastors-post {
+  &__title {
+    @extend %paddingTopHeader;
+    @extend %pageTitleStyles;
+  }
+
+  &__post-content {
+    margin: $gutter-xl 0;
+  }
+
+  &__image-wrap {
+    position: relative;
+    display: block;
+    height: 180px;
+    margin-top: $gutter-ml;
+    border-radius: $border-radius-md;
+    overflow: hidden;
+
+    @media screen and (min-width: $tablet) {
+      height: 400px;
+      margin-top: $gutter-xl;
+    }
+  
+    @media screen and (min-width: $desktop) {
+      height: 500px;
+    }
+
+    img {
+      object-fit: cover;
+    }
+  }
+
+  &__meta-info {
+    display: flex;
+    width: fit-content;
+    gap: $gutter-md;
+    margin: $gutter-ms auto 0;
+  }
+}

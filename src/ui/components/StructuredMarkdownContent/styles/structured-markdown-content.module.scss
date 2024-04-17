@@ -4,12 +4,18 @@
 .structured-markdown-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: $gutter-ml;
+
+  &__blocks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $gutter-ml;
+  }
 
   h2 {
     @extend %h2Style;
-    margin-bottom: $gutter-ml;
+    // margin-bottom: $gutter-ml;
 
     &:first-child {
       margin-top: 0;
@@ -17,7 +23,25 @@
   }
 
   h3 {
-    @extend %h2Style;
+    @extend %h3Style;
+    margin-bottom: $gutter-sm;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h4 {
+    @extend %h4Style;
+    margin-bottom: $gutter-sm;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h5 {
+    @extend %h5Style;
     margin-bottom: $gutter-sm;
 
     &:first-child {

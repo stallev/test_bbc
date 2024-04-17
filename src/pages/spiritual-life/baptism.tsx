@@ -9,7 +9,6 @@ import { PagesIDs } from "@/constants";
 import styles from '../../styles/pages/baptism.module.scss';
 
 export default function Baptism({ pageData }: any) {
-  console.log(pageData)
   return (
     <>
       <Head>

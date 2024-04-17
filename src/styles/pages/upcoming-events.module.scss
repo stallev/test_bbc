@@ -1,7 +1,7 @@
 @import '../variables.scss';
 @import '../placeholders.scss';
 
-.calendar {
+.upcoming-events {
   &__title {
     @extend %paddingTopHeader;
     @extend %pageTitleStyles;

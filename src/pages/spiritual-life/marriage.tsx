@@ -9,7 +9,6 @@ import { PagesIDs } from "@/constants";
 import styles from '../../styles/pages/marriage.module.scss';
 
 export default function Marriage({ pageData }: any) {
-  console.log(pageData)
   return (
     <>
       <Head>

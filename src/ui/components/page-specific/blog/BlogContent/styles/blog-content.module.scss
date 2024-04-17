@@ -1,0 +1,13 @@
+@import '../../../../../../styles/variables.scss';
+
+.blog-content {
+  display: flex;
+  flex-direction: column;
+  gap: $gutter-ml;
+  max-width: $smallMobileBlogWidth;
+  margin: $gutter-ml auto 0;
+
+  @media screen and (min-width: $tablet) {
+    max-width: none;
+  }
+}

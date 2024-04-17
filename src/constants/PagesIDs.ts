@@ -95,7 +95,7 @@ export const PagesIDs = {
     en: '621',
     ru: '624',
   },
-  CalendarPage: {
+  UpcomingEventsPage: {
     en: '615',
     ru: '618',
   },

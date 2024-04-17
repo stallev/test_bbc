@@ -8,7 +8,6 @@ import { SeoProps } from './types';
  const Seo:React.FC<SeoProps> = ({
   pageData,
  }: SeoProps) => {
-  console.log('pageData is ', pageData);
   const {asPath, locale, defaultLocale} = useRouter();
   const translate = useTranslationFunction();
 
@@ -54,7 +53,6 @@ import { SeoProps } from './types';
       },
     ],
   }
-  console.log('Seo data', data);
 
   return (
     <NextSeo {...data} />

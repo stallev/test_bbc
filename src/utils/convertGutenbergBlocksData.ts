@@ -13,7 +13,7 @@ export const convertGutenbergBlocksData = (blocks: any[]) => {
           return {
             type: GutenbergBlocksTypes.paragraph,
             order: block.order,
-            content: stripHtmlTags(block.attributes.content),
+            content: stripHtmlTags(block.saveContent),
           }
         case 'core/image':
           return {
@@ -26,7 +26,7 @@ export const convertGutenbergBlocksData = (blocks: any[]) => {
             type: GutenbergBlocksTypes.heading,
             headingType: 'h' + block.attributes.level,
             order: block.order,
-            content: stripHtmlTags(block.attributes.content),
+            content: stripHtmlTags(block.saveContent),
           }
         case 'core/gallery':
           const galleryList = block.innerBlocks
@@ -51,7 +51,7 @@ export const convertGutenbergBlocksData = (blocks: any[]) => {
             type: GutenbergBlocksTypes.file,
             src: S3_BUCKET_URL + file,
             order: block.order,
-            label: block.attributes.fileName,
+            label: file,
           }
         case 'core/audio':
           const audioFile = getFileNameFromUrl(block.attributes.src);
@@ -68,16 +68,16 @@ export const convertGutenbergBlocksData = (blocks: any[]) => {
             type: GutenbergBlocksTypes.video,
             src: S3_BUCKET_URL + videoFile,
             order: block.order,
-            caption: block.attributes.caption,
           }
         case 'core/quote':
+          const citation = stripHtmlTags(block.originalContent);
           const originalContent = stripHtmlTags(block.innerBlocks[0].originalContent);
 
           return {
             type: GutenbergBlocksTypes.quote,
             text: originalContent,
             order: block.order,
-            citation: block.attributes.citation,
+            citation,
           }
         default:
           return {

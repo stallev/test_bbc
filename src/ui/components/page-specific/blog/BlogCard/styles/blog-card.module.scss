@@ -1,0 +1,123 @@
+@import '../../../../../../styles/variables.scss';
+@import "../../../../../../styles/placeholders.scss";
+
+.blog-card {
+  display: flex;
+  flex-direction: column;
+  max-width: 320px;
+  border-radius: 5px;
+  border: 1px solid $color-light-backgrond-gray;
+  overflow: hidden;
+
+  &__image-wrap {
+    position: relative;
+    display: block;
+    height: 180px;
+
+    img {
+      object-fit: cover;
+    }
+  }
+
+  &__info {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    row-gap: $gutter-sm;
+    flex-grow: 2;
+    padding: $gutter-ms $gutter-ms;
+  }
+
+  &__title {
+    color: $color-black;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-md;
+    line-height: $line-height-lg;
+    transition: all .3s ease;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__excerpt {
+    @extend %paragraphStyle;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-height: 1.4;
+    line-height: 1.4;
+    font-style: italic;
+  }
+
+  &__post-meta {
+    display: flex;
+    gap: $gutter-sm;
+    margin-top: $gutter-xs;
+  }
+
+  &__reading-time,
+  &__published-date {
+    font-size: $font-size-sm;
+    line-height: 1.4;
+    font-style: italic;
+  }
+
+  &__read-more-link {
+    align-self: flex-end;
+    width: fit-content;
+    font-size: $font-size-sm;
+    line-height: 1.4;
+    transition: all .3s ease;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__author-info {
+    display: grid;
+    grid-template-columns: $gutter-lg 1fr;
+    column-gap: $gutter-ms;
+    row-gap: $gutter-sm
+  }
+
+  &__author-image-wrap {
+    position: relative;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      object-fit: cover;
+    }
+  }
+
+  &__author-name {
+    display: flex;
+    align-items: center;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    line-height: 1.4;
+  }
+
+  &__author-description {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    font-size: $font-size-sm;
+    line-height: 1.4;
+  }
+}

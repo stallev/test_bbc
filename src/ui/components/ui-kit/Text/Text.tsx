@@ -6,11 +6,13 @@ type HeadingType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
 type TextType = HeadingType | 'p' | 'span';
 
 interface TextProps extends HTMLProps<HTMLElement> {
+  fontSize?: number
   textType: TextType;
   onHover?: () => void;
 }
 
 const Text: FC<TextProps> = ({
+  fontSize,
   textType,
   children,
   className,
@@ -31,6 +33,7 @@ const Text: FC<TextProps> = ({
       className: `text ${className} ${styles[`text--${textType}`]}`,
       onClick,
       onMouseEnter: handleHover,
+      style: fontSize && { fontSize: `${fontSize}px` } 
     },
     children
   );

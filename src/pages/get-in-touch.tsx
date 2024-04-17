@@ -12,8 +12,6 @@ import { PagesIDs } from "@/constants";
 import styles from "../styles/pages/contact-us.module.scss";
 
 export default function ContactUs({ data }: any) {
-  console.log(data)
-
   return (
     <>
       <Head>

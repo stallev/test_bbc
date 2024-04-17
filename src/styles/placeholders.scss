@@ -1,25 +1,50 @@
 @import './variables.scss';
 
 %h2Style {
-  margin-top: $gutter-lg;
-  font-size: $font-size-md;
-  line-height: $line-height-md;
-  font-weight: $font-weight-bold;
-
-  @media screen and (min-width: $tablet) {
-    font-size: $font-size-lg;
-    line-height: $line-height-lg;
-  }
-}
-
-%h3Style {
-  margin-top: $gutter-lg;
-  font-size: $font-size-ms;
+  margin-top: $gutter-xs;
+  margin-bottom: -$gutter-sm;
+  font-size: 28px;
   line-height: 1.4;
   font-weight: $font-weight-bold;
 
   @media screen and (min-width: $tablet) {
-    font-size: $font-size-md;
+    font-size: $font-size-lg;
+  }
+}
+
+%h3Style {
+  margin-top: $gutter-xs;
+  margin-bottom: -$gutter-sm;
+  font-size: 28px;
+  line-height: 1.4;
+  font-weight: $font-weight-bold;
+
+  @media screen and (min-width: $tablet) {
+    font-size: 30px;
+  }
+}
+
+%h4Style {
+  margin-top: $gutter-xs;
+  margin-bottom: -$gutter-sm;
+  font-size: $font-size-md;
+  line-height: 1.4;
+  font-weight: $font-weight-bold;
+
+  @media screen and (min-width: $tablet) {
+    font-size: 28px;
+  }
+}
+
+%h5Style {
+  margin-top: $gutter-xs;
+  margin-bottom: -$gutter-sm;
+  font-size: 22px;
+  line-height: 1.4;
+  font-weight: $font-weight-bold;
+
+  @media screen and (min-width: $tablet) {
+    font-size: 26px;
   }
 }
 
@@ -56,6 +81,7 @@
   font-weight: 400;
   border-radius: $border-radius-md;
   box-shadow: $quot-shadow;
+  line-height: 1.4;
 }
 
 %primaryBtnLink {

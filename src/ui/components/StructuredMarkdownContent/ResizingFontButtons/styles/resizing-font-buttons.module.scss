@@ -1,0 +1,26 @@
+@import '../../../../../styles/variables.scss';
+@import '../../../../../styles/placeholders.scss';
+
+.resizing-font-buttons {
+  display: flex;
+  gap: $gutter-ml;
+  width: fit-content;
+  align-self: flex-end;
+
+  &__font-button {
+    @extend %btnStyles;
+    display: inline-block;
+    padding: $gutter-sm;
+    font-size: $font-size-ms;
+    text-transform: uppercase;
+    border: 1px solid $color-black;
+    border-radius: $border-radius-xs;
+    background-color: transparent;
+    transition: all .3s ease;
+
+    &:hover,
+    &:active {
+      background-color: $color-footer-bg;
+    }
+  }
+}

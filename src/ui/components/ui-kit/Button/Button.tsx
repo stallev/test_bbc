@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import cx from 'classnames';
 
 import styles from './styles/button.module.scss';
 
@@ -26,11 +25,11 @@ const Button: FC<CustomButtonProps> = ({
 }) => {
   return (
     <button
-      className={cx(
-        styles['custom-button'],
-        styles[`custom-button--${type}`],
-        className
-      )}
+      className={`
+        ${styles['custom-button']}
+        ${styles[`custom-button--${type}`]}
+        ${className}`
+      }
       type={isSubmit ? 'submit' : 'button'}
       onClick={onClick || undefined}
       tabIndex={tabIndex}

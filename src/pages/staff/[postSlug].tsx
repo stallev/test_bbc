@@ -61,7 +61,7 @@ export default function StaffPerson({ postData }: any) {
 
 export async function getStaticProps({ params, locale }: {params: any, locale: string}) {
 
-  const postData = await await StaffDataApi.getMinisterItemDataBySlug(params.postSlug, locale);
+  const postData = await StaffDataApi.getMinisterItemDataBySlug(params.postSlug, locale);
 
   return {
     props: {
