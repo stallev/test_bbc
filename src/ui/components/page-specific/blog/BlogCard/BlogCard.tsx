@@ -82,23 +82,12 @@ const BlogCard:React.FC<BlogCardDataProps> = ({
           {translate("more_link_label")}
         </Link>
 
-        <div className={styles["blog-card__author-info"]}>
-          <div className={styles["blog-card__author-image-wrap"]}>
-            {/* <Image
-              src={data.author.avatarUrl}
-              alt={data.author.authorFullName}
-              sizes='10vw'
-              fill
-            /> */}
-          </div>
-          
-          <Text
-            textType='h3'
-            className={styles["blog-card__author-name"]}
-          >
-            {data.author.authorFullName}
-          </Text>
-        </div>
+        <Text
+          textType='h3'
+          className={styles["blog-card__author-name"]}
+        >
+          {data.author.authorFullName}
+        </Text>
       </div>
     </div>
   )

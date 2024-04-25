@@ -1,6 +1,7 @@
 import { EndpointsList } from "@/constants";
-import { getTimelineEventData, getTimelineEventsSlugs, getTimelineEventDataBySlug } from "@/graphql/timelineEventsQueries";
+import { getTimelineEventData, getTimelineEventsSlugs, getTimelineEventDataBySlug, getTimelineEventsSitemapData } from "@/graphql/timelineEventsQueries";
 import { fetchAPI } from "./WordPressFetchAPI";
+import { getPostSeoData } from "@/utils/getPostSeoData";
 
 class TimelineEventDataApi {
   static async getTimelineEventsItemsIDs() {
@@ -30,7 +31,10 @@ class TimelineEventDataApi {
     
     const { timelineEventBy: { translation } } = await fetchAPI(getTimelineEventDataBySlug, { variables });
     
-    return translation;
+    return {
+      postData: translation,
+      seo: getPostSeoData(translation, locale),
+    };
   }
 
   static async getTimelineEvents(locale: string) {    
@@ -71,6 +75,19 @@ class TimelineEventDataApi {
     })
         
     return paths;
+  }
+
+  static async getTimelineEventsSitemapData() {
+    const { allTimelineEvent: { edges: nodes } } = await fetchAPI(getTimelineEventsSitemapData);
+
+    const postsData = nodes.map(({ node }: any) => {
+      return {
+        slug: node.slug,
+        modified: node.modified,
+      };
+    })
+        
+    return postsData;
   }
 }
 

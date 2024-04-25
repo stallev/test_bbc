@@ -3,6 +3,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { convertGutenbergBlocksData } from "@/utils/convertGutenbergBlocksData";
 import TimelineEventDataApi from "@/services/TimelineDataApi";
 import useTranslationFunction from "@/hooks/useTranslationFunction";
+import PageLayout from "@/ui/containers/PageLayout/PageLayout";
 import Container from "@/ui/containers/Container/Container";
 import { PathProps } from "@/types/globalTypes";
 import StructuredMarkdownContent from "@/ui/components/StructuredMarkdownContent/StructuredMarkdownContent";
@@ -14,9 +15,9 @@ export default function TimelineEvent({ content }: any) {
   const translate = useTranslationFunction();
 
   return (
-    <>
+    <PageLayout seoData={content.seoData}>
       <Head>
-        <title>{content.title}</title>
+        <title>{content.seoData.data.title}</title>
         <meta
           name="description"
           content={translate("stream_meta_description")}
@@ -25,7 +26,7 @@ export default function TimelineEvent({ content }: any) {
       </Head>
       <Container isMarkdownContent={true}>
         <Text textType="h1" className={styles["timeline-event__title"]}>
-          {content.title}
+          {content.seoData.data.title}
         </Text>
 
         <StructuredMarkdownContent
@@ -33,16 +34,17 @@ export default function TimelineEvent({ content }: any) {
           className={styles["timeline-event__page-content"]}
         />
       </Container>
-    </>
+    </PageLayout>
   );
 }
 
 export async function getStaticProps({ params, locale }: {params: any, locale: string}) {
 
-  const postData = await TimelineEventDataApi.getTimelineEventItemDataBySlug(params.postSlug, locale);
+  const { postData, seo } = await TimelineEventDataApi.getTimelineEventItemDataBySlug(params.postSlug, locale);
   
   const content = {
-    title: postData.title,
+    seoData: seo,
+    postData,
     postContent: convertGutenbergBlocksData(postData.blocks),
   }
 

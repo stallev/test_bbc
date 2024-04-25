@@ -1,4 +1,5 @@
 import { PostsQueryMaxCount } from "@/constants";
+import { SeoBlock } from "./commonGraphqlFragments";
 
 export const getUpcomingEventData = `query getUpcomingEventData ($id: ID!, $idType: UpcomingIdType!, $language: LanguageCodeEnum!) {
   upcoming(id: $id, idType: $idType) {
@@ -21,6 +22,7 @@ export const getUpcomingEventData = `query getUpcomingEventData ($id: ID!, $idTy
 export const getUpcomingEventDataBySlug = `query getUpcomingEventDataBySlug ($slug: String!, $language: LanguageCodeEnum!) {
   upcomingBy(slug: $slug) {
     translation(language: $language) {
+      ${SeoBlock}
       upcomingEventStart
       upcomingEventEnd
       upcomingEventShortDescription
@@ -31,6 +33,12 @@ export const getUpcomingEventDataBySlug = `query getUpcomingEventDataBySlug ($sl
         sourceUrl
       }
       slug
+      translations {
+        slug
+        language {
+          code
+        }
+      }
     }
   }
 }
@@ -41,6 +49,18 @@ export const getUpcomingEventsSlugs = `query getUpcomingEventsSlugs {
     edges {
       node {
         slug
+      }
+    }
+  }
+}
+`;
+
+export const getUpcomingEventsSitemapData = `query getUpcomingEventsSitemapData {
+  allUpcoming(where: {status: PUBLISH, language: EN}, first: ${PostsQueryMaxCount}) {
+    edges {
+      node {
+        slug
+        modified
       }
     }
   }

@@ -89,3 +89,8 @@ export interface PostFeaturedImageData {
   isExist: boolean
   featuredImageUrl: string
 }
+
+export interface postSitemapFieldsItemProps {
+  slug: string
+  modified: string
+}

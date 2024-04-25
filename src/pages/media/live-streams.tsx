@@ -1,8 +1,8 @@
-import Head from "next/head";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import YouTubeApiService from "@/services/YouTubeApi";
-import { YouTubePlaylistIDs, YouTubeApiKeys } from "@/constants";
-import useTranslationFunction from "@/hooks/useTranslationFunction";
+import { YouTubePlaylistIDs, YouTubeApiKeys, PagesIDs } from "@/constants";
+import PageLayout from "@/ui/containers/PageLayout/PageLayout";
+import PageContentDataApi from "@/services/PageDataApi";
 import VideoStreamsList from "@/ui/components/page-specific/live-streams/VideoStreamsList/VideoStreamsList";
 import Container from "@/ui/containers/Container/Container";
 import { Text } from "@/ui/components/ui-kit";
@@ -10,51 +10,46 @@ import LiveStream from "@/ui/components/page-specific/live-streams/LiveStream/Li
 
 import styles from "../../styles/pages/live-streams.module.scss";
 
-export default function Home({ data }: any) {
+export default function Home({ videosData, pageData }: any) {
   const {
     finishedVideos,
     liveVideos,
     upcomingVideos,
-  } = data;
+  } = videosData;
   
   const LiveStreamData = {
     liveVideos,
     upcomingVideos,
   }
-  const translate = useTranslationFunction();
 
   return (
-    <>
-      <Head>
-        <title>{translate("stream_meta_title")}</title>
-        <meta
-          name="description"
-          content={translate("stream_meta_description")}
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
+    <PageLayout seoData={pageData.seo}>
       <Container>
         <Text textType="h1" className={styles["live-streams__title"]}>
-          {translate("streams_page_title")}
+          {pageData.title}
         </Text>
 
         <LiveStream data={LiveStreamData} />
 
         <VideoStreamsList data={finishedVideos} />
       </Container>
-    </>
+    </PageLayout>
   );
 }
 
-export async function getStaticProps({ locale }: any) {
-  const data = await YouTubeApiService.getAllYouTubePlaylistItems(
+export async function getStaticProps({ locale }: {locale: string}) {
+  const pageId = locale == "en" ? PagesIDs.LiveStreams.en : PagesIDs.LiveStreams.ru;
+
+  const pageData = await PageContentDataApi.getPageContentData(pageId);
+  const videosData = await YouTubeApiService.getAllYouTubePlaylistItems(
     YouTubePlaylistIDs.generalLiveStreams,
-    YouTubeApiKeys.bbc
+    YouTubeApiKeys.alexander
   );
 
   return {
     props: {
-      data,
+      videosData,
+      pageData,
       ...(await serverSideTranslations(locale, ["common"])),
     },
     revalidate: 60 * 7,

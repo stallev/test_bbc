@@ -5,21 +5,19 @@ import BlogDataApi from "@/services/BlogDataApi";
 import Container from "@/ui/containers/Container/Container";
 import { PathProps } from "@/types/globalTypes";
 import { BlogPostProps } from "@/types/postTypes";
+import { SeoContentDataProps } from "@/ui/components/Seo/types";
 import StructuredMarkdownContent from "@/ui/components/StructuredMarkdownContent/StructuredMarkdownContent";
-import Seo from "@/ui/components/Seo/Seo";
+import PageLayout from "@/ui/containers/PageLayout/PageLayout";
 import { Text } from "@/ui/components/ui-kit";
 
 import styles from "../../styles/pages/pastors-post.module.scss";
 
-
-export default function PastorsPost({ postData }: { postData: BlogPostProps }) {
+export default function PastorsPost({ postData, seoData }: { postData: BlogPostProps, seoData: SeoContentDataProps }) {
   return (
-    <>
+    <PageLayout seoData={seoData}>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-
-      <Seo pageData={postData} />
 
       <Container isMarkdownContent={true}>
         <Text
@@ -66,17 +64,18 @@ export default function PastorsPost({ postData }: { postData: BlogPostProps }) {
         />
 
       </Container>
-    </>
+    </PageLayout>
   );
 }
 
 export async function getStaticProps({ params, locale }: {params: any, locale: string}) {
 
-  const postData = await BlogDataApi.getPastorsPostItemDataBySlug(params.postSlug, locale);
+  const { postData, seo } = await BlogDataApi.getPastorsPostItemDataBySlug(params.postSlug, locale);
 
   return {
     props: {
       postData,
+      seoData: seo,
       ...(await serverSideTranslations(locale, ["common"])),
     },
     revalidate: 360,

@@ -20,7 +20,8 @@
     ],
   },
   twitter: {
-    cardType: 'summary',
+    cardType: 'summary_large_image',
+    image: `${siteUrl}/default-og-image.jpg`,
   },
   dangerouslySetAllPagesToNoIndex: true,
   dangerouslySetAllPagesToNoFollow: true,

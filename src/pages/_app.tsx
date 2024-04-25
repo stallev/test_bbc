@@ -2,7 +2,6 @@ import { appWithTranslation } from 'next-i18next';
 import type { AppProps } from 'next/app';
 import { DefaultSeo } from 'next-seo';
 import { Montserrat } from "next/font/google";
-import Layout from '@/ui/containers/Layout/Layout';
 import { AppProvider } from '@/ui/globalState/AppContext';
 import DefaultSeoData from '../../next-seo.config';
 
@@ -21,9 +20,7 @@ function App({ Component, pageProps }: AppProps) {
       <DefaultSeo {...DefaultSeoData} />
       
       <div className={montserrat.className}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <Component {...pageProps} />
       </div>
     </AppProvider>
   )

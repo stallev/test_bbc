@@ -1,11 +1,10 @@
-import Head from "next/head";
 import dynamic from 'next/dynamic';
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import GreetingScreen from "@/ui/components/page-specific/home/GreetingScreen/GreetingScreen";
-import Seo from "@/ui/components/Seo/Seo";
 import RestApiService from "../services/RestApi";
-import PostsDataApi from "@/services/PostsDataApi";
-import PageContentDataApi from "@/services/PageMarkdownContentDataApi";
+import UpcomingEventsDataApi from "@/services/UpcomingDataApi";
+import PageLayout from "@/ui/containers/PageLayout/PageLayout";
+import PageContentDataApi from "@/services/PageDataApi";
 import useTranslationFunction from "@/hooks/useTranslationFunction";
 import { PagesIDs } from "@/constants";
 import { SubscribeToEventsEndpoint } from "@/constants/EndpointsList";
@@ -14,6 +13,7 @@ const UpcomingEventsList = dynamic(() => import('@/ui/components/page-specific/h
 const SubscribeFormDynamic = dynamic(() => import('@/ui/components/SubscribeForm/SubscribeForm'));
 
 export default function Home({ data }: any) {
+  console.log(data)
   const translate = useTranslationFunction();
 
   const { 
@@ -28,14 +28,9 @@ export default function Home({ data }: any) {
   } = data.pageData.complex[2];
   
   return (
-    <>
-      <Head>
-        <title>{translate("site_name")}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
-
-      <Seo pageData={data.contentData} />
-      
+    <PageLayout
+      seoData={data.contentData.seo}
+    >
       <>
         <GreetingScreen
           header_h1_title={header_h1_title}
@@ -51,15 +46,15 @@ export default function Home({ data }: any) {
           description={subscription_descr}
         />
       </>
-    </>
+    </PageLayout>
   );
 }
 
-export async function getStaticProps({ locale }: any) {
+export async function getStaticProps({ locale }: {locale: string}) {
   const pageId = locale == "en" ? PagesIDs.Home.en : PagesIDs.Home.ru;
 
   const pageData= await RestApiService.getPageData(pageId);
-  const upcomingEventsData = await PostsDataApi.getUpcomingEvents(locale);
+  const upcomingEventsData = await UpcomingEventsDataApi.getUpcomingEvents(locale);
   const contentData = await PageContentDataApi.getPageContentData(pageId);
 
   return {

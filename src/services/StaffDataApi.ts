@@ -1,5 +1,6 @@
 import { EndpointsList } from "@/constants";
-import { getMinisterData, getMinistersSlugs } from "@/graphql/staffQueries";
+import { getMinisterData, getMinistersSlugs, getMinistersPostsSitemapData } from "@/graphql/staffQueries";
+import { SeoContentDataProps } from "@/ui/components/Seo/types";
 import { fetchAPI } from "./WordPressFetchAPI";
 
 class StaffDataApi {
@@ -49,9 +50,32 @@ class StaffDataApi {
     
     const { minister: { translation } } = await fetchAPI(getMinisterData, { variables });
 
-    const result  = this.getOtherImagesSizesUrls(translation);
+    const postData  = this.getOtherImagesSizesUrls(translation);
+    postData.seo = this.getMinisterPageSeoData(postData, locale);
     
-    return result;
+    return postData;
+  }
+
+  static getMinisterPageSeoData(postData: any, locale: string) {
+    const featuredImageUrl = !!postData.imageLinks.medium.length ? postData.imageLinks.medium : postData.imageLinks.full;
+    const otherLanguageCode = postData.translations[0].language.code.toLowerCase();
+    const otherTranslationSlug = postData.translations[0].slug;
+
+    const seo: SeoContentDataProps = {
+      data: {
+        ...postData.seo,
+        featuredImageUrl,
+        slug: postData.slug,
+        title: postData.ministerFirstName + ' ' + postData.ministerLastName,
+        alternateLinksSlugs: {
+          [locale]: postData.slug,
+          [otherLanguageCode]: otherTranslationSlug,
+        }
+      },
+      isPostType: true,
+    }
+    
+    return seo;
   }
 
   static async getMinisters(locale: string) {
@@ -78,6 +102,19 @@ class StaffDataApi {
     })
         
     return paths;
+  }
+
+  static async getMinistersSitemapData() {
+    const { ministers: { edges: nodes } } = await fetchAPI(getMinistersPostsSitemapData);
+
+    const postsData = nodes.map(({ node }: any) => {
+      return {
+        slug: node.slug,
+        modified: node.modified,
+      };
+    })
+        
+    return postsData;
   }
 }
 

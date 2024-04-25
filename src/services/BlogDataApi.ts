@@ -1,8 +1,9 @@
-import { getPastorsPostData, getPastorsPostsByLang, getAllPastorsPostSlugs } from "@/graphql/blogQueries";
+import { getPastorsPostData, getPastorsPostsByLang, getAllPastorsPostSlugs, getPastorsPostsSitemapData } from "@/graphql/blogQueries";
 import { convertPostListItemFetchedData } from "@/utils/convertPostListItemFetchedData";
 import { convertPostFetchedData } from "@/utils/convertPostFetchedData";
 import { getAuthorsList } from "@/utils/getAuthorsList";
 import { getPostsYearsList } from "@/utils/getPostsYearsList";
+import { getPostSeoData } from "@/utils/getPostSeoData";
 import { fetchAPI } from "./WordPressFetchAPI";
 
 class BlogDataApi {
@@ -36,7 +37,10 @@ class BlogDataApi {
     const { pastorsPost: { translation } } = await fetchAPI(getPastorsPostData, { variables });
     const data = convertPostFetchedData(translation, locale);
     
-    return data;
+    return {
+      postData: data,
+      seo: getPostSeoData (translation, locale),
+    };
   }
 
   static async getAllPastorsPostsPaths() {
@@ -51,6 +55,19 @@ class BlogDataApi {
     })
         
     return paths;
+  }
+
+  static async getPastorsPostsSitemapData() {
+    const { allPastorsPost: { edges: nodes } } = await fetchAPI(getPastorsPostsSitemapData);
+
+    const postsData = nodes.map(({ node }: any) => {
+      return {
+        slug: node.slug,
+        modified: node.modified,
+      };
+    })
+        
+    return postsData;
   }
 }
 

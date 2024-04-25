@@ -1,29 +1,20 @@
-import Head from "next/head";
+import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import StaffDataApi from "@/services/StaffDataApi";
-import useTranslationFunction from "@/hooks/useTranslationFunction";
 import Container from "@/ui/containers/Container/Container";
 import TextToSpeech from "@/ui/components/TextToSpeech/TextToSpeech";
 import { PathProps } from "@/types/globalTypes";
+import PageLayout from "@/ui/containers/PageLayout/PageLayout";
 import MarkdownContent from "@/ui/components/MarkdownContent/MarkdownContent";
 import { CustomImage, Text } from "@/ui/components/ui-kit";
 
 import styles from "../../styles/pages/staff-person.module.scss";
 
 export default function StaffPerson({ postData }: any) {
-  const translate = useTranslationFunction();
   const ministerName = postData.ministerFirstName + ' ' + postData.ministerLastName;
 
   return (
-    <>
-      <Head>
-        <title>{ministerName}</title>
-        <meta
-          name="description"
-          content={translate("stream_meta_description")}
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
+    <PageLayout seoData={postData.seo}>
       <Container isMarkdownContent={true}>
         <div className={styles["staff-person__header"]}>
           <CustomImage
@@ -55,7 +46,7 @@ export default function StaffPerson({ postData }: any) {
           className={styles["staff-person__page-content"]}
         />
       </Container>
-    </>
+    </PageLayout>
   );
 }
 

@@ -1,4 +1,4 @@
-const SiteUrl = 'http://ec2-18-205-106-197.compute-1.amazonaws.com/';
+const SiteUrl = process.env.NEXT_PUBLIC_API_SITE_URL;
 
 export const PostsQueryMaxCount = 10000;
 

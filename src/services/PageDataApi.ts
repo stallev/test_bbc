@@ -1,6 +1,8 @@
 import { getMarkdownPageContentData } from "@/graphql/markdownContentDataQueries";
 import { convertGutenbergBlocksData } from "@/utils/convertGutenbergBlocksData";
+import { SeoContentDataProps } from "@/ui/components/Seo/types";
 import { fetchAPI } from "./WordPressFetchAPI";
+import { DEFAULT_FEATURED_IMAGE } from "@/constants/mock";
 
 class PageContentDataApi {
   static async getPageContentData(id: string, idType = 'DATABASE_ID') {
@@ -10,6 +12,17 @@ class PageContentDataApi {
     }
     
     const { page } = await fetchAPI(getMarkdownPageContentData, { variables });
+    const featuredImageUrl = !!page.featuredImage ? page.featuredImage.node.mediaItemUrl : DEFAULT_FEATURED_IMAGE;
+
+    const seo: SeoContentDataProps = {
+      data: {
+        ...page.seo,
+        featuredImageUrl,
+        title: page.title,
+        slug: page.slug,
+      },
+      isPostType: false,
+    }
 
     const pageContent = convertGutenbergBlocksData(page.blocks);
 
@@ -17,7 +30,7 @@ class PageContentDataApi {
       title: page.title,
       slug: page.slug,
       pageContent,
-      seo: page.seo,
+      seo,
       translations: page?.translations,
       featuredImage: page?.featuredImage,
     };

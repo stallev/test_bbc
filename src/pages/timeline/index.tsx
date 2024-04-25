@@ -1,11 +1,10 @@
-import Head from "next/head";
 import dynamic from "next/dynamic";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Container from "@/ui/containers/Container/Container";
-import Seo from "@/ui/components/Seo/Seo";
 import StructuredMarkdownContent from "@/ui/components/StructuredMarkdownContent/StructuredMarkdownContent";
 import Text from "@/ui/components/ui-kit/Text";
-import PageContentDataApi from "@/services/PageMarkdownContentDataApi";
+import PageLayout from "@/ui/containers/PageLayout/PageLayout";
+import PageContentDataApi from "@/services/PageDataApi";
 import TimelineEventDataApi from "@/services/TimelineDataApi";
 import { PagesIDs } from "@/constants";
 
@@ -17,13 +16,7 @@ const TimelineYearsList = dynamic(
 
 export default function Timeline({ pageData, timelineData }: any) {
   return (
-    <>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
-
-      <Seo pageData={pageData} />
-      
+    <PageLayout seoData={pageData.seo}>
       <div className={styles.timeline}>
         <Container isMarkdownContent className={styles.timeline__container}>
           <Text textType="h1" className={styles.timeline__title}>
@@ -38,11 +31,11 @@ export default function Timeline({ pageData, timelineData }: any) {
           <TimelineYearsList data={timelineData} />
         </Container>
       </div>
-    </>
+    </PageLayout>
   );
 }
 
-export async function getStaticProps({ locale }: any) {
+export async function getStaticProps({ locale }: {locale: string}) {
   const pageId = locale == "en" ? PagesIDs.Timeline.en : PagesIDs.Timeline.ru;
 
   const pageData = await PageContentDataApi.getPageContentData(pageId);

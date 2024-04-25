@@ -1,8 +1,7 @@
-import Head from "next/head";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import PostsDataApi from "@/services/PostsDataApi";
-import useTranslationFunction from "@/hooks/useTranslationFunction";
+import UpcomingEventsDataApi from "@/services/UpcomingDataApi";
 import Container from "@/ui/containers/Container/Container";
+import PageLayout from "@/ui/containers/PageLayout/PageLayout";
 import { PathProps } from "@/types/globalTypes";
 import MarkdownContent from "@/ui/components/MarkdownContent/MarkdownContent";
 import { Text } from "@/ui/components/ui-kit";
@@ -10,18 +9,8 @@ import { Text } from "@/ui/components/ui-kit";
 import styles from "../../styles/pages/upcoming-event.module.scss";
 
 export default function UpcomingEvent({ postData }: any) {
-  const translate = useTranslationFunction();
-
   return (
-    <>
-      <Head>
-        <title>{postData.title}</title>
-        <meta
-          name="description"
-          content={translate("stream_meta_description")}
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
+    <PageLayout seoData={postData.seo}>
       <Container isMarkdownContent={true}>
         <Text textType="h1" className={styles["upcoming-event__title"]}>
           {postData.title}
@@ -32,13 +21,13 @@ export default function UpcomingEvent({ postData }: any) {
           className={styles["upcoming-event__page-content"]}
         />
       </Container>
-    </>
+    </PageLayout>
   );
 }
 
 export async function getStaticProps({ params, locale }: {params: any, locale: string}) {
 
-  const postData = await PostsDataApi.getUpcomingEventItemDataBySlug(params.postSlug, locale);
+  const postData = await UpcomingEventsDataApi.getUpcomingEventItemDataBySlug(params.postSlug, locale);
 
   return {
     props: {
@@ -51,7 +40,7 @@ export async function getStaticProps({ params, locale }: {params: any, locale: s
 }
 
 export async function getStaticPaths({ locales }: any) {
-  const paths = await PostsDataApi.getUpcomingEventsPaths();
+  const paths = await UpcomingEventsDataApi.getUpcomingEventsPaths();
 
   return {
     paths: [

@@ -1,6 +1,6 @@
 import { PostsQueryMaxCount } from "@/constants";
 import { FullGutenbergBlockList } from "./gutenbergGraphqlFragments";
-import { SeoBlock, GeneralInfoBlock, FeaturedImageBlock, AuthorInfoBlock } from "./commonGraphqlFragments";
+import { SeoBlock, FeaturedImageBlock, AuthorInfoBlock } from "./commonGraphqlFragments";
 
 export const getPastorsPostsByLang = `query getPastorsPostsByLang ($language: LanguageCodeFilterEnum) {
   allPastorsPost(
@@ -32,6 +32,12 @@ export const getPastorsPostData = `query getPastorsPostData ($id: ID!, $idType: 
       ${FullGutenbergBlockList}
       ${FeaturedImageBlock}
       ${SeoBlock}
+      translations {
+        slug
+        language {
+          code
+        }
+      }
     }
   }
 }
@@ -42,6 +48,18 @@ export const getAllPastorsPostSlugs = `query getAllPastorsPostSlugs {
     edges {
       node {
         slug
+      }
+    }
+  }
+}
+`;
+
+export const getPastorsPostsSitemapData = `query getPastorsPostsSitemapData {
+  allPastorsPost(where: {status: PUBLISH, language: EN}, first: ${PostsQueryMaxCount}) {
+    edges {
+      node {
+        slug
+        modified
       }
     }
   }

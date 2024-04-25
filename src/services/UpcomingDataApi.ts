@@ -1,8 +1,9 @@
 import { EndpointsList } from "@/constants";
-import { getUpcomingEventData, getUpcomingEventDataBySlug, getUpcomingEventsSlugs } from "@/graphql/upcomingEventsQueries";
+import { getUpcomingEventData, getUpcomingEventDataBySlug, getUpcomingEventsSlugs, getUpcomingEventsSitemapData } from "@/graphql/upcomingEventsQueries";
 import { fetchAPI } from "./WordPressFetchAPI";
+import { SeoContentDataProps } from "@/ui/components/Seo/types";
 
-class PostsDataApi {
+class UpcomingEventsDataApi {
   static getOtherImagesSizesUrls(item: any) {
     if (!!item.itemPhoto) {
       let featuredImageLinks: { [key: string]: string } = {};
@@ -49,8 +50,32 @@ class PostsDataApi {
     const { upcomingBy: { translation } } = await fetchAPI(getUpcomingEventDataBySlug, { variables });
 
     const result  = this.getOtherImagesSizesUrls(translation);
+
+    result.seo = this.getUpcomingEventPageSeoData(result, locale);
     
     return result;
+  }
+
+  static getUpcomingEventPageSeoData(postData: any, locale: string) {
+    const featuredImageUrl = !!postData.imageLinks.medium.length ? postData.imageLinks.medium : postData.imageLinks.full;
+    const otherLanguageCode = postData.translations[0].language.code.toLowerCase();
+    const otherTranslationSlug = postData.translations[0].slug;
+
+    const seo: SeoContentDataProps = {
+      data: {
+        ...postData.seo,
+        featuredImageUrl,
+        slug: postData.slug,
+        title: postData.title,
+        alternateLinksSlugs: {
+          [locale]: postData.slug,
+          [otherLanguageCode]: otherTranslationSlug,
+        }
+      },
+      isPostType: true,
+    }
+    
+    return seo;
   }
 
   static async getUpcomingEvents(locale: string) {
@@ -78,6 +103,19 @@ class PostsDataApi {
         
     return paths;
   }
+
+  static async getUpcomingEventsSitemapData() {
+    const { allUpcoming: { edges: nodes } } = await fetchAPI(getUpcomingEventsSitemapData);
+
+    const postsData = nodes.map(({ node }: any) => {
+      return {
+        slug: node.slug,
+        modified: node.modified,
+      };
+    })
+        
+    return postsData;
+  }
 }
 
-export default PostsDataApi;
+export default UpcomingEventsDataApi;
