@@ -78,7 +78,7 @@ export async function getStaticProps({ params, locale }: {params: any, locale: s
       seoData: seo,
       ...(await serverSideTranslations(locale, ["common"])),
     },
-    // revalidate: 360,
+    revalidate: 360,
   };
 }
 
@@ -96,6 +96,6 @@ export async function getStaticPaths({ locales }: any) {
         })
       })
     ],
-    fallback: "blocking",
+    fallback: true,
   }
 }
