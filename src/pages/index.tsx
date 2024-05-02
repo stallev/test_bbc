@@ -5,7 +5,6 @@ import RestApiService from "../services/RestApi";
 import UpcomingEventsDataApi from "@/services/UpcomingDataApi";
 import PageLayout from "@/ui/containers/PageLayout/PageLayout";
 import PageContentDataApi from "@/services/PageDataApi";
-import useTranslationFunction from "@/hooks/useTranslationFunction";
 import { PagesIDs } from "@/constants";
 import { SubscribeToEventsEndpoint } from "@/constants/EndpointsList";
 
@@ -13,9 +12,6 @@ const UpcomingEventsList = dynamic(() => import('@/ui/components/page-specific/h
 const SubscribeFormDynamic = dynamic(() => import('@/ui/components/SubscribeForm/SubscribeForm'));
 
 export default function Home({ data }: any) {
-  console.log(data)
-  const translate = useTranslationFunction();
-
   const { 
     header_button_label, 
     header_descr, 

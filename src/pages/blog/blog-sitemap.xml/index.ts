@@ -10,7 +10,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   if (!!postsSlugList.length) {
     const sitemapFields = postsSlugList.map((item: postSitemapFieldsItemProps) => ({
-      loc: `${siteUrl}/blog/${item.slug}`,
+      loc: `${siteUrl}blog/${item.slug}`,
       lastmod: item.modified,
     }));
 

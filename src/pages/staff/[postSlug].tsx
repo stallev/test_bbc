@@ -24,7 +24,7 @@ export default function StaffPerson({ postData }: any) {
           />
           <div className={styles["staff-person__info"]}>
             <Text
-              textType='h2'
+              textType='h1'
               className={styles["staff-person__name"]}
             >
               {ministerName}

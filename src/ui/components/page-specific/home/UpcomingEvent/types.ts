@@ -9,11 +9,11 @@ export interface UpcomingEventProps {
   data: {
     upcomingEventStart: string
     upcomingEventEnd: string
-    upcomingEventShortDescription: string
+    shortDescription: string
     upcomingEventDescription: string
     title: string
     slug: string
-    imageLinks: ImageLinks
+    featuredImageUrl: string
   }
   isActive: boolean
 }

@@ -53,11 +53,11 @@ const TimelineEvent:React.FC<TimelineEventProps> = ({
           aria-label={title}
           tabIndex={0}
         >
-          <h3
+          <h2
             className={styles["timeline-event__title"]}
           >
             {title}
-          </h3>
+          </h2>
         </Link>
 
         <p

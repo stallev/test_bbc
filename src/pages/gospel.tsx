@@ -34,7 +34,7 @@ export async function getStaticProps({ locale }: {locale: string}) {
   const pageId = locale == "en" ? PagesIDs.Gospel.en : PagesIDs.Gospel.ru;
 
   const pageData = await PageContentDataApi.getPageContentData(pageId);
-  console.log(pageData)
+  
   return {
     props: {
       pageData,

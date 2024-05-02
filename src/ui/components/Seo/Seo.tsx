@@ -28,13 +28,13 @@ import { SeoProps } from './types';
       canonicalUrl = `${siteUrl}${normalizedPath}`;
     }
     if(!isPostType && locale !== defaultLocale) {
-      canonicalUrl = `${siteUrl}/${locale}${normalizedPath}`;
+      canonicalUrl = `${siteUrl}${locale}${normalizedPath}`;
     }
     if(isPostType && locale == defaultLocale) {
       canonicalUrl = `${siteUrl}${getSubstringBeforeLastSlash(normalizedPath)}/${data.slug}`;
     }
     if(isPostType && locale !== defaultLocale) {
-      canonicalUrl = `${siteUrl}/${locale}${getSubstringBeforeLastSlash(normalizedPath)}/${data.slug}`;
+      canonicalUrl = `${siteUrl}${locale}${getSubstringBeforeLastSlash(normalizedPath)}/${data.slug}`;
     }
 
     return canonicalUrl;
@@ -49,14 +49,14 @@ import { SeoProps } from './types';
     if(!isPostType) {
       alternateLangsUrls = {
         en: `${siteUrl}${normalizedPath}`,
-        ru: `${siteUrl}/ru${normalizedPath}`,
+        ru: `${siteUrl}ru${normalizedPath}`,
       }
     }
 
     if(isPostType) {
       alternateLangsUrls = {
         en: `${siteUrl}${getSubstringBeforeLastSlash(normalizedPath)}/${data.alternateLinksSlugs?.en}`,
-        ru: `${siteUrl}/ru${getSubstringBeforeLastSlash(normalizedPath)}/${data.alternateLinksSlugs?.ru}`,
+        ru: `${siteUrl}ru${getSubstringBeforeLastSlash(normalizedPath)}/${data.alternateLinksSlugs?.ru}`,
       }
     }
 

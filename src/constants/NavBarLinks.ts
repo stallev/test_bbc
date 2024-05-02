@@ -9,7 +9,6 @@ export const NavBarLinksNames = {
   GetInTouchLinkName: "contact_us_nav_link_text",
   GivingLinkName: "giving_nav_link_text",
   PrayerRequestLinkName: "prayer_request_nav_link_text",
-  BlogLinkName: "blog_nav_link_text",
   AboutUsLinkName: "about_us_nav_link_text",
   LiveStreamsLinkName: "live_streams_nav_link_text",
   PrivacyPolicy: "privacy_policy_nav_link_text",
@@ -32,7 +31,7 @@ export const NavBarLinksNames = {
   OurPlans: "our_plans_nav_link",
   Phones: "phones_nav_link",
   SpititualLife: "spiritual_life_nav_link",
-  PastorsBlog: "pastors_blog_nav_link",
+  Blog: "pastors_blog_nav_link",
   Baptism: "baptism_blog_nav_link",
   Marriage: "marriage_blog_nav_link",
 };
@@ -159,8 +158,8 @@ export const MainNavBarLinks = {
     label: NavBarLinksNames.SpititualLife,
     children: {
       PastorsBlog: {
-        link: RoutePath.PastorsBlog,
-        label: NavBarLinksNames.PastorsBlog,
+        link: RoutePath.Blog,
+        label: NavBarLinksNames.Blog,
       },
       Baptism: {
         link: RoutePath.Baptism,

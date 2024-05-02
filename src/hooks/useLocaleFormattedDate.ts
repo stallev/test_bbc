@@ -54,3 +54,17 @@ export const getShortMonthFormattedDate = (dateString:string, locale:string | un
   const date = new Date(dateString);
   return date.toLocaleDateString(locale, options);
 };
+
+export const getShortMonthWithTimeFormattedDate = (dateString:string, locale:string | undefined) => {
+  const options = {
+    weekday: 'short' as const, 
+    year: 'numeric' as const, 
+    month: 'short' as const, 
+    day: 'numeric' as const,
+    hour: 'numeric' as const,
+    minute: 'numeric' as const,
+  };
+  const date = new Date(dateString);
+
+  return date.toLocaleDateString(locale, options);
+};

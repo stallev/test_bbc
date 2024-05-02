@@ -21,7 +21,7 @@ export default function PastorsPost({ postData, seoData }: { postData: BlogPostP
 
       <Container isMarkdownContent={true}>
         <Text
-          textType='h2'
+          textType='h1'
           className={styles["pastors-post__title"]}
         >
           {postData.title}

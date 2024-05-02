@@ -1,6 +1,5 @@
 import React from 'react';
 import cx from 'classnames';
-import Swipeable from 'react-swipeable';
 import { RoutePath } from '@/constants';
 import { CustomImage, Text, CustomLink } from '@/ui/components/ui-kit';
 import Container from '@/ui/containers/Container/Container';
@@ -22,7 +21,7 @@ const UpcomingEvent:React.FC<UpcomingEventProps> = ({ data, isActive }: Upcoming
       )
     }>
       <CustomImage
-        imageURL={data.imageLinks.large}
+        imageURL={data.featuredImageUrl}
         className={styles["upcoming-event__image"]}
         alt={data.title}
         priority={true}
@@ -43,7 +42,7 @@ const UpcomingEvent:React.FC<UpcomingEventProps> = ({ data, isActive }: Upcoming
             textType='p'
             className={styles["upcoming-event__short-description"]}
           >
-            {data.upcomingEventShortDescription}
+            {data.shortDescription}
           </Text>
 
           <CustomLink

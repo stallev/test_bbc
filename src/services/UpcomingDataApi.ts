@@ -2,25 +2,13 @@ import { EndpointsList } from "@/constants";
 import { getUpcomingEventData, getUpcomingEventDataBySlug, getUpcomingEventsSlugs, getUpcomingEventsSitemapData } from "@/graphql/upcomingEventsQueries";
 import { fetchAPI } from "./WordPressFetchAPI";
 import { SeoContentDataProps } from "@/ui/components/Seo/types";
+import { DEFAULT_FEATURED_IMAGE } from "@/constants/mock";
+import { stripHtmlTags } from "@/utils";
+import { convertGutenbergBlocksData } from "@/utils/convertGutenbergBlocksData";
+import { convertFeaturedImageData } from "@/utils/convertFeaturedImageData";
+import { getPostSeoData } from "@/utils/getPostSeoData";
 
 class UpcomingEventsDataApi {
-  static getOtherImagesSizesUrls(item: any) {
-    if (!!item.itemPhoto) {
-      let featuredImageLinks: { [key: string]: string } = {};
-      
-      item.itemPhoto.map(({ name, sourceUrl }: { name: string, sourceUrl: string }) => {
-        featuredImageLinks = { ...featuredImageLinks, [name]: sourceUrl };
-  
-        return featuredImageLinks;
-      });
-      
-      delete item.itemPhoto;
-      item.imageLinks = featuredImageLinks;
-    }
-  
-    return item;
-  }
-
   static async getUpcomingEventsItemsIDs() {
     const response = await fetch(EndpointsList.UpcomingEventsCustomRestEndpoint);
     const data = await response.json();
@@ -36,9 +24,8 @@ class UpcomingEventsDataApi {
     }
     
     const { upcoming: { translation } } = await fetchAPI(getUpcomingEventData, { variables });
-
-    const result  = this.getOtherImagesSizesUrls(translation)
-    return result;
+    
+    return translation;
   }
 
   static async getUpcomingEventItemDataBySlug(slug: string, locale: string) {
@@ -49,11 +36,15 @@ class UpcomingEventsDataApi {
     
     const { upcomingBy: { translation } } = await fetchAPI(getUpcomingEventDataBySlug, { variables });
 
-    const result  = this.getOtherImagesSizesUrls(translation);
-
-    result.seo = this.getUpcomingEventPageSeoData(result, locale);
-    
-    return result;
+    return {
+      blocks: convertGutenbergBlocksData(translation.blocks),
+      featuredImageData: convertFeaturedImageData(translation.featuredImage),
+      seo: getPostSeoData(translation, locale),
+      title: translation.title,
+      slug: translation.slug,
+      upcomingEventStart: translation.upcomingEventStart,
+      upcomingEventEnd: translation.upcomingEventEnd,
+    }
   }
 
   static getUpcomingEventPageSeoData(postData: any, locale: string) {
@@ -84,6 +75,13 @@ class UpcomingEventsDataApi {
 
     for (const item of res) {
       const itemData = await this.getUpcomingEventItemData(item, locale.toUpperCase());
+      const featuredImageUrl = !!itemData.featuredImage ? itemData.featuredImage.node.mediaItemUrl : DEFAULT_FEATURED_IMAGE;
+      itemData.shortDescription = stripHtmlTags(itemData.excerpt);
+      itemData.featuredImageUrl = featuredImageUrl;
+
+      delete itemData.featuredImage;
+      delete itemData.excerpt;
+
       resultItems.push({ data: itemData });
     }
     

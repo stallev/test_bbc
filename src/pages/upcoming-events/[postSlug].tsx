@@ -3,8 +3,9 @@ import UpcomingEventsDataApi from "@/services/UpcomingDataApi";
 import Container from "@/ui/containers/Container/Container";
 import PageLayout from "@/ui/containers/PageLayout/PageLayout";
 import { PathProps } from "@/types/globalTypes";
-import MarkdownContent from "@/ui/components/MarkdownContent/MarkdownContent";
 import { Text } from "@/ui/components/ui-kit";
+import EventPeriod from "@/ui/components/page-specific/upcoming-event/EventPeriod/EventPeriod";
+import StructuredMarkdownContent from "@/ui/components/StructuredMarkdownContent/StructuredMarkdownContent";
 
 import styles from "../../styles/pages/upcoming-event.module.scss";
 
@@ -16,8 +17,13 @@ export default function UpcomingEvent({ postData }: any) {
           {postData.title}
         </Text>
 
-        <MarkdownContent
-          content={postData.upcomingEventDescription}
+        <EventPeriod
+          startTime={postData.upcomingEventStart}
+          endTime={postData.upcomingEventEnd}
+        />
+
+        <StructuredMarkdownContent
+          content={postData.blocks}
           className={styles["upcoming-event__page-content"]}
         />
       </Container>

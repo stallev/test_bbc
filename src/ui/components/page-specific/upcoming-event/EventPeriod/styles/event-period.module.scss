@@ -1,0 +1,26 @@
+@import "../../../../../../styles/variables.scss";
+@import "../../../../../../styles/placeholders.scss";
+
+.event-period {
+  display: flex;
+  align-items: flex-start;
+  gap: $gutter-sm;
+  margin: 0 auto;
+  width: fit-content;
+
+  @media screen and (min-width: $mobile) {
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  &__dates {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $gutter-xs;
+  }
+
+  &__date {
+    font-size: $font-size-sm;
+    line-height: 1.6;
+  }
+}
