@@ -83,19 +83,8 @@ export async function getStaticProps({ params, locale }: {params: any, locale: s
 }
 
 export async function getStaticPaths({ locales }: any) {
-  const paths = await BlogDataApi.getAllPastorsPostsPaths();
-
   return {
-    paths: [
-      ...paths.flatMap((path: PathProps) => {
-        return locales.map((locale: string) => {
-          return {
-            ...path,
-            locale,
-          }
-        })
-      })
-    ],
-    fallback: true,
+    paths: [],
+    fallback: "blocking",
   }
 }

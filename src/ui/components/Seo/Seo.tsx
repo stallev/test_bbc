@@ -22,19 +22,21 @@ import { SeoProps } from './types';
     ? data.featuredImageUrl
     : DEFAULT_FEATURED_IMAGE;
 
+  const imageFileExtension = ogImageUrl.substring(ogImageUrl.lastIndexOf('.') + 1);
+
   const getCanonicalUrl = () => {
     let canonicalUrl = '';
     if(!isPostType && locale == defaultLocale) {
       canonicalUrl = `${siteUrl}${normalizedPath}`;
     }
     if(!isPostType && locale !== defaultLocale) {
-      canonicalUrl = `${siteUrl}${locale}${normalizedPath}`;
+      canonicalUrl = `${siteUrl}/${locale}${normalizedPath}`;
     }
     if(isPostType && locale == defaultLocale) {
       canonicalUrl = `${siteUrl}${getSubstringBeforeLastSlash(normalizedPath)}/${data.slug}`;
     }
     if(isPostType && locale !== defaultLocale) {
-      canonicalUrl = `${siteUrl}${locale}${getSubstringBeforeLastSlash(normalizedPath)}/${data.slug}`;
+      canonicalUrl = `${siteUrl}/${locale}${getSubstringBeforeLastSlash(normalizedPath)}/${data.slug}`;
     }
 
     return canonicalUrl;
@@ -49,14 +51,14 @@ import { SeoProps } from './types';
     if(!isPostType) {
       alternateLangsUrls = {
         en: `${siteUrl}${normalizedPath}`,
-        ru: `${siteUrl}ru${normalizedPath}`,
+        ru: `${siteUrl}/ru${normalizedPath}`,
       }
     }
 
     if(isPostType) {
       alternateLangsUrls = {
         en: `${siteUrl}${getSubstringBeforeLastSlash(normalizedPath)}/${data.alternateLinksSlugs?.en}`,
-        ru: `${siteUrl}ru${getSubstringBeforeLastSlash(normalizedPath)}/${data.alternateLinksSlugs?.ru}`,
+        ru: `${siteUrl}/ru${getSubstringBeforeLastSlash(normalizedPath)}/${data.alternateLinksSlugs?.ru}`,
       }
     }
 
@@ -84,7 +86,7 @@ import { SeoProps } from './types';
           width: 800,
           height: 600,
           alt: data.title,
-          type: 'image/jpeg',
+          type: `image/${imageFileExtension}`,
         }
       ],
       siteName: translate("site_name"),
