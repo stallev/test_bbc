@@ -3,7 +3,6 @@ import { convertGutenbergBlocksData } from "@/utils/convertGutenbergBlocksData";
 import TimelineEventDataApi from "@/services/TimelineDataApi";
 import PageLayout from "@/ui/containers/PageLayout/PageLayout";
 import Container from "@/ui/containers/Container/Container";
-import { PathProps } from "@/types/globalTypes";
 import StructuredMarkdownContent from "@/ui/components/StructuredMarkdownContent/StructuredMarkdownContent";
 import { Text } from "@/ui/components/ui-kit";
 

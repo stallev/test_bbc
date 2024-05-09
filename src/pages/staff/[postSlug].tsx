@@ -1,9 +1,7 @@
-import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import StaffDataApi from "@/services/StaffDataApi";
 import Container from "@/ui/containers/Container/Container";
 import TextToSpeech from "@/ui/components/TextToSpeech/TextToSpeech";
-import { PathProps } from "@/types/globalTypes";
 import PageLayout from "@/ui/containers/PageLayout/PageLayout";
 import MarkdownContent from "@/ui/components/MarkdownContent/MarkdownContent";
 import { CustomImage, Text } from "@/ui/components/ui-kit";

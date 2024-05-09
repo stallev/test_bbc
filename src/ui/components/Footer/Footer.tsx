@@ -1,4 +1,3 @@
-import React from "react";
 import { useRouter } from 'next/router';
 import Logo from '../Logo/Logo';
 import { PiMapPinFill } from "react-icons/pi";
@@ -17,7 +16,7 @@ const Footer:React.FC = () => {
           <Logo />
         </div>
 
-        {/* <a
+        <a
           href={mapPageAddress}
           target='_blank'
           className={styles["footer__address-link"]}
@@ -26,7 +25,7 @@ const Footer:React.FC = () => {
         >
           <PiMapPinFill />
           <span>7635 Auburn Blvd, Citrus Heights, CA 95610</span>
-        </a> */}
+        </a>
       </div>
       
       <div className={styles.footer__bottom}>

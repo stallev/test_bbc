@@ -3,7 +3,6 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Image from "next/image";
 import BlogDataApi from "@/services/BlogDataApi";
 import Container from "@/ui/containers/Container/Container";
-import { PathProps } from "@/types/globalTypes";
 import { BlogPostProps } from "@/types/postTypes";
 import { SeoContentDataProps } from "@/ui/components/Seo/types";
 import StructuredMarkdownContent from "@/ui/components/StructuredMarkdownContent/StructuredMarkdownContent";

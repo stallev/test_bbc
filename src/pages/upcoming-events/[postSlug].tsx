@@ -2,7 +2,6 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import UpcomingEventsDataApi from "@/services/UpcomingDataApi";
 import Container from "@/ui/containers/Container/Container";
 import PageLayout from "@/ui/containers/PageLayout/PageLayout";
-import { PathProps } from "@/types/globalTypes";
 import { Text } from "@/ui/components/ui-kit";
 import EventPeriod from "@/ui/components/page-specific/upcoming-event/EventPeriod/EventPeriod";
 import StructuredMarkdownContent from "@/ui/components/StructuredMarkdownContent/StructuredMarkdownContent";
