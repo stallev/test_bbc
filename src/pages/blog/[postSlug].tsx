@@ -77,7 +77,7 @@ export async function getStaticProps({ params, locale }: {params: any, locale: s
       seoData: seo,
       ...(await serverSideTranslations(locale, ["common"])),
     },
-    revalidate: 360,
+    // revalidate: 360,
   };
 }
 
