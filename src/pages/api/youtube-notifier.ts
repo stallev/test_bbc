@@ -6,7 +6,7 @@ import fetch from 'node-fetch';
 const PUBLIC_URL = process.env.NEXT_PUBLIC_SITE_URL;
 
 const callbackUrl = `${PUBLIC_URL}/api/youtube-notifier`;
-const topic = 'https://www.youtube.com/feeds/videos.xml?channel_id=UCxv6lC-lUM1evS7CgTX9kFg';
+const topic = 'https://www.youtube.com/feeds/videos.xml?channel_id=UCefHFgsnLwBAL-w3YgxBCnw';
 const hub = 'http://pubsubhubbub.appspot.com/';
 
 const pubsub = pubSubHubbub.createServer({
