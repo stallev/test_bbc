@@ -68,6 +68,6 @@ export async function getStaticProps({ locale }: {locale: string}) {
       pageData,
       ...(await serverSideTranslations(locale, ["common"])),
     },
-    // revalidate: 60 * 7,
+    revalidate: 60 * 7,
   };
 }
