@@ -59,7 +59,7 @@ export async function getStaticProps({ locale }: {locale: string}) {
   const pageData = await PageContentDataApi.getPageContentData(pageId);
   const videosData = await YouTubeApiService.getAllYouTubePlaylistItems(
     YouTubePlaylistIDs.generalLiveStreams,
-    YouTubeApiKeys.alexander
+    YouTubeApiKeys.bbc
   );
 
   return {
