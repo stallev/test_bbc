@@ -1,4 +1,5 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+// import { PollingNotifier, JsonStorage } from "youtube-notifs";
 import YouTubeApiService from "@/services/YouTubeApi";
 import { YouTubePlaylistIDs, YouTubeApiKeys, PagesIDs } from "@/constants";
 import PageLayout from "@/ui/containers/PageLayout/PageLayout";
@@ -11,6 +12,21 @@ import LiveStream from "@/ui/components/page-specific/live-streams/LiveStream/Li
 import styles from "../../styles/pages/live-streams.module.scss";
 
 export default function Home({ videosData, pageData }: any) {
+  // const notifier = new PollingNotifier({
+  //   interval: 15,
+  //   storage: new JsonStorage("youtube-notifs.json")
+  // });
+
+  // notifier.onNewVideos = (videos) => {
+  //     for (const video of videos) {
+  //         console.log(video);
+  //     }
+  // }
+
+  // notifier.subscribe("UCefHFgsnLwBAL-w3YgxBCnw");
+
+  // notifier.start();
+
   const {
     finishedVideos,
     liveVideos,
@@ -42,7 +58,7 @@ export async function getStaticProps({ locale }: {locale: string}) {
 
   const pageData = await PageContentDataApi.getPageContentData(pageId);
   const videosData = await YouTubeApiService.getAllYouTubePlaylistItems(
-    YouTubePlaylistIDs.generalLiveStreams,
+    YouTubePlaylistIDs.myStream,
     YouTubeApiKeys.alexander
   );
 
@@ -52,6 +68,6 @@ export async function getStaticProps({ locale }: {locale: string}) {
       pageData,
       ...(await serverSideTranslations(locale, ["common"])),
     },
-    revalidate: 60 * 7,
+    // revalidate: 60 * 7,
   };
 }
