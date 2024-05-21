@@ -1,4 +1,5 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { RoutePath } from "@/constants";
 import UpcomingEventsDataApi from "@/services/UpcomingDataApi";
 import Container from "@/ui/containers/Container/Container";
 import PageLayout from "@/ui/containers/PageLayout/PageLayout";
@@ -34,14 +35,23 @@ export async function getStaticProps({ params, locale }: {params: any, locale: s
 
   const postData = await UpcomingEventsDataApi.getUpcomingEventItemDataBySlug(params.postSlug, locale);
 
+  if(postData?.slug) {
+    return {
+      props: {
+        postData,
+        path: `/upcoming-events/${postData?.slug}`,
+        ...(await serverSideTranslations(locale, ["common"])),
+      },
+      revalidate: 360,
+    };
+  }
+
   return {
-    props: {
-      postData,
-      path: `/upcoming-events/${postData?.slug}`,
-      ...(await serverSideTranslations(locale, ["common"])),
+    redirect: {
+      permanent: false,
+      destination: RoutePath.NotFoundPage,
     },
-    revalidate: 360,
-  };
+  }
 }
 
 export async function getStaticPaths() {

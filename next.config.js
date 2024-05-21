@@ -4,6 +4,22 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 const { i18n } = require('./next-i18next.config');
 
+const cspHeader = `
+  default-src 'self';
+  script-src 'self' 'unsafe-eval' 'unsafe-inline';
+  style-src 'self' 'unsafe-inline';
+  img-src 'self' blob: data: https://i.ytimg.com https://testwordpressmedia1.s3.amazonaws.com;
+  font-src 'self';
+  object-src 'none';
+  base-uri 'self';
+  form-action 'self';
+  frame-ancestors 'none';
+  upgrade-insecure-requests;
+  frame-src 'self' https://wallet.subsplash.com https://subsplash.com https://www.youtube-nocookie.com/;
+  connect-src 'self' https://api.iconify.design;
+  media-src 'self' https://testwordpressmedia1.s3.amazonaws.com https://testchurchapi.stallevs.ru/;
+`;
+
 const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
@@ -15,6 +31,19 @@ const nextConfig = {
   reactStrictMode: true,
   compress: true,
   i18n,
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: cspHeader.replace(/\n/g, ''),
+          },
+        ],
+      },
+    ]
+  },
 };
 
 module.exports =

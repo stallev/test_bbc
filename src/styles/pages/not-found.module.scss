@@ -1,0 +1,23 @@
+@import '../variables.scss';
+@import '../placeholders.scss';
+
+.not-found {
+  &__title {
+    @extend %paddingTopHeader;
+    @extend %pageTitleStyles;
+  }
+
+  &__page-content {
+    margin-top: $gutter-xl;
+
+    p {
+      text-align: center;
+    }
+  }
+
+  &__back-to-homepage-link {
+    display: block;
+    width: fit-content;
+    margin: $gutter-lg auto 0 auto;
+  }
+}

@@ -29,12 +29,18 @@ class TimelineEventDataApi {
       language: locale.toUpperCase(),
     }
     
-    const { timelineEventBy: { translation } } = await fetchAPI(getTimelineEventDataBySlug, { variables });
+    const fetchedData= await fetchAPI(getTimelineEventDataBySlug, { variables });
+
+    if(!!fetchedData?.timelineEventBy) {
+      const { timelineEventBy: { translation } } = fetchedData;
+
+      return {
+        postData: translation,
+        seo: getPostSeoData(translation, locale),
+      };
+    }
     
-    return {
-      postData: translation,
-      seo: getPostSeoData(translation, locale),
-    };
+    return {};
   }
 
   static async getTimelineEvents(locale: string) {    

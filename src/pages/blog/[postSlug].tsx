@@ -8,6 +8,7 @@ import { SeoContentDataProps } from "@/ui/components/Seo/types";
 import StructuredMarkdownContent from "@/ui/components/StructuredMarkdownContent/StructuredMarkdownContent";
 import PageLayout from "@/ui/containers/PageLayout/PageLayout";
 import { Text } from "@/ui/components/ui-kit";
+import { RoutePath } from "@/constants";
 
 import styles from "../../styles/pages/pastors-post.module.scss";
 
@@ -71,17 +72,26 @@ export async function getStaticProps({ params, locale }: {params: any, locale: s
 
   const { postData, seo } = await BlogDataApi.getPastorsPostItemDataBySlug(params.postSlug, locale);
 
+  if(postData) {
+    return {
+      props: {
+        postData,
+        seoData: seo,
+        ...(await serverSideTranslations(locale, ["common"])),
+      },
+      // revalidate: 360,
+    };
+  }
+
   return {
-    props: {
-      postData,
-      seoData: seo,
-      ...(await serverSideTranslations(locale, ["common"])),
+    redirect: {
+      permanent: false,
+      destination: RoutePath.NotFoundPage,
     },
-    // revalidate: 360,
-  };
+  }
 }
 
-export async function getStaticPaths({ locales }: any) {
+export async function getStaticPaths() {
   return {
     paths: [],
     fallback: "blocking",

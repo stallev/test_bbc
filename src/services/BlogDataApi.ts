@@ -34,13 +34,20 @@ class BlogDataApi {
       idType,
     };
     
-    const { pastorsPost: { translation } } = await fetchAPI(getPastorsPostData, { variables });
-    const data = convertPostFetchedData(translation, locale);
+    const fetchedData = await fetchAPI(getPastorsPostData, { variables });
+
+    if(!!fetchedData?.pastorsPost) {
+      const { pastorsPost: { translation } } = fetchedData;
+
+      const data = convertPostFetchedData(translation, locale);
     
-    return {
-      postData: data,
-      seo: getPostSeoData (translation, locale),
-    };
+      return {
+        postData: data,
+        seo: getPostSeoData (translation, locale),
+      };
+    }
+
+    return {};
   }
 
   static async getAllPastorsPostsPaths() {

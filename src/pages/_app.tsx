@@ -2,7 +2,6 @@ import { appWithTranslation } from 'next-i18next';
 import type { AppProps } from 'next/app';
 import { DefaultSeo } from 'next-seo';
 import { Montserrat } from "next/font/google";
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import { AppProvider } from '@/ui/globalState/AppContext';
 import DefaultSeoData from '../../next-seo.config';
 
@@ -22,7 +21,6 @@ function App({ Component, pageProps }: AppProps) {
       
       <div className={montserrat.className}>
         <Component {...pageProps} />
-        <SpeedInsights />
       </div>
     </AppProvider>
   )

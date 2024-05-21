@@ -33,7 +33,7 @@ import { SeoProps } from './types';
       canonicalUrl = `${siteUrl}/${locale}${normalizedPath}`;
     }
     if(isPostType && locale == defaultLocale) {
-      canonicalUrl = `${siteUrl}${getSubstringBeforeLastSlash(normalizedPath)}/${data.slug}`;
+      canonicalUrl = `${siteUrl}${getSubstringBeforeLastSlash(normalizedPath)}/${data?.slug}`;
     }
     if(isPostType && locale !== defaultLocale) {
       canonicalUrl = `${siteUrl}/${locale}${getSubstringBeforeLastSlash(normalizedPath)}/${data.slug}`;
@@ -57,8 +57,8 @@ import { SeoProps } from './types';
 
     if(isPostType) {
       alternateLangsUrls = {
-        en: `${siteUrl}${getSubstringBeforeLastSlash(normalizedPath)}/${data.alternateLinksSlugs?.en}`,
-        ru: `${siteUrl}/ru${getSubstringBeforeLastSlash(normalizedPath)}/${data.alternateLinksSlugs?.ru}`,
+        en: `${siteUrl}${getSubstringBeforeLastSlash(normalizedPath)}/${data?.alternateLinksSlugs?.en}`,
+        ru: `${siteUrl}/ru${getSubstringBeforeLastSlash(normalizedPath)}/${data?.alternateLinksSlugs?.ru}`,
       }
     }
 
@@ -71,21 +71,21 @@ import { SeoProps } from './types';
   const ogLocale = `${locale}_${locale?.toUpperCase()}`
 
   const seoData = {
-    title: data.title,
+    title: data?.title,
     titleTemplate: `%s | ${translate("site_name")}`,
-    description: data.metaDesc,
+    description: data?.metaDesc,
     canonical: canonicalUrl,
     openGraph: {
       url: canonicalUrl,
-      title: data.title,
-      description: data.metaDesc ? data.metaDesc : translate("site_description"),
+      title: data?.title,
+      description: data?.metaDesc ? data?.metaDesc : translate("site_description"),
       locale: ogLocale,
       images: [
         {
           url: ogImageUrl,
           width: 800,
           height: 600,
-          alt: data.title,
+          alt: data?.title,
           type: `image/${imageFileExtension}`,
         }
       ],
@@ -109,7 +109,7 @@ import { SeoProps } from './types';
     additionalMetaTags: [
       {
         name: 'twitter:name',
-        content: data.title
+        content: data?.title
       },
       {
         name: 'twitter:image',
@@ -117,7 +117,7 @@ import { SeoProps } from './types';
       },
       {
         name: 'twitter:description',
-        content: data.metaDesc ? data.metaDesc : translate("site_description"),
+        content: data?.metaDesc ? data.metaDesc : translate("site_description"),
       },
     ],
     languageAlternates: [

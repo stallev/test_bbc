@@ -1,4 +1,5 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { RoutePath } from "@/constants";
 import StaffDataApi from "@/services/StaffDataApi";
 import Container from "@/ui/containers/Container/Container";
 import TextToSpeech from "@/ui/components/TextToSpeech/TextToSpeech";
@@ -49,16 +50,24 @@ export default function StaffPerson({ postData }: any) {
 }
 
 export async function getStaticProps({ params, locale }: {params: any, locale: string}) {
-
   const postData = await StaffDataApi.getMinisterItemDataBySlug(params.postSlug, locale);
 
+  if(postData?.slug) {
+    return {
+      props: {
+        postData,
+        ...(await serverSideTranslations(locale, ["common"])),
+      },
+      revalidate: 360,
+    };
+  }
+
   return {
-    props: {
-      postData,
-      ...(await serverSideTranslations(locale, ["common"])),
+    redirect: {
+      permanent: false,
+      destination: RoutePath.NotFoundPage,
     },
-    revalidate: 360,
-  };
+  }
 }
 
 export async function getStaticPaths() {

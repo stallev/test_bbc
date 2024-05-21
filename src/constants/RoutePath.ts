@@ -33,4 +33,5 @@ export const RoutePath = {
   PastorsBlog: "/blog",
   Baptism: "/spiritual-life/baptism",
   Marriage: "/spiritual-life/marriage",
+  NotFoundPage: "/404",
 };

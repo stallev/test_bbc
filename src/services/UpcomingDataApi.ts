@@ -33,18 +33,24 @@ class UpcomingEventsDataApi {
       slug,
       language: locale.toUpperCase(),
     }
-    
-    const { upcomingBy: { translation } } = await fetchAPI(getUpcomingEventDataBySlug, { variables });
 
-    return {
-      blocks: convertGutenbergBlocksData(translation.blocks),
-      featuredImageData: convertFeaturedImageData(translation.featuredImage),
-      seo: getPostSeoData(translation, locale),
-      title: translation.title,
-      slug: translation.slug,
-      upcomingEventStart: translation.upcomingEventStart,
-      upcomingEventEnd: translation.upcomingEventEnd,
+    const fetchedData = await fetchAPI(getUpcomingEventDataBySlug, { variables });
+
+    if(!!fetchedData?.upcomingBy) {
+      const { upcomingBy: { translation } } = fetchedData;
+
+      return {
+        blocks: convertGutenbergBlocksData(translation.blocks),
+        featuredImageData: convertFeaturedImageData(translation.featuredImage),
+        seo: getPostSeoData(translation, locale),
+        title: translation.title,
+        slug: translation.slug,
+        upcomingEventStart: translation.upcomingEventStart,
+        upcomingEventEnd: translation.upcomingEventEnd,
+      }
     }
+
+    return {};
   }
 
   static getUpcomingEventPageSeoData(postData: any, locale: string) {

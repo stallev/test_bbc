@@ -121,4 +121,8 @@ export const PagesIDs = {
     en: '645',
     ru: '648',
   },
+  NotFoundPage: {
+    en: '725',
+    ru: '730',
+  },
 }

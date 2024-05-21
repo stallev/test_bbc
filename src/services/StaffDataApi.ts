@@ -48,12 +48,18 @@ class StaffDataApi {
       idType: 'SLUG',
     }
     
-    const { minister: { translation } } = await fetchAPI(getMinisterData, { variables });
+    const fetchedData = await fetchAPI(getMinisterData, { variables });
 
-    const postData  = this.getOtherImagesSizesUrls(translation);
-    postData.seo = this.getMinisterPageSeoData(postData, locale);
-    
-    return postData;
+    if(!!fetchedData?.minister) {
+      const { minister: { translation } } = fetchedData;
+      
+      const postData  = this.getOtherImagesSizesUrls(translation);
+      postData.seo = this.getMinisterPageSeoData(postData, locale);
+      
+      return postData;
+    } 
+
+    return {};
   }
 
   static getMinisterPageSeoData(postData: any, locale: string) {
