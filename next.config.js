@@ -15,7 +15,7 @@ const cspHeader = `
   form-action 'self';
   frame-ancestors 'none';
   upgrade-insecure-requests;
-  frame-src 'self' https://www.youtube-nocookie.com/;
+  frame-src 'self' https://wallet.subsplash.com https://subsplash.com https://www.youtube-nocookie.com/;
   connect-src 'self' https://api.iconify.design;
   media-src 'self' https://testwordpressmedia1.s3.amazonaws.com https://testchurchapi.stallevs.ru/;
 `;
