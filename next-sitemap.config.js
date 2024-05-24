@@ -1,9 +1,9 @@
 /** @type {import('next-sitemap').IConfig} */
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
-const upcomingSitemapUrl = `${siteUrl}upcoming-events/upcoming-sitemap.xml`;
-const blogSitemapUrl = `${siteUrl}blog/blog-sitemap.xml`;
-const timelineEventsSitemapUrl = `${siteUrl}timeline/timeline-sitemap.xml`;
-const staffSitemapUrl = `${siteUrl}staff/staff-sitemap.xml`;
+const upcomingSitemapUrl = `${siteUrl}/upcoming-events/upcoming-sitemap.xml`;
+const blogSitemapUrl = `${siteUrl}/blog/blog-sitemap.xml`;
+const timelineEventsSitemapUrl = `${siteUrl}/timeline/timeline-sitemap.xml`;
+const staffSitemapUrl = `${siteUrl}/staff/staff-sitemap.xml`;
 const policies = [
   { 
     userAgent: '*',
