@@ -17,16 +17,19 @@ export const getSermonsList = `query getSermonsList ($language: LanguageCodeFilt
         }
         sermonsTopics {
           nodes {
+            id
             name
           }
         }
         sermonsPreachers {
           nodes {
+            id
             name
           }
         }
         biblebooks {
           nodes {
+            id
             name
           }
         }

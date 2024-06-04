@@ -1,8 +1,9 @@
 import { YouTubeVideoStatuses } from "@/constants";
+import { YoutubePlaylistItemType, YoutubeVideoItemType } from "@/types/YouTubeDataTypes";
 
 class YouTubeApiService {
-  static async getVideoItemsData(videoId: string[], apiKey: string) {
-    const url: string = `https://youtube.googleapis.com/youtube/v3/videos?part=liveStreamingDetails,snippet&id=${videoId}&key=${apiKey}`;
+  static async getVideoItemsData(videoListIds: string[], apiKey: string) {
+    const url: string = `https://youtube.googleapis.com/youtube/v3/videos?part=liveStreamingDetails,snippet&id=${videoListIds}&key=${apiKey}`;
 
     const response = await fetch(url);
     const { items } = await response.json();
@@ -10,7 +11,6 @@ class YouTubeApiService {
     return items;
   }
   static async getAllYouTubePlaylistItems(playlistId: string, apiKey: string) {
-    const allVideos = [];
     const upcoming: any[] = [];
     const liveVideos: any[] = [];
     const finishedVideos: any[] = [];
@@ -23,17 +23,13 @@ class YouTubeApiService {
       const response = await fetch(url);
       const data = await response.json();
 
-      const videosList = data.items
-        .filter((item: any) => item.snippet.title !== YouTubeVideoStatuses.deleted)
-        .map((playlistItem: any) => ({
-          title: playlistItem.snippet.title,
-          id: playlistItem.contentDetails.videoId,
-          url: `https://youtube.com/watch?v=${playlistItem.contentDetails.videoId}`,
-        }));
-      const videoListIds = videosList.map((item: any) => item.id);
+      const videoListIds = data.items
+        .filter((item: YoutubePlaylistItemType) => item.snippet.title !== YouTubeVideoStatuses.deleted)
+        .map((playlistItem: YoutubePlaylistItemType) => playlistItem.contentDetails.videoId);
+        
       const videoItemsData = await this.getVideoItemsData(videoListIds, apiKey);
       
-      videoItemsData.map((item: any) => {
+      videoItemsData.map((item: YoutubeVideoItemType) => {
         switch(item.snippet.liveBroadcastContent) {
           case 'live':
             return liveVideos.push({
@@ -62,8 +58,6 @@ class YouTubeApiService {
         }
       })
 
-      allVideos.push(...videosList);
-
       nextPageToken = data.nextPageToken;
 
     } while (nextPageToken);
@@ -85,14 +79,14 @@ class YouTubeApiService {
   }
 
   static async getPortionYouTubePlaylistItems(playlistId: string, apiKey: string) {
-    const url:string = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=${playlistId}&key=${apiKey}&maxResults=50`;
+    const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=${playlistId}&key=${apiKey}&maxResults=50`;
 
     const response = await fetch(url);
     const data = await response.json();
 
     return data.items
-      .filter((item: any) => item.snippet.title !== YouTubeVideoStatuses.deleted)
-      .map((playlistItem: any) => ({
+      .filter((item: YoutubePlaylistItemType) => item.snippet.title !== YouTubeVideoStatuses.deleted)
+      .map((playlistItem: YoutubePlaylistItemType) => ({
         title: playlistItem.snippet.title,
         id: playlistItem.contentDetails.videoId,
         url: `https://youtube.com/watch?v=${playlistItem.contentDetails.videoId}`,

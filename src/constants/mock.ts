@@ -19,3 +19,5 @@ export const CARDS_PORTION = 10;
 export const S3_BUCKET_URL = 'https://testwordpressmedia1.s3.amazonaws.com/';
 export const NO_IMAGE = `${S3_BUCKET_URL}001assets/no_image_available.jpg`;
 export const DEFAULT_FEATURED_IMAGE = `${process.env.NEXT_PUBLIC_SITE_URL}/default-og-image.jpg`;
+
+export const DEFAULT_LOCALE = 'en';

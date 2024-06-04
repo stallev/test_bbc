@@ -1,11 +1,14 @@
+import { GetStaticProps, GetStaticPropsContext, GetStaticPropsResult } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { RoutePath } from "@/constants";
+import { DEFAULT_LOCALE } from "@/constants/mock";
 import UpcomingEventsDataApi from "@/services/UpcomingDataApi";
 import Container from "@/ui/containers/Container/Container";
 import PageLayout from "@/ui/containers/PageLayout/PageLayout";
 import { Text } from "@/ui/components/ui-kit";
 import EventPeriod from "@/ui/components/page-specific/upcoming-event/EventPeriod/EventPeriod";
 import StructuredMarkdownContent from "@/ui/components/StructuredMarkdownContent/StructuredMarkdownContent";
+import { PostParams } from "@/types/postTypes";
 
 import styles from "../../styles/pages/upcoming-event.module.scss";
 
@@ -31,11 +34,11 @@ export default function UpcomingEvent({ postData }: any) {
   );
 }
 
-export async function getStaticProps({ params, locale }: {params: any, locale: string}) {
+export async function getStaticProps({ params, locale }: {params: PostParams, locale: string}) {
 
   const postData = await UpcomingEventsDataApi.getUpcomingEventItemDataBySlug(params.postSlug, locale);
 
-  if(postData?.slug) {
+  if(!!Object.keys(postData).length) {
     return {
       props: {
         postData,

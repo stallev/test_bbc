@@ -2,6 +2,8 @@ import { EndpointsList } from "@/constants";
 import { getTimelineEventData, getTimelineEventsSlugs, getTimelineEventDataBySlug, getTimelineEventsSitemapData } from "@/graphql/timelineEventsQueries";
 import { fetchAPI } from "./WordPressFetchAPI";
 import { getPostSeoData } from "@/utils/getPostSeoData";
+import { YearTimelineEventsCardsListData } from "@/types/WPDataTypes/TimelineEventsDataTypes";
+import { PostNodeSlugType, PostSitemapSourceData } from "@/types/WPDataTypes/CommonWPDataTypes";
 
 class TimelineEventDataApi {
   static async getTimelineEventsItemsIDs() {
@@ -29,7 +31,7 @@ class TimelineEventDataApi {
       language: locale.toUpperCase(),
     }
     
-    const fetchedData= await fetchAPI(getTimelineEventDataBySlug, { variables });
+    const fetchedData = await fetchAPI(getTimelineEventDataBySlug, { variables });
 
     if(!!fetchedData?.timelineEventBy) {
       const { timelineEventBy: { translation } } = fetchedData;
@@ -44,15 +46,11 @@ class TimelineEventDataApi {
   }
 
   static async getTimelineEvents(locale: string) {    
-    interface EventsListData {
-      year: string
-      eventsList: any[]
-    }
     const res = await this.getTimelineEventsItemsIDs();
-    const resultItems: EventsListData[] = [];
+    const resultItems: YearTimelineEventsCardsListData[] = [];
 
     for (const yearData of res) {
-      let eventsListData: EventsListData = {
+      let eventsListData: YearTimelineEventsCardsListData = {
         year: yearData?.year,
         eventsList: [],
       };
@@ -72,7 +70,7 @@ class TimelineEventDataApi {
   static async getTimelineEventsPaths() {
     const { allTimelineEvent: { edges: nodes } } = await fetchAPI(getTimelineEventsSlugs);
 
-    const paths = nodes.map(({ node }: any) => {
+    const paths = nodes.map(({ node }: { node: PostNodeSlugType }) => {
       return {
         params: {
           postSlug: node.slug
@@ -86,7 +84,7 @@ class TimelineEventDataApi {
   static async getTimelineEventsSitemapData() {
     const { allTimelineEvent: { edges: nodes } } = await fetchAPI(getTimelineEventsSitemapData);
 
-    const postsData = nodes.map(({ node }: any) => {
+    const postsData = nodes.map(({ node }: { node: PostSitemapSourceData }) => {
       return {
         slug: node.slug,
         modified: node.modified,

@@ -16,11 +16,6 @@ export const SeoBlock = `
       pageType
     }
     title
-    twitterDescription
-    twitterImage {
-      altText
-      mediaItemUrl
-    }
   }
 `;
 

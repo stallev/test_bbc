@@ -1,14 +1,16 @@
+import { GetStaticProps, GetStaticPropsContext, GetStaticPropsResult } from "next";
 import Head from "next/head";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Image from "next/image";
 import BlogDataApi from "@/services/BlogDataApi";
 import Container from "@/ui/containers/Container/Container";
-import { BlogPostProps } from "@/types/postTypes";
+import { BlogPostProps, PostParams } from "@/types/postTypes";
 import { SeoContentDataProps } from "@/ui/components/Seo/types";
 import StructuredMarkdownContent from "@/ui/components/StructuredMarkdownContent/StructuredMarkdownContent";
 import PageLayout from "@/ui/containers/PageLayout/PageLayout";
 import { Text } from "@/ui/components/ui-kit";
 import { RoutePath } from "@/constants";
+import { DEFAULT_LOCALE } from "@/constants/mock";
 
 import styles from "../../styles/pages/pastors-post.module.scss";
 
@@ -68,7 +70,7 @@ export default function PastorsPost({ postData, seoData }: { postData: BlogPostP
   );
 }
 
-export async function getStaticProps({ params, locale }: {params: any, locale: string}) {
+export async function getStaticProps({ params, locale }: {params: PostParams, locale: string}) {
 
   const { postData, seo } = await BlogDataApi.getPastorsPostItemDataBySlug(params.postSlug, locale);
 

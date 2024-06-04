@@ -5,6 +5,7 @@ import { getAuthorsList } from "@/utils/getAuthorsList";
 import { getPostsYearsList } from "@/utils/getPostsYearsList";
 import { getPostSeoData } from "@/utils/getPostSeoData";
 import { fetchAPI } from "./WordPressFetchAPI";
+import { PostNodeSlugType, PostSitemapSourceData } from "@/types/WPDataTypes/CommonWPDataTypes";
 
 class BlogDataApi {
   static async getPostsDataByLang(locale: string) {
@@ -14,8 +15,8 @@ class BlogDataApi {
     
     const { allPastorsPost: { edges } } = await fetchAPI(getPastorsPostsByLang, { variables });
     const postsList = edges
-      .map((item:any) => item.node)
-      .map((item:any) => convertPostListItemFetchedData(item, locale));
+      .map((item: any) => item.node)
+      .map((item: any) => convertPostListItemFetchedData(item, locale));
     
     const authorsList = getAuthorsList(postsList);
     const yearsList = getPostsYearsList(postsList);
@@ -53,7 +54,7 @@ class BlogDataApi {
   static async getAllPastorsPostsPaths() {
     const { allPastorsPost: { edges: nodes } } = await fetchAPI(getAllPastorsPostSlugs);
 
-    const paths = nodes.map(({ node }: any) => {
+    const paths = nodes.map(({ node }: { node: PostNodeSlugType }) => {
       return {
         params: {
           postSlug: node.slug
@@ -67,7 +68,7 @@ class BlogDataApi {
   static async getPastorsPostsSitemapData() {
     const { allPastorsPost: { edges: nodes } } = await fetchAPI(getPastorsPostsSitemapData);
 
-    const postsData = nodes.map(({ node }: any) => {
+    const postsData = nodes.map(({ node }: { node: PostSitemapSourceData }) => {
       return {
         slug: node.slug,
         modified: node.modified,

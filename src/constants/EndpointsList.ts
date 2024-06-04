@@ -10,16 +10,21 @@ export const EndpointsList = {
   TimelineCustomRestEndpoint: `${SiteUrl}/wp-json/timeline/timeline-data`,
 }
 
-export const PrayerRequestEndpoint = {
-  dev: 'https://2coz8t7e9k.execute-api.us-east-1.amazonaws.com/default/PrayerRequest',
+export const InnerApiEndponts = {
+  GetInTouch: '/api/get-in-touch',
+  SendParticipationInfo: '/api/send-participation-info',
 }
 
-export const ContactUsEndpoint = {
-  dev: 'https://u6gzu94upe.execute-api.us-east-1.amazonaws.com/default/ContactUsRequest',
+export const ContactFormsEndpointsIndex = {
+  getInTouch: 'getInTouch',
+  sendParticipationInfo: 'sendParticipationInfo',
+  prayerRequest: 'prayerRequest',
 }
 
-export const WorshipParticipationRequestEndpoint = {
-  dev: 'https://rp9hqa2oj1.execute-api.us-east-1.amazonaws.com/default/WorshipParticipationRequest',
+export const ContactFormsEndpoints = {
+  getInTouch: 'https://u6gzu94upe.execute-api.us-east-1.amazonaws.com/default/ContactUsRequest',
+  sendParticipationInfo: 'https://rp9hqa2oj1.execute-api.us-east-1.amazonaws.com/default/WorshipParticipationRequest',
+  prayerRequest: 'https://2coz8t7e9k.execute-api.us-east-1.amazonaws.com/default/PrayerRequest',
 }
 
 export const SubscribeToEventsEndpoint = {

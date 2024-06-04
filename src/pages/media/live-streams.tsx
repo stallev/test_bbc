@@ -1,16 +1,25 @@
+import { GetStaticProps, GetStaticPropsContext, GetStaticPropsResult } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import YouTubeApiService from "@/services/YouTubeApi";
 import { YouTubePlaylistIDs, YouTubeApiKeys, PagesIDs } from "@/constants";
+import { DEFAULT_LOCALE } from "@/constants/mock";
 import PageLayout from "@/ui/containers/PageLayout/PageLayout";
 import PageContentDataApi from "@/services/PageDataApi";
 import VideoStreamsList from "@/ui/components/page-specific/live-streams/VideoStreamsList/VideoStreamsList";
 import Container from "@/ui/containers/Container/Container";
 import { Text } from "@/ui/components/ui-kit";
 import LiveStream from "@/ui/components/page-specific/live-streams/LiveStream/LiveStream";
+import { PageContentDataType } from "@/types/WPDataTypes/PageContentDataTypes";
+import { YouTubeVideosDataType } from "@/types/YouTubeDataTypes";
 
 import styles from "../../styles/pages/live-streams.module.scss";
 
-export default function Home({ videosData, pageData }: any) {
+interface LiveStreamsPageDataType {
+  videosData: YouTubeVideosDataType
+  pageData: PageContentDataType
+}
+
+export default function LiveStreams({ videosData, pageData }: LiveStreamsPageDataType) {
   const {
     finishedVideos,
     liveVideos,
@@ -37,8 +46,11 @@ export default function Home({ videosData, pageData }: any) {
   );
 }
 
-export async function getStaticProps({ locale }: {locale: string}) {
-  const pageId = locale == "en" ? PagesIDs.LiveStreams.en : PagesIDs.LiveStreams.ru;
+export const getStaticProps: GetStaticProps<LiveStreamsPageDataType> = async(context: GetStaticPropsContext) => {
+  const { LiveStreams: pageID } = PagesIDs;
+  const locale = context.locale || DEFAULT_LOCALE;
+  
+  const pageId = locale == DEFAULT_LOCALE ? pageID.en : pageID.ru;
 
   const pageData = await PageContentDataApi.getPageContentData(pageId);
   const videosData = await YouTubeApiService.getAllYouTubePlaylistItems(
@@ -48,10 +60,10 @@ export async function getStaticProps({ locale }: {locale: string}) {
 
   return {
     props: {
-      videosData,
       pageData,
+      videosData,
       ...(await serverSideTranslations(locale, ["common"])),
     },
     revalidate: 60 * 7,
-  };
+  } as GetStaticPropsResult<LiveStreamsPageDataType>;
 }

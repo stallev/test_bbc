@@ -2,14 +2,18 @@ import React, { FC, HTMLProps, MouseEvent } from 'react';
 
 import styles from './styles/text.module.scss';
 
-type HeadingType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
-type TextType = HeadingType | 'p' | 'span';
+type Headings = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' ;
+type TextType = Headings | 'p' | 'span';
 
 interface TextProps extends HTMLProps<HTMLElement> {
   fontSize?: number
-  textType: TextType;
+  textType: string;
   onHover?: () => void;
 }
+
+const isTextTypeList = (type: string): type is Headings => {
+  return ['h1', 'h2', 'h3', 'h4', 'h5', 'p', 'span'].includes(type);
+};
 
 const Text: FC<TextProps> = ({
   fontSize,
@@ -19,7 +23,7 @@ const Text: FC<TextProps> = ({
   onClick,
   onHover,
 }) => {
-  const Element: TextType = textType;
+  const Element: TextType = isTextTypeList(textType) ? textType : 'p';
 
   const handleHover = (event: MouseEvent<HTMLElement>) => {
     if (onHover) {

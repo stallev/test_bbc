@@ -1,8 +1,14 @@
 import { WordpressGraphQLEndpoint } from "@/constants";
 
+interface FetchAPIOptions {
+  variables?: Record<string, any>;
+}
+
 const API_URL = WordpressGraphQLEndpoint.dev;
 
- export async function fetchAPI(query = '', { variables = {} }: Record<string, any> = {}) {
+ export async function fetchAPI(query = '', options: FetchAPIOptions = {}) {
+  const { variables = {} } = options;
+
   const headers = { 'Content-Type': 'application/json' }
   
   const res = await fetch(API_URL, {

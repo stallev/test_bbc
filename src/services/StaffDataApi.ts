@@ -2,9 +2,11 @@ import { EndpointsList } from "@/constants";
 import { getMinisterData, getMinistersSlugs, getMinistersPostsSitemapData } from "@/graphql/staffQueries";
 import { SeoContentDataProps } from "@/ui/components/Seo/types";
 import { fetchAPI } from "./WordPressFetchAPI";
+import { FetchedStaffPersonDataType, TranslationFetchedData } from "@/types/WPDataTypes/StaffContentDataType";
+import { PostNodeSlugType, PostSitemapSourceData } from "@/types/WPDataTypes/CommonWPDataTypes";
 
 class StaffDataApi {
-  static getOtherImagesSizesUrls(item: any) {
+  static getOtherImagesSizesUrls(item: TranslationFetchedData) {
     if (!!item.ministerPhoto) {
       let featuredImageLinks: { [key: string]: string } = {};
       
@@ -35,9 +37,9 @@ class StaffDataApi {
       idType,
     }
     
-    const { minister: { translation } } = await fetchAPI(getMinisterData, { variables });
-
-    const result  = this.getOtherImagesSizesUrls(translation)
+    const result = await fetchAPI(getMinisterData, { variables })
+      .then(({ minister: { translation } }: FetchedStaffPersonDataType) => this.getOtherImagesSizesUrls(translation));
+      
     return result;
   }
 
@@ -54,16 +56,18 @@ class StaffDataApi {
       const { minister: { translation } } = fetchedData;
       
       const postData  = this.getOtherImagesSizesUrls(translation);
-      postData.seo = this.getMinisterPageSeoData(postData, locale);
       
-      return postData;
+      return {
+        ...postData,
+        seo: this.getMinisterPageSeoData(postData, locale)
+      };
     } 
 
     return {};
   }
 
-  static getMinisterPageSeoData(postData: any, locale: string) {
-    const featuredImageUrl = !!postData.imageLinks.medium.length ? postData.imageLinks.medium : postData.imageLinks.full;
+  static getMinisterPageSeoData(postData: TranslationFetchedData, locale: string) {
+    const featuredImageUrl = !!postData?.imageLinks?.medium?.length ? postData.imageLinks.medium : postData?.imageLinks?.full;
     const otherLanguageCode = postData.translations[0].language.code.toLowerCase();
     const otherTranslationSlug = postData.translations[0].slug;
 
@@ -76,7 +80,9 @@ class StaffDataApi {
         alternateLinksSlugs: {
           [locale]: postData.slug,
           [otherLanguageCode]: otherTranslationSlug,
-        }
+        },
+        twitterDescription: postData.seo.metaDesc,
+        twitterImage: featuredImageUrl
       },
       isPostType: true,
     }
@@ -99,7 +105,7 @@ class StaffDataApi {
   static async getMinistersPaths() {
     const { ministers: { edges: nodes } } = await fetchAPI(getMinistersSlugs);
 
-    const paths = nodes.map(({ node }: any) => {
+    const paths = nodes.map(({ node }: { node: PostNodeSlugType }) => {
       return {
         params: {
           postSlug: node.slug
@@ -113,7 +119,7 @@ class StaffDataApi {
   static async getMinistersSitemapData() {
     const { ministers: { edges: nodes } } = await fetchAPI(getMinistersPostsSitemapData);
 
-    const postsData = nodes.map(({ node }: any) => {
+    const postsData = nodes.map(({ node }: { node: PostSitemapSourceData }) => {
       return {
         slug: node.slug,
         modified: node.modified,

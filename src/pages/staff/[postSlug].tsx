@@ -1,11 +1,14 @@
+import { GetStaticProps, GetStaticPropsContext, GetStaticPropsResult } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { RoutePath } from "@/constants";
+import { DEFAULT_LOCALE } from "@/constants/mock";
 import StaffDataApi from "@/services/StaffDataApi";
 import Container from "@/ui/containers/Container/Container";
 import TextToSpeech from "@/ui/components/TextToSpeech/TextToSpeech";
 import PageLayout from "@/ui/containers/PageLayout/PageLayout";
 import MarkdownContent from "@/ui/components/MarkdownContent/MarkdownContent";
 import { CustomImage, Text } from "@/ui/components/ui-kit";
+import { PostParams } from "@/types/postTypes";
 
 import styles from "../../styles/pages/staff-person.module.scss";
 
@@ -49,10 +52,10 @@ export default function StaffPerson({ postData }: any) {
   );
 }
 
-export async function getStaticProps({ params, locale }: {params: any, locale: string}) {
+export async function getStaticProps({ params, locale }: {params: PostParams, locale: string}) {
   const postData = await StaffDataApi.getMinisterItemDataBySlug(params.postSlug, locale);
 
-  if(postData?.slug) {
+  if(!!Object.keys(postData).length) {
     return {
       props: {
         postData,

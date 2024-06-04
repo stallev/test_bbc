@@ -2,12 +2,13 @@ import { GutenbergBlocksTypes } from "@/constants";
 import { S3_BUCKET_URL } from "@/constants";
 import { getFileNameFromUrl } from ".";
 import { stripHtmlTags } from ".";
+import { GutenbergBlockType, InnerBlock } from "@/types/WPDataTypes/PageContentDataTypes";
 
-export const convertGutenbergBlocksData = (blocks: any[]) => {
+export const convertGutenbergBlocksData = (blocks: GutenbergBlockType[]) => {
   return blocks
-    .filter((item:any) => !!item.name)
-    .sort((a:any, b:any) => a.order - b.order)
-    .map((block:any) => {
+    .filter((item:GutenbergBlockType) => !!item.name)
+    .sort((a:GutenbergBlockType, b:GutenbergBlockType) => a.order - b.order)
+    .map((block:GutenbergBlockType) => {
       switch(block.name) {
         case 'core/paragraph':
           return {
@@ -30,9 +31,9 @@ export const convertGutenbergBlocksData = (blocks: any[]) => {
           }
         case 'core/gallery':
           const galleryList = block.innerBlocks
-            .filter((item:any) => item.name == 'core/image')
-            .sort((a:any, b:any) => a.order - b.order)
-            .map((imageItem:any) => {
+            .filter((item: InnerBlock) => item.name == 'core/image')
+            .sort((a: InnerBlock, b: InnerBlock) => a.order - b.order)
+            .map((imageItem: InnerBlock) => {
               return {
                 type: GutenbergBlocksTypes.image,
                 order: imageItem.order,

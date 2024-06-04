@@ -1,3 +1,4 @@
+import { GetStaticProps, GetStaticPropsContext, GetStaticPropsResult } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Container from "@/ui/containers/Container/Container";
 import StructuredMarkdownContent from "@/ui/components/StructuredMarkdownContent/StructuredMarkdownContent";
@@ -5,10 +6,12 @@ import { Text } from "@/ui/components/ui-kit";
 import PageLayout from "@/ui/containers/PageLayout/PageLayout";
 import PageContentDataApi from "@/services/PageDataApi";
 import { PagesIDs } from "@/constants";
+import { DEFAULT_LOCALE } from "@/constants/mock";
+import { PageContentDataType } from "@/types/WPDataTypes/PageContentDataTypes";
 
 import styles from "../../styles/pages/upcoming-events.module.scss";
 
-export default function UpcomingEvents({ pageData }: any) {
+export default function UpcomingEvents({ pageData }: { pageData: PageContentDataType }) {
   return (
     <PageLayout seoData={pageData.seo}>
       <div className={styles["upcoming-events"]}>

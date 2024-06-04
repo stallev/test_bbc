@@ -15,5 +15,5 @@ export interface StaffPersonCardProps {
     slug: string
     imageLinks: ImageLinks
   }
-  index: number
+  index?: number
 }

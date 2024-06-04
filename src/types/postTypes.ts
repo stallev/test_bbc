@@ -1,3 +1,15 @@
+import { BlogCardProps } from "@/ui/components/page-specific/blog/BlogCard/types";
+import { PageContentDataType } from "./WPDataTypes/PageContentDataTypes";
+
+export interface StandartPageDataType {
+  pageData: PageContentDataType
+}
+export interface BlogPageCardsListProps {
+  postsList: BlogCardProps[]
+  authorsList: PostCategoryListItem[]
+  yearsList: PostCategoryListItem[]
+}
+
 export interface AuthorNodeProps {
   node: authorSourceContent
 }
@@ -70,7 +82,9 @@ export interface BlockProps {
 }
 
 export interface Attributes {
-  content: string
+  src?: string
+  content: string  
+  textLinkHref?: string
   level?: number
 }
 
@@ -93,4 +107,8 @@ export interface PostFeaturedImageData {
 export interface postSitemapFieldsItemProps {
   slug: string
   modified: string
+}
+
+export interface PostParams {
+  postSlug: string;
 }

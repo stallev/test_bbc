@@ -1,3 +1,4 @@
+import { GetStaticProps, GetStaticPropsContext, GetStaticPropsResult } from "next";
 import dynamic from "next/dynamic";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Container from "@/ui/containers/Container/Container";
@@ -7,6 +8,8 @@ import PageLayout from "@/ui/containers/PageLayout/PageLayout";
 import PageContentDataApi from "@/services/PageDataApi";
 import TimelineEventDataApi from "@/services/TimelineDataApi";
 import { PagesIDs } from "@/constants";
+import { DEFAULT_LOCALE } from "@/constants/mock";
+import { PageContentDataType } from "@/types/WPDataTypes/PageContentDataTypes";
 
 import styles from '../../styles/pages/timeline.module.scss';
 

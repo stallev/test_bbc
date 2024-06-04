@@ -2,19 +2,13 @@ import React, { useState } from 'react';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { CustomInput, CustomTextarea, Button, Checkbox, Text } from '@/ui/components/ui-kit';
 import { NotificationTypes } from '@/constants';
+import { InnerApiEndponts } from '@/constants/EndpointsList';
 import { useToggleNotification } from '@/hooks/useToggleNotification';
 import { FormFieldLangCodes, FormFieldValidationErrorsLangCodes, InputTypes } from '@/constants';
+import { IFormInput } from "@/types/formTypes";
 import useTranslationFunction from '@/hooks/useTranslationFunction';
 
 import styles from './styles/contact-us-form.module.scss';
-
-interface IFormInput {
-  firstName: string
-  lastName: string
-  phone: string
-  email: string
-  userMessage: string
-}
 
 interface ContactUsFormprops {
   API_URL: string
@@ -51,16 +45,20 @@ const ContactUsForm:React.FC<ContactUsFormprops> = ({
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     const contactMessage = `Person would${isContactWilling ? '' : ' not'} want to be contacted`;
     const modifiedData = isContactWillingFieldExist ? {...data, contactWilling: contactMessage} : {...data};
+    const totalData = {
+      url: API_URL,
+      data: modifiedData
+    }
 
     try {
       const response = await fetch(
-        API_URL,
+        InnerApiEndponts.GetInTouch,
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(modifiedData),
+          body: JSON.stringify(totalData),
         }
       );
 

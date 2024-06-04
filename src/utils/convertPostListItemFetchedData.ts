@@ -4,8 +4,6 @@ import { BlogCardProps } from "@/ui/components/page-specific/blog/BlogCard/types
 import { convertAuthorData } from "./convertAuthorData";
 import { getFormattedPostDate } from "./getFormattedPostDate";
 import { stripHtmlTags } from ".";
-import { getShortMonthFormattedDate } from "@/hooks/useLocaleFormattedDate";
-import { NO_IMAGE } from "@/constants/mock";
 
 export interface PostListItemFetchedDataProps {
   title: string
@@ -22,7 +20,6 @@ export const convertPostListItemFetchedData = (data: PostListItemFetchedDataProp
   return {
     title: data.title,
     excerpt: stripHtmlTags(data.excerpt),
-    // date: getShortMonthFormattedDate(data.date, locale),
     date: getFormattedPostDate(data.date, locale),
     slug: data.slug,
     featuredImageData: convertFeaturedImageData(data.featuredImage),

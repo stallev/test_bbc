@@ -1,3 +1,4 @@
+import { GetStaticProps, GetStaticPropsContext, GetStaticPropsResult } from "next";
 import dynamic from "next/dynamic";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Container from "@/ui/containers/Container/Container";
@@ -7,12 +8,20 @@ import PageLayout from "@/ui/containers/PageLayout/PageLayout";
 import PageContentDataApi from "@/services/PageDataApi";
 import BlogDataApi from "@/services/BlogDataApi";
 import { PagesIDs } from "@/constants";
+import { DEFAULT_LOCALE } from "@/constants/mock";
+import { PageContentDataType } from "@/types/WPDataTypes/PageContentDataTypes";
+import { BlogPageCardsListProps, StandartPageDataType } from "@/types/postTypes";
 
 import styles from '../../styles/pages/pastors-blog.module.scss';
 
 const BlogContent = dynamic(() => import('@/ui/components/page-specific/blog/BlogContent/BlogContent'));
 
-export default function PastorsBlog({ pageData, postsData }: any) {
+interface BlogPageDataType {
+  pageData: PageContentDataType
+  postsData: BlogPageCardsListProps
+}
+
+export default function PastorsBlog({ pageData, postsData }: BlogPageDataType) {
   const postsCategories = {
     yearsData: postsData.yearsList,
     authorsData: postsData.authorsList
@@ -45,9 +54,11 @@ export default function PastorsBlog({ pageData, postsData }: any) {
   );
 }
 
-export async function getStaticProps({ locale }: {locale: string}) {
-  const pageId = locale == "en" ? PagesIDs.PastorsBlog.en : PagesIDs.PastorsBlog.ru;
-
+export const getStaticProps: GetStaticProps<BlogPageDataType> = async(context: GetStaticPropsContext) => {
+  const { PastorsBlog: pageID } = PagesIDs;
+  const locale = context.locale || DEFAULT_LOCALE;
+  
+  const pageId = locale == DEFAULT_LOCALE ? pageID.en : pageID.ru;
   const pageData = await PageContentDataApi.getPageContentData(pageId);
   const postsData = await BlogDataApi.getPostsDataByLang(locale);
 
@@ -57,6 +68,5 @@ export async function getStaticProps({ locale }: {locale: string}) {
       postsData,
       ...(await serverSideTranslations(locale, ["common"])),
     },
-    // revalidate: 360,
-  };
+  } as GetStaticPropsResult<BlogPageDataType>;
 }

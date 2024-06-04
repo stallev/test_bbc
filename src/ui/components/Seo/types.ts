@@ -16,9 +16,8 @@ export interface SeoContentDataProps {
     slug?: string
     canonicalUrl?: string
     alternateLinksSlugs?: {
-      en: string
-      ru: string
-    }
+      [locale: string]: string;
+    };
   }
   isPostType?: boolean
 }

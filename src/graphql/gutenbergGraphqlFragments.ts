@@ -13,6 +13,7 @@ export const GutenbergImageBlock = `
     mediaItem {
       node {
         mediaItemUrl
+        caption
       }
     }
   }

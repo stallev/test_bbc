@@ -1,3 +1,4 @@
+import { GetStaticProps, GetStaticPropsContext, GetStaticPropsResult } from "next";
 import dynamic from "next/dynamic";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Container from "@/ui/containers/Container/Container";
@@ -6,6 +7,8 @@ import PageLayout from "@/ui/containers/PageLayout/PageLayout";
 import PageContentDataApi from "@/services/PageDataApi";
 import { Text } from "@/ui/components/ui-kit";
 import { PagesIDs } from "@/constants";
+import { DEFAULT_LOCALE } from "@/constants/mock";
+import { StandartPageDataType } from "@/types/postTypes";
 
 import styles from "../styles/pages/giving.module.scss";
 
@@ -13,7 +16,7 @@ const DynamicDonationForm = dynamic(
   () => import("@/ui/components/page-specific/giving/DonationForm/DonationForm")
 );
 
-export default function Giving({ pageData }: any) {
+export default function Giving({ pageData }: StandartPageDataType) {
   return (
     <PageLayout seoData={pageData.seo}>
       <div className={styles.giving}>
@@ -35,9 +38,11 @@ export default function Giving({ pageData }: any) {
   );
 }
 
-export async function getStaticProps({ locale }: {locale: string}) {
-  const pageId = locale == "en" ? PagesIDs.Giving.en : PagesIDs.Giving.ru;
-
+export const getStaticProps: GetStaticProps<StandartPageDataType> = async(context: GetStaticPropsContext) => {
+  const { Giving: pageID } = PagesIDs;
+  const locale = context.locale || DEFAULT_LOCALE;
+  
+  const pageId = locale == DEFAULT_LOCALE ? pageID.en : pageID.ru;
   const pageData = await PageContentDataApi.getPageContentData(pageId);
 
   return {
@@ -46,5 +51,6 @@ export async function getStaticProps({ locale }: {locale: string}) {
       ...(await serverSideTranslations(locale, ["common"])),
     },
     revalidate: 360,
-  };
+  } as GetStaticPropsResult<StandartPageDataType>;
 }
+

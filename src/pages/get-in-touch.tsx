@@ -1,16 +1,21 @@
+
+import { GetStaticProps, GetStaticPropsContext, GetStaticPropsResult } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Container from "@/ui/containers/Container/Container";
 import StructuredMarkdownContent from "@/ui/components/StructuredMarkdownContent/StructuredMarkdownContent";
 import ContactUsForm from "@/ui/components/ContactUsForm/ContactUsForm";
-import { ContactUsEndpoint } from "@/constants";
+import { ContactFormsEndpointsIndex } from "@/constants/EndpointsList";
 import { Text } from "@/ui/components/ui-kit";
 import PageLayout from "@/ui/containers/PageLayout/PageLayout";
 import PageContentDataApi from "@/services/PageDataApi";
 import { PagesIDs } from "@/constants";
+import { DEFAULT_LOCALE } from "@/constants/mock";
+import { PageContentDataType } from "@/types/WPDataTypes/PageContentDataTypes";
+import { StandartPageDataType } from "@/types/postTypes";
 
 import styles from "../styles/pages/contact-us.module.scss";
 
-export default function ContactUs({ pageData }: any) {
+export default function ContactUs({ pageData }: StandartPageDataType) {
   return (
     <PageLayout seoData={pageData.seo}>
       <div className={styles['contact-us']}>
@@ -29,7 +34,7 @@ export default function ContactUs({ pageData }: any) {
           />
 
           <ContactUsForm
-            API_URL={ContactUsEndpoint.dev}
+            API_URL={ContactFormsEndpointsIndex.getInTouch}
             isContactWillingFieldExist={true}
           />
         </Container>
@@ -38,9 +43,11 @@ export default function ContactUs({ pageData }: any) {
   );
 }
 
-export async function getStaticProps({ locale }: {locale: string}) {
-  const pageId = locale == "en" ? PagesIDs.Contacts.en : PagesIDs.Contacts.ru;
-
+export const getStaticProps: GetStaticProps<StandartPageDataType> = async(context: GetStaticPropsContext) => {
+  const { Contacts: pageID } = PagesIDs;
+  const locale = context.locale || DEFAULT_LOCALE;
+  
+  const pageId = locale == DEFAULT_LOCALE ? pageID.en : pageID.ru;
   const pageData = await PageContentDataApi.getPageContentData(pageId);
 
   return {
@@ -49,5 +56,5 @@ export async function getStaticProps({ locale }: {locale: string}) {
       ...(await serverSideTranslations(locale, ["common"])),
     },
     revalidate: 360,
-  };
+  } as GetStaticPropsResult<StandartPageDataType>;
 }

@@ -9,6 +9,7 @@ import Video from '../Video/Video';
 import Blockquote from '../Blockquote/Blockquote';
 import { GutenbergBlocksTypes } from '@/constants';
 import { DefaultTextFontSizes } from '@/constants/TextConstants';
+import { ConvertedGutenbergBlockType } from '@/types/WPDataTypes/GutenbergBlocksTypes';
 
 import styles from './styles/structured-markdown-content.module.scss';
 
@@ -17,7 +18,7 @@ const ResizingFontButtons = dynamic(
 );
 interface StructuredMarkdownContentProps {
   className?: string
-  content: [any]
+  content: ConvertedGutenbergBlockType[]
   isFontSizeResizable?: boolean
 }
 
@@ -53,7 +54,7 @@ const StructuredMarkdownContent:React.FC<StructuredMarkdownContentProps> = ({
               return (
                 <Text
                   key={block.order}
-                  textType={block.headingType}
+                  textType={block?.headingType ? block?.headingType : ""}
                   fontSize={
                     currentBlocksFontSizes && currentBlocksFontSizes[block.headingType as keyof typeof currentBlocksFontSizes]
                   }
@@ -69,23 +70,23 @@ const StructuredMarkdownContent:React.FC<StructuredMarkdownContentProps> = ({
                     alt=''
                     sizes='50vw'
                     key={block.order}
-                    src={block.src}
+                    src={block?.src ? block?.src : ''}
                   />
                 </div>
                 );
             case GutenbergBlocksTypes.gallery:
               return <MediaGallery key={block.order} data={block.content} />;
             case GutenbergBlocksTypes.audio:
-              return <Audio key={block.order} src={block.src} label={block?.caption && block.caption} />;
+              return <Audio key={block.order} src={block?.src ? block?.src : ''} label={block?.caption && block.caption} />;
             case GutenbergBlocksTypes.file:
-              return <FileDownload key={block.order} src={block.src} label={block?.label && block.label} />;
+              return <FileDownload key={block.order} src={block?.src ? block?.src : ''} label={block?.label ? block?.label : ""} />;
             case GutenbergBlocksTypes.video:
-              return <Video key={block.order} src={block.src} label={block?.caption && block.caption} />;
+              return <Video key={block.order} src={block?.src ? block?.src : ''} label={block?.caption && block.caption} />;
             case GutenbergBlocksTypes.quote:
               return (
                 <Blockquote
                   key={block.order}
-                  text={block.text}
+                  text={block?.text ? block?.text : ""}
                   citation={block?.citation && block.citation}
                   fontSize={currentBlocksFontSizes && currentBlocksFontSizes.blockquote}
                 />

@@ -6,7 +6,7 @@ import { CustomImage, CustomLink, Text } from '@/ui/components/ui-kit';
 import styles from './styles/staff-person-card.module.scss';
 
 const StaffPersonCard: React.FC<StaffPersonCardProps> = ({ data, index }: StaffPersonCardProps) => {
-  const priorityFetching = index < 1;
+  const priorityFetching = (!index ? 1 : index) < 1;
   
   return (
     <CustomLink

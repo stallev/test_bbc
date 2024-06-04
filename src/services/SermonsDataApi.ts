@@ -1,9 +1,10 @@
 import { getSermonsList, getSermonsCategoriesList } from "@/graphql/sermonsQueries";
 import { fetchAPI } from "./WordPressFetchAPI";
 import { getFormattedDate, getDateWithoutTime } from "@/hooks/useLocaleFormattedDate";
+import { FetchedSermonCardDataType, RenderingSermonCardDataType } from "@/types/WPDataTypes/SermonPostsDataTypes";
 
 class SermonsDataApi {
-  static getOtherImagesSizesUrls(item: any) {
+  static getSermonsCardRenderingData(item: any) {
     if (!!item.sermonPhoto) {
       let featuredImageLinks: { [key: string]: string } = {};
       
@@ -16,25 +17,28 @@ class SermonsDataApi {
       delete item.sermonPhoto;
       item.imageLinks = featuredImageLinks;
     }
-  
+
+    if (!!item?.sermonDate) {
+      item.sermonDate = getDateWithoutTime(item.sermonDate).toISOString();
+    }
+    
+    item.topics = item.sermonsTopics.nodes.map((node: { name: string}) => node.name);
+    item.preachers = item.sermonsPreachers.nodes.map((node: { name: string}) => node.name);
+    item.biblebooks = item.biblebooks.nodes.map((node: { name: string}) => node.name);
+    
+    delete item.sermonsTopics;
+    delete item.sermonsPreachers;
+    console.log(item)
+
     return item;
   }
 
   static formattDate(item: any, locale: string) {
     if (!!item?.sermonDate) {
       const formattedDate = getFormattedDate(item.sermonDate, locale);
-      const date = getDateWithoutTime(item.sermonDate);
       item.sermonDate = formattedDate;
     }
-  
-    return item;
-  }
 
-  static getSermonDate(item: any) {
-    if (!!item?.sermonDate) {
-      item.sermonDate = getDateWithoutTime(item.sermonDate).toISOString();
-    }
-  
     return item;
   }
 
@@ -46,24 +50,9 @@ class SermonsDataApi {
     const {sermons: { edges }} = await fetchAPI(getSermonsList, { variables });
 
     const sermonsList = edges
-      .map(({ node }: {node: any}) => node)
-      .map((item: any) => this.getOtherImagesSizesUrls(item))
-      .map((item: any) => this.getSermonDate(item))
-      .map((item: any) => {
-        return { 
-          ...item,
-          topics: item.sermonsTopics.nodes.map((node: { name: string}) => node.name),
-          preachers: item.sermonsPreachers.nodes.map((node: { name: string}) => node.name),
-          biblebooks: item.biblebooks.nodes.map((node: { name: string}) => node.name),
-        };
-      })
-      .map((item:any) => {
-        delete item.sermonsTopics;
-        delete item.sermonsPreachers;
-
-        return item;
-      })
-      .sort((a: any, b: any) => {
+      .map(({ node }: {node: FetchedSermonCardDataType}) => node)
+      .map((item: FetchedSermonCardDataType) => this.getSermonsCardRenderingData(item))
+      .sort((a: RenderingSermonCardDataType, b: RenderingSermonCardDataType) => {
         const dateA = new Date(a.sermonDate).getTime();
         const dateB = new Date(b.sermonDate).getTime();
 

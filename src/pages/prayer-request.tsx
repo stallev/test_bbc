@@ -1,15 +1,19 @@
+import { GetStaticProps, GetStaticPropsContext, GetStaticPropsResult } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Container from "@/ui/containers/Container/Container";
 import StructuredMarkdownContent from "@/ui/components/StructuredMarkdownContent/StructuredMarkdownContent";
 import PageLayout from "@/ui/containers/PageLayout/PageLayout";
 import PageContentDataApi from "@/services/PageDataApi";
-import PrayerRequestForm from "@/ui/components/page-specific/prayer-request/PrayerRequestForm/PrayerRequestForm";
+import ContactUsForm from "@/ui/components/ContactUsForm/ContactUsForm";
+import { ContactFormsEndpointsIndex } from "@/constants/EndpointsList";
 import { Text } from "@/ui/components/ui-kit";
 import { PagesIDs } from "@/constants";
+import { DEFAULT_LOCALE } from "@/constants/mock";
+import { StandartPageDataType } from "@/types/postTypes";
 
 import styles from "../styles/pages/prayer-request.module.scss";
 
-export default function PrayerRequest({ pageData }: any) {
+export default function PrayerRequest({ pageData }: StandartPageDataType) {
   return (
     <PageLayout seoData={pageData.seo}>
       <div className={styles['prayer-request']}>
@@ -27,16 +31,21 @@ export default function PrayerRequest({ pageData }: any) {
             className={styles['prayer-request__page-content']}
           />
 
-          <PrayerRequestForm />
+          <ContactUsForm
+            API_URL={ContactFormsEndpointsIndex.prayerRequest}
+            isContactWillingFieldExist={true}
+          />
         </Container>
       </div>
     </PageLayout>
   );
 }
 
-export async function getStaticProps({ locale }: {locale: string}) {
-  const pageId = locale == "en" ? PagesIDs.PrayerRequest.en : PagesIDs.PrayerRequest.ru;
-
+export const getStaticProps: GetStaticProps<StandartPageDataType> = async(context: GetStaticPropsContext) => {
+  const { PrayerRequest: pageID } = PagesIDs;
+  const locale = context.locale || DEFAULT_LOCALE;
+  
+  const pageId = locale == DEFAULT_LOCALE ? pageID.en : pageID.ru;
   const pageData = await PageContentDataApi.getPageContentData(pageId);
 
   return {
@@ -45,5 +54,5 @@ export async function getStaticProps({ locale }: {locale: string}) {
       ...(await serverSideTranslations(locale, ["common"])),
     },
     revalidate: 360,
-  };
+  } as GetStaticPropsResult<StandartPageDataType>;
 }
