@@ -6,7 +6,6 @@ import UpcomingEventsDataApi from "@/services/UpcomingDataApi";
 import PageLayout from "@/ui/containers/PageLayout/PageLayout";
 import PageContentDataApi from "@/services/PageDataApi";
 import { PagesIDs } from "@/constants";
-import { SubscribeToEventsEndpoint } from "@/constants/EndpointsList";
 
 const UpcomingEventsList = dynamic(() => import('@/ui/components/page-specific/home/UpcomingEventsList/UpcomingEventsList'));
 const SubscribeFormDynamic = dynamic(() => import('@/ui/components/SubscribeForm/SubscribeForm'));
@@ -37,7 +36,6 @@ export default function Home({ data }: any) {
         <UpcomingEventsList data={data.upcomingEventsData} />
 
         <SubscribeFormDynamic
-          API_URL={SubscribeToEventsEndpoint.dev}
           title={subscription_title}
           description={subscription_descr}
         />

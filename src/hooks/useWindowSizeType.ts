@@ -1,4 +1,4 @@
-import { SIZES } from "../constants/sizes";
+import { SIZES } from "../../src/constants/sizes";
 
 export const isMobileWindowSize = (size: number) => {
   return size < SIZES.mobile;

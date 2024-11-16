@@ -1,4 +1,4 @@
-const SiteUrl = process.env.NEXT_PUBLIC_API_SITE_URL;
+const SiteUrl = 'https://testchurchapi.stallevs.ru';
 
 export const PostsQueryMaxCount = 10000;
 
@@ -12,7 +12,7 @@ export const EndpointsList = {
 
 export const InnerApiEndponts = {
   GetInTouch: '/api/get-in-touch',
-  SendParticipationInfo: '/api/send-participation-info',
+  SubscribeEvent: '/api/subscribe-event',
 }
 
 export const ContactFormsEndpointsIndex = {

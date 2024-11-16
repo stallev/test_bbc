@@ -1,6 +1,9 @@
+"use client"
+
 import React from "react";
 import Link from "next/link";
-import cx from "classnames";
+import { slugSelector } from "@/utils/slugSelector";
+import { useLocale } from "@/hooks/useLocale";
 import styles from "./styles/custom-link.module.scss";
 
 interface CustomLinkProps {
@@ -24,17 +27,16 @@ const CustomLink: React.FC<CustomLinkProps> = ({
   onCLick,
   onHover,
 }: CustomLinkProps) => {
+  const locale = useLocale();
+  const href = slugSelector(locale, to);
+
   return (
     <div
       onClick={onCLick}
       onMouseEnter={onHover}
-      className={cx(
-        styles["custom-link"],
-        styles[`custom-link--${type}`],
-        className
-      )}
+      className={`${styles["custom-link"]} ${styles[`custom-link--${type}`]} ${className}`}
     >
-      <Link aria-label={ariaLabel || label} href={to}>
+      <Link aria-label={ariaLabel || label} href={href}>
         {label && label}
         {children}
       </Link>

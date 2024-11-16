@@ -5,15 +5,15 @@ import { MainNavBarLinks } from "@/constants/NavBarLinks";
 import { LinkTypes } from "@/constants/LinkTypes";
 import styles from "./styles/navbar.module.scss";
 import NavDropDown from "../NavDropDown/NavDropDown";
-import useDropdown from "../../../hooks/useDropDown"; // Adjust the path based on your file structure
+import useDropdown from "@/hooks/useDropDown";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 
 interface NavBarProps {
-  translate: (term: string) => React.ReactNode;
+  translations: Record<string, string>
 }
 
-const NavBar: React.FC<NavBarProps> = ({ translate }) => {
+const NavBar: React.FC<NavBarProps> = ({ translations }) => {
   const { activeDropdown, handleMouseEnter, handleMouseLeave } = useDropdown();
 
   return (
@@ -30,18 +30,18 @@ const NavBar: React.FC<NavBarProps> = ({ translate }) => {
                 !!link ? (
                   <CustomLink
                     to={link}
-                    ariaLabel={translate(label) as string}
+                    ariaLabel={translations[label] as string}
                     className={styles.navbar__link}
                     type={LinkTypes.navLink}
                   >
-                    {translate(label)}
+                    {translations[label]}
                   </CustomLink>
                 ) : (
                   <Text
                     textType="span"
                     className={styles.navbar__link}
                   >
-                    {translate(label)}
+                    {translations[label]}
                   </Text>
                 )
               }
@@ -56,7 +56,7 @@ const NavBar: React.FC<NavBarProps> = ({ translate }) => {
               </div>
             </div>
             {activeDropdown === label && Object.keys(children).length > 0 && (
-              <NavDropDown childrenLinks={children} translate={translate} />
+              <NavDropDown childrenLinks={children} translations={translations} />
             )}
           </div>
         )

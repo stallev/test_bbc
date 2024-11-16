@@ -1,15 +1,19 @@
+"use client"
+
 import React, { useContext, useEffect, useState } from "react";
 import cx from "classnames";
 import { ActionType } from "@/ui/globalState/Actions/action";
 import { AppContext } from "@/ui/globalState/AppContext";
-import useTranslationFunction from "@/hooks/useTranslationFunction";
 import { Text } from "..";
 
 import styles from "./styles/notification.module.scss";
 
-const Notification: React.FC = () => {
+interface NotificationProps {
+  translations: Record<string, string>
+}
+
+const Notification: React.FC<NotificationProps> = ({ translations }) => {
   const { state: { notificationData: { isVisibleNotification, notificationText, notificationType } }, dispatch } = useContext(AppContext);
-  const translate = useTranslationFunction();
 
   const [showNotification, setShowNotification] = useState(isVisibleNotification);
 
@@ -44,7 +48,7 @@ const Notification: React.FC = () => {
     )}
     textType="span"
   >
-      {translate(notificationText)}
+      {translations[notificationText]}
   </Text>
     )
 };

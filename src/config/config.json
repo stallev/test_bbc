@@ -1,0 +1,9 @@
+{
+  "settings": {
+    "theme_switcher": true,
+    "default_theme": "light",
+    "languages": ["en", "ru"],
+    "default_language": "en",
+    "disable_languages": []
+  }
+}

@@ -4,14 +4,14 @@ import { CustomLink } from "../ui-kit";
 import { LinkTypes } from "@/constants/LinkTypes";
 
 interface Props {
-  childrenLinks?: Record<string, { link: string; label: string }>;
-  translate: (term: string) => React.ReactNode;
-  onClick?: any;
+  childrenLinks?: Record<string, { link: string; label: string }>
+  translations: Record<string, string>
+  onClick?: any
 }
 
 const NavDropDown: React.FC<Props> = ({
   childrenLinks,
-  translate,
+  translations,
   onClick,
 }) => {
   return (
@@ -20,13 +20,13 @@ const NavDropDown: React.FC<Props> = ({
         Object.values(childrenLinks).map(({ link, label }, index) => (
           <CustomLink
             key={index}
-            ariaLabel={translate(label) as string}
+            ariaLabel={translations[label] as string}
             to={link}
             className={styles.navDropDown__link}
             type={LinkTypes.navLink}
             onCLick={onClick}
           >
-            {translate(label)}
+            {translations[label]}
           </CustomLink>
         ))}
     </div>

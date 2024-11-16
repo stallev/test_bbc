@@ -5,14 +5,14 @@ import { IoIosArrowBack } from "react-icons/io";
 import styles from "./styles/NavPopUp.module.scss";
 interface ChildrenLinksProps {
   childrenLinks: any[];
-  translate: (term: string) => React.ReactNode;
+  translations: Record<string, string>
   handleLinkClick: () => void;
   handleBackClick: () => void;
 }
 
 const ChildrenLinks: React.FC<ChildrenLinksProps> = ({
   childrenLinks,
-  translate,
+  translations,
   handleLinkClick,
   handleBackClick,
 }) => {
@@ -21,7 +21,7 @@ const ChildrenLinks: React.FC<ChildrenLinksProps> = ({
       <div className={styles.backButton_div}>
         <div className={styles.backButton} onClick={handleBackClick}>
           <IoIosArrowBack />
-          <p>{translate("back_link_label")}</p>
+          <p>{translations["back_link_label"]}</p>
         </div>
       </div>
       {childrenLinks.map(({ link, label }, index) => (
@@ -29,12 +29,12 @@ const ChildrenLinks: React.FC<ChildrenLinksProps> = ({
           <div className={styles.singleLink}>
             <CustomLink
               to={link}
-              ariaLabel={translate(label) as string}
+              ariaLabel={translations[label] as string}
               className={styles.navbar__link}
               type={LinkTypes.navLink}
               onCLick={() => handleLinkClick()}
             >
-              {translate(label)}
+              {translations[label]}
             </CustomLink>
           </div>
         </div>

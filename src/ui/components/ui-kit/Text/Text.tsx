@@ -1,3 +1,5 @@
+"use client"
+
 import React, { FC, HTMLProps, MouseEvent } from 'react';
 
 import styles from './styles/text.module.scss';

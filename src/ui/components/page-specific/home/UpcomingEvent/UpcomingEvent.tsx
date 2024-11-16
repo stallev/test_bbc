@@ -1,15 +1,17 @@
+"use client"
+
 import React from 'react';
 import cx from 'classnames';
 import { RoutePath } from '@/constants';
 import { CustomImage, Text, CustomLink } from '@/ui/components/ui-kit';
 import Container from '@/ui/containers/Container/Container';
-import useTranslationFunction from '@/hooks/useTranslationFunction';
+import { useClientTranslationFunction } from '@/hooks/useLocale';
 import { UpcomingEventProps } from './types';
 
 import styles from './styles/upcoming-event.module.scss';
 
 const UpcomingEvent:React.FC<UpcomingEventProps> = ({ data, isActive }: UpcomingEventProps) => {
-  const translate = useTranslationFunction();
+  const translate = useClientTranslationFunction();
 
   return (
     <div className={

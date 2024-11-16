@@ -1,8 +1,14 @@
 /** @type {import('next').NextConfig} */
+const { settings } = require("./src/config/config.json");
+
+const languages = settings.languages;
+const defaultLanguage = settings.default_language;
+
+const otherLanguages = languages.filter((lang) => lang !== defaultLanguage);
+
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
-})
-const { i18n } = require('./next-i18next.config');
+});
 
 const cspHeader = `
   default-src 'self';
@@ -29,8 +35,8 @@ const nextConfig = {
     minimumCacheTTL: 86400,
   },
   reactStrictMode: true,
+  output: "standalone",
   compress: true,
-  i18n,
   httpAgentOptions: {
     keepAlive: true,
   },
@@ -62,6 +68,18 @@ const nextConfig = {
         ],
       },
     ]
+  },
+  async rewrites() {
+    return [
+      {
+        source: `/:locale(!${defaultLanguage}|${otherLanguages.join("|")})/:path*`,
+        destination: `/:locale/:path*`,
+      },
+      {
+        source: `/:path*`,
+        destination: `/${defaultLanguage}/:path*`,
+      },
+    ];
   },
 };
 

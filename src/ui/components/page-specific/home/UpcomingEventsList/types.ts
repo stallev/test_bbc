@@ -1,4 +1,4 @@
-import { UpcomingEventProps } from "../UpcomingEvent/types";
+import { UpcomingEventProps,  } from "../UpcomingEvent/types";
 
 export interface UpcomingEventListProps {
   data: UpcomingEventProps[]

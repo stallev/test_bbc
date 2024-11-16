@@ -1,22 +1,21 @@
-import { useRouter } from 'next/router';
+import { useRouter, usePathname } from 'next/navigation';
 import { MouseEventHandler } from 'react';
+import { getPathnameParams } from '@/utils/languageParser';
 
 import styles from './styles/language-switcher.module.scss';
 
+
 const LanguageSwitcher: React.FC = () => {
   const router = useRouter();
-
-  const availableLocale = router.locale == 'en' ? 'ru' : 'en';
+  const pathname = usePathname();
+  
+  const { locale, pathnameWithoutLocale, isDefaultLocale } = getPathnameParams(pathname);
+  const availableLocale = locale === 'en' ? 'ru' : 'en';
+  
+  const newPathname = isDefaultLocale ? `/${availableLocale}${pathname}` : pathnameWithoutLocale;
 
   const handleLanguageChange: MouseEventHandler<HTMLDivElement> = () => {
-    router.push(
-      {
-        pathname: router.pathname,
-        query: router.query,
-      },
-      undefined,
-      { locale: availableLocale }
-    );
+    router.push(newPathname);
   };
 
   return (

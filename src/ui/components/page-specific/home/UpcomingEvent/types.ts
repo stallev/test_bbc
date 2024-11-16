@@ -5,15 +5,17 @@ export interface ImageLinks {
   large: string
 }
 
+export interface UpcomingEventData {
+  upcomingEventStart: string
+  upcomingEventEnd: string
+  shortDescription: string
+  upcomingEventDescription: string
+  title: string
+  slug: string
+  featuredImageUrl: string
+}
+
 export interface UpcomingEventProps {
-  data: {
-    upcomingEventStart: string
-    upcomingEventEnd: string
-    shortDescription: string
-    upcomingEventDescription: string
-    title: string
-    slug: string
-    featuredImageUrl: string
-  }
+  data: UpcomingEventData
   isActive: boolean
 }

@@ -1,8 +1,8 @@
-import { useTranslation } from "next-i18next";
+// import { useTranslation } from "next-i18next";
 
-const useTranslationFunction = () => {
-  const { t } = useTranslation();
-  return t;
-};
+// const useTranslationFunction = () => {
+//   const { t } = useTranslation();
+//   return t;
+// };
 
-export default useTranslationFunction;
+// export default useTranslationFunction;

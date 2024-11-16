@@ -14,15 +14,15 @@ interface NavBarLinks {
 
 interface ParentLinksProps {
   parentLinks: NavBarLinks;
-  translate: (term: string) => React.ReactNode;
+  translations: Record<string, string>
   handleLinkClick: (label: string) => void;
   handleDropdownClick: (children: any) => void;
 }
 
 const ParentLinks: React.FC<ParentLinksProps> = ({
   parentLinks,
-  translate,
   handleLinkClick,
+  translations,
   handleDropdownClick,
 }) => {
   return (
@@ -32,12 +32,12 @@ const ParentLinks: React.FC<ParentLinksProps> = ({
           <div className={styles.singleLink}>
             <CustomLink
               to={link}
-              ariaLabel={translate(label) as string}
+              ariaLabel={translations[label] as string}
               className={styles.navbar__link}
               type={LinkTypes.navLink}
               onCLick={() => handleLinkClick(label)}
             >
-              {translate(label)}
+              {translations[label]}
             </CustomLink>
             {Object.keys(children!).length > 0 && (
               <div

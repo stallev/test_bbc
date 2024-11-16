@@ -1,11 +1,13 @@
+"use client";
+
 import React from 'react';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { CustomInput, Button, Text } from '@/ui/components/ui-kit';
 import Container from '@/ui/containers/Container/Container';
-import { NotificationTypes, RoutePath } from '@/constants';
+import { NotificationTypes } from '@/constants';
 import { useToggleNotification } from '@/hooks/useToggleNotification';
 import { FormFieldLangCodes, FormFieldValidationErrorsLangCodes, InputTypes } from '@/constants';
-import useTranslationFunction from '@/hooks/useTranslationFunction';
+import { useClientTranslationFunction } from '@/hooks/useLocale';
 
 import styles from './styles/subscribe-form.module.scss';
 
@@ -15,18 +17,16 @@ interface SubscribeFormInput {
 }
 
 interface SubscribeFormProps {
-  API_URL: string
   title?: string
   description?: string
 }
 
 const SubscribeForm:React.FC<SubscribeFormProps> = ({
-  API_URL,
   title,
   description,
 }) => {
   const setNotification = useToggleNotification();
-  const translate = useTranslationFunction();
+  const translate = useClientTranslationFunction();
 
   const { 
     register,
@@ -42,7 +42,7 @@ const SubscribeForm:React.FC<SubscribeFormProps> = ({
 
     try {
       const response = await fetch(
-        API_URL,
+        '/api/subscribe-event',
         {
           method: 'POST',
           headers: {

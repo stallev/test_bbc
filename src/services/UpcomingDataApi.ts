@@ -54,7 +54,7 @@ class UpcomingEventsDataApi {
     return {};
   }
 
-  static async getUpcomingEvents(locale: string) {
+  static async getUpcomingEvents(locale: string): Promise<any> {
     const res = await this.getUpcomingEventsItemsIDs();
     const resultItems = [];
 

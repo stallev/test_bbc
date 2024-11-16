@@ -1,8 +1,14 @@
+"use client"
+
 import React, { useState } from "react";
-import useTranslationFunction from "@/hooks/useTranslationFunction";
 import ParentLinks from "./ParentLinks";
 import ChildrenLinks from "./ChildrenLinks";
 import { toggleMenu } from "@/ui/globalState/GlobalFunctions/useGlobalFunctions";
+import useWindowDimensions from "@/hooks/useWindowDimensions";
+import {
+  isMobileWindowSize,
+  isSmallWindowSize,
+} from "@/hooks/useWindowSizeType";
 import { useAppContext } from "../../globalState/ContextHook/contextHook";
 import styles from "./styles/NavPopUp.module.scss";
 
@@ -15,11 +21,13 @@ interface NavBarLinks {
 }
 
 interface NavPopUpProps {
-  navBarLinks: NavBarLinks;
+  navBarLinks: NavBarLinks
+  translations: Record<string, string>
 }
-const NavPopUp: React.FC<NavPopUpProps> = ({ navBarLinks }) => {
-  const translate = useTranslationFunction();
-  const { dispatch } = useAppContext();
+const NavPopUp: React.FC<NavPopUpProps> = ({ navBarLinks, translations }) => {
+  const { dispatch, state } = useAppContext();
+  const windowsize = useWindowDimensions();
+  const tabletSize = isSmallWindowSize(windowsize.width);
 
   const toggleMenuButton = () => {
     toggleMenu(dispatch);
@@ -38,25 +46,26 @@ const NavPopUp: React.FC<NavPopUpProps> = ({ navBarLinks }) => {
   };
 
   return (
-    <div className={styles.navPopUp}>
-      <div className={styles.popUpLinks}>
-        {activeChildrenLinks ? (
-          <ChildrenLinks
-            childrenLinks={Object.values(childrenLinks)}
-            translate={translate}
-            handleLinkClick={toggleMenuButton}
-            handleBackClick={handleBackClick}
-          />
-        ) : (
-          <ParentLinks
-            parentLinks={navBarLinks}
-            translate={translate}
-            handleLinkClick={toggleMenuButton}
-            handleDropdownClick={handleViewChildren}
-          />
-        )}
+    state.isMenuOpen && tabletSize &&
+      <div className={styles.navPopUp}>
+        <div className={styles.popUpLinks}>
+          {activeChildrenLinks ? (
+            <ChildrenLinks
+              childrenLinks={Object.values(childrenLinks)}
+              translations={translations}
+              handleLinkClick={toggleMenuButton}
+              handleBackClick={handleBackClick}
+            />
+          ) : (
+            <ParentLinks
+              parentLinks={navBarLinks}
+              translations={translations}
+              handleLinkClick={toggleMenuButton}
+              handleDropdownClick={handleViewChildren}
+            />
+          )}
+        </div>
       </div>
-    </div>
   );
 };
 

@@ -1,5 +1,8 @@
+import { SeoPagePathDataProps } from "@/types/globalTypes"
+
 export interface SeoProps {
   seoValues: SeoContentDataProps
+  seoPathData: SeoPagePathDataProps
 }
 
 export interface SeoContentDataProps {
@@ -19,7 +22,7 @@ export interface SeoContentDataProps {
       [locale: string]: string;
     };
   }
-  isPostType?: boolean
+  isPostType?: boolean,
 }
 
 export interface Schema {

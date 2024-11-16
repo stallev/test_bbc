@@ -1,8 +1,10 @@
+"use client"
+
 import React, { useState, useEffect } from "react";
 import cx from 'classnames';
 import { useSwipeable } from "react-swipeable";
 import Container from "@/ui/containers/Container/Container";
-import useTranslationFunction from "@/hooks/useTranslationFunction";
+import { useClientTranslationFunction } from "@/hooks/useLocale";
 import { Text, CustomLink } from "@/ui/components/ui-kit";
 import { RoutePath } from "@/constants";
 import UpcomingEvent from "../UpcomingEvent/UpcomingEvent";
@@ -15,7 +17,7 @@ import { UpcomingEventProps } from "../UpcomingEvent/types";
 import styles from "./styles/upcoming-events-list.module.scss";
 
 const UpcomingEventsList: React.FC<UpcomingEventListProps> = ({ data }: UpcomingEventListProps) => {
-  const translate = useTranslationFunction();
+  const translate = useClientTranslationFunction();
   const { width } = useWindowDimensions();
   const isTabletSize = isTabletWindowSize(width);
 

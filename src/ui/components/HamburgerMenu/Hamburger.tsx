@@ -1,4 +1,6 @@
-import React, { useEffect } from "react";
+"use client"
+
+import React from "react";
 import styles from "././styles/hamburger.module.scss";
 import { toggleMenu } from "@/ui/globalState/GlobalFunctions/useGlobalFunctions";
 import { useAppContext } from "../../globalState/ContextHook/contextHook";

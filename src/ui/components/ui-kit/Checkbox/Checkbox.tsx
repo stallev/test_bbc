@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from 'react';
 import cx from 'classnames';
 import { TbSquare, TbSquareCheck } from "react-icons/tb";

@@ -1,18 +1,18 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import { DEFAULT_FEATURED_IMAGE } from '@/constants/mock';
 import { getSubstringBeforeLastSlash } from '@/utils/getSubstringBeforeLastSlash';
-import useTranslationFunction from '@/hooks/useTranslationFunction';
+import { getServerTranslationFunction, getTranslations } from '@/utils/languageParser';
 
 import { SeoProps } from './types';
 
  const Seo:React.FC<SeoProps> = ({
   seoValues,
+  seoPathData,
  }) => {
-  const {asPath, locale, defaultLocale} = useRouter();
+  const {asPath, locale, defaultLocale} = seoPathData;
 
-  const translate = useTranslationFunction();
+  const translations = getTranslations(locale);
   const {data, isPostType} = seoValues;
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
@@ -72,13 +72,13 @@ import { SeoProps } from './types';
 
   const seoData = {
     title: data?.title,
-    titleTemplate: `%s | ${translate("site_name")}`,
+    titleTemplate: `%s | ${translations.site_name})}`,
     description: data?.metaDesc,
     canonical: canonicalUrl,
     openGraph: {
       url: canonicalUrl,
       title: data?.title,
-      description: data?.metaDesc ? data?.metaDesc : translate("site_description"),
+      description: data?.metaDesc ? data?.metaDesc : translations.site_description,
       locale: ogLocale,
       images: [
         {
@@ -89,7 +89,7 @@ import { SeoProps } from './types';
           type: `image/${imageFileExtension}`,
         }
       ],
-      siteName: translate("site_name"),
+      siteName: translations.site_name,
     },
     twitter: {
       cardType: 'summary_large_image',
@@ -117,7 +117,7 @@ import { SeoProps } from './types';
       },
       {
         name: 'twitter:description',
-        content: data?.metaDesc ? data.metaDesc : translate("site_description"),
+        content: data?.metaDesc ? data.metaDesc : translations.site_description,
       },
     ],
     languageAlternates: [
@@ -132,7 +132,8 @@ import { SeoProps } from './types';
     ],
   }
 
-  return <NextSeo {...seoData} />
+  // return <NextSeo {...seoData} />
+  return <div></div>
 }
 
 export default Seo;

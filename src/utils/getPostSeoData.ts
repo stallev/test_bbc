@@ -1,5 +1,7 @@
 import { SeoContentDataProps } from "@/ui/components/Seo/types";
 import { DEFAULT_FEATURED_IMAGE } from "@/constants/mock";
+import { PagePathDataProps, SeoPagePathDataProps } from "@/types/globalTypes";
+import { i18n } from "@/i18n.config";
 
 export const getPostSeoData = (data: any, locale: string) => {
   const featuredImageUrl = !!data.featuredImage ? data.featuredImage.node.mediaItemUrl : DEFAULT_FEATURED_IMAGE;
@@ -22,3 +24,12 @@ export const getPostSeoData = (data: any, locale: string) => {
 
   return seo;
 };
+
+export const getPagePathData = ({path, locale}: PagePathDataProps): SeoPagePathDataProps => {
+  const { defaultLocale } = i18n;
+  return {
+    asPath: defaultLocale === locale ? path : `/${locale}${path}`,
+    locale,
+    defaultLocale,
+  }
+}
