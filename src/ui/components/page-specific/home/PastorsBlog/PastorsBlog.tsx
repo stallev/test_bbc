@@ -28,7 +28,7 @@ const PastorsBlog = ({ translations, data }: PastorsBlogProps) => {
           data={data}
         />
 
-        <Donation isDonationPage={false} translations={translations} />
+        {/* <Donation isDonationPage={false} translations={translations} /> */}
       </Container>
     </section>
   )
