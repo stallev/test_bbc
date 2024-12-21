@@ -21,7 +21,7 @@ const GreetingScreen: React.FC<GreetingScreenProps> = ({
   return (
     <div className={styles["greeting-screen"]}>
       <CustomImage
-        imageName="heroSectionBg"
+        imageURL="https://testwordpressmedia1.s3.amazonaws.com/hero_section_bg.webp"
         className={styles["greeting-screen__image"]}
         alt="Background image alt"
         ariaLabel="Background image alt"
