@@ -3,31 +3,34 @@
 
 .custom-button {
   @extend %btnStyles;
-  display: flex;
-  align-items: center;
-  width: fit-content;
-  border-radius: 16px;
-  color: $color-black;
   cursor: pointer;
-  font-size: $font-size-xs;
-  white-space: nowrap;
-  gap: $gutter-ms;
-
-  @media screen and (min-width: $tablet) {
-    width: auto;
-    border-radius: 24px;
-    font-size: $font-size-ms;
-  }
-
-  &:not(:first-child) {
-    margin-top: $gutter-ml;
-  }
 
   &--gray {
     background-color: $color-gray;
   }
 
   &--primary {
-    @extend %primaryBtnLink;
+    @extend %secondaryBtnLink;
+  }
+
+  &--secondary {
+    width: fit-content;
+    padding: 8px 20px;
+    border-radius: 3px;
+    background-color: $color-red;
+    color: $color-white;
+    font-weight: 400;
+    font-size: 16px;
+
+    @media screen and (min-width: $tablet) {
+      padding: 10px 25px;
+      font-size: 24px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      padding: 16px 40px;
+      border-radius: 5px;
+      font-size: 35px;
+    }
   }
 }

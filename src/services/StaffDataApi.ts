@@ -1,6 +1,6 @@
 import { EndpointsList } from "@/constants";
 import { getMinisterData, getMinistersSlugs, getMinistersPostsSitemapData } from "@/graphql/staffQueries";
-import { SeoContentDataProps } from "@/ui/components/Seo/types";
+import { SeoContentDataProps } from "@/types/globalTypes";
 import { fetchAPI } from "./WordPressFetchAPI";
 import { FetchedStaffPersonDataType, TranslationFetchedData } from "@/types/WPDataTypes/StaffContentDataType";
 import { PostNodeSlugType, PostSitemapSourceData } from "@/types/WPDataTypes/CommonWPDataTypes";
@@ -96,7 +96,9 @@ class StaffDataApi {
 
     for (const item of res) {
       const itemData = await this.getMinisterItemData(item, locale.toUpperCase());
-      resultItems.push({ data: itemData });
+      const { seo, translations, ...ministerData } = itemData;
+      
+      resultItems.push(ministerData );
     }
     
     return resultItems;

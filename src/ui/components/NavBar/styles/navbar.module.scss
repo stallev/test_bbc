@@ -1,42 +1,116 @@
 @import "../../../../styles/variables.scss";
 
 .navbar {
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: $gutter-ml;
+  display: none;
+
+  &__label {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 190px;
+
+    @media (min-width: $smallDesktop) {
+      align-items: center;
+      width: inherit;
+    }
+  }
 
   &__link {
     padding: $gutter-xs 0;
     font-style: normal;
     font-weight: $font-weight-default;
-    font-size: $font-size-ms;
+    font-size: 15px;
     line-height: $line-height-ms;
     text-align: right;
-    text-transform: uppercase;
-    color: $color-white;
+    color: var(--text-secondary-color);
     opacity: 0.9;
-    text-shadow: $nav-link-shadow;
     cursor: pointer;
     transition: all 0.3s ease;
-    
+
     &:hover {
-      color: $color-orange;
+      color: $color-red;
+    }
+
+  }
+
+  @media (min-width: $smallDesktop) {
+    display: flex;
+    gap: 40px;
+  }
+
+  &--show {
+    position: absolute;
+    top: $header-height;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    row-gap: $gutter-md;
+    align-items: flex-end;
+    padding: $gutter-lg 0;
+    width: 100%;
+    background-color: var(--main-bg-color);
+
+    @media (min-width: $smallDesktop) {
+      display: none;
     }
   }
 
-  @media (max-width: $smallDesktop) {
-    display: none;
-  }
-}
+  &__submenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    padding: $navDropDown-padding;
+    z-index: $navDropDown-z-index;
+    
 
-.link_div {
-  display: flex;
-  align-items: center;
+    @media (min-width: $smallDesktop) {
+      position: absolute;
+      top: 40px;
+      width: fit-content;
+      margin: auto;
+      box-shadow: $navDropDown-box-shadow;
+      background-color: var(--main-bg-color);
+    }
+
+    &-link {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: $navDropDown-link-width;
+      font-size: 13px;
+      line-height: 20px;
+      color: var(--text-secondary-color);
+      text-decoration: none;
+
+      &:hover {
+        color: $color-red;
+      }
+    }
+  }
+
+  a {
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: $color-red;
+    }
+  }
 }
 
 .arrowIcon {
   display: flex;
-  color: $color-white;
+  color: $color-red;
   justify-content: center;
   margin: 5px;
+  width: 8px;
+  height: 7px;
 }

@@ -1,6 +1,5 @@
 import React from "react";
-import Seo from "@/ui/components/Seo/Seo";
-import { SeoContentDataProps } from "@/ui/components/Seo/types";
+import { SeoContentDataProps } from "@/types/globalTypes";
 import { SeoPagePathDataProps } from "@/types/globalTypes";
 
 interface PageLayoutProps {
@@ -13,7 +12,6 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children, seoData, seoPathData 
 
   return (
     <>
-      
       {children}
     </>
   );

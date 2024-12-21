@@ -1,7 +1,7 @@
 export interface YouTubeVideosDataType {
-  finishedVideos: FinishedVideoItemType[]
-  liveVideos: LiveVideoItemType[]
-  upcomingVideos: UpcomingVideoItemType[]
+  finishedVideos: YouTubeVideoItemType[] | []
+  liveVideos: YouTubeVideoItemType[] | []
+  upcomingVideos: YouTubeVideoItemType[] | []
 }
 
 export interface FinishedVideoItemType  {
@@ -24,6 +24,21 @@ export interface UpcomingVideoItemType  {
   url: string
   scheduledStartTime: string
   status: string
+}
+export interface YouTubeVideoItemType  {
+  id: string
+  title: string
+  url: string
+  scheduledStartTime?: string
+  actualStartTime?: string
+  publishedAt?: string
+  status: string
+}
+
+export interface FetchedVideoItemsList {
+  finishedVideos: YouTubeVideoItemType[] | []
+  liveVideos: YouTubeVideoItemType[] | []
+  upcomingVideos: YouTubeVideoItemType[] | []
 }
 
 export interface YoutubeVideoItemType {

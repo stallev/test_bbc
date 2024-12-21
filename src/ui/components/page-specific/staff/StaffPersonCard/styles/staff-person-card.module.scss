@@ -1,55 +1,197 @@
 @import "../../../../../../styles/variables.scss";
 
 .staff-person-card {
+  position: relative;
   display: flex;
+  flex-direction: column;
+  row-gap: $gutter-ms;
+  color: var(--text-main-color);
 
-  a {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 2;
+  @media screen and (min-width: $smallDesktop) {
+    row-gap: $gutter-ml;
+  }
+
+  @media screen and (min-width: $desktop) {
+    row-gap: $gutter-lg
+  }
+
+  &:nth-of-type(2n) {
+    flex-direction: column-reverse;
+    padding-top: $gutter-ml;
+
+    @media screen and (min-width: $smallDesktop) {
+      padding-top: 110px;
+    }
+  }
+
+  &:nth-of-type(2n) .staff-person-card__image {
+    &::after,
+    &::before {
+      border-right: 144px solid transparent;
+      border-bottom-width: 50px;
+
+      @media screen and (min-width: $mobile) {
+        border-right: 180px solid transparent;
+        border-bottom-width: 60px;
+      }
+    
+      @media screen and (min-width: $tablet) {
+        border-right: 230px solid transparent;
+        border-bottom-width: 70px;
+      }
+    
+      @media screen and (min-width: $smallDesktop) {
+        border-right: 300px solid transparent;
+        border-bottom-width: 80px;
+      }
+    
+      @media screen and (min-width: $desktop) {
+        border-right: 360px solid transparent;
+        border-bottom-width: 95px;
+      }
+    }
+  }
+
+  &:nth-of-type(2n+1) .staff-person-card__image {
+    &::after,
+    &::before {
+      border-left: 140px solid transparent;
+      border-bottom-width: 50px;
+
+      @media screen and (min-width: $mobile) {
+        border-left: 180px solid transparent;
+        border-bottom-width: 60px;
+      }
+    
+      @media screen and (min-width: $tablet) {
+        border-left: 230px solid transparent;
+        border-bottom-width: 70px;
+      }
+    
+      @media screen and (min-width: $smallDesktop) {
+        border-left: 300px solid transparent;
+        border-bottom-width: 80px;
+      }
+    
+      @media screen and (min-width: $desktop) {
+        border-left: 360px solid transparent;
+        border-bottom-width: 95px;
+      }
+    }
+  }
+
+  &__logo-icon {
+    position: absolute;
+    z-index: $z-index-level2;
+    width: 18px;
+    height: 24px;
+  
+    @media screen and (min-width: $tablet) {
+      width: 21px;
+      height: 28px;
+    }
+  
+    @media screen and (min-width: $smallDesktop) {
+      width: 30px;
+      height: 40px;
+    }
+  
+    @media screen and (min-width: $desktop) {
+      width: 45px;
+      height: 60px;
+    }
   }
 
   &__image {
-    height: 400px;
-    border-radius: $border-radius-sm;
-    border: 1px solid $color-gray;
+    position: relative;
+    height: 270px;
     overflow: hidden;
-  
-    @media screen and (min-width: 450px) {
-      height: 300px;
-    }
 
     @media screen and (min-width: $mobile) {
       height: 350px;
     }
-
+  
     @media screen and (min-width: $tablet) {
-      height: 250px;
+      height: 400px;
+    }
+  
+    @media screen and (min-width: $smallDesktop) {
+      height: 500px;
+    }
+  
+    @media screen and (min-width: $desktop) {
+      height: 670px;
     }
 
-    @media screen and (min-width: $smallDesktop) {
-      height: 380px;
+    &::before,
+    &::after {
+      position: absolute;
+      display: block;
+      content: "";
+      z-index: $z-index-level1;
+      border-bottom-style: solid;
+      border-bottom-color: var(--main-bg-color);
+    }
+
+    &::before {
+      top: 0;
+      left: 0;
+      transform: rotate(180deg);
+    }
+
+    &::after {
+      bottom: 0;
+      right: 0;
     }
   }
 
   &__info {
     display: flex;
     flex-direction: column;
-    align-items: center;
     flex-grow: 2;
-    padding: $gutter-ms;
     text-align: center;
   }
 
   &__name {
-    font-size: $font-size-md;
-    line-height: $line-height-lg;
-    font-weight: $font-weight-bold;
+    margin-bottom: $gutter-sm;
+    width: fit-content;
+    font-size: 14px;
+    line-height: 1.2;
+    font-weight: 400;
+
+    @media screen and (min-width: $tablet) {
+      font-size: 16px;
+    }
+  
+    @media screen and (min-width: $smallDesktop) {
+      margin-bottom: $gutter-ml;
+      font-size: 30px;
+    }
+  
+    @media screen and (min-width: $desktop) {
+      margin-bottom: 30px;
+      font-size: 36px;
+    }
   }
 
   &__position {
-    font-size: $font-size-ms;
-    line-height: $line-height-md;
-    font-style: italic;
+    margin-bottom: $gutter-xs;
+    width: fit-content;
+    font-size: 10px;
+    line-height: 1;
+
+    @media screen and (min-width: $tablet) {
+      margin-bottom: $gutter-ms;
+      font-size: 12px;
+    }
+  
+    @media screen and (min-width: $smallDesktop) {
+      font-size: 18px;
+    }
+  
+    @media screen and (min-width: $desktop) {
+      margin-bottom: $gutter-md;
+      font-size: 25px;
+    }
   }
 }

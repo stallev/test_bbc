@@ -2,29 +2,43 @@
 
 .footer-navbar {
   display: flex;
-  flex-direction: column;
   column-gap: $gutter-lg;
-  row-gap: $gutter-sm;
   width: fit-content;
 
-  @media screen and (min-width: $mobile) {
-    flex-direction: row;
-    flex-wrap: wrap;
+  @media screen and (min-width: $smallDesktop) {
+    column-gap: 64px;
+  }
+  
+  @media screen and (min-width: $desktop) {
+    column-gap: 80px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    column-gap: 100px;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
   }
 
   &__link {
-    padding: $gutter-xs 0;
     font-style: normal;
     font-weight: $font-weight-default;
-    font-size: $font-size-ms;
-    line-height: $line-height-ms;
-    color: $color-black;
-    opacity: 0.9;
-    text-shadow: $nav-link-shadow;
-    text-decoration: underline;
+    font-size: 14px;
+    line-height: 1.5;
+    color: $color-red;
 
     &:hover {
-      color: $color-white;
+      text-decoration: underline;
+    }
+
+    @media screen and (min-width: $smallDesktop) {
+      font-size: 18px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      font-size: 24px;
     }
   }
 }

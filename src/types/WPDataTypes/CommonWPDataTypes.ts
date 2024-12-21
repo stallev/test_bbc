@@ -19,3 +19,10 @@ export interface PostSitemapSourceData {
   slug: string
   modified: string
 }
+
+export interface ImageLinks {
+  full?: string
+  thumbnail?: string
+  medium?: string
+  large?: string
+}

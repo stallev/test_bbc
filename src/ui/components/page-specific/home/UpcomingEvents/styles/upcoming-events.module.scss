@@ -1,0 +1,25 @@
+@import "../../../../../../styles/variables.scss";
+@import "../../../../../../styles/placeholders.scss";
+
+.upcoming-events {
+  @extend %section;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    @extend %sectionTitle;
+  }
+
+  &__list {
+    @extend %animatedArticlesListStyles;
+  }
+
+  &__all-events-link {
+    align-self: center;
+
+    @media screen and (min-width: $smallDesktop) {
+      align-self: flex-end;
+    }
+  }
+}

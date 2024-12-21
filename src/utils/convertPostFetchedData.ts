@@ -1,9 +1,9 @@
 import { convertFeaturedImageData } from "./convertFeaturedImageData";
 import { convertAuthorData } from "./convertAuthorData";
-import { AuthorNodeProps, FeaturedImageMediaItemUrlProps, authorFinishedContentProps, SeoPostProps, BlockProps, BlogPostProps } from "@/types/postTypes";
+import { AuthorNodeProps, FeaturedImageMediaItemUrlProps, SeoPostProps, BlogPostProps } from "@/types/postTypes";
 import { GutenbergBlockType } from "@/types/WPDataTypes/PageContentDataTypes";
 import { stripHtmlTags } from ".";
-import { getShortMonthFormattedDate } from "@/hooks/useLocaleFormattedDate";
+import { getShortMonthFormattedDate } from "@/utils/dateFormatter";
 import { convertGutenbergBlocksData } from "./convertGutenbergBlocksData";
 
 export interface PostFetchedDataProps {

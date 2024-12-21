@@ -1,4 +1,4 @@
-import { SeoContentDataProps } from "@/ui/components/Seo/types";
+import { SeoContentDataProps } from "@/types/globalTypes";
 import { DEFAULT_FEATURED_IMAGE } from "@/constants/mock";
 import { PagePathDataProps, SeoPagePathDataProps } from "@/types/globalTypes";
 import { i18n } from "@/i18n.config";

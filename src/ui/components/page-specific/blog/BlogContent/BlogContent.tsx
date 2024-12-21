@@ -58,6 +58,7 @@ const BlogContent:React.FC<BlogContentProps> = ({
         data={!isActiveSearchedPosts ? posts.currentPosts : posts.searchedPosts}
         fetchMoreData={fetchMoreData}
         hasMore={offset < postsData.length}
+        isReducedList={false}
       />
     </div>
   )

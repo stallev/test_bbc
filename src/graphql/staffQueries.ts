@@ -11,6 +11,7 @@ export const getMinisterData = `query getMinisterData ($id: ID!, $idType: Minist
       ministerDepartment
       ministerDescription
       slug
+      excerpt
       ministerPhoto {
         size
         url
@@ -20,6 +21,25 @@ export const getMinisterData = `query getMinisterData ($id: ID!, $idType: Minist
         language {
           code
         }
+      }
+    }
+  }
+}
+`;
+
+export const getMinisterCardData = `query getMinisterCardData ($id: ID!, $idType: MinisterIdType!, $language: LanguageCodeEnum!) {
+  minister(id: $id, idType: $idType) {
+    translation(language: $language) {
+      ministerFirstName
+      ministerLastName
+      ministerPosition
+      ministerDepartment
+      ministerDescription
+      slug
+      excerpt
+      ministerPhoto {
+        size
+        url
       }
     }
   }

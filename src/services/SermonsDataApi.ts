@@ -1,6 +1,6 @@
 import { getSermonsList, getSermonsCategoriesList } from "@/graphql/sermonsQueries";
 import { fetchAPI } from "./WordPressFetchAPI";
-import { getFormattedDate, getDateWithoutTime } from "@/hooks/useLocaleFormattedDate";
+import { getFormattedDate, getDateWithoutTime } from "@/utils/dateFormatter";
 import { FetchedSermonCardDataType, RenderingSermonCardDataType } from "@/types/WPDataTypes/SermonPostsDataTypes";
 
 class SermonsDataApi {

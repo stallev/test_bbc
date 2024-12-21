@@ -1,5 +1,6 @@
 import { useRouter, usePathname } from 'next/navigation';
 import { MouseEventHandler } from 'react';
+import { AiOutlineGlobal } from "react-icons/ai";
 import { getPathnameParams } from '@/utils/languageParser';
 
 import styles from './styles/language-switcher.module.scss';
@@ -25,7 +26,9 @@ const LanguageSwitcher: React.FC = () => {
       className={styles['language-switcher']}
       onClick={handleLanguageChange}
     >
-      {availableLocale}
+      <AiOutlineGlobal className={styles['language-switcher__icon']} />
+      
+      <span>{availableLocale}</span>
     </div>
   );
 };

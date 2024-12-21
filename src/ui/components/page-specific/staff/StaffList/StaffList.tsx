@@ -1,17 +1,24 @@
 import React from 'react';
-import Container from '@/ui/containers/Container/Container';
 import { StaffListProps } from './type';
 import StaffPersonCard from '../StaffPersonCard/StaffPersonCard';
 
 import styles from './styles/staff-list.module.scss';
 
-const StaffList: React.FC<StaffListProps> = ({ data }) => {
+const StaffList = ({ data, translations, isDetailed = false }: StaffListProps) => {
   return (
-    <Container className={styles["staff-list"]}>
+    <div className={styles["staff-list"]}>
       {
-        data.map((personCard, index) => <StaffPersonCard key={personCard.data.slug} data={personCard.data} index={index} />)
+        data.map((personCard, index) =>
+          <StaffPersonCard
+            isDetailed={isDetailed}
+            key={personCard.slug}
+            data={personCard}
+            translations={translations}
+            index={index}
+          />
+        )
       }
-    </Container>
+    </div>
   )
 }
 

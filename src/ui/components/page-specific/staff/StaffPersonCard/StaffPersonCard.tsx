@@ -1,18 +1,19 @@
 import React from 'react';
 import { RoutePath } from '@/constants';
 import { StaffPersonCardProps } from './types';
-import { CustomImage, CustomLink, Text } from '@/ui/components/ui-kit';
+import { CustomImage, CustomLink, Text, Icon, ReadMoreLink } from '@/ui/components/ui-kit';
 
 import styles from './styles/staff-person-card.module.scss';
 
-const StaffPersonCard: React.FC<StaffPersonCardProps> = ({ data, index }: StaffPersonCardProps) => {
+const StaffPersonCard: React.FC<StaffPersonCardProps> = ({ data, translations, index }: StaffPersonCardProps) => {
   const priorityFetching = (!index ? 1 : index) < 1;
   
   return (
-    <CustomLink
-      to={`${RoutePath.Staff}/${data.slug}`}
+    <article
       className={styles["staff-person-card"]}
     >
+      <Icon iconName='smallLogo' className={styles["staff-person-card__logo-icon"]} />
+      
       <CustomImage
         className={styles["staff-person-card__image"]}
         imageURL={data.imageLinks.large}
@@ -21,20 +22,25 @@ const StaffPersonCard: React.FC<StaffPersonCardProps> = ({ data, index }: StaffP
       />
       <div className={styles["staff-person-card__info"]}>
         <Text
-          textType='h2'
-          className={styles["staff-person-card__name"]}
-        >
-          {`${data.ministerFirstName} ${data.ministerLastName}`}
-        </Text>
-
-        <Text
           textType='span'
           className={styles["staff-person-card__position"]}
         >
           {data.ministerPosition}
         </Text>
+
+        <Text
+          textType='h3'
+          className={styles["staff-person-card__name"]}
+        >
+          {`${data.ministerFirstName} ${data.ministerLastName}`}
+        </Text>
+
+        <ReadMoreLink
+          to={`${RoutePath.Staff}/${data.slug}`}
+          label={translations.read_more_label}
+        />
       </div>
-    </CustomLink>
+    </article>
   )
 }
 

@@ -1,6 +1,6 @@
 import { getMarkdownPageContentData } from "@/graphql/markdownContentDataQueries";
 import { convertGutenbergBlocksData } from "@/utils/convertGutenbergBlocksData";
-import { SeoContentDataProps } from "@/ui/components/Seo/types";
+import { SeoContentDataProps } from "@/types/globalTypes";
 import { fetchAPI } from "./WordPressFetchAPI";
 import { DEFAULT_FEATURED_IMAGE } from "@/constants/mock";
 

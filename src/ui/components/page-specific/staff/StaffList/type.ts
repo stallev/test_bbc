@@ -1,5 +1,7 @@
-import { StaffPersonCardProps } from "../StaffPersonCard/types";
+import { StaffPersonCardDataProps } from "../StaffPersonCard/types";
 
 export interface StaffListProps {
-  data: StaffPersonCardProps[]
+  data: StaffPersonCardDataProps[]
+  translations: Record<string, string>
+  isDetailed?: boolean
 }

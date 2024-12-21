@@ -1,4 +1,4 @@
-import { WPPostSeoType } from "./CommonWPDataTypes"
+import { WPPostSeoType, ImageLinks } from "./CommonWPDataTypes"
 
 export interface RenderedPastorCardDataType {
   data: TranslationFetchedData
@@ -18,9 +18,10 @@ export interface TranslationFetchedData {
   ministerDepartment: string
   ministerDescription: string
   slug: string
+  excerpt: string
   translations: Translation[]
   ministerPhoto?: MinisterPhoto[]
-  imageLinks?: ImageLinks
+  imageLinks: ImageLinks
 }
 
 export interface Schema {
@@ -34,13 +35,6 @@ export interface Translation {
 
 export interface Language {
   code: string
-}
-
-export interface ImageLinks {
-  full?: string
-  thumbnail?: string
-  medium?: string
-  large?: string
 }
 
 export interface MinisterPhoto {

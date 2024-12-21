@@ -1,6 +1,7 @@
 import React from "react";
+import { IoArrowBackSharp, IoArrowForwardSharp } from "react-icons/io5";
 import Container from "@/ui/containers/Container/Container";
-import { CustomImage, CustomLink, Text } from "@/ui/components/ui-kit";
+import { CustomImage, CustomLink, Text, Icon } from "@/ui/components/ui-kit";
 import { RoutePath } from "@/constants/RoutePath";
 import { LinkTypes } from "@/constants/LinkTypes";
 
@@ -8,19 +9,19 @@ import styles from "./styles/greeting-screen.module.scss";
 
 export interface GreetingScreenProps {
   header_h1_title: string;
-  header_descr: string;
-  header_button_label: string;
+  about_church_link_label: string;
+  events_link_label: string;
 }
 
 const GreetingScreen: React.FC<GreetingScreenProps> = ({
   header_h1_title,
-  header_descr,
-  header_button_label,
+  about_church_link_label,
+  events_link_label,
 }) => {
   return (
     <div className={styles["greeting-screen"]}>
       <CustomImage
-        imageName="greetingSreenImage"
+        imageName="heroSectionBg"
         className={styles["greeting-screen__image"]}
         alt="Background image alt"
         ariaLabel="Background image alt"
@@ -31,28 +32,29 @@ const GreetingScreen: React.FC<GreetingScreenProps> = ({
       <Container>
         <div className={styles["greeting-screen__content-wrap"]}>
           <div className={styles["greeting-screen__content"]}>
-            <div className={styles["greeting-screen__text-content"]}>
-              <Text
-                textType="p"
-                className={styles["greeting-screen__description"]}
-              >
-                {header_descr}
-              </Text>
-
-              <Text
-                textType="h1"
-                className={styles["greeting-screen__page-title"]}
-              >
-                {header_h1_title}
-              </Text>
+            <div className={styles["greeting-screen__icon"]}>
+              <Icon iconName="logo" />
             </div>
 
-            <CustomLink
-              to={RoutePath.GospelPage}
-              label={header_button_label}
-              type={LinkTypes.primary}
-              className={styles["greeting-screen__link-more"]}
-            />
+            <div className={styles["greeting-screen__links"]}>
+              <CustomLink
+                to={RoutePath.UpcomingEvents}
+                type={LinkTypes.primary}
+                className={styles["greeting-screen__link"]}
+              >
+                <Icon iconName="leftArrow" />
+                <Text textType="span">{events_link_label}</Text>
+              </CustomLink>
+
+              <CustomLink
+                to={RoutePath.AboutUs}
+                type={LinkTypes.primary}
+                className={styles["greeting-screen__link"]}
+              >
+                <Text textType="span">{about_church_link_label}</Text>
+                <Icon iconName="rightArrow" />
+              </CustomLink>
+            </div>
           </div>
         </div>
       </Container>

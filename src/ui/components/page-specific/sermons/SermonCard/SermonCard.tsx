@@ -5,7 +5,7 @@ import { IoVideocam } from "react-icons/io5";
 import { VscDebugStart, VscDebugStop } from "react-icons/vsc";
 import { AppContext } from '@/ui/globalState/AppContext';
 import { useUpdatePlayerInformation } from '@/hooks/useUpdatePlayerInformation';
-import { getLocaleFormattedDate } from '@/hooks/useLocaleFormattedDate';
+import { getLocaleFormattedDate } from '@/utils/dateFormatter';
 import { Text } from '@/ui/components/ui-kit';
 import { SermonCardProps } from './types';
 

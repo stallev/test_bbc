@@ -5,12 +5,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: $hamburger-bar-width;
-  height: $hamburger-bar-height;
   border-radius: $hamburger-border-radius;
 
   svg {
+    width: 18px;
+    height: 16px; 
     font-size: $hamburger-font-size;
-    color: $hamburger-color;
+    color: var(--fill-main-color);
+    
+    rect {
+      fill: var(--fill-main-color);
+    }
+  }
+
+  @media (min-width: $smallDesktop) {
+    display: none;
   }
 }

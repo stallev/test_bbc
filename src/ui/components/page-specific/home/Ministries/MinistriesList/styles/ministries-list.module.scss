@@ -1,0 +1,124 @@
+@import "../../../../../../../styles/variables.scss";
+@import "../../../../../../../styles/placeholders.scss";
+
+.ministries-slider-container {
+  height: 320px; // Высота для 6 слайдов
+  position: relative;
+
+  @media screen and (min-width: $smallDesktop) {
+    background-image: url("../../../../../../assets/images/ministries_bg.webp");
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: 240px auto;
+  }
+
+  @media screen and (min-width: $desktop) {
+    background-size: 280px auto;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    background-size: 353px auto;
+  }
+}
+
+.ministries-list {
+  height: 100%;
+
+  @media screen and (min-width: $smallDesktop) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    gap: 16px;
+    background-image: url("../../../../../../assets/images/ministries_bg.webp");
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: 240px auto;
+  }
+
+  @media screen and (min-width: $desktop) {
+    background-size: 280px auto;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    background-size: 353px auto;
+  }
+
+
+  &__slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__link {
+    width: fit-content;
+    color: $color-text-gray;
+    text-align: center;
+    font-size: 30px;
+    line-height: 1;
+    
+    a {
+      transition: all .3s ease-in-out;
+    }
+
+    @media screen and (min-width: $smallDesktop) {
+      &:nth-of-type(1) a,
+      &:nth-of-type(7) a {
+        opacity: .3;
+      }
+
+      &:nth-of-type(2) a,
+      &:nth-of-type(6) a {
+        opacity: .5;
+      }
+
+      &:nth-of-type(3) a,
+      &:nth-of-type(5) a {
+        opacity: .7;
+      }
+
+      &:hover a {
+        font-size: 74px;
+        color: $color-red;
+        opacity: 1 !important;
+      }
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      font-size: 60px;
+
+      &:hover {
+        font-size: 86px;
+      }
+    }
+  }
+
+  // &__nav-prev,
+  // &__nav-next {
+  //   &::after {
+  //     color: $color-text-gray;
+  //     font-size: 24px;
+  //   }
+
+  //   &:hover::after {
+  //     color: $color-red;
+  //   }
+  // }
+
+  // &__nav-prev {
+  //   left: -30px;
+  // }
+
+  // &__nav-next {
+  //   right: -30px;
+  // }
+
+  &__nav-prev,
+  &__nav-next {
+    display: none;
+  }
+}

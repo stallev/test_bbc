@@ -20,6 +20,7 @@ export const convertPostListItemFetchedData = (data: PostListItemFetchedDataProp
   return {
     title: data.title,
     excerpt: stripHtmlTags(data.excerpt),
+    simpleDate: data.date,
     date: getFormattedPostDate(data.date, locale),
     slug: data.slug,
     featuredImageData: convertFeaturedImageData(data.featuredImage),

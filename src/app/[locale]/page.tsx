@@ -1,17 +1,40 @@
 import dynamic from "next/dynamic";
+import { Metadata } from 'next'
 import { getTranslations } from "@/utils/languageParser";
 import { PagesIDs, RoutePath } from "@/constants";
-// import RestApiService from "@/services/RestApi";
 import UpcomingEventsDataApi from "@/services/UpcomingDataApi";
+import YouTubeApiService from "@/services/YouTubeApi";
+import StaffDataApi from "@/services/StaffDataApi";
+import BlogDataApi from "@/services/BlogDataApi";
+import { YouTubePlaylistIDs, YouTubeApiKeys } from "@/constants";
+import { MAP_IDs } from "@/constants/mock";
 import PageContentDataApi from "@/services/PageDataApi";
-import Seo from "@/ui/components/Seo/Seo";
 import { i18n, Locale } from "@/i18n.config";
 import GreetingScreen from "@/ui/components/page-specific/home/GreetingScreen/GreetingScreen";
-import PageLayout from "@/ui/containers/PageLayout/PageLayout";
+import Staff from "@/ui/components/page-specific/home/Staff/Staff";
 import { getPagePathData } from "@/utils/getPostSeoData";
+import { getSeoData } from "@/utils/getSeoData";
+import { PagePathProps } from "@/types/globalTypes";
 
-const UpcomingEventsList = dynamic(() => import('@/ui/components/page-specific/home/UpcomingEventsList/UpcomingEventsList'));
-const SubscribeFormDynamic = dynamic(() => import('@/ui/components/SubscribeForm/SubscribeForm'));
+const UpcomingEvents = dynamic(() => import('@/ui/components/page-specific/home/UpcomingEvents/UpcomingEvents'));
+const Ministries = dynamic(() => import('@/ui/components/page-specific/home/Ministries/Ministries'));
+const LiveStreamsDynamic = dynamic(() => import('@/ui/components/page-specific/home/LiveStreams/LiveStreams'));
+const PastorsBlog = dynamic(() => import('@/ui/components/page-specific/home/PastorsBlog/PastorsBlog'));
+const MapLocation = dynamic(() => import('@/ui/components/MapLocation/MapLocation'));
+
+export async function generateMetadata(
+  { params: { locale } }: PagePathProps
+): Promise<Metadata> {
+  const pageId = locale == i18n.defaultLocale ? PagesIDs.Home[i18n.defaultLocale] : PagesIDs.Home.ru;
+
+  const { seo: seoContentData } = await PageContentDataApi.getPageContentData(pageId);
+  const seoPathData = getPagePathData({
+    locale,
+    path: RoutePath.Home
+  });
+
+  return getSeoData({seoContentData, seoPathData});
+}
 
 export default async function Home({
   params: { locale }
@@ -19,37 +42,42 @@ export default async function Home({
   params: { locale: Locale }
 }) {
   const translations = getTranslations(locale);
-  const pageId = locale == "en" ? PagesIDs.Home.en : PagesIDs.Home.ru;
-
-  // const pageData= await RestApiService.getPageData(pageId);
+  
   const upcomingEventsData = await UpcomingEventsDataApi.getUpcomingEvents(locale);
-  const contentData = await PageContentDataApi.getPageContentData(pageId);
-  const seoPathData = getPagePathData({
-    locale,
-    path: RoutePath.Home
-  })
+  const videosData = await YouTubeApiService.getPortionYouTubeStreamsItems(
+    YouTubePlaylistIDs.generalLiveStreams,
+    YouTubeApiKeys.alexander
+  );
+  const staffData = await StaffDataApi.getMinisters(locale);
+  const postsData = await BlogDataApi.getLastPostsDataHomePageByLang(locale);
 
   return (
     <>
-      <Seo
-        seoValues={contentData.seo}
-        seoPathData={seoPathData}
-      />
       <GreetingScreen
         header_h1_title={translations.home_title}
-        header_descr={translations.home_header_descr}
-        header_button_label={translations.home_header_button_label}
+        events_link_label={translations.upcoming_events_nav_link}
+        about_church_link_label={translations.about_church_nav_link_text}
       />
 
-      <UpcomingEventsList data={upcomingEventsData} />
-
-      <SubscribeFormDynamic
-        title={translations.home_subscription_title}
-        description={translations.home_subscription_descr}
+      <LiveStreamsDynamic
+        data={videosData}
+        locale={locale}
       />
+
+      <UpcomingEvents data={upcomingEventsData} />
+
+      <Ministries translations={translations} />
+
+      <Staff data={staffData} translations={translations} />
+
+      <PastorsBlog data={postsData} translations={translations}/>
+
+      <MapLocation mapId={MAP_IDs.homePage} />
     </>
   );
 }
+
+export const revalidate = 5 * 60 * 60;
 
 export async function generateStaticParams() {
   return i18n.locales.map(locale => ({ locale }));

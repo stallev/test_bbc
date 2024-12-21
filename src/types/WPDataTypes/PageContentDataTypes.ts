@@ -1,5 +1,5 @@
 import { ConvertedGutenbergBlockType } from "./GutenbergBlocksTypes";
-import { SeoContentDataProps } from "@/ui/components/Seo/types";
+import { SeoContentDataProps } from "@/types/globalTypes";
 import { WPPostSeoType } from "./CommonWPDataTypes";
 
 export interface FetchedPageContentDataType {

@@ -1,26 +1,34 @@
 "use client"
 
-import React from "react";
+import React, { useState } from "react";
+import dynamic from "next/dynamic";
 import NavBar from "../NavBar/NavBar";
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
 import Logo from "../Logo/Logo";
 import Hamburger from "../HamburgerMenu/Hamburger";
-import useWindowDimensions from "@/hooks/useWindowDimensions";
 import { useLocale } from "@/hooks/useLocale";
-import {
-  isSmallWindowSize,
-  isMobileWindowSize,
-} from "@/hooks/useWindowSizeType";
 import { getTranslations } from "@/utils/languageParser";
 import styles from "./styles/header.module.scss";
 import useScrollHandler from "@/hooks/useScrollHandler";
+import { MobileMenuStateProps } from "@/types/globalTypes";
 
+const ThemeSwitcher = dynamic(() => import('@/ui/components/ThemeSwitcher/ThemeSwitcher'), { ssr: false })
 
 const Header: React.FC = () => {
-  const locale = useLocale()
-  const windowsize = useWindowDimensions();
-  const isSmallWindow = isSmallWindowSize(windowsize.width);
-  const isPhone = isMobileWindowSize(windowsize.width);
+  const locale = useLocale();
+
+  const [mobileMenuState, setMobileMenuState] = useState<MobileMenuStateProps>({
+    isMenuOpen: false,
+    activeDropDownMenuItem: false
+  });
+
+  const toggleMobileMenu = () => {
+    setMobileMenuState({
+      isMenuOpen: !mobileMenuState.isMenuOpen,
+      activeDropDownMenuItem: false
+    })
+  };
+
   const visible = useScrollHandler();
 
   const translations = getTranslations(locale);
@@ -29,15 +37,28 @@ const Header: React.FC = () => {
     <header
       className={`${styles.header} ${visible ? styles.visible : styles.hidden}`}
     >
+      {
+        mobileMenuState.isMenuOpen &&
+        <div onClick={toggleMobileMenu} className={styles.header__overlay}></div>
+      }
+
       <div className={styles.header__content}>
         <Logo translations={translations} />
 
-        <NavBar translations={translations} />
+        <NavBar
+          setMobileMenuState={setMobileMenuState}
+          mobileMenuState={mobileMenuState}
+        />
 
         <div className={styles.header__tooglers}>
-          <LanguageSwitcher />
+          <Hamburger
+            toggleMobileMenu={toggleMobileMenu}
+            isMenuOpen={mobileMenuState.isMenuOpen}
+          />
 
-          {isSmallWindow && !isPhone && <Hamburger />}
+          <ThemeSwitcher />
+
+          <LanguageSwitcher />
         </div>
       </div>
     </header>

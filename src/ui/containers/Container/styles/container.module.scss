@@ -2,7 +2,7 @@
 
 .container {
   margin: 0 auto;
-  width: calc(100% - 50px);
+  width: calc(100% - 40px);
 
   @media screen and (min-width: $mobile) {
     width: 480px;
@@ -21,7 +21,7 @@
   }
 
   @media screen and (min-width: $largeDesktop) {
-    width: 1280px;
+    width: 1290px;
   }
 
   &--markdown-content {

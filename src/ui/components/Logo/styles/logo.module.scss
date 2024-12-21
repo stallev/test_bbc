@@ -2,14 +2,15 @@
 
 .logo {
   display: flex;
-  color: $color-white;
+  height: 38px;
 
   &__link a {
     display: inline-block;
   }
 
-  &__icon {
-    width: 190px;
-    height: 45px;
+  svg {
+    width: 134px;
+    height: 38px;
+    fill: var(--fill-main-color);
   }
 }

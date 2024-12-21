@@ -2,20 +2,17 @@
 
 import React from "react";
 import styles from "././styles/hamburger.module.scss";
-import { toggleMenu } from "@/ui/globalState/GlobalFunctions/useGlobalFunctions";
-import { useAppContext } from "../../globalState/ContextHook/contextHook";
-import { IoMenu, IoClose } from "react-icons/io5";
+import { Icon } from "../ui-kit";
 
-const Hamburger: React.FC = () => {
-  const { state, dispatch } = useAppContext();
+interface HamburgerProps {
+  toggleMobileMenu: () => void
+  isMenuOpen: boolean
+}
 
-  const toggleMenuButton = () => {
-    toggleMenu(dispatch);
-  };
-
+const Hamburger: React.FC<HamburgerProps> = ({ toggleMobileMenu, isMenuOpen }) => {
   return (
-    <div className={styles.hamburger} onClick={toggleMenuButton}>
-      {!state.isMenuOpen ? <IoMenu /> : <IoClose />}
+    <div role="button" tabIndex={0} aria-label="navigation menu" className={styles.hamburger} onClick={toggleMobileMenu}>
+      {!isMenuOpen ? <Icon iconName="hamburger" /> : <Icon iconName="cross" />}
     </div>
   );
 };
