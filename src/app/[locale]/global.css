@@ -27,6 +27,16 @@
     --fill-main-color: #FAF8F2;
     --color-red: #FF3838;
   }
+  
+  [data-theme='light'] {
+    --main-bg-color: #FAF8F2;
+    --foreground: #171717;
+    --text-main-color: #000000;
+    --text-secondary-color: #373737;
+    --text-light-gray-color: #adadad;
+    --fill-main-color: #373737;
+    --color-red: #FF3838;
+  }
 }
 
 html,
