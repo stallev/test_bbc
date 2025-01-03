@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { PiMoonStarsFill } from "react-icons/pi";
 import { BsSun } from "react-icons/bs";
@@ -29,6 +29,7 @@ const ThemeSwitcher = () => {
   return (
     <div onClick={toggleTheme} className={styles["theme-switcher"]}>
       {newThemeValue === 'dark' ? <PiMoonStarsFill /> : <BsSun />}
+      <span>{theme}</span>
     </div>
   )
 }

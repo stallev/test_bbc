@@ -9,8 +9,7 @@
 }
 
 .dark,
-[data-theme='dark'],
-[data-theme='dark'] body {
+[data-theme='dark'] {
   --main-bg-color: #2c2c2c;
   --text-main-color: #FAF8F2;
   --text-secondary-color: #FAF8F2;
