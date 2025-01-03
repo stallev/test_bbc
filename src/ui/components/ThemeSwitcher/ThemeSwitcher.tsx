@@ -29,7 +29,6 @@ const ThemeSwitcher = () => {
   return (
     <div onClick={toggleTheme} className={styles["theme-switcher"]}>
       {newThemeValue === 'dark' ? <PiMoonStarsFill /> : <BsSun />}
-      <span>{theme}</span>
     </div>
   )
 }

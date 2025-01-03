@@ -12,7 +12,7 @@ const Providers = ({ children }: { children: ReactNode }) => {
   return (
     <AppProvider>
       <APIProvider apiKey={GENERAL_GOOGLE_API_KEY} libraries={libraries}>
-        <ThemeProvider>
+        <ThemeProvider attribute="class">
           {children}
         </ThemeProvider>
       </APIProvider>
