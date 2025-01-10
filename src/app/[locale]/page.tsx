@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import { Metadata } from 'next'
+import { Metadata } from 'next';
 import { getTranslations } from "@/utils/languageParser";
 import { PagesIDs, RoutePath } from "@/constants";
 import UpcomingEventsDataApi from "@/services/UpcomingDataApi";
@@ -12,7 +12,6 @@ import PageContentDataApi from "@/services/PageDataApi";
 import { i18n, Locale } from "@/i18n.config";
 import GreetingScreen from "@/ui/components/page-specific/home/GreetingScreen/GreetingScreen";
 import Staff from "@/ui/components/page-specific/home/Staff/Staff";
-import Container from "@/ui/containers/Container/Container";
 import { getPagePathData } from "@/utils/getPostSeoData";
 import { getSeoData } from "@/utils/getSeoData";
 import { PagePathProps } from "@/types/globalTypes";
@@ -73,10 +72,6 @@ export default async function Home({
       <Staff data={staffData} translations={translations} />
 
       <PastorsBlog data={postsData} translations={translations}/>
-
-      <Container>
-        <Donation isDonationPage={false} translations={translations} />
-      </Container>
 
       <MapLocation mapId={MAP_IDs.homePage} />
     </>
