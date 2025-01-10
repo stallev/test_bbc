@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from "react";
+import dynamic from "next/dynamic";
 import NavBar from "../NavBar/NavBar";
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
 import Logo from "../Logo/Logo";
@@ -9,9 +10,12 @@ import { useLocale } from "@/hooks/useLocale";
 import { getTranslations } from "@/utils/languageParser";
 import styles from "./styles/header.module.scss";
 import useScrollHandler from "@/hooks/useScrollHandler";
+import { Locale } from "@/i18n.config";
 import { MobileMenuStateProps } from "@/types/globalTypes";
 
-const Header: React.FC = () => {
+const ThemeSwitcher = dynamic(() => import('@/ui/components/ThemeSwitcher/ThemeSwitcher'), { ssr: false })
+
+const Header = () => {
   const locale = useLocale();
 
   const [mobileMenuState, setMobileMenuState] = useState<MobileMenuStateProps>({
@@ -52,6 +56,8 @@ const Header: React.FC = () => {
             toggleMobileMenu={toggleMobileMenu}
             isMenuOpen={mobileMenuState.isMenuOpen}
           />
+
+          <ThemeSwitcher />
 
           <LanguageSwitcher />
         </div>

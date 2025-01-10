@@ -1,0 +1,122 @@
+@import "../../../../../../../../styles/variables.scss";
+@import "../../../../../../../../styles/placeholders.scss";
+
+.prayer-request {
+  @extend %section;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--text-main-color);
+
+  &__goal-text {
+    margin-bottom: 16px;
+    width: fit-content;
+    font-size: 13px;
+    line-height: 1;
+    font-weight: 400;
+    font-size: $gilroy-regular-font-family;
+
+    @media screen and (min-width: $tablet) {
+      margin-bottom: 18px;
+      font-size: 24px;
+    }
+
+    @media screen and (min-width: $smallDesktop) {
+      margin-bottom: 22px;
+      font-size: 32px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      margin-bottom: 26px;
+      font-size: 46px;
+    }
+  }
+
+  &__title {
+    margin-bottom: 40px;
+    font-size: 30px;
+    font-weight: 400;
+    font-family: $accia-font-family;
+
+    @media screen and (min-width: $tablet) {
+      margin-bottom: 50px;
+      font-size: 40px;
+    }
+
+    @media screen and (min-width: $smallDesktop) {
+      margin-bottom: 64px;
+      font-size: 50px;      
+    }
+
+    @media screen and (min-width: $desktop) {
+      margin-bottom: 80px;
+      font-size: 64px;      
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      margin-bottom: 90px;
+      font-size: 72px;
+    }
+  }
+
+  &__quotes {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+    margin-bottom: 20px;
+
+    @media screen and (min-width: $tablet) {
+      margin-left: auto;
+      grid-template-columns: 180px 370px;
+    }
+
+    @media screen and (min-width: $smallDesktop) {
+      margin-bottom: 40px;
+      grid-template-columns: 200px 400px;
+      gap: 30px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      margin-bottom: 60px;
+      width: fit-content;
+      grid-template-columns: 340px 448px;
+      gap: 25px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      margin-bottom: 80px;
+    }
+  }
+
+  &__action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    @media screen and (min-width: $smallDesktop) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      grid-template-columns: 3fr 2fr;
+      gap: 40px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      grid-template-columns: minmax(400px, 700px) minmax(200px, max-content);
+      gap: 76px;
+    }
+  }
+
+  &__motivation {
+    @extend %paragraphDescriptionTextStyle;
+
+    @media screen and (min-width: $smallDesktop) {
+      margin-bottom: 30px;
+      align-self: flex-start;
+    }
+  }
+}

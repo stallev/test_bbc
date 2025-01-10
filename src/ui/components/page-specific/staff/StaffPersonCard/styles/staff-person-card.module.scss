@@ -4,79 +4,53 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  row-gap: $gutter-ms;
+  gap: 8px;
+  color: var(--text-main-color);
 
-  @media screen and (min-width: $smallDesktop) {
-    row-gap: $gutter-ml;
-  }
-
-  @media screen and (min-width: $desktop) {
-    row-gap: $gutter-lg
-  }
-
-  &:nth-of-type(2n) {
+  &.staff-person-card--reduced:nth-of-type(2n) {
     flex-direction: column-reverse;
-    padding-top: $gutter-ml;
+    padding-top: 40px;
+
+    @media screen and (min-width: $tablet) {
+      padding-top: 50px;
+    }
 
     @media screen and (min-width: $smallDesktop) {
-      padding-top: 110px;
+      padding-top: 80px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      padding-top: 90px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      padding-top: 130px;
     }
   }
 
-  &:nth-of-type(2n) .staff-person-card__image {
-    &::after,
-    &::before {
-      border-right: 144px solid transparent;
-      border-bottom: 50px solid $color-light-yellow;
+  &.staff-person-card--reduced:nth-of-type(2n) .staff-person-card__image-wrap {
+    transform: skewY(22deg);
 
-      @media screen and (min-width: $mobile) {
-        border-right: 180px solid transparent;
-        border-bottom-width: 60px;
-      }
-    
-      @media screen and (min-width: $tablet) {
-        border-right: 230px solid transparent;
-        border-bottom-width: 70px;
-      }
-    
-      @media screen and (min-width: $smallDesktop) {
-        border-right: 300px solid transparent;
-        border-bottom-width: 80px;
-      }
-    
-      @media screen and (min-width: $desktop) {
-        border-right: 360px solid transparent;
-        border-bottom-width: 95px;
-      }
+    img {
+      transform: skewY(-22deg);
     }
   }
 
-  &:nth-of-type(2n+1) .staff-person-card__image {
-    &::after,
-    &::before {
-      border-left: 140px solid transparent;
-      border-bottom: 50px solid $color-light-yellow;
+  &.staff-person-card--reduced:nth-of-type(2n+1) .staff-person-card__image-wrap {
+    transform: skewY(-22deg);
 
-      @media screen and (min-width: $mobile) {
-        border-left: 180px solid transparent;
-        border-bottom-width: 60px;
-      }
-    
-      @media screen and (min-width: $tablet) {
-        border-left: 230px solid transparent;
-        border-bottom-width: 70px;
-      }
-    
-      @media screen and (min-width: $smallDesktop) {
-        border-left: 300px solid transparent;
-        border-bottom-width: 80px;
-      }
-    
-      @media screen and (min-width: $desktop) {
-        border-left: 360px solid transparent;
-        border-bottom-width: 95px;
-      }
+    img {
+      transform: skewY(22deg);
     }
+  }
+
+  &.staff-person-card--reduced:nth-of-type(2n) .staff-person-card__photo {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  &__photo {
+    position: relative;
   }
 
   &__logo-icon {
@@ -84,77 +58,76 @@
     z-index: $z-index-level2;
     width: 18px;
     height: 24px;
-  
+
     @media screen and (min-width: $tablet) {
       width: 21px;
       height: 28px;
     }
-  
+
     @media screen and (min-width: $smallDesktop) {
       width: 30px;
       height: 40px;
     }
-  
+
     @media screen and (min-width: $desktop) {
       width: 45px;
       height: 60px;
     }
   }
 
-  &__image {
-    position: relative;
-    height: 270px;
+  &__image-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 220px;
+    margin-bottom: 23px;
+    margin-top: 23px;
     overflow: hidden;
+    border-radius: 5px;
 
     @media screen and (min-width: $mobile) {
-      height: 350px;
+      height: 270px;
     }
-  
+
+    @media screen and (min-width: $tablet) {
+      height: 290px;
+      margin-bottom: 27px;
+      margin-top: 27px;
+    }
+
+    @media screen and (min-width: $smallDesktop) {
+      height: 380px;
+      margin-bottom: 40px;
+      margin-top: 40px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      height: 525px;
+      margin-bottom: 75px;
+      margin-top: 75px;
+    }
+  }
+
+  &__image {
+    position: relative;
+    height: 300px;
+    width: 100%;
+    overflow: hidden;
+
     @media screen and (min-width: $tablet) {
       height: 400px;
     }
-  
+
     @media screen and (min-width: $smallDesktop) {
       height: 500px;
     }
-  
+
     @media screen and (min-width: $desktop) {
       height: 670px;
     }
 
-    &::before,
-    &::after {
-      position: absolute;
-      display: block;
-      content: "";
-      z-index: $z-index-level1;
-
-      @media screen and (min-width: $mobile) {
-        border-bottom-width: 80px;
-      }
-    
-      @media screen and (min-width: $tablet) {
-        border-bottom-width: 100px;
-      }
-    
-      @media screen and (min-width: $smallDesktop) {
-        border-bottom-width: 120px;
-      }
-    
-      @media screen and (min-width: $desktop) {
-        border-bottom-width: 140px;
-      }
-    }
-
-    &::before {
-      top: 0;
-      left: 0;
-      transform: rotate(180deg);
-    }
-
-    &::after {
-      bottom: 0;
-      right: 0;
+    img {
+      transform: skewY(22deg);
     }
   }
 
@@ -170,17 +143,18 @@
     width: fit-content;
     font-size: 14px;
     line-height: 1.2;
-    font-weight: 400;
+    font-weight: 500;
+    font-family: $gilroy-medium-font-family;
 
     @media screen and (min-width: $tablet) {
       font-size: 16px;
     }
-  
+
     @media screen and (min-width: $smallDesktop) {
       margin-bottom: $gutter-ml;
       font-size: 30px;
     }
-  
+
     @media screen and (min-width: $desktop) {
       margin-bottom: 30px;
       font-size: 36px;
@@ -192,64 +166,214 @@
     width: fit-content;
     font-size: 10px;
     line-height: 1;
+    font-weight: 500;
+    color: var(--text-light-gray-color);
+    font-family: $gilroy-medium-font-family;
 
     @media screen and (min-width: $tablet) {
       margin-bottom: $gutter-ms;
       font-size: 12px;
     }
-  
+
     @media screen and (min-width: $smallDesktop) {
       font-size: 18px;
     }
-  
+
     @media screen and (min-width: $desktop) {
       margin-bottom: $gutter-md;
       font-size: 25px;
     }
   }
 
-  &__read-more-link a {
-    display: flex;
-    align-items: center;
-    gap: $gutter-xs;
-    font-size: 10px;
-    line-height: 10px;
+  &__read-more {
+    margin-top: auto;
+  }
 
-    span {
-      display: inline-block;
-      padding-top: $gutter-xs;
-    }
+  &__description {
+    display: -webkit-box;
+    -webkit-line-clamp: 12;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 500;
+    font-family: $gilroy-medium-font-family;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.2;
 
-    &:hover {
-      text-decoration: underline;
-    }
-
-    svg {
-      align-self: start;
-      width: 7px;
-      height: 7px;
-      fill: $color-black;
-    }
-  
     @media screen and (min-width: $smallDesktop) {
-      gap: $gutter-md;
+      margin-bottom: $gutter-lg;
+      text-align: left;
       font-size: 18px;
+    }
 
-      svg {
-        width: 16px;
-        height: 16px;
+    @media screen and (min-width: $largeDesktop) {
+      margin-bottom: 40px;
+      font-size: 24px;
+    }
+  }
+
+  &.staff-person-card--detailed {
+    display: flex;
+    flex-direction: row;
+    gap: 35px;
+
+    &:nth-of-type(2n+1) {
+      flex-direction: row-reverse;
+    }
+
+    @media screen and (min-width: $tablet) {
+      gap: 60px;
+    }
+
+    @media screen and (min-width: $smallDesktop) {
+      gap: 80px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      gap: 100px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      gap: 120px;
+    }
+
+    .staff-person-card__logo-icon {
+      width: 29px;
+      height: 35px;
+
+      @media screen and (min-width: $smallDesktop) {
+        width: 40px;
+        height: 48px;
+      }
+  
+      @media screen and (min-width: $desktop) {
+        width: 60px;
+        height: 72px;
+      }
+
+      @media screen and (min-width: $largeDesktop) {
+        width: 80px;
+        height: 97px;
       }
     }
-  
-    @media screen and (min-width: $desktop) {
-      span {
-        padding-top: $gutter-ms;
-        font-size: 25px;
+
+    .staff-person-card__photo {
+      margin-bottom: 30px;
+
+      @media screen and (min-width: $tablet) {
+        margin-bottom: 60px;
       }
 
-      svg {
-        width: 19px;
-        height: 18px;
+      @media screen and (min-width: $smallDesktop) {
+        margin-bottom: 70px;
+      }
+
+      @media screen and (min-width: $desktop) {
+        margin-bottom: 80px;
+      }
+
+      @media screen and (min-width: $largeDesktop) {
+        margin-bottom: 90px;
+      }
+    }
+
+    .staff-person-card__image-wrap {
+      width: calc(100% - 14px);
+      margin-left: auto;
+      transform: skewY(-22deg);
+      $z-index-level1: 10;
+
+      @media screen and (min-width: $tablet) {
+        width: calc(100% - 20px);
+      }
+
+      @media screen and (min-width: $smallDesktop) {
+        width: calc(100% - 24px);
+      }
+
+      @media screen and (min-width: $desktop) {
+        width: calc(100% - 30px);
+      }
+
+      @media screen and (min-width: $largeDesktop) {
+        width: calc(100% - 36px);
+      }
+
+      img {
+        transform: skewY(22deg);
+      }
+    }
+
+    .staff-person-card__photo {
+      position: relative;
+      width: 50%;
+
+      &::before {
+        display: block;
+        position: absolute;
+        content: '';
+        left: 0;
+        bottom: 0;
+        width: calc(100% - 14px);
+        height: calc(100% - 40px);
+        border: 1px solid $color-red;
+        border-radius: 2px;
+        transform: skewY(-22deg);
+
+        @media screen and (min-width: $tablet) {
+          width: calc(100% - 20px);
+          height: calc(100% - 50px);
+        }
+
+        @media screen and (min-width: $smallDesktop) {
+          width: calc(100% - 35px);
+          height: calc(100% - 75px);
+        }
+
+        @media screen and (min-width: $desktop) {
+          width: calc(100% - 30px);
+          height: calc(100% - 100px);
+        }
+
+        @media screen and (min-width: $largeDesktop) {
+          width: calc(100% - 36px);
+        }
+      }
+    }
+
+    .staff-person-card__info {
+      width: 50%;
+    }
+
+    .staff-person-card__position {
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+
+    .staff-person-card__name {
+      width: 100%;
+      padding-bottom: 10px;
+      border-bottom: 1px solid $color-red;
+      font-family: $gilroy-medium-font-family;
+      font-weight: 500;
+      font-size: 16px;
+      text-align: center;
+
+      @media screen and (min-width: $tablet) {
+        margin-bottom: 10px;
+        font-size: 24px;
+      }
+
+      @media screen and (min-width: $smallDesktop) {
+        margin-bottom: 16px;
+        font-size: 32px;
+      }
+
+      @media screen and (min-width: $largeDesktop) {
+        margin-bottom: 20px;
+        font-size: 44px;
       }
     }
   }

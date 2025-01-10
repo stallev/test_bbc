@@ -11,7 +11,7 @@
   }
 
   &__container {
-    padding: $gutter-lg 0 0;
+    @extend %section;
   }
 
   &__title {
@@ -22,7 +22,6 @@
     @extend %paragraphDescriptionTextStyle;
 
     @media screen and (min-width: $smallDesktop) {
-      padding-top: $gutter-md;
       width: 100%;
       max-width: 450px;
     }
@@ -57,8 +56,10 @@
 
   &__submit {
     align-self: center;
+    margin-top: 38px;
 
     @media screen and (min-width: $smallDesktop) {
+      margin-top: 42px;
       align-self: flex-start;
     }
   }

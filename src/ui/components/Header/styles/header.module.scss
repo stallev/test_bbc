@@ -6,7 +6,7 @@
   left: 0;
   right: 0;
   display: flex;
-  background-color: $color-light-bg;
+  background-color: var(--main-bg-color);
   width: 100%;
   z-index: $z-index-level3;
   transition: 0.8s;
@@ -31,7 +31,8 @@
   &__tooglers {
     display: flex;
     align-items: center;
-    gap: 66px;
+    justify-content: space-between;
+    gap: 24px;
   }
 
   &.visible {

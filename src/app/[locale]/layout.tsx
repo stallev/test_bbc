@@ -7,7 +7,6 @@ import styles from "@/styles/Home.module.scss";
 import Providers from "@/ui/containers/Providers/Providers";
 import { getTranslations } from "@/utils/languageParser";
 import { Locale } from "@/i18n.config";
-import "./global.css";
 
 const Player = dynamic(() => import('@/ui/components/Player/Player'));
 
@@ -21,13 +20,13 @@ const Layout = async ({
   const translations = getTranslations(locale);
 
   return (
-    <html lang={locale}>
+    <html suppressHydrationWarning={true} lang={locale}>
       <meta
         name="viewport"
         title={translations.site_name}
         content="width=device-width, initial-scale=1, maximum-scale=5"
       />
-      <body suppressHydrationWarning={true}>
+      <body>
         <Providers>
           <Header />
 

@@ -19,6 +19,13 @@ $gutter-xl: $gutter-base * 3; // 48
 $gutter-xlg: $gutter-base * 4; // 64
 $gutter-xxlg: $gutter-base * 5; // 80
 
+// Font Family
+$accia-font-family: var(--font-accia-reg);
+$gilroy-semibold-font-family: var(--font-gilroy-semibold);
+$gilroy-medium-font-family: var(--font-gilroy-medium);
+$gilroy-regular-font-family: var(--font-gilroy-regular);
+$livret-display-font-family: var(--font-livret-display);
+
 // Font Sizes
 $font-size-xxxs: 8px;
 $font-size-xxs: 10px;
@@ -53,7 +60,7 @@ $color-light-bg: rgb(250 248 242);
 $color-light-yellow: #FAF8F2;
 $color-white: #fff;
 $color-black: #000;
-$color-dark-gray: #373737;
+$color-text-gray: #bab5b1;
 $color-gray: #adadad;
 $color-dark-green: #4e594a;
 $color-gold: #dbb047;

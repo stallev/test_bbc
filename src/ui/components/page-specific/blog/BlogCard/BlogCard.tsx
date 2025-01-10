@@ -1,95 +1,77 @@
+"use client"
+
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { RoutePath } from '@/constants';
-import { Text } from '@/ui/components/ui-kit';
-import useTranslationFunction from '@/hooks/useTranslationFunction';
+import { Text, CustomImage } from '@/ui/components/ui-kit';
+import ReadMoreLink from '@/ui/components/ui-kit/ReadMoreLink/ReadMoreLink';
+import { getDayMonthFormattedDate } from '@/utils/dateFormatter';
+import { useClientTranslationFunction, useLocale } from '@/hooks/useLocale';
 import { BlogCardDataProps } from './types';
 
 import styles from './styles/blog-card.module.scss';
 
-const BlogCard:React.FC<BlogCardDataProps> = ({
+const BlogCard: React.FC<BlogCardDataProps> = ({
   data,
   index = 1
 }) => {
-  const translate = useTranslationFunction();
+  const translate = useClientTranslationFunction();
+  const locale = useLocale();
 
   const postLink = `${RoutePath.Blog}/${data.slug}`;
   const imagePriorityLoading = index < 1 ? true : false;
 
   return (
-    <div className={styles["blog-card"]}>
+    <article className={styles["blog-card"]}>
+      <Text
+        textType='span'
+        className={styles['blog-card__start-date']}
+      >
+        {getDayMonthFormattedDate(data.simpleDate, locale)}
+      </Text>
+
+      <CustomImage
+        imageURL={data.featuredImageData.featuredImageUrl}
+        className={styles["blog-card__image"]}
+        alt={data.title}
+        priority={imagePriorityLoading}
+        ariaLabel={data.title}
+        sizes="(min-width: 1024px) 100vw, 33vw"
+      />
+
       <Link
-        className={styles["blog-card__image-wrap"]}
         aria-label="Blog post link"
         tabIndex={0}
         href={postLink}
+        className={styles["blog-card__title"]}
       >
-        <Image
-          src={data.featuredImageData.featuredImageUrl}
-          fill
-          alt={data.title}
-          sizes='50vw'
-          priority={imagePriorityLoading}
-        />
+        <Text
+          textType='h2'
+        >
+          {data.title}
+        </Text>
       </Link>
+
+      <Text
+        textType='p'
+        className={styles["blog-card__description"]}
+      >
+        {data.excerpt}
+      </Text>
       
-      <div className={styles["blog-card__info"]}>
-        <Link
-          aria-label="Blog post link"
-          tabIndex={0}
-          href={postLink}
-        >
-          <Text
-            textType='h2'
-            className={styles["blog-card__title"]}
-          >
-            {data.title}
-          </Text>
-        </Link>
+      <Text
+        textType='p'
+        className={styles["blog-card__author"]}
+      >
+        {data.author.authorFullName}
+      </Text>
 
-        <Text
-          textType='p'
-          className={styles["blog-card__excerpt"]}
-        >
-          {data.excerpt}
-        </Text>
-
-        <div className={styles["blog-card__post-meta"]}>
-          <Text
-            textType='span'
-            className={styles["blog-card__reading-time"]}
-          >
-            {`${data.readingTime} ${translate("minute")}: ${translate("reading_time")}`}
-          </Text>
-          
-          &#8728;
-
-          <Text
-            textType='span'
-            className={styles["blog-card__published-date"]}
-          >
-            {data.date.postDateFormattedValue}
-          </Text>
-        </div>
-
-        <Link
-          href={postLink}
-          tabIndex={0}
-          aria-label="Blog post link"
-          className={styles["blog-card__read-more-link"]}
-        >
-          {translate("more_link_label")}
-        </Link>
-
-        <Text
-          textType='h3'
-          className={styles["blog-card__author-name"]}
-        >
-          {data.author.authorFullName}
-        </Text>
-      </div>
-    </div>
+      <ReadMoreLink
+        to={postLink}
+        label={translate("more_link_label")}
+        className={styles['blog-card__readmore-link']}
+      />
+    </article>
   )
 };
 

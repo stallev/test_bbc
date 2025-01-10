@@ -25,6 +25,7 @@ export const RoutePath = {
   FamilyMinistry: "/ministries/family",
   MissionaryMinistry: "/ministries/missionary",
   SmallGroupsMinistry: "/ministries/small-groups",
+  WomenMinistry: "/ministries/women",
   Participation: "/participation",
   Timeline: "/timeline",
   Media: "/media",

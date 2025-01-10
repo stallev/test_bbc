@@ -13,7 +13,9 @@
 
   &__title {
     font-size: 15px;
-    color: $color-black;
+    color: var(--text-main-color);
+    font-weight: 500;
+    font-family: $gilroy-medium-font-family;
 
     @media screen and (min-width: $tablet) {
       font-size: $font-size-lms;
@@ -38,9 +40,12 @@
     margin-bottom: $gutter-sm;
 
     &-date {
+      flex-shrink: 0;
       padding: 0 $gutter-md 0 0;
       font-size: 13px;
       line-height: 15px;
+      font-weight: 500;
+      font-family: $gilroy-medium-font-family;
   
       @media screen and (min-width: $smallDesktop) {
         font-size: $font-size-md;
