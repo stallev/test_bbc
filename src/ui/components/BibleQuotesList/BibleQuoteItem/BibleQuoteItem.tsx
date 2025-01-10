@@ -25,4 +25,4 @@ const BibleQuoteItem = ({ source, content }: BibleQuoteItemProps) => {
   )
 }
 
-export default BibleQuoteItem
+export default BibleQuoteItem;
