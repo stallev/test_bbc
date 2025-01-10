@@ -12,11 +12,11 @@
   }
   
   @media screen and (min-width: $desktop) {
-    column-gap: 100px;
+    column-gap: 80px;
   }
 
   @media screen and (min-width: $largeDesktop) {
-    column-gap: 150px;
+    column-gap: 100px;
   }
 
   nav {

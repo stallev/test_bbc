@@ -61,7 +61,7 @@ const Layout = async ({
       />
       <body
         suppressHydrationWarning={true}
-        className={`${acciaReg.variable} ${gilroyMedium.variable} ${gilroyRegular.variable} ${ttLivretDisplay.variable} ${gilroySemibold.variable}`}
+        className={`${acciaReg.variable} ${gilroyMedium.variable} ${gilroyRegular.variable} ${ttLivretDisplay.variable}`}
       >
         <Providers>
           <Header />

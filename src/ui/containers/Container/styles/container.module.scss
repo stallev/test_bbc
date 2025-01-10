@@ -30,26 +30,4 @@
       max-width: 700px;
     }
   }
-
-  &--narrow-content {
-    @media screen and (min-width: $mobile) {
-      width: 480px;
-    }
-  
-    @media screen and (min-width: $tablet) {
-      width: 600px;
-    }
-  
-    @media screen and (min-width: $smallDesktop) {
-      width: 700px;
-    }
-  
-    @media screen and (min-width: $desktop) {
-      width: 800px;
-    }
-  
-    @media screen and (min-width: $largeDesktop) {
-      width: 900px;
-    }
-  }
 }
