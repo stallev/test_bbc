@@ -9,7 +9,6 @@ interface CustomTextareaProps {
   onClick?: () => void,
   tabIndex?: number,
   errorText?: string,
-  label?: string
   isError?: boolean,
   validate?: any,
   placeholder: string
@@ -20,7 +19,6 @@ const CustomTextarea: FC<CustomTextareaProps> = ({
   onClick,
   tabIndex = 0,
   errorText = '',
-  label = '',
   validate,
   placeholder,
 }) => {
@@ -35,25 +33,14 @@ const CustomTextarea: FC<CustomTextareaProps> = ({
         }
       )}
     >
-      {!!label
-        ? <label>
-          {label}
-          <textarea
-            rows={5}
-            placeholder={placeholder}
-            className={styles['custom-textarea__field']}
-            tabIndex={tabIndex}
-            {...validate}
-          />
-        </label>
-        : <textarea
-          rows={5}
-          placeholder={placeholder}
-          className={styles['custom-textarea__field']}
-          tabIndex={tabIndex}
-          {...validate}
-        />}
-
+      <textarea
+        rows={5}
+        placeholder={placeholder}
+        className={styles['custom-textarea__field']}
+        tabIndex={tabIndex}
+        {...validate}
+      />
+      
       {errorText && <Text
         textType='p'
         className={styles['custom-textarea__error-message']}

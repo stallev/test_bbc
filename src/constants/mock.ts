@@ -23,18 +23,3 @@ export const DEFAULT_FEATURED_IMAGE = `${process.env.NEXT_PUBLIC_SITE_URL}/defau
 export const DEFAULT_LOCALE = 'en';
 
 export const BG_IMAGE_URL = 'https://testwordpressmedia1.s3.amazonaws.com/bg-header.jpg';
-
-export const POST_CARD_HOME_PAGE_COUNT = 2;
-
-export const MAP_IDs = {
-  homePage: '12dfcsvf32emcvmkerRt',
-  contactsPage: '12dfcsvf32emcvmkerRn',
-}
-
-export const ContactsInfo = {
-  email: 'takemetochurch@gmail.com',
-  address: '7635 Auburn Blvd, Citrus Heights, CA 95610',
-  phonePrint: '+1 (800) 469-92-69',
-  phoneValue: '+18004699269',
-  workHours: '6:00 – 21:00',
-}

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { RoutePath } from '@/constants';
-import { CustomImage, Text, ReadMoreLink } from '@/ui/components/ui-kit';
+import { CustomImage, Text, CustomLink, Icon } from '@/ui/components/ui-kit';
 import { getDayMonthFormattedDate } from '@/utils/dateFormatter';
 import { useClientTranslationFunction, useLocale } from '@/hooks/useLocale';
 import { UpcomingEventCardItemProps } from './types';
@@ -45,11 +45,14 @@ const UpcomingEventCard = ({ data }: { data: UpcomingEventCardItemProps }) => {
         {data.upcomingEventShortDescription}
       </Text>
 
-      <ReadMoreLink
+      <CustomLink
         to={`${RoutePath.UpcomingEvents}/${data.slug}`}
-        label={translate("read_more_label")}
         className={styles['upcoming-event-card__readmore-link']}
-      />
+      >
+        <Icon iconName='rightArrow'/>
+        
+        <Text textType='span'>{translate("read_more_label")}</Text>
+      </CustomLink>
     </article>
   )
 }

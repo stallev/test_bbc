@@ -12,17 +12,17 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 const cspHeader = `
   default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' https://maps.googleapis.com https://maps.google.com;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline';
   style-src 'self' 'unsafe-inline';
-  img-src 'self' blob: data: https://i.ytimg.com https://testwordpressmedia1.s3.amazonaws.com https://maps.googleapis.com https://maps.gstatic.com;
-  font-src 'self' data:;
+  img-src 'self' blob: data: https://i.ytimg.com https://testwordpressmedia1.s3.amazonaws.com;
+  font-src 'self';
   object-src 'none';
   base-uri 'self';
   form-action 'self';
   frame-ancestors 'none';
   upgrade-insecure-requests;
   frame-src 'self' https://wallet.subsplash.com https://subsplash.com https://www.youtube-nocookie.com/ https://testwordpressmedia1.s3.amazonaws.com/;
-  connect-src 'self' https://api.iconify.design https://testchurchapi.stallevs.ru/graphql https://testchurchapi.stallevs.ru/wp-json/timeline/timeline-data https://testchurchapi.stallevs.ru/wp-json/events/upcoming-events-list https://www.googleapis.com/youtube/v3/playlistItems https://youtube.googleapis.com/youtube/v3/videos https://maps.googleapis.com;
+  connect-src 'self' https://api.iconify.design https://testchurchapi.stallevs.ru/graphql https://testchurchapi.stallevs.ru/wp-json/timeline/timeline-data https://testchurchapi.stallevs.ru/wp-json/events/upcoming-events-list https://www.googleapis.com/youtube/v3/playlistItems https://youtube.googleapis.com/youtube/v3/videos;
   media-src 'self' https://testwordpressmedia1.s3.amazonaws.com https://testchurchapi.stallevs.ru/;
 `;
 

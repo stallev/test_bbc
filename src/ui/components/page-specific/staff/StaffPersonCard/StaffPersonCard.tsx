@@ -1,34 +1,25 @@
 import React from 'react';
 import { RoutePath } from '@/constants';
 import { StaffPersonCardProps } from './types';
-import { CustomImage, Text, Icon, ReadMoreLink } from '@/ui/components/ui-kit';
-import { stripHtmlTags } from '@/utils';
+import { CustomImage, CustomLink, Text, Icon } from '@/ui/components/ui-kit';
 
 import styles from './styles/staff-person-card.module.scss';
 
-const StaffPersonCard: React.FC<StaffPersonCardProps> = ({ data, translations, isDetailed, index }: StaffPersonCardProps) => {
+const StaffPersonCard: React.FC<StaffPersonCardProps> = ({ data, translations, index }: StaffPersonCardProps) => {
   const priorityFetching = (!index ? 1 : index) < 1;
-
+  
   return (
     <article
-      className={`
-        ${styles["staff-person-card"]}
-        ${isDetailed ? styles["staff-person-card--detailed"] : styles["staff-person-card--reduced"]}
-      `}
+      className={styles["staff-person-card"]}
     >
-      <div className={styles["staff-person-card__photo"]}>
-        <Icon iconName='smallLogo' className={styles["staff-person-card__logo-icon"]} />
-
-        <div className={styles["staff-person-card__image-wrap"]}>
-          <CustomImage
-            className={styles["staff-person-card__image"]}
-            imageURL={data.imageLinks.large}
-            priority={priorityFetching}
-            sizes="38vw"
-          />
-        </div>
-      </div>
-
+      <Icon iconName='smallLogo' className={styles["staff-person-card__logo-icon"]} />
+      
+      <CustomImage
+        className={styles["staff-person-card__image"]}
+        imageURL={data.imageLinks.large}
+        priority={priorityFetching}
+        sizes="50vw"
+      />
       <div className={styles["staff-person-card__info"]}>
         <Text
           textType='span'
@@ -44,21 +35,17 @@ const StaffPersonCard: React.FC<StaffPersonCardProps> = ({ data, translations, i
           {`${data.ministerFirstName} ${data.ministerLastName}`}
         </Text>
 
-        {
-          isDetailed
-          && <Text
-            textType='p'
-            className={styles["staff-person-card__description"]}
-          >
-            {data?.excerpt && stripHtmlTags(data.excerpt)}
-          </Text>
-        }
-
-        <ReadMoreLink
+        <CustomLink
           to={`${RoutePath.Staff}/${data.slug}`}
-          label={translations.read_more_label}
-          className={styles["staff-person-card__read-more"]}
-        />
+          className={styles["staff-person-card__read-more-link"]}
+        >
+          <Icon className='test' iconName='rightArrow'/>
+          <Text
+            textType='span'
+          >
+            {translations.read_more_label}
+          </Text>
+        </CustomLink>
       </div>
     </article>
   )

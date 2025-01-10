@@ -9,7 +9,6 @@ interface CustomInputProps {
   className?: string,
   onClick?: () => void,
   tabIndex?: number,
-  label?: string,
   errorText?: string,
   isError?: boolean,
   validate?: any,
@@ -22,7 +21,6 @@ const CustomInput: FC<CustomInputProps> = ({
   type = "text",
   onClick,
   tabIndex = 0,
-  label = '',
   errorText = '',
   validate,
   placeholder,
@@ -38,27 +36,14 @@ const CustomInput: FC<CustomInputProps> = ({
         }
       )}
     >
-      {!!label
-        ? <label>
-          {label}
-
-          <input
-            type={type}
-            placeholder={placeholder}
-            className={styles['custom-input__field']}
-            tabIndex={tabIndex}
-            {...validate}
-          />
-        </label>
-        : <input
-          type={type}
-          placeholder={placeholder}
-          className={styles['custom-input__field']}
-          tabIndex={tabIndex}
-          {...validate}
-        />
-      }
-
+      <input
+        type={type}
+        placeholder={placeholder}
+        className={styles['custom-input__field']}
+        tabIndex={tabIndex}
+        {...validate}
+      />
+      
       {errorText && <Text
         textType='p'
         className={styles['custom-input__error-message']}

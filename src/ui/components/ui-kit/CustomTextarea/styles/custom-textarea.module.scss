@@ -1,5 +1,4 @@
 @import "../../../../../styles/variables.scss";
-@import "../../../../../styles/placeholders.scss";
 
 .custom-textarea {
   display: flex;
@@ -22,22 +21,20 @@
     display: block;
     box-sizing: border-box;
     flex: 1;
-    padding: $gutter-ms $gutter-base $gutter-xs 0;
+    padding: $gutter-ms $gutter-base;
+    font-family: "Montserrat";
     z-index: 1;
     width: 100%;
     border: none;
-    font-family: $gilroy-regular-font-family;
-    font-size: 12px;
-    line-height: 1;
-    background-color: var(--main-bg-color);
-    border-bottom: 1px solid $color-medium-gray;
+    font-size: $font-size-ms;
+    background-color: transparent;
+    border: 1px solid $color-medium-gray;
+    border-radius: $border-radius-sm;
     color: $color-gray;
 
-    @media screen and (min-width: $desktop) {
-      font-size: 24px;
-    }
-
     &:focus {
+      border-color: $color-black;
+      background: $color-light-gray;
       outline: none;
       outline-offset: 0;
     }
@@ -46,10 +43,6 @@
   &--error textarea,
   &--error textarea:focus {
     border: 1px solid $color-red;
-  }
-
-  label {
-    @extend %inputLabelStyle;
   }
 
   &__error-message {

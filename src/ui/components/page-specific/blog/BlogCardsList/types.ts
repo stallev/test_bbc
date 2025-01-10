@@ -4,5 +4,4 @@ export interface BlogCardsListProps {
   data: BlogCardProps[]
   fetchMoreData: () => void
   hasMore: boolean
-  isReducedList: boolean
 }

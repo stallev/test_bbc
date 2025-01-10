@@ -3,4 +3,25 @@
 .text {
   display: flex;
   align-items: center;
+  color: $color-white;
+
+  &--p {
+    font-size: $font-size-ms;
+    line-height: 1.4;
+  }
+
+  &--h1 {
+    font-size: $font-size-lg;
+    line-height: $line-height-lg;
+
+    @media screen and (min-width: $tablet) {
+      font-size: $font-size-xl;
+      line-height: $line-height-xl;
+    }
+
+    @media screen and (min-width: $smallDesktop) {
+      font-size: $font-size-xxl;
+      line-height: $line-height-xxl;
+    }
+  }
 }

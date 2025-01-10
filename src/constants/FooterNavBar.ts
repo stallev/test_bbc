@@ -1,28 +1,20 @@
-import { RoutePath, NavBarLinksNames,  } from ".";
+import { RoutePath, NavBarLinksNames } from ".";
 
-export const FooterNavBarGeneralLinks = [
-  {
+export const FooterNavBarLinks = {
+  HomeLink: {
+    link: RoutePath.Home,
+    label: NavBarLinksNames.HomeLinkName,
+  },
+  AboutUsLink: {
     link: RoutePath.AboutUs,
     label: NavBarLinksNames.AboutChurchLinkName,
   },
-  {
-    link: RoutePath.UpcomingEvents,
-    label: NavBarLinksNames.UpcomingEvents,
+  TermsLink: {
+    link: RoutePath.Terms,
+    label: NavBarLinksNames.Terms,
   },
-  {
-    link: RoutePath.Media,
-    label: NavBarLinksNames.Media,
+  PrivacyPolicyLink: {
+    link: RoutePath.PrivacyPolicy,
+    label: NavBarLinksNames.PrivacyPolicy,
   },
-  {
-    link: RoutePath.Contacts,
-    label: NavBarLinksNames.ContactsLinkName,
-  },
-  {
-    link: RoutePath.Blog,
-    label: NavBarLinksNames.Blog,
-  },
-  {
-    link: RoutePath.Giving,
-    label: NavBarLinksNames.GivingLinkName,
-  },
-];
+};

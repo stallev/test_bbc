@@ -5,7 +5,6 @@ import { getAuthorsList } from "@/utils/getAuthorsList";
 import { getPostsYearsList } from "@/utils/getPostsYearsList";
 import { getPostSeoData } from "@/utils/getPostSeoData";
 import { fetchAPI } from "./WordPressFetchAPI";
-import { POST_CARD_HOME_PAGE_COUNT } from "@/constants/mock";
 import { PostNodeSlugType, PostSitemapSourceData } from "@/types/WPDataTypes/CommonWPDataTypes";
 
 class BlogDataApi {
@@ -27,20 +26,6 @@ class BlogDataApi {
       authorsList,
       yearsList,
     };
-  }
-
-  static async getLastPostsDataHomePageByLang(locale: string) {
-    const variables = {
-      language: locale.toUpperCase(),
-    }
-    
-    const { allPastorsPost: { edges } } = await fetchAPI(getPastorsPostsByLang, { variables });
-    const postsList = edges
-      .map((item: any) => item.node)
-      .map((item: any) => convertPostListItemFetchedData(item, locale))
-      .slice(0, POST_CARD_HOME_PAGE_COUNT);
-    
-    return postsList;
   }
 
   static async getPastorsPostItemDataBySlug(id: string, locale: string, idType = 'SLUG') {

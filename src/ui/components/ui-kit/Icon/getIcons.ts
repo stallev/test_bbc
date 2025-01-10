@@ -12,5 +12,4 @@ export const ComponentsMap: ComponentsMap = {
   rightArrow: IconsComponent.RightArrowIcon,
   leftArrow: IconsComponent.LeftArrowIcon,
   smallLogo: IconsComponent.SmallLogoIcon,
-  prayer: IconsComponent.PrayerIcon,
 };

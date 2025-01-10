@@ -81,14 +81,22 @@ const SubscribeForm = () => {
         </Text>
 
         <div className={styles['subscribe-form__fieldset']}>
-          <CustomInput
-            type={InputTypes.email}
-            placeholder={translate(FormFieldLangCodes.emailRequired)}
-            className={styles['subscribe-form__input-field']}
-            errorText={errors.email && translate(FormFieldValidationErrorsLangCodes.emailError)}
-            validate={register("email", { pattern: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/ })}
-            label={translate(FormFieldLangCodes.emailRequired)}
-          />
+          <div className={styles['subscribe-form__input-field-wrap']}>
+            <Text
+              textType='span'
+              className={styles['subscribe-form__input-label']}
+            >
+              {translate(FormFieldLangCodes.emailRequired)}
+            </Text>
+
+            <CustomInput
+              type={InputTypes.email}
+              placeholder={translate(FormFieldLangCodes.emailRequired)}
+              className={styles['subscribe-form__input-field']}
+              errorText={errors.email && translate(FormFieldValidationErrorsLangCodes.emailError)}
+              validate={register("email", { pattern: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/ })}
+            />
+          </div>
 
           <Button
             className={styles['subscribe-form__submit']}

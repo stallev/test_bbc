@@ -5,4 +5,3 @@ export { default as HamburgerIcon } from './HamburgerIcon';
 export { default as RightArrowIcon } from './RightArrowIcon';
 export { default as LeftArrowIcon } from './LeftArrowIcon';
 export { default as SmallLogoIcon } from './SmallLogoIcon';
-export { default as PrayerIcon } from './PrayerIcon';

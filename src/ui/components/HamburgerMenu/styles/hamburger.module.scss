@@ -11,11 +11,7 @@
     width: 18px;
     height: 16px; 
     font-size: $hamburger-font-size;
-    color: var(--fill-main-color);
-    
-    rect {
-      fill: var(--fill-main-color);
-    }
+    color: $hamburger-color;
   }
 
   @media (min-width: $smallDesktop) {
