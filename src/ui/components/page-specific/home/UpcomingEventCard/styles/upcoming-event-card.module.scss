@@ -1,5 +1,5 @@
-@import '../../../../../../styles/variables.scss';
-@import '../../../../../../styles/placeholders.scss';
+@import "../../../../../../styles/variables.scss";
+@import "../../../../../../styles/placeholders.scss";
 
 .upcoming-event-card {
   @extend %postCardStyles;
@@ -17,7 +17,6 @@
     font-size: 23px;
     line-height: 1;
     font-weight: 500;
-    font-family: $gilroy-medium-font-family;
 
     @media screen and (min-width: $smallDesktop) {
       margin-bottom: $gutter-md;
@@ -31,9 +30,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-bottom: 16px;
-    font-weight: 500;
-    font-family: $gilroy-medium-font-family;
+    margin-bottom: $gutter-xl;
     font-size: 13px;
     font-weight: 500;
     line-height: 1.2;

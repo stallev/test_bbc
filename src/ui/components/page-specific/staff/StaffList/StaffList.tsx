@@ -6,10 +6,7 @@ import styles from './styles/staff-list.module.scss';
 
 const StaffList = ({ data, translations, isDetailed = false }: StaffListProps) => {
   return (
-    <div className={`
-      ${styles["staff-list"]}
-      ${isDetailed ? styles["staff-list--detailed"] : ''}
-    `}>
+    <div className={styles["staff-list"]}>
       {
         data.map((personCard, index) =>
           <StaffPersonCard

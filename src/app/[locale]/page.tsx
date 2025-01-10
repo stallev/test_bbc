@@ -43,7 +43,7 @@ export default async function Home({
 }) {
   const translations = getTranslations(locale);
   
-  const upcomingEventsData = await UpcomingEventsDataApi.getUpcomingEventsReduced(locale);
+  const upcomingEventsData = await UpcomingEventsDataApi.getUpcomingEvents(locale);
   const videosData = await YouTubeApiService.getPortionYouTubeStreamsItems(
     YouTubePlaylistIDs.generalLiveStreams,
     YouTubeApiKeys.alexander
@@ -72,9 +72,13 @@ export default async function Home({
 
       <PastorsBlog data={postsData} translations={translations}/>
 
-      {/* <MapLocation mapId={MAP_IDs.homePage} /> */}
+      <MapLocation mapId={MAP_IDs.homePage} />
     </>
   );
 }
 
-export const revalidate = 5 * 60;
+export const revalidate = 5 * 60 * 60;
+
+export async function generateStaticParams() {
+  return i18n.locales.map(locale => ({ locale }));
+}

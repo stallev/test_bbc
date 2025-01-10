@@ -71,8 +71,8 @@ export const convertGutenbergBlocksData = (blocks: GutenbergBlockType[]) => {
             order: block.order,
           }
         case 'core/quote':
-          const citation = block?.originalContent ? stripHtmlTags(block.originalContent) : "";
-          const originalContent = block.innerBlocks[0]?.originalContent ? stripHtmlTags(block.innerBlocks[0].originalContent) : "";
+          const citation = stripHtmlTags(block.originalContent);
+          const originalContent = stripHtmlTags(block.innerBlocks[0].originalContent);
 
           return {
             type: GutenbergBlocksTypes.quote,

@@ -2,8 +2,15 @@
 @import '../placeholders.scss';
 
 .ministry {
+  padding-bottom: $gutter-lg;
+
+  @media screen and (min-width: $smallDesktop) {
+    padding-bottom: $gutter-xl;
+  }
+
   &__title {
-    @extend %h1PageTitleStyle;
+    @extend %paddingTopHeader;
+    @extend %pageTitleStyles;
   }
 
   &__page-content {

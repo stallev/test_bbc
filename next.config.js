@@ -15,7 +15,7 @@ const cspHeader = `
   script-src 'self' 'unsafe-eval' 'unsafe-inline' https://maps.googleapis.com https://maps.google.com;
   style-src 'self' 'unsafe-inline';
   img-src 'self' blob: data: https://i.ytimg.com https://testwordpressmedia1.s3.amazonaws.com https://maps.googleapis.com https://maps.gstatic.com;
-  font-src 'self' data:;
+  font-src 'self';
   object-src 'none';
   base-uri 'self';
   form-action 'self';

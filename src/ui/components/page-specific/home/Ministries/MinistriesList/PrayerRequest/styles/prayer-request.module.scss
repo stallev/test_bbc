@@ -13,8 +13,6 @@
     width: fit-content;
     font-size: 13px;
     line-height: 1;
-    font-weight: 400;
-    font-size: $gilroy-regular-font-family;
 
     @media screen and (min-width: $tablet) {
       margin-bottom: 18px;
@@ -35,8 +33,6 @@
   &__title {
     margin-bottom: 40px;
     font-size: 30px;
-    font-weight: 400;
-    font-family: $accia-font-family;
 
     @media screen and (min-width: $tablet) {
       margin-bottom: 50px;
@@ -112,11 +108,21 @@
   }
 
   &__motivation {
-    @extend %paragraphDescriptionTextStyle;
+    line-height: 1.2;
+    font-size: 14px;
+
+    @media screen and (min-width: $tablet) {
+      font-size: 18px;
+    }
 
     @media screen and (min-width: $smallDesktop) {
       margin-bottom: 30px;
       align-self: flex-start;
+      font-size: 20px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      font-size: 24px;
     }
   }
 }
