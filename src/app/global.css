@@ -27,8 +27,8 @@
     --fill-main-color: #FAF8F2;
     --color-red: #FF3838;
   }
-
-  .light {
+  
+  [data-theme='light'] {
     --main-bg-color: #FAF8F2;
     --foreground: #171717;
     --text-main-color: #000000;

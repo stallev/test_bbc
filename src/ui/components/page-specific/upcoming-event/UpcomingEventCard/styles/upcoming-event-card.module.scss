@@ -1,5 +1,5 @@
-@import "../../../../../../styles/variables.scss";
-@import "../../../../../../styles/placeholders.scss";
+@import '../../../../../../styles/variables.scss';
+@import '../../../../../../styles/placeholders.scss';
 
 .upcoming-event-card {
   @extend %postCardStyles;
@@ -31,7 +31,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-bottom: $gutter-xl;
+    margin-bottom: 16px;
     font-weight: 500;
     font-family: $gilroy-medium-font-family;
     font-size: 13px;

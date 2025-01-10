@@ -1,6 +1,4 @@
-import dynamic from "next/dynamic";
 import { Metadata } from 'next';
-import Image from "next/image";
 import PageContentDataApi from "@/services/PageDataApi";
 import StaffDataApi from "@/services/StaffDataApi";
 import { RoutePath, PagesIDs } from "@/constants";
@@ -8,12 +6,14 @@ import { getTranslations } from "@/utils/languageParser";
 import { getPagePathData } from "@/utils/getPostSeoData";
 import { getSeoData } from "@/utils/getSeoData";
 import { PagePathProps } from "@/types/globalTypes";
-import { Text, CustomImage } from "@/ui/components/ui-kit";
+import { Text } from "@/ui/components/ui-kit";
 import StaffList from "@/ui/components/page-specific/staff/StaffList/StaffList";
 import Container from "@/ui/containers/Container/Container";
 import { i18n, Locale } from "@/i18n.config";
 
 import styles from "@/styles/pages/staff.module.scss";
+
+export const revalidate = 5 * 60;
 
 export async function generateMetadata(
   { params: { locale } }: PagePathProps
@@ -23,7 +23,7 @@ export async function generateMetadata(
   const { seo: seoContentData } = await PageContentDataApi.getPageContentData(pageId);
   const seoPathData = getPagePathData({
     locale,
-    path: RoutePath.Home
+    path: RoutePath.Staff
   });
 
   return getSeoData({ seoContentData, seoPathData });

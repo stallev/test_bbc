@@ -3,11 +3,55 @@
 
 .contact-us {
   &__title {
-    @extend %paddingTopHeader;
-    @extend %pageTitleStyles;
+    @extend %h1PageTitleStyle;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 25px;
+    margin-bottom: 48px;
+
+    @media screen and (min-width: $tablet) {
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 0;
+    }
+
+    @media screen and (min-width: $desktop) {
+      margin-bottom: 60px;
+    }
+  }
+
+  &__icon {
+    display: block;
+    align-self: center;
+    width: 88px;
+    height: 108px;
+
+    @media screen and (min-width: $tablet) {
+      align-self: auto;
+      width: 130px;
+      height: 157px;
+    }
+
+    @media screen and (min-width: $smallDesktop) {
+      width: 200px;
+      height: 242px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      width: 230px;
+      height: 278px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      width: 294px;
+      height: 356px;
+    }
   }
 
   &__page-content {
-    margin-top: $gutter-xl;
+    margin: $gutter-xl 0;
   }
 }
