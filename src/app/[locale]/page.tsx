@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import { Metadata } from 'next';
+import { Metadata } from 'next'
 import { getTranslations } from "@/utils/languageParser";
 import { PagesIDs, RoutePath } from "@/constants";
 import UpcomingEventsDataApi from "@/services/UpcomingDataApi";
@@ -20,7 +20,6 @@ const UpcomingEvents = dynamic(() => import('@/ui/components/page-specific/home/
 const Ministries = dynamic(() => import('@/ui/components/page-specific/home/Ministries/Ministries'));
 const LiveStreamsDynamic = dynamic(() => import('@/ui/components/page-specific/home/LiveStreams/LiveStreams'));
 const PastorsBlog = dynamic(() => import('@/ui/components/page-specific/home/PastorsBlog/PastorsBlog'));
-const Donation = dynamic(() => import('@/ui/components/Donation/Donation'));
 const MapLocation = dynamic(() => import('@/ui/components/MapLocation/MapLocation'));
 
 export async function generateMetadata(
@@ -44,7 +43,7 @@ export default async function Home({
 }) {
   const translations = getTranslations(locale);
   
-  const upcomingEventsData = await UpcomingEventsDataApi.getUpcomingEventsReduced(locale);
+  const upcomingEventsData = await UpcomingEventsDataApi.getUpcomingEvents(locale);
   const videosData = await YouTubeApiService.getPortionYouTubeStreamsItems(
     YouTubePlaylistIDs.generalLiveStreams,
     YouTubeApiKeys.alexander

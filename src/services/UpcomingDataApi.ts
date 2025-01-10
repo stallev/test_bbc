@@ -75,12 +75,6 @@ class UpcomingEventsDataApi {
     return resultItems;
   }
 
-  static async getUpcomingEventsReduced(locale: string): Promise<any> {
-    const items = await this.getUpcomingEvents(locale);
-    
-    return items.slice(0, 3);
-  }
-
   static async getUpcomingEventsPaths() {
     const { allUpcoming: { edges: nodes } } = await fetchAPI(getUpcomingEventsSlugs);
 
