@@ -4,8 +4,6 @@
   display: flex;
   column-gap: $gutter-lg;
   width: fit-content;
-  font-weight: 500;
-  font-family: $gilroy-medium-font-family;
 
   @media screen and (min-width: $smallDesktop) {
     column-gap: 64px;

@@ -17,7 +17,6 @@
     font-size: 23px;
     line-height: 1;
     font-weight: 500;
-    font-family: $gilroy-medium-font-family;
 
     @media screen and (min-width: $smallDesktop) {
       margin-bottom: $gutter-md;
@@ -32,8 +31,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
     margin-bottom: $gutter-xl;
-    font-weight: 500;
-    font-family: $gilroy-medium-font-family;
     font-size: 13px;
     font-weight: 500;
     line-height: 1.2;

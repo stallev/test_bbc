@@ -77,4 +77,8 @@ export default async function Home({
   );
 }
 
-export const revalidate = 5 * 60;
+export const revalidate = 5 * 60 * 60;
+
+export async function generateStaticParams() {
+  return i18n.locales.map(locale => ({ locale }));
+}
