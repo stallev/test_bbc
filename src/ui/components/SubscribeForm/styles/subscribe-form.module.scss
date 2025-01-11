@@ -11,7 +11,7 @@
   }
 
   &__container {
-    padding: $gutter-lg 0 0;
+    @extend %section;
   }
 
   &__title {

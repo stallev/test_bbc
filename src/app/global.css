@@ -9,8 +9,7 @@
 }
 
 .dark,
-[data-theme222='dark'],
-[data-theme222='dark'] body {
+[data-theme='dark'] {
   --main-bg-color: #2c2c2c;
   --text-main-color: #FAF8F2;
   --text-secondary-color: #FAF8F2;
@@ -26,6 +25,16 @@
     --foreground: #ededed;
     --text-light-gray-color: #adadad;
     --fill-main-color: #FAF8F2;
+    --color-red: #FF3838;
+  }
+  
+  [data-theme='light'] {
+    --main-bg-color: #FAF8F2;
+    --foreground: #171717;
+    --text-main-color: #000000;
+    --text-secondary-color: #373737;
+    --text-light-gray-color: #adadad;
+    --fill-main-color: #373737;
     --color-red: #FF3838;
   }
 }

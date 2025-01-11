@@ -3,8 +3,7 @@
 
 .staff {
   &__title {
-    @extend %paddingTopHeader;
-    @extend %pageTitleStyles;
+    @extend %h1PageTitleStyle;
   }
 
   &__page-content {

@@ -1,0 +1,173 @@
+@import "../../../../../../styles/variables.scss";
+@import "../../../../../../styles/placeholders.scss";
+
+$active-slider-mobile-width: 75px;
+$active-slider-tablet-width: 120px;
+$active-slider-small-desktop-width: 160px;
+$active-slider-desktop-width: 200px;
+$active-slider-large-desktop-width: 244px;
+$active-slider-factor: 1.25;
+
+$inactive-slider-mobile-width: 103px;
+$inactive-slider-tablet-width: 140px;
+$inactive-slider-small-desktop-width: 190px;
+$inactive-slider-desktop-width: 250px;
+$inactive-slider-large-desktop-width: 332px;
+$inactive-slider-factor: 1.36;
+
+%activeSliderParams {
+  width: $active-slider-mobile-width !important;
+  height: calc($active-slider-mobile-width * $active-slider-factor) !important;
+  border-radius: 3px;
+  overflow: hidden;
+
+  @media screen and (min-width: $tablet) {
+    width: $active-slider-tablet-width !important;
+    height: calc($active-slider-tablet-width * $active-slider-factor) !important;
+    border-radius: 4px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    width: $active-slider-small-desktop-width !important;
+    height: calc($active-slider-small-desktop-width * $active-slider-factor) !important;
+    border-radius: 5px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: $active-slider-desktop-width !important;
+    height: calc($active-slider-desktop-width * $active-slider-factor) !important;
+    border-radius: 7px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    width: $active-slider-large-desktop-width !important;
+    height: calc($active-slider-large-desktop-width * $active-slider-factor) !important;
+    border-radius: 8px;
+  }
+}
+
+%inactiveSliderParams {
+  width: $inactive-slider-mobile-width !important;
+  height: calc($inactive-slider-mobile-width * $inactive-slider-factor) !important;
+  border-radius: 3px;
+  overflow: hidden;
+
+  @media screen and (min-width: $tablet) {
+    width: $inactive-slider-tablet-width !important;
+    height: calc($inactive-slider-tablet-width * $inactive-slider-factor) !important;
+    border-radius: 4px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    width: $inactive-slider-small-desktop-width !important;
+    height: calc($inactive-slider-small-desktop-width * $inactive-slider-factor) !important;
+    border-radius: 5px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: $inactive-slider-desktop-width !important;
+    height: calc($inactive-slider-desktop-width * $inactive-slider-factor) !important;
+    border-radius: 7px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    width: $inactive-slider-large-desktop-width !important;
+    height: calc($inactive-slider-large-desktop-width * $inactive-slider-factor) !important;
+    border-radius: 8px;
+  }
+}
+
+.ministry-slider {
+  position: relative;
+
+  &::before,
+  &::after {
+    position: absolute;
+    display: block;
+    content: '';
+    width: 30%;
+    height: 100%;
+    bottom: 0;
+    z-index: $z-index-level1;
+    pointer-events: none;
+  }
+
+  &::before {
+    left: 0;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+  }
+
+  &::after {
+    right: 0;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+  }
+
+  :global(.swiper-wrapper) {
+    align-items: center;
+  }
+
+  :global(.swiper-slide) {
+    @extend %activeSliderParams;
+  }
+
+  :global(.swiper-slide.swiper-slide-active) {
+    @extend %activeSliderParams;
+  }
+
+  :global(.swiper-slide.swiper-slide-active)+.ministry-slider__slide,
+  :global(.swiper-slide.swiper-slide-prev) {
+    @extend %inactiveSliderParams;
+  }
+
+  &__container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+
+    @media screen and (min-width: $tablet) {
+      margin-bottom: 90px;
+    }
+  
+    @media screen and (min-width: $smallDesktop) {
+      margin-bottom: 120px;
+    }
+  
+    @media screen and (min-width: $desktop) {
+      margin-bottom: 160px;
+    }
+  
+    @media screen and (min-width: $largeDesktop) {
+      margin-bottom: 200px;
+    }
+  }
+
+  &__visible {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  &__slide {
+    position: relative;
+    margin-right: 10px;
+    transition: all ease .3s;
+
+    @media screen and (min-width: $smallDesktop) {
+      margin-right: 20px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      margin-right: 30px;
+    }
+  }
+
+  &__slide-image {
+    width: 150px;
+    height: 100%;
+
+    @media screen and (min-width: $tablet) {
+      width: 600px;
+    }
+  }
+}

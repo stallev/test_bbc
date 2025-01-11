@@ -4,17 +4,19 @@
   display: flex;
   column-gap: $gutter-lg;
   width: fit-content;
+  font-weight: 500;
+  font-family: $gilroy-medium-font-family;
 
   @media screen and (min-width: $smallDesktop) {
     column-gap: 64px;
   }
   
   @media screen and (min-width: $desktop) {
-    column-gap: 80px;
+    column-gap: 100px;
   }
 
   @media screen and (min-width: $largeDesktop) {
-    column-gap: 100px;
+    column-gap: 150px;
   }
 
   nav {

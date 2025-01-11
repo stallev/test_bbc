@@ -22,6 +22,7 @@ const PastorsBlog = ({ translations, data }: PastorsBlogProps) => {
         >
           {translations.reflections_of_pastors}
         </Text>
+
         <PostsList
           data={data}
         />

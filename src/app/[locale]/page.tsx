@@ -43,7 +43,7 @@ export default async function Home({
 }) {
   const translations = getTranslations(locale);
   
-  const upcomingEventsData = await UpcomingEventsDataApi.getUpcomingEvents(locale);
+  const upcomingEventsData = await UpcomingEventsDataApi.getUpcomingEventsReduced(locale);
   const videosData = await YouTubeApiService.getPortionYouTubeStreamsItems(
     YouTubePlaylistIDs.generalLiveStreams,
     YouTubeApiKeys.alexander
@@ -77,8 +77,4 @@ export default async function Home({
   );
 }
 
-export const revalidate = 5 * 60 * 60;
-
-export async function generateStaticParams() {
-  return i18n.locales.map(locale => ({ locale }));
-}
+export const revalidate = 5 * 60;
