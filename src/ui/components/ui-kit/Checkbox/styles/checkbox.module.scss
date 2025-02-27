@@ -22,7 +22,7 @@
     p {
       font-size: 10px;
 
-      @media screen and (min-width: $smallDesktop) {
+      @media screen and (min-width: $tablet) {
         font-size: 20px;
       }
     }

@@ -31,6 +31,12 @@ $staff-person-card-deg: 12deg;
     }
   }
 
+  &.staff-person-card--reduced .staff-person-card__image {
+    @media screen and (min-width: $mobile) {
+      height: 310px;
+    }
+  }
+
   &.staff-person-card--reduced:nth-of-type(2n) {
     .staff-person-card__logo-icon {
       bottom: 4px;
@@ -282,8 +288,9 @@ $staff-person-card-deg: 12deg;
       }
 
       @media screen and (min-width: $largeDesktop) {
-        width: 80px;
-        height: 97px;
+        width: 60px;
+        height: 75px;
+        left: 32px;
       }
     }
 
@@ -309,6 +316,7 @@ $staff-person-card-deg: 12deg;
 
     .staff-person-card__image-wrap {
       width: calc(100% - 14px);
+      height: 330px;
       margin-left: auto;
       transform: skewY(-$staff-person-card-deg);
       $z-index-level1: 10;
@@ -339,6 +347,12 @@ $staff-person-card-deg: 12deg;
     }
 
     .staff-person-card__image {
+      height: 380px;
+      
+      @media screen and (min-width: $mobile) {
+        height: 400px;
+      }
+
       @media screen and (min-width: $tablet) {
         height: 460px;
       }
@@ -389,13 +403,14 @@ $staff-person-card-deg: 12deg;
 
         @media screen and (min-width: $desktop) {
           width: calc(100% - 30px);
-          height: calc(100% - 150px);
-          bottom: 28px;
+          height: calc(100% - 110px);
+          bottom: 16px;
         }
 
         @media screen and (min-width: $largeDesktop) {
           width: calc(100% - 36px);
-          height: calc(100% - 150px);
+          height: calc(100% - 116px);
+          left: 7px;
           border-width: 3px;
         }
       }
