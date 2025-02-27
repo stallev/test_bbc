@@ -47,6 +47,7 @@
     font-weight: 400;
     font-size: 35px;
     font-family: $accia-font-family;
+    color: var(--text-main-color);
 
     @media screen and (min-width: $tablet) {
       font-size: 45px;
@@ -74,6 +75,7 @@
     line-height: .9;
     font-family: $accia-font-family;
     font-weight: 400;
+    color: var(--text-main-color);
 
     @media screen and (min-width: $tablet) {
       font-size: 24px;
