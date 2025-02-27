@@ -90,6 +90,12 @@
     svg path {
       stroke: var(--text-main-color);
     }
+
+    svg {
+      display: inline-block;
+      width: 100%;
+      height: auto;
+    }
   }
 
   &__action {
