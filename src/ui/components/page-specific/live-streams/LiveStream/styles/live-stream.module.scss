@@ -1,23 +1,51 @@
 @import '../../../../../../styles/variables.scss';
+@import '../../../../../../styles/placeholders.scss';
 
 .live-stream {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: $gutter-ml auto 0;
+  gap: 20px;
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    @media screen and (min-width: $smallDesktop) {
+      gap: 25px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      gap: 44px;
+    }
+  }
 
   &__service-title {
     text-align: center;
-    font-size: $font-size-md;
-    line-height: $line-height-md;
-    font-weight: $font-weight-bold;
+    font-size: 25px;
+    line-height: 1;
+    font-weight: 500;
+    font-family: $gilroy-semibold-font-family;
     margin-top: $gutter-xs;
+    margin-bottom: 30px;
+
+    @media screen and (min-width: $tablet) {
+      margin-bottom: 50px;
+    }
+
+    @media screen and (min-width: $smallDesktop) {
+      font-size: 30px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      font-size: 40px;
+    }
   }
 
   &__service-description {
+    @extend %liveStreamsStyle;
     text-align: center;
-    font-size: $font-size-sm;
-    line-height: $line-height-sm;
-    text-transform: uppercase;
   }
 }

@@ -8,11 +8,11 @@ import Providers from "@/ui/containers/Providers/Providers";
 import { getTranslations } from "@/utils/languageParser";
 import { Locale } from "@/i18n.config";
 
-const Player = dynamic(() => import('@/ui/components/Player/Player'));
+const Player = dynamic(() => import("@/ui/components/Player/Player"));
 
 const Layout = async ({
   children,
-  params: { locale }
+  params: { locale },
 }: {
   children: React.ReactNode;
   params: { locale: Locale };
@@ -20,32 +20,18 @@ const Layout = async ({
   const translations = getTranslations(locale);
 
   return (
-    <html suppressHydrationWarning={true} lang={locale}>
-      <meta
-        name="viewport"
-        title={translations.site_name}
-        content="width=device-width, initial-scale=1, maximum-scale=5"
-      />
-      <body>
-        <Providers>
-          <Header />
+    <Providers>
+      <Header />
 
-          <main className={styles.main}>
-            {children}
-          </main>
+      <main className={styles.main}>{children}</main>
 
-          <Footer
-            translations={translations}
-            locale={locale}
-          />
+      <Footer translations={translations} locale={locale} />
 
-          <Notification translations={translations} />
+      <Notification translations={translations} />
 
-          <Player />
-        </Providers>
-      </body>
-    </html>
+      <Player />
+    </Providers>
   );
-}
+};
 
 export default Layout;

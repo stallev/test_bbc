@@ -6,8 +6,7 @@ export const getLocaleFromPath = async(): Promise<Locale> => {
   const pathname = headersList.get('x-pathname') || '';
 
   const segments = pathname.split('/').filter(Boolean);
-  console.log('pathname', pathname)
-
+  
   if (segments.length > 0 && i18n.locales.includes(segments[0] as Locale)) {
     return segments[0] as Locale
   };

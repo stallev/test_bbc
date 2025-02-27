@@ -1,7 +1,7 @@
-import { SermonCardProps } from "../SermonCard/types";
+import { RenderingSermonCardDataType } from "@/types/WPDataTypes/SermonPostsDataTypes"
 
 export interface SermonCardsListProps {
-  data: SermonCardProps[]
+  data: RenderingSermonCardDataType[]
   fetchMoreData: () => void
   hasMore: boolean
 }

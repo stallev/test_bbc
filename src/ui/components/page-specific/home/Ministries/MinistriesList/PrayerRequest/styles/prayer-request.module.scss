@@ -86,13 +86,17 @@
     @media screen and (min-width: $largeDesktop) {
       margin-bottom: 80px;
     }
+
+    svg path {
+      stroke: var(--text-main-color);
+    }
   }
 
   &__action {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 40px;
 
     @media screen and (min-width: $smallDesktop) {
       display: grid;
@@ -101,18 +105,17 @@
     }
 
     @media screen and (min-width: $desktop) {
-      grid-template-columns: 3fr 2fr;
+      grid-template-columns: 5fr 7fr;
       gap: 40px;
     }
 
     @media screen and (min-width: $largeDesktop) {
-      grid-template-columns: minmax(400px, 700px) minmax(200px, max-content);
       gap: 76px;
     }
   }
 
   &__motivation {
-    @extend %paragraphDescriptionTextStyle;
+    @extend %smallParagraphRegularDescriptionTextStyle;
 
     @media screen and (min-width: $smallDesktop) {
       margin-bottom: 30px;

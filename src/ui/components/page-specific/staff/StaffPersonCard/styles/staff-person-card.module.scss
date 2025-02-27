@@ -1,4 +1,7 @@
 @import "../../../../../../styles/variables.scss";
+@import "../../../../../../styles/placeholders.scss";
+
+$staff-person-card-deg: 12deg;
 
 .staff-person-card {
   position: relative;
@@ -28,19 +31,55 @@
     }
   }
 
-  &.staff-person-card--reduced:nth-of-type(2n) .staff-person-card__image-wrap {
-    transform: skewY(22deg);
+  &.staff-person-card--reduced:nth-of-type(2n) {
+    .staff-person-card__logo-icon {
+      bottom: 4px;
 
-    img {
-      transform: skewY(-22deg);
+      @media screen and (min-width: $tablet) {
+        bottom: 0;
+      }
+
+      @media screen and (min-width: $smallDesktop) {
+        bottom: 4px;
+      }
+
+      @media screen and (min-width: $largeDesktop) {
+        bottom: 12px;
+      }
+    }
+
+    .staff-person-card__image-wrap {
+      transform: skewY($staff-person-card-deg);
+  
+      img {
+        transform: skewY(-$staff-person-card-deg);
+      }
     }
   }
 
-  &.staff-person-card--reduced:nth-of-type(2n+1) .staff-person-card__image-wrap {
-    transform: skewY(-22deg);
+  &.staff-person-card--reduced:nth-of-type(2n+1) {
+    .staff-person-card__logo-icon {
+      top: 4px;
 
-    img {
-      transform: skewY(22deg);
+      @media screen and (min-width: $tablet) {
+        top: 4px;
+      }
+
+      @media screen and (min-width: $smallDesktop) {
+        top: 8px;
+      }
+
+      @media screen and (min-width: $largeDesktop) {
+        top: 8px;
+      }
+    }
+
+    .staff-person-card__image-wrap {
+      transform: skewY(-$staff-person-card-deg);
+  
+      img {
+        transform: skewY($staff-person-card-deg);
+      }
     }
   }
 
@@ -103,8 +142,8 @@
 
     @media screen and (min-width: $desktop) {
       height: 525px;
-      margin-bottom: 75px;
-      margin-top: 75px;
+      margin-bottom: 54px;
+      margin-top: 50px;
     }
   }
 
@@ -127,7 +166,7 @@
     }
 
     img {
-      transform: skewY(22deg);
+      transform: skewY($staff-person-card-deg);
     }
   }
 
@@ -167,7 +206,7 @@
     font-size: 10px;
     line-height: 1;
     font-weight: 500;
-    color: var(--text-light-gray-color);
+    color: var(--text-main-color);
     font-family: $gilroy-medium-font-family;
 
     @media screen and (min-width: $tablet) {
@@ -185,31 +224,21 @@
     }
   }
 
-  &__read-more {
-    margin-top: auto;
-  }
-
   &__description {
+    @extend %smallParagraphRegularDescriptionTextStyle;
     display: -webkit-box;
     -webkit-line-clamp: 12;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-weight: 500;
-    font-family: $gilroy-medium-font-family;
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 1.2;
 
     @media screen and (min-width: $smallDesktop) {
       margin-bottom: $gutter-lg;
       text-align: left;
-      font-size: 18px;
     }
 
     @media screen and (min-width: $largeDesktop) {
       margin-bottom: 40px;
-      font-size: 24px;
     }
   }
 
@@ -281,7 +310,7 @@
     .staff-person-card__image-wrap {
       width: calc(100% - 14px);
       margin-left: auto;
-      transform: skewY(-22deg);
+      transform: skewY(-$staff-person-card-deg);
       $z-index-level1: 10;
 
       @media screen and (min-width: $tablet) {
@@ -305,7 +334,7 @@
       }
 
       img {
-        transform: skewY(22deg);
+        transform: skewY($staff-person-card-deg);
       }
     }
 
@@ -345,7 +374,7 @@
         height: calc(100% - 45px);
         border: 1px solid $color-red;
         border-radius: 2px;
-        transform: skewY(-22deg);
+        transform: skewY(-$staff-person-card-deg);
 
         @media screen and (min-width: $tablet) {
           width: calc(100% - 20px);
@@ -393,17 +422,20 @@
 
       @media screen and (min-width: $tablet) {
         margin-bottom: 10px;
+        padding-bottom: 15px;
         font-size: 24px;
       }
 
       @media screen and (min-width: $smallDesktop) {
         margin-bottom: 16px;
+        padding-bottom: 20px;
         border-width: 2px;
         font-size: 32px;
       }
 
       @media screen and (min-width: $largeDesktop) {
         margin-bottom: 20px;
+        padding-bottom: 30px;
         border-width: 3px;
         font-size: 44px;
       }

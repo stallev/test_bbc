@@ -72,7 +72,7 @@
     span {
       font-size: 32px;
       line-height: 1.2;
-      color: var(--text-main-color);
+      color: $color-red;
       font-family: $accia-font-family;
 
       @media screen and (min-width: $smallDesktop) {

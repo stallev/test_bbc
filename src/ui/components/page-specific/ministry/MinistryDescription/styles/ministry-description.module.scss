@@ -16,6 +16,7 @@
     font-size: 35px;
     line-height: 1;
     font-style: italic;
+    color: var(--text-main-color);
 
     @media screen and (min-width: $tablet) {
       width: 50%;
@@ -41,53 +42,34 @@
   }
 
   &__active-time {
-    display: flex;
+    @extend %eventPeriodStyle;
     margin-bottom: 6px;
-    gap: 10px;
-    font-family: $gilroy-semibold-font-family;
-    font-weight: 500;
-    line-height: 1;
-    font-size: 15px;
 
     @media screen and (min-width: $tablet) {
       gap: 15px;
       margin-bottom: 20px;
-      font-size: 22px;
     }
-
+  
     @media screen and (min-width: $smallDesktop) {
       margin-bottom: 38px;
-      font-size: 28px;
     }
 
     @media screen and (min-width: $desktop) {
       gap: 22px;
     }
-
+  
     @media screen and (min-width: $largeDesktop) {
       margin-bottom: 54px;
-      font-size: 36px;
     }
   }
 
   &__active-days {
-    display: inline-block;
-    padding-right: 10px;
-    border-right: 2px solid $color-red;
-    color: var(--text-light-gray-color);
-
-    @media screen and (min-width: $tablet) {
-      padding-right: 15px;
-    }
-
-    @media screen and (min-width: $desktop) {
-      padding-right: 22px;
-    }
+    @extend %eventPeriodDateValueStyle;
+    color: var(--text-main-color);
   }
 
   &__active-hours {
-    display: inline-block;
-    color: var(--text-main-color);
+    @extend %eventPeriodTimeValueStyle;
   }
   
   &__text {

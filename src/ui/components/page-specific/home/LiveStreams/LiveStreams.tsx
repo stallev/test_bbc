@@ -18,7 +18,7 @@ interface LiveStreamsProps {
 
 const LiveStreams = ({ data, locale }: LiveStreamsProps) => {
   const translations = getTranslations(locale);
-  const videoItemsList = [...data.liveVideos, ...data.finishedVideos].slice(0, 3);
+  const videoItemsList = data.finishedVideos.slice(0, 3);
 
   return (
     <section className={styles.livestreams}>

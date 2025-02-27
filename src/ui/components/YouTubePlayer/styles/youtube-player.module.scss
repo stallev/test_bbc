@@ -59,12 +59,7 @@
 
 
       &--live {
-        background-color: $color-red;
-        padding-right: $gutter-lg;
-
-        @media screen and (min-width: $largeDesktop) {
-          padding-right: $gutter-xlg;
-        }
+        @extend %liveStreamsStyle;
       }
   
       &--published {

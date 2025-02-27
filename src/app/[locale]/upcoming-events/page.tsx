@@ -1,4 +1,3 @@
-import dynamic from 'next/dynamic';
 import { Metadata } from 'next';
 import PageContentDataApi from "@/services/PageDataApi";
 import UpcomingEventsDataApi from '@/services/UpcomingDataApi';
@@ -13,8 +12,6 @@ import SubscribeForm from '@/ui/components/SubscribeForm/SubscribeForm';
 import { i18n, Locale } from "@/i18n.config";
 
 import styles from "@/styles/pages/upcoming-events.module.scss";
-
-const UpcomingEvents = dynamic(() => import('@/ui/components/page-specific/home/UpcomingEvents/UpcomingEvents'));
 
 export const revalidate = 5 * 60;
 

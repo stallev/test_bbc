@@ -26,22 +26,14 @@
   }
 
   &__description {
+    @extend %smallParagraphMediumDescriptionTextStyle;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     margin-bottom: 16px;
-    font-weight: 500;
-    font-family: $gilroy-medium-font-family;
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 1.2;
-
-    @media screen and (min-width: $smallDesktop) {
-      margin-bottom: $gutter-lg;
-      font-size: 18px;
-    }
+    
   }
 
   &__readmore-link {

@@ -2,7 +2,7 @@ import localFont from "next/font/local";
 import "./global.css";
 
 const acciaReg = localFont({
-  src: "./fonts/AcciaFlareRegular.woff2",
+  src: "./fonts/AcciaFlareRegular.woff",
   variable: "--font-accia-reg",
   weight: "400",
   display: 'swap',
@@ -10,7 +10,7 @@ const acciaReg = localFont({
 });
 
 const gilroySemibold = localFont({
-  src: "./fonts/GilroySemibold.woff2",
+  src: "./fonts/GilroySemibold.woff",
   variable: "--font-gilroy-semibold",
   weight: "600",
   display: 'swap',
@@ -18,7 +18,7 @@ const gilroySemibold = localFont({
 });
 
 const gilroyMedium = localFont({
-  src: "./fonts/GilroyMedium.woff2",
+  src: "./fonts/GilroyMedium.woff",
   variable: "--font-gilroy-medium",
   weight: "500",
   display: 'swap',
@@ -26,7 +26,7 @@ const gilroyMedium = localFont({
 });
 
 const gilroyRegular = localFont({
-  src: "./fonts/GilroyRegular.woff2",
+  src: "./fonts/GilroyRegular.woff",
   variable: "--font-gilroy-regular",
   weight: "400",
   display: 'swap',
@@ -34,7 +34,7 @@ const gilroyRegular = localFont({
 });
 
 const ttLivretDisplay = localFont({
-  src: "./fonts/TTLivretDisplayTrialLightItalic.woff2",
+  src: "./fonts/TTLivretDisplayTrialLightItalic.woff",
   variable: "--font-livret-display",
   weight: "300",
   style: "italic",

@@ -23,11 +23,16 @@ const MinistrySlider: React.FC<MinistrySliderProps> = ({ images }) => {
       isSliderContent
     >
       <Swiper
-        slidesPerView="auto"
+        slidesPerView={5}
         centeredSlides={true}
         loop={true}
         className={`${styles["ministry-slider"]} ministry-page-slider`}
-        watchSlidesProgress={true}
+        breakpoints={{
+          320: { spaceBetween: 10 },
+          768: { spaceBetween: 20 },
+          1024: { spaceBetween: 25 },
+          1280: { spaceBetween: 30 },
+        }}
       >
         {images.map((image, index) => (
           <SwiperSlide key={index} className={styles["ministry-slider__slide"]}>

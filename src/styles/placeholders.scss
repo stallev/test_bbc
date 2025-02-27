@@ -1,8 +1,24 @@
-@import './variables.scss';
+@import "./variables.scss";
+
+%pageTopPaddingSize {
+  padding-top: $header-height;
+
+  @media screen and (min-width: $tablet) {
+    margin-top: 40px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    margin-top: 60px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    margin-top: 90px;
+  }
+}
 
 %h1PageTitleStyle {
-  padding-top: $header-height;
-  margin-bottom: 20px;
+  @extend %pageTopPaddingSize;
+
   font-family: $accia-font-family;
   text-align: center;
   font-size: 50px;
@@ -11,57 +27,101 @@
   color: var(--text-main-color);
 
   @media screen and (min-width: $tablet) {
-    margin-top: 40px;
     margin-bottom: 40px;
     font-size: 70px;
   }
 
   @media screen and (min-width: $smallDesktop) {
-    margin-top: 60px;
     margin-bottom: 80px;
     font-size: 90px;
   }
 
   @media screen and (min-width: $largeDesktop) {
-    margin-top: 90px;
     margin-bottom: 120px;
     font-size: 110px;
   }
 }
 
 %h2Style {
-  margin-top: $gutter-xs;
-  margin-bottom: -$gutter-sm;
-  font-size: 28px;
-  line-height: 1.4;
-  font-weight: $font-weight-bold;
+  margin-top: 20px;
+  text-align: center;
+  font-family: $accia-font-family;
+  font-size: 40px;
+  line-height: 1;
+  font-weight: 400;
+  color: var(--text-main-color);
 
   @media screen and (min-width: $tablet) {
-    font-size: $font-size-lg;
+    margin-top: 30px;
+    font-size: 60px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    margin-top: 40px;
+    font-size: 70px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    margin-top: 48px;
+    font-size: 80px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    margin-top: 56px;
+    font-size: 100;
   }
 }
 
 %h3Style {
-  margin-top: $gutter-xs;
-  margin-bottom: -$gutter-sm;
-  font-size: 28px;
-  line-height: 1.4;
-  font-weight: $font-weight-bold;
+  margin-top: 10px;
+  text-align: center;
+  font-family: $accia-font-family;
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 400;
+  color: var(--text-main-color);
 
   @media screen and (min-width: $tablet) {
-    font-size: 30px;
+    margin-top: 20px;
+    font-size: 40px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    margin-top: 25px;
+    font-size: 50px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    margin-top: 30px;
+    font-size: 60px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    font-size: 72px;
   }
 }
 
 %h4Style {
-  margin-top: $gutter-xs;
-  margin-bottom: -$gutter-sm;
-  font-size: $font-size-md;
-  line-height: 1.4;
-  font-weight: $font-weight-bold;
+  font-family: $accia-font-family;
+  font-size: 25px;
+  line-height: 1;
+  font-weight: 400;
+  color: var(--text-main-color);
 
   @media screen and (min-width: $tablet) {
-    font-size: 28px;
+    font-size: 30px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    font-size: 40px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    font-size: 48px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    font-size: 54px;
   }
 }
 
@@ -91,14 +151,19 @@
 }
 
 %h5Style {
-  margin-top: $gutter-xs;
-  margin-bottom: -$gutter-sm;
+  margin-top: 8px;
   font-size: 22px;
-  line-height: 1.4;
-  font-weight: $font-weight-bold;
+  line-height: 1;
+  font-weight: 400;
+  font-family: $accia-font-family;
+  color: var(--text-main-color);
 
   @media screen and (min-width: $tablet) {
     font-size: 26px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    font-size: 30px;
   }
 }
 
@@ -164,23 +229,128 @@
   color: var(--text-main-color);
 }
 
-%paragraphDescriptionTextStyle {
+%pageParagraphDescriptionTextStyle {
   color: var(--text-main-color);
-  font-size: 13px;
-  line-height: 15px;
+  font-size: 14px;
+  line-height: 1.1;
   font-weight: 400;
   font-family: $gilroy-regular-font-family;
 
+  @media screen and (min-width: $tablet) {
+    font-size: 18px;
+  }
+
   @media screen and (min-width: $smallDesktop) {
     font-size: 24px;
-    line-height: 27px;
   }
+
+  @media screen and (min-width: $desktop) {
+    font-size: 32px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    font-size: 40px;
+  }
+}
+
+%smallParagraphMediumDescriptionTextStyle {
+  margin-top: 10px;
+  color: var(--text-main-color);
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 500;
+  font-family: $gilroy-medium-font-family;
+
+  @media screen and (min-width: $tablet) {
+    margin-top: 12px;
+    font-size: 16px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    margin-top: 14px;
+    font-size: 18px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    margin-top: 18px;
+    font-size: 22px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    margin-top: 20px;
+    font-size: 24px;
+  }
+}
+
+%smallParagraphRegularDescriptionTextStyle {
+  color: var(--text-main-color);
+  font-size: 13px;
+  line-height: 1.2;
+  font-weight: 400;
+  font-family: $gilroy-regular-font-family;
+
+  @media screen and (min-width: $tablet) {
+    font-size: 16px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    font-size: 18px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    font-size: 22px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    font-size: 24px;
+  }
+}
+
+%eventPeriodStyle {
+  display: flex;
+  gap: 10px;
+  font-family: $gilroy-semibold-font-family;
+  font-weight: 500;
+  line-height: 1;
+  font-size: 15px;
+
+  @media screen and (min-width: $tablet) {
+    font-size: 22px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    font-size: 28px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    font-size: 36px;
+  }
+}
+
+%eventPeriodDateValueStyle {
+  display: inline-block;
+  padding-right: 10px;
+  border-right: 2px solid $color-red;
+
+  @media screen and (min-width: $tablet) {
+    padding-right: 15px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    padding-right: 22px;
+  }
+}
+
+%eventPeriodTimeValueStyle {
+  display: inline-block;
+  color: var(--text-main-color);
 }
 
 %inputLabelStyle {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  width: 100%;
   color: var(--text-main-color);
   background-color: var(--main-bg-color);
   font-size: 20px;
@@ -262,19 +432,23 @@
 %secondaryBtnLink {
   display: flex;
   align-items: center;
-  gap: $gutter-md;
+  gap: 16px;
   width: fit-content;
-  padding: $gutter-ms $gutter-ms $gutter-sm;
+  box-sizing: border-box;
+  padding: 4px 12px 2px;
   background-color: var(--main-bg-color);
-  border: 1px solid $color-red !important;
+  border: 1px solid $color-red;
   box-shadow: none;
-  border-radius: $border-radius-ms;
+  border-radius: 3px;
   font-weight: $font-weight-default;
-  font-size: $font-size-md;
+  font-size: 21px;
   font-family: $accia-font-family;
-  line-height: $line-height-md;
+  line-height: 1;
   color: $color-red;
-  transition: all 0.3 ease-in;
+
+  @media screen and (min-width: $desktop) {
+    border-radius: 5px;
+  }
 
   &:hover,
   &:active,
@@ -284,34 +458,56 @@
     color: $color-white;
 
     svg {
+      display: block;
       fill: $color-white;
     }
   }
 
   svg {
-    width: 22px;
-    height: 21px;
+    width: 17px;
+    height: 16px;
     fill: $color-red;
 
     @media screen and (min-width: $tablet) {
+      width: 22px;
+      height: 21px;
+    }
+
+    @media screen and (min-width: $smallDesktop) {
+      width: 28px;
+      height: 27px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
       width: 34px;
       height: 32px;
     }
   }
 
   @media screen and (min-width: $tablet) {
-    gap: $gutter-ml;
+    gap: 20px;
     border-radius: 5px;
-    padding: $gutter-md $gutter-md 14px;
-    font-size: $font-size-lg;
-    line-height: $line-height-lg;
+    font-size: 24px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    padding: 10px 16px 6px;
+    font-size: 28px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    font-size: 34px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    font-size: 44px;
   }
 }
 
 %btnStyles {
   outline: none;
   border: none;
-  transition: all .3s linear;
+  transition: all 0.3s linear;
   cursor: pointer;
   box-shadow: $button-shadow;
 }
@@ -322,7 +518,7 @@
   outline: none;
   cursor: pointer;
   box-shadow: $button-shadow;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 
   &:hover {
     background-color: $color-gray;
@@ -410,15 +606,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: $gutter-ml;
-  margin-bottom: $gutter-lg;
+  row-gap: 50px;
 
   @media screen and (min-width: $tablet) {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-content: flex-start;
     align-items: stretch;
-    margin-bottom: $gutter-xlg;
+    row-gap: 60px;
+    column-gap: 32px;
 
     article:nth-child(2n) {
       transform: translateY(200px);
@@ -432,9 +628,14 @@
     }
   }
 
-
   @media screen and (min-width: $desktop) {
-    gap: $gutter-xl;
+    row-gap: 80px;
+    column-gap: 48px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    column-gap: 64px;
+    row-gap: 100px;
   }
 }
 
@@ -462,7 +663,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  min-width: 280px;
+  width: 100%;
   max-width: 350px;
   color: var(--text-main-color);
 
@@ -498,16 +699,14 @@
 
   &::before {
     position: absolute;
-    content: '';
+    content: "";
     display: block;
     width: 100%;
     height: 90%;
     top: 0;
     left: 0;
     z-index: $z-index-level1;
-    background:
-      linear-gradient(rgba(250, 248, 242, 1),
-        rgba(250, 248, 242, 0));
+    background: linear-gradient(rgba(250, 248, 242, 1), rgba(250, 248, 242, 0));
   }
 
   @media screen and (min-width: $tablet) {
@@ -525,5 +724,51 @@
 
   @media screen and (min-width: $largeDesktop) {
     height: 580px;
+  }
+}
+
+%liveStreamsStyle {
+  display: inline-block;
+  padding: 6px 26px;
+  background-color: $color-red;
+  font-size: 13px;
+  line-height: 15px;
+  font-weight: 500;
+  font-family: $gilroy-medium-font-family;
+  color: $color-white;
+
+  @media screen and (min-width: $smallDesktop) {
+    padding: 8px 28px;
+    font-size: $font-size-md;
+    line-height: $line-height-md;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    padding: 10px 32px;
+    font-size: 30px;
+    line-height: 30px;
+  }
+}
+
+%customSelectStyles {
+  font-size: 14px;
+  line-height: 1.1;
+  font-weight: 400;
+  font-family: $gilroy-regular-font-family;
+
+  @media screen and (min-width: $tablet) {
+    font-size: 18px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    font-size: 22px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    font-size: 26px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    font-size: 29px;
   }
 }

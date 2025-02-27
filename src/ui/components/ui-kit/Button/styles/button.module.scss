@@ -9,7 +9,7 @@
     background-color: $color-gray;
   }
 
-  &--primary {
+  &.custom-button--primary {
     @extend %secondaryBtnLink;
   }
 

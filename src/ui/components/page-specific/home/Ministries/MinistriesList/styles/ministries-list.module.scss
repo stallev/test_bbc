@@ -99,26 +99,6 @@
     }
   }
 
-  // &__nav-prev,
-  // &__nav-next {
-  //   &::after {
-  //     color: $color-text-gray;
-  //     font-size: 24px;
-  //   }
-
-  //   &:hover::after {
-  //     color: $color-red;
-  //   }
-  // }
-
-  // &__nav-prev {
-  //   left: -30px;
-  // }
-
-  // &__nav-next {
-  //   right: -30px;
-  // }
-
   &__nav-prev,
   &__nav-next {
     display: none;

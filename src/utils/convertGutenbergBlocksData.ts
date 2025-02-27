@@ -2,6 +2,7 @@ import { GutenbergBlocksTypes } from "@/constants";
 import { S3_BUCKET_URL } from "@/constants";
 import { getFileNameFromUrl } from ".";
 import { stripHtmlTags } from ".";
+import { parseQuoteBlock } from "./htmlParser";
 import { GutenbergBlockType, InnerBlock } from "@/types/WPDataTypes/PageContentDataTypes";
 
 export const convertGutenbergBlocksData = (blocks: GutenbergBlockType[]) => {
@@ -70,15 +71,14 @@ export const convertGutenbergBlocksData = (blocks: GutenbergBlockType[]) => {
             src: S3_BUCKET_URL + videoFile,
             order: block.order,
           }
-        case 'core/quote':
-          const citation = block?.originalContent ? stripHtmlTags(block.originalContent) : "";
-          const originalContent = block.innerBlocks[0]?.originalContent ? stripHtmlTags(block.innerBlocks[0].originalContent) : "";
-
+        case 'core/pullquote':
+          const quoteContent =  parseQuoteBlock(block?.originalContent);
+          
           return {
             type: GutenbergBlocksTypes.quote,
-            text: originalContent,
+            text: quoteContent.quoteText,
             order: block.order,
-            citation,
+            citation: quoteContent.cite,
           }
         default:
           return {

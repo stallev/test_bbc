@@ -1,5 +1,7 @@
 @import '../../../../../../styles/variables.scss';
+@import '../../../../../../styles/placeholders.scss';
 
 .blog-cards-list {
   @extend %animatedArticlesListStyles;
+  overflow: hidden !important;
 }

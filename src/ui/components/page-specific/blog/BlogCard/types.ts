@@ -13,5 +13,6 @@ export interface BlogCardProps {
   slug: string
   featuredImageData: PostFeaturedImageData
   author: authorFinishedContentProps
+  topics: string[] | []
   readingTime: number
 }

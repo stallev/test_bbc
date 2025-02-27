@@ -19,7 +19,7 @@
   }
 
   &__description {
-    @extend %paragraphDescriptionTextStyle;
+    @extend %smallParagraphRegularDescriptionTextStyle;
 
     @media screen and (min-width: $smallDesktop) {
       width: 100%;
