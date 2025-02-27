@@ -31,12 +31,6 @@ $staff-person-card-deg: 12deg;
     }
   }
 
-  &.staff-person-card--reduced .staff-person-card__image {
-    @media screen and (min-width: $mobile) {
-      height: 310px;
-    }
-  }
-
   &.staff-person-card--reduced:nth-of-type(2n) {
     .staff-person-card__logo-icon {
       bottom: 4px;
@@ -158,6 +152,10 @@ $staff-person-card-deg: 12deg;
     height: 300px;
     width: 100%;
     overflow: hidden;
+
+    @media screen and (min-width: $mobile) {
+      height: 310px;
+    }
 
     @media screen and (min-width: $tablet) {
       height: 400px;
