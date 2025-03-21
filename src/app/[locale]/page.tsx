@@ -18,7 +18,7 @@ import { getSeoData } from "@/utils/getSeoData";
 import { PagePathProps } from "@/types/globalTypes";
 
 const UpcomingEvents = dynamic(() => import('@/ui/components/page-specific/home/UpcomingEvents/UpcomingEvents'));
-const Ministries = dynamic(() => import('@/ui/components/page-specific/home/Ministries/Ministries'));
+// const Ministries = dynamic(() => import('@/ui/components/page-specific/home/Ministries/Ministries'));
 const LiveStreamsDynamic = dynamic(() => import('@/ui/components/page-specific/home/LiveStreams/LiveStreams'));
 const PastorsBlog = dynamic(() => import('@/ui/components/page-specific/home/PastorsBlog/PastorsBlog'));
 const Donation = dynamic(() => import('@/ui/components/Donation/Donation'));
@@ -68,7 +68,7 @@ export default async function Home({
 
       <UpcomingEvents data={upcomingEventsData} />
 
-      <Ministries translations={translations} />
+      {/* <Ministries translations={translations} /> */}
 
       <Staff data={staffData} translations={translations} />
 
