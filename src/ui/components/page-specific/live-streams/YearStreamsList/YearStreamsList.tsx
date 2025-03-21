@@ -1,8 +1,8 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { Text, Icon } from '@/ui/components/ui-kit';
 import YouTubePlayer from '@/ui/components/YouTubePlayer/YouTubePlayer';
 import useWindowDimensions from '@/hooks/useWindowDimensions';
-import { isDesktopSize } from "@/hooks/useWindowSizeType";
+import { isDesktopSize, isSmallWindowSize } from "@/hooks/useWindowSizeType";
 import { getMonthName } from '@/utils/dateFormatter';
 import { YearStreamsListProps, YoutubeConvertedVideoItemType } from "@/types/YouTubeDataTypes";
 
@@ -15,18 +15,38 @@ const YearStreamsList = ({
   setSelectedStreamsPeriod
 }: YearStreamsListProps) => {
   const { width } = useWindowDimensions();
+  const isSmallDesktop = isSmallWindowSize(width);
+  const yearStreamsListRef = useRef<HTMLDivElement>(null);
   const isThisYearSelected = data.yearNumber === selectedStreamsPeriod.year;
   const currentYearMonth = {
     year: new Date().getFullYear(),
     month: new Date().getMonth(),
   };
 
+  const minusedAddedTop = isSmallDesktop ? 70 : 55;
+
   const onCrossClick = () => {
-    setSelectedStreamsPeriod((prevState) =>
-      isThisYearSelected
+    setSelectedStreamsPeriod((prevState) => {
+      const newState = isThisYearSelected
         ? { ...prevState, year: null, month: null }
-        : { ...prevState, year: data.yearNumber, month: currentYearMonth.month }
-    );
+        : { ...prevState, year: data.yearNumber, month: currentYearMonth.month };
+        
+      if (!isThisYearSelected && yearStreamsListRef.current) {
+        setTimeout(() => {
+          const rect = yearStreamsListRef.current?.getBoundingClientRect();
+          if (rect) {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const targetPosition = scrollTop + rect.top - minusedAddedTop;
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+          }
+        }, 0);
+      }
+      
+      return newState;
+    });
   };
 
   const selectActiveMonth = (monthNumber: number) => () => {
@@ -88,7 +108,7 @@ const YearStreamsList = ({
   }, [width, data.monthListArray, isThisYearSelected, selectedStreamsPeriod.month, locale]);
 
   return (
-    <div className={styles["year-streams-list"]}>
+    <div className={styles["year-streams-list"]} ref={yearStreamsListRef}>
       <div className={styles["year-streams-list__header"]}>
         <Text
           textType="h3"

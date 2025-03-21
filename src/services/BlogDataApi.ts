@@ -108,6 +108,7 @@ class BlogDataApi {
           slug: item.node.slug,
           title: item.node.title,
           excerpt: item.node.excerpt,
+          authorData: data.author,
           featuredImageUrl: !!item.node.featuredImage?.node?.mediaItemUrl
             ? item.node.featuredImage.node.mediaItemUrl
             : DEFAULT_FEATURED_IMAGE,

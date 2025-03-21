@@ -34,7 +34,12 @@ const SermonsContent: React.FC<SermonsContentProps> = ({
 
   const [offset, setOffset] = useState(CARDS_PORTION);
 
-  const isActiveSearchedSermons = filters != DEFAULT_SERMONS_FILTER_STATE;
+  const isActiveSearchedSermons = (
+    Object.keys(filters) as (keyof SermonsFiltersProps)[]
+  ).some(
+    (filterKey) =>
+      filters[filterKey] != DEFAULT_SERMONS_FILTER_STATE[filterKey]
+  );
 
   const searchedSermonsMessage =
     isActiveSearchedSermons && !!sermons.searchedSermons.length
@@ -80,7 +85,7 @@ const SermonsContent: React.FC<SermonsContentProps> = ({
 
           <div className={styles["sermons-content__sermons-list"]}>
             {isActiveSearchedSermons && (
-              <Text textType="p">{searchedSermonsMessage}</Text>
+              <Text className={styles["sermons-content__searched-message"]} textType="p">{searchedSermonsMessage}</Text>
             )}
 
             <SermonCardsList

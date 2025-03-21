@@ -27,11 +27,11 @@ const SermonFilters: React.FC<SermonsFiltersComponentProps> = ({
     setFilters(DEFAULT_SERMONS_FILTER_STATE);
   };
 
-  const isResetBtnDisabled = (
+  const isResetBtnActive = (
     Object.keys(filters) as (keyof SermonsFiltersProps)[]
-  ).every(
+  ).some(
     (filterKey) =>
-      filters[filterKey] === DEFAULT_SERMONS_FILTER_STATE[filterKey]
+      filters[filterKey] != DEFAULT_SERMONS_FILTER_STATE[filterKey]
   );
 
   const filterAndSortSermons = (
@@ -140,7 +140,7 @@ const SermonFilters: React.FC<SermonsFiltersComponentProps> = ({
           selectedValue={filters.biblebooks}
           ariaLabel={translate("bible_books_list_name")}
         />
-        
+
         <CustomSimpleSelect
           options={categoriesData.preachers}
           name="Preachers"
@@ -181,23 +181,20 @@ const SermonFilters: React.FC<SermonsFiltersComponentProps> = ({
           calendarAriaLabel="end date"
         />
 
-        <Button
-          className={`${styles["sermons-filters__reset-btn"]} ${
-            isResetBtnDisabled
-              ? styles["sermons-filters__reset-btn--disabled"]
-              : ""
-          }`}
-          type="primary"
-          onClick={resetFilters}
-          disabled={isResetBtnDisabled}
-        >
-          <Text textType="span">{translate("reset")}</Text>
+        {isResetBtnActive && (
+          <Button
+            className={styles["sermons-filters__reset-btn"]}
+            type="primary"
+            onClick={resetFilters}
+          >
+            <Text textType="span">{translate("reset")}</Text>
 
-          <Icon
-            className={styles["sermons-filters__reset-btn-icon"]}
-            iconName="rightArrow"
-          />
-        </Button>
+            <Icon
+              className={styles["sermons-filters__reset-btn-icon"]}
+              iconName="rightArrow"
+            />
+          </Button>
+        )}
       </div>
     </div>
   );

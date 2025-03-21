@@ -1,12 +1,13 @@
-"use client"
+"use client";
 
-import React from 'react'
-import { Map, AdvancedMarker } from '@vis.gl/react-google-maps';
+import React, { useRef } from "react";
+import { useOnceIntersection } from "@/hooks/useOnceIntersection";
+import { Map, AdvancedMarker } from "@vis.gl/react-google-maps";
 
 import styles from "./styles/map-location.module.scss";
 
 interface MapLocationProps {
-  mapId: string
+  mapId: string;
 }
 
 const center = {
@@ -15,20 +16,24 @@ const center = {
 };
 
 const MapLocation = ({ mapId }: MapLocationProps) => {
+  const mapRef = useRef<HTMLDivElement>(null);
+  const isMapVisible = useOnceIntersection(mapRef);
   return (
-    <Map
-      defaultCenter={center}
-      defaultZoom={12}
-      gestureHandling={'greedy'}
-      disableDefaultUI={true}
-      mapId={mapId}
-      className={styles["map-location"]}
-    >
-      <AdvancedMarker
-        position={center}
-      />
-    </Map>
-  )
-}
+    <div ref={mapRef}>
+      {isMapVisible && (
+        <Map
+          defaultCenter={center}
+          defaultZoom={12}
+          gestureHandling={"greedy"}
+          disableDefaultUI={true}
+          mapId={mapId}
+          className={styles["map-location"]}
+        >
+          <AdvancedMarker position={center} />
+        </Map>
+      )}
+    </div>
+  );
+};
 
-export default MapLocation
+export default MapLocation;

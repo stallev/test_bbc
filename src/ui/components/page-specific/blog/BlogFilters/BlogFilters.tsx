@@ -31,11 +31,11 @@ const BlogFilters: React.FC<BlogFiltersComponentsProps> = ({
     setFilters(DEFAULT_BLOG_POSTS_FILTER_STATE);
   };
 
-  const isResetBtnDisabled = (
+  const isResetBtnActive = (
     Object.keys(filters) as (keyof BlogFiltersProps)[]
-  ).every(
+  ).some(
     (filterKey) =>
-      filters[filterKey] === DEFAULT_BLOG_POSTS_FILTER_STATE[filterKey]
+      filters[filterKey] != DEFAULT_BLOG_POSTS_FILTER_STATE[filterKey]
   );
 
   const filterAndSortPosts = (
@@ -153,20 +153,21 @@ const BlogFilters: React.FC<BlogFiltersComponentsProps> = ({
         />
       </div>
 
-      <Button
-        className={`${styles["blog-filters__reset-btn"]} ${
-          isResetBtnDisabled ? styles["blog-filters__reset-btn--hidden"] : ""
-        }`}
-        type="primary"
-        onClick={resetFilters}
-        disabled={isResetBtnDisabled}
-      >
-        <Text textType="span">{translate("reset")}</Text>
-        <Icon
-          className={styles["blog-filters__reset-btn-icon"]}
-          iconName="rightArrow"
-        />
-      </Button>
+      {
+        isResetBtnActive && (
+          <Button
+            className={styles["blog-filters__reset-btn"]}
+            type="primary"
+            onClick={resetFilters}
+          >
+            <Text textType="span">{translate("reset")}</Text>
+            <Icon
+              className={styles["blog-filters__reset-btn-icon"]}
+              iconName="rightArrow"
+            />
+          </Button>
+        )
+      }
     </div>
   );
 };

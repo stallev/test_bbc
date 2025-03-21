@@ -150,3 +150,13 @@
     }
   }
 }
+
+:global([data-theme='dark']) .sermon-card {
+  background-color: var(--dark-gray-color);  
+  color: var(--text-main-color);
+
+  &__play-control-icon {
+    fill: var(--text-main-color);
+    stroke: var(--text-main-color);
+  }
+}

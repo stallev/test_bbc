@@ -66,6 +66,7 @@ export interface PostsListBySameAuthorItemType {
   title: string
   featuredImageUrl: string
   excerpt: string
+  authorData: authorFinishedContentProps
 }
 
 export interface FeaturedImageMediaItemUrlProps {

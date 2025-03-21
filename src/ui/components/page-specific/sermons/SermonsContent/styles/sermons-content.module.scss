@@ -61,6 +61,11 @@
     }
   }
 
+  &__searched-message {
+    @extend %smallParagraphMediumDescriptionTextStyle;
+    margin-bottom: 20px;
+  }
+
   &__sermons-list {
     display: flex;
     flex-direction: column;

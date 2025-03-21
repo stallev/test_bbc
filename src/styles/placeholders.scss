@@ -697,18 +697,6 @@
   height: 250px;
   margin-bottom: 30px;
 
-  &::before {
-    position: absolute;
-    content: "";
-    display: block;
-    width: 100%;
-    height: 90%;
-    top: 0;
-    left: 0;
-    z-index: $z-index-level1;
-    background: linear-gradient(rgba(250, 248, 242, 1), rgba(250, 248, 242, 0));
-  }
-
   @media screen and (min-width: $tablet) {
     height: 250px;
     margin-bottom: 35px;

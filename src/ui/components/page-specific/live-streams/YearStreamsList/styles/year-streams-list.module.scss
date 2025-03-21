@@ -1,4 +1,5 @@
 @import '../../../../../../styles/variables.scss';
+@import '../../../../../../styles/mixins.scss';
 
 .year-streams-list {
   display: flex;
@@ -68,7 +69,7 @@
     @media screen and (min-width: $desktop) {
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: flex-start;
       gap: 30px;
     }
   }
@@ -89,14 +90,12 @@
   }
 
   &__content {
-    position: relative;
     display: flex;
     flex-direction: column;
     gap: 10px;
     max-height: 0;
     padding-top: 25px;
     overflow: hidden;
-    transition: max-height 0.8s ease-in-out, opacity 0.8s ease-in-out;
     opacity: 0;
 
     @media screen and (min-width: $smallDesktop) {
@@ -108,27 +107,21 @@
     }
 
     &--expanded {
-      max-height: 1000px;
+      max-height: 1200px;
       margin-bottom: 90px;
       opacity: 1;
 
-      @media screen and (min-width: $largeDesktop) {
-        margin-bottom: 100px;
+      @media screen and (min-width: $tablet) {
+        max-height: 624px;;
       }
-    }
 
-    &::after {
-      position: absolute;
-      content: '';
-      display: block;
-      width: 100%;
-      height: 180px;
-      bottom: 0;
-      background: linear-gradient(to top, rgba(250, 248, 242,1) 0%,rgba(250, 248, 242,0) 100%);
-      pointer-events: none;
+      @media screen and (min-width: $smallDesktop) {
+        max-height: 724px;
+      }
 
-      @media screen and (min-width: $desktop) {
-        height: 200px;
+      @media screen and (min-width: $largeDesktop) {
+        max-height: 950px;;
+        margin-bottom: 100px;
       }
     }
 
@@ -173,5 +166,13 @@
       max-height: 650px;
       row-gap: 50px;
     }
+
+    @media screen and (min-width: $largeDesktop) {
+      max-height: 1000px;
+      height: 1000px !important;
+      row-gap: 50px;
+    }
   }
 }
+
+@include liveStreamsShadowStyles('.year-streams-list__content');

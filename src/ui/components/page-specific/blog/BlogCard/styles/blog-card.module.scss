@@ -1,5 +1,6 @@
 @import '../../../../../../styles/variables.scss';
 @import "../../../../../../styles/placeholders.scss";
+@import '../../../../../../styles/mixins.scss';
 
 .blog-card {
 
@@ -62,3 +63,6 @@
     margin-top: auto;
   }
 }
+
+// @include postCardImageStyles('.blog-card__image');
+@include postImageShadowStyles(".blog-card__image");

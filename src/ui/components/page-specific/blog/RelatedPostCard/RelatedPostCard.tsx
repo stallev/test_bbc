@@ -13,7 +13,7 @@ const RelatedPostCard = ({ post }: { post: PostsListBySameAuthorItemType }) => {
         className={styles["related-post-card__image"]}
       />
 
-      <CustomLink to={`${RoutePath.Blog}/${post.slug}`}>
+      <CustomLink to={`${RoutePath.BlogAuthor}/${post.authorData.slug}/${post.slug}`}>
         <Text textType="h4" className={styles["related-post-card__title"]}>
           {post.title}
         </Text>
