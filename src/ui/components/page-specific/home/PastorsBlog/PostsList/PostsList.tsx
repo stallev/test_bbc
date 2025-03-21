@@ -10,13 +10,9 @@ import { BlogCardProps } from '@/ui/components/page-specific/blog/BlogCard/types
 
 import styles from './styles/posts-list.module.scss';
 
-interface PostListProps {
-  data: BlogCardProps []
-}
-
-const PostsList: React.FC<PostListProps> = ({
+const PostsList = ({
   data
-}) => {
+}: {data: BlogCardProps []}) => {
   const listRef = useRef<HTMLDivElement>(null);
   const isAnimated = useOnceIntersection(listRef);
   const translate = useClientTranslationFunction();
@@ -31,6 +27,7 @@ const PostsList: React.FC<PostListProps> = ({
           key={blogcard.slug}
           data={blogcard}
           index={index}
+          isLandingPage
         />
       ))}
 
