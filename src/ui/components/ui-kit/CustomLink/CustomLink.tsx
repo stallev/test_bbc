@@ -40,6 +40,7 @@ const CustomLink: React.FC<CustomLinkProps> = ({
       <Link
         aria-label={ariaLabel || label}
         href={href}
+        prefetch={true}
       >
         {label && label}
         {children}
