@@ -1,5 +1,5 @@
 // import dynamic from "next/dynamic";
-import { Metadata } from 'next'
+// import { Metadata } from 'next'
 import { getTranslations } from "@/utils/languageParser";
 import { PagesIDs, RoutePath } from "@/constants";
 // import UpcomingEventsDataApi from "@/services/UpcomingDataApi";
@@ -8,7 +8,7 @@ import { PagesIDs, RoutePath } from "@/constants";
 // import BlogDataApi from "@/services/BlogDataApi";
 // import { YouTubePlaylistIDs, YouTubeApiKeys } from "@/constants";
 // import { MAP_IDs } from "@/constants/mock";
-import PageContentDataApi from "@/services/PageDataApi";
+// import PageContentDataApi from "@/services/PageDataApi";
 import { i18n, Locale } from "@/i18n.config";
 import GreetingScreen from "@/ui/components/page-specific/home/GreetingScreen/GreetingScreen";
 import FixedPageLink from "@/ui/components/FixedPageLink/FixedPageLink";
@@ -25,19 +25,19 @@ import { PagePathProps } from "@/types/globalTypes";
 // const Donation = dynamic(() => import('@/ui/components/Donation/Donation'));
 // const MapLocation = dynamic(() => import('@/ui/components/MapLocation/MapLocation'));
 
-export async function generateMetadata(
-  { params: { locale } }: PagePathProps
-): Promise<Metadata> {
-  const pageId = locale == i18n.defaultLocale ? PagesIDs.Home[i18n.defaultLocale] : PagesIDs.Home.ru;
+// export async function generateMetadata(
+//   { params: { locale } }: PagePathProps
+// ): Promise<Metadata> {
+//   const pageId = locale == i18n.defaultLocale ? PagesIDs.Home[i18n.defaultLocale] : PagesIDs.Home.ru;
 
-  const { seo: seoContentData } = await PageContentDataApi.getPageContentData(pageId);
-  const seoPathData = getPagePathData({
-    locale,
-    path: RoutePath.Home
-  });
+//   const { seo: seoContentData } = await PageContentDataApi.getPageContentData(pageId);
+//   const seoPathData = getPagePathData({
+//     locale,
+//     path: RoutePath.Home
+//   });
 
-  return getSeoData({seoContentData, seoPathData});
-}
+//   return getSeoData({seoContentData, seoPathData});
+// }
 
 export default async function Home({
   params: { locale }
@@ -90,4 +90,4 @@ export default async function Home({
   );
 }
 
-export const revalidate = 5 * 60;
+// export const revalidate = 5 * 60;
