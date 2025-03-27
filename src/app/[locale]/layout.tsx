@@ -1,15 +1,15 @@
 import React from "react";
-// import dynamic from "next/dynamic";
+import dynamic from "next/dynamic";
 import Header from "@/ui/components/Header/Header";
-// import Footer from "@/ui/components/Footer/Footer";
-// import Notification from "@/ui/components/ui-kit/Notification/Notification";
+import Footer from "@/ui/components/Footer/Footer";
+import Notification from "@/ui/components/ui-kit/Notification/Notification";
 import styles from "@/styles/Home.module.scss";
 import Providers from "@/ui/containers/Providers/Providers";
 import { getTranslations } from "@/utils/languageParser";
 import { Locale } from "@/i18n.config";
 import "./global.css";
 
-// const Player = dynamic(() => import('@/ui/components/Player/Player'));
+const Player = dynamic(() => import('@/ui/components/Player/Player'));
 
 const Layout = async ({
   children,
@@ -35,14 +35,14 @@ const Layout = async ({
             {children}
           </main>
 
-          {/* <Footer
+          <Footer
             translations={translations}
             locale={locale}
           />
 
           <Notification translations={translations} />
 
-          <Player /> */}
+          <Player />
         </Providers>
       </body>
     </html>
