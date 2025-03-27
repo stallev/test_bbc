@@ -3,48 +3,28 @@
 .staff-list {
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(2, 144px);
+  grid-template-columns: minmax(100px, auto);
   row-gap: $gutter-ml;
-  column-gap: $gutter-ml;
   grid-auto-rows: minmax(100px, auto);
   padding: $gutter-ml 0;
 
-  @media screen and (min-width: $mobile) {
-    grid-template-columns: repeat(2, 180px);
-    column-gap: 48px;
+  @media screen and (min-width: 450px) {
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: flex-start;
+    column-gap: $gutter-xl;
   }
 
   @media screen and (min-width: $tablet) {
-    grid-template-columns: repeat(2, 230px);
-    column-gap: 64px;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: flex-start;
+    column-gap: $gutter-xl;
   }
 
   @media screen and (min-width: $smallDesktop) {
-    grid-template-columns: repeat(2, 300px);
-    column-gap: 90px;
+    grid-template-columns: repeat(3, 1fr);
   }
 
   @media screen and (min-width: $desktop) {
-    grid-template-columns: repeat(2, 360px);
-    column-gap: 130px;
-  }
-
-  &--detailed {
-    display: flex;
-    flex-direction: column;
-    column-gap: 0;
-    row-gap: 50px;
-
-    @media screen and (min-width: $tablet) {
-      row-gap: 80px;
-    }
-
-    @media screen and (min-width: $smallDesktop) {
-      row-gap: 110px;
-    }
-
-    @media screen and (min-width: $largeDesktop) {
-      row-gap: 150px;
-    }
+    grid-template-columns: repeat(4, 1fr);
   }
 }

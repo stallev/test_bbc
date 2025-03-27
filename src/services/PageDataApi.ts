@@ -1,7 +1,6 @@
 import { getMarkdownPageContentData } from "@/graphql/markdownContentDataQueries";
 import { convertGutenbergBlocksData } from "@/utils/convertGutenbergBlocksData";
 import { SeoContentDataProps } from "@/types/globalTypes";
-import { ConvertedGutenbergBlockType } from "@/types/WPDataTypes/GutenbergBlocksTypes";
 import { fetchAPI } from "./WordPressFetchAPI";
 import { DEFAULT_FEATURED_IMAGE } from "@/constants/mock";
 
@@ -25,7 +24,7 @@ class PageContentDataApi {
       isPostType: false,
     }
 
-    const pageContent = convertGutenbergBlocksData(page.blocks) as unknown as ConvertedGutenbergBlockType[];
+    const pageContent = convertGutenbergBlocksData(page.blocks);
 
     return {
       title: page.title,

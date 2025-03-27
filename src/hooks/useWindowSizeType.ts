@@ -15,7 +15,3 @@ export const isSmallMobileWindowSize = (size: number) => {
 export const isSmallWindowSize = (size: number) => {
   return size < SIZES.smallDesktop;
 };
-
-export const isDesktopSize = (size: number) => {
-  return size < SIZES.desktop;
-};

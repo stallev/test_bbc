@@ -2,13 +2,9 @@
 
 .greeting-screen {
   position: relative;
-  height: 558px;
+  height: 100svh;
   width: 100%;
-  background: var(--main-bg-color);
-
-  @media screen and (min-width: $smallDesktop) {
-    height: 700px;
-  }
+  background: $color-light-backgrond-gray;
 
   &__image {
     position: absolute !important;
@@ -20,61 +16,12 @@
   &__content-wrap {
     display: flex;
     align-items: center;
-    height: 558px;
-
-    @media screen and (min-width: $smallDesktop) {
-      height: 700px;
-    }
+    height: calc(100vh - $header-height);
   }
 
   &__content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    row-gap: 70px;
-    width: 100%;
     color: $color-white;
     z-index: $z-index-level1;
-
-    @media screen and (min-width: $tablet) {
-      align-items: flex-start;
-      row-gap: 100px;
-    }
-
-    @media screen and (min-width: $largeDesktop) {
-      row-gap: 113px;
-    }
-  }
-
-  &__icon {
-    svg {
-      width: 250px;
-
-      path {
-        fill: $color-white;
-      }
-    }
-
-    @media screen and (min-width: $tablet) {
-      margin-left: 40%;
-
-      svg {
-        width: 450px;
-      }
-    }
-
-    @media screen and (min-width: $largeDesktop) {
-      svg {
-        width: 650px;
-      }
-    }
-  }
-
-  &__links {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
   }
 
   &__description {

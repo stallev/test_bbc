@@ -3,16 +3,12 @@
 
 .markdown-content {
   h2 {
-    @extend %h3Style;
+    @extend %h2Style;
     margin-bottom: $gutter-ml;
   }
 
   p {
-    @extend %smallParagraphMediumDescriptionTextStyle;
-
-    &:not(:last-of-type) {
-      margin-bottom: 15px;
-    }
+    @extend %paragraphStyle;
   }
 
   blockquote {

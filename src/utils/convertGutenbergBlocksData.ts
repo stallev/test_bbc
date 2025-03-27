@@ -1,12 +1,10 @@
 import { GutenbergBlocksTypes } from "@/constants";
 import { S3_BUCKET_URL } from "@/constants";
 import { getFileNameFromUrl } from ".";
-import { removeClasses, stripHtmlTags } from "./stripHtmlTags";
-import { parseQuoteBlock } from "./htmlParser";
+import { stripHtmlTags } from ".";
 import { GutenbergBlockType, InnerBlock } from "@/types/WPDataTypes/PageContentDataTypes";
-import { GutenbergBlock } from "@/types/WPDataTypes/GutenbergBlocksTypes";
 
-export const convertGutenbergBlocksData = (blocks: GutenbergBlockType[]): GutenbergBlock[] => {
+export const convertGutenbergBlocksData = (blocks: GutenbergBlockType[]) => {
   return blocks
     .filter((item:GutenbergBlockType) => !!item.name)
     .sort((a:GutenbergBlockType, b:GutenbergBlockType) => a.order - b.order)
@@ -17,12 +15,6 @@ export const convertGutenbergBlocksData = (blocks: GutenbergBlockType[]): Gutenb
             type: GutenbergBlocksTypes.paragraph,
             order: block.order,
             content: stripHtmlTags(block.saveContent),
-          }
-        case 'core/list':
-          return {
-            type: GutenbergBlocksTypes.list,
-            order: block.order,
-            content: removeClasses(block.saveContent),
           }
         case 'core/image':
           return {
@@ -72,18 +64,21 @@ export const convertGutenbergBlocksData = (blocks: GutenbergBlockType[]): Gutenb
           }
         case 'core/video':
           const videoFile = getFileNameFromUrl(block.attributes.src);
+
           return {
             type: GutenbergBlocksTypes.video,
             src: S3_BUCKET_URL + videoFile,
             order: block.order,
           }
-        case 'core/pullquote':
-          const quoteContent =  parseQuoteBlock(block?.originalContent);
+        case 'core/quote':
+          const citation = stripHtmlTags(block.originalContent);
+          const originalContent = stripHtmlTags(block.innerBlocks[0].originalContent);
+
           return {
             type: GutenbergBlocksTypes.quote,
-            text: quoteContent.quoteText,
+            text: originalContent,
             order: block.order,
-            citation: quoteContent.cite,
+            citation,
           }
         default:
           return {

@@ -1,61 +1,69 @@
 "use client";
 
-import React from "react";
+import React from 'react';
 import { useForm, SubmitHandler } from "react-hook-form";
-import { CustomInput, Button, Text } from "@/ui/components/ui-kit";
-import { NotificationTypes } from "@/constants";
-import { useToggleNotification } from "@/hooks/useToggleNotification";
-import {
-  FormFieldLangCodes,
-  FormFieldValidationErrorsLangCodes,
-  InputTypes,
-} from "@/constants";
-import { useClientTranslationFunction } from "@/hooks/useLocale";
+import { CustomInput, Button, Text } from '@/ui/components/ui-kit';
+import Container from '@/ui/containers/Container/Container';
+import { NotificationTypes } from '@/constants';
+import { useToggleNotification } from '@/hooks/useToggleNotification';
+import { FormFieldLangCodes, FormFieldValidationErrorsLangCodes, InputTypes } from '@/constants';
+import { useClientTranslationFunction } from '@/hooks/useLocale';
 
-import styles from "./styles/subscribe-form.module.scss";
-import { eventSubscriptionInputDataType } from "@/types/formTypes";
-import { subscribeToEventsAction } from "@/app/actions/eventsSubscriptions";
+import styles from './styles/subscribe-form.module.scss';
 
 interface SubscribeFormInput {
-  email: string;
-  userMessage: string;
+  email: string
+  userMessage: string
 }
 
-const SubscribeForm = () => {
+interface SubscribeFormProps {
+  title?: string
+  description?: string
+}
+
+const SubscribeForm:React.FC<SubscribeFormProps> = ({
+  title,
+  description,
+}) => {
   const setNotification = useToggleNotification();
   const translate = useClientTranslationFunction();
 
-  const {
+  const { 
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors }
   } = useForm<SubscribeFormInput>({
     mode: "onSubmit",
     reValidateMode: "onChange",
-  });
+  })  
 
-  const onSubmit: SubmitHandler<SubscribeFormInput> = async (
-    data: eventSubscriptionInputDataType
-  ) => {
+  const onSubmit: SubmitHandler<SubscribeFormInput> = async (data) => {
+
     try {
-      const response = await subscribeToEventsAction(data).then((data) =>
-        JSON.parse(data)
+      const response = await fetch(
+        '/api/subscribe-event',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        }
       );
 
-      const { responseData } = response;
-
+      const textResponse = await response.text();
+      const responseData = JSON.parse(textResponse);
+  
       if (response.status === 200) {
         reset();
-
+        
         setNotification({
           isVisibleNotification: true,
-          notificationText: responseData.isSubscribedAlready
-            ? NotificationTypes.subscribeToNews.alreadySubscribed.langTextCode
-            : NotificationTypes.subscribeToNews.success.langTextCode,
-          notificationType: responseData.isSubscribedAlready
-            ? NotificationTypes.subscribeToNews.alreadySubscribed.type
-            : NotificationTypes.subscribeToNews.success.type,
+          notificationText: responseData.isSubscribedAlready 
+            ? NotificationTypes.subscribeToNews.alreadySubscribed.langTextCode : NotificationTypes.subscribeToNews.success.langTextCode,
+          notificationType: responseData.isSubscribedAlready 
+            ? NotificationTypes.subscribeToNews.alreadySubscribed.type : NotificationTypes.subscribeToNews.success.type,
         });
       } else {
         setNotification({
@@ -64,52 +72,49 @@ const SubscribeForm = () => {
           notificationType: NotificationTypes.submitForm.error.type,
         });
 
-        throw new Error(response.message);
+        throw new Error(response.statusText);
       }
     } catch (error) {
       console.error(error);
     }
-  };
+  }
 
   return (
-    <div className={styles["subscribe-form__container"]}>
-      <Text textType="h3" className={styles["subscribe-form__title"]}>
-        {translate("upcoming_events_subscription_form_title")}
+    <Container className={styles['subscribe-form__container']}>
+      <Text
+        textType='h2'
+        className={styles['subscribe-form__title']}
+      >
+        {title}
       </Text>
       <form
-        className={styles["subscribe-form"]}
+        className={styles['subscribe-form']}
         onSubmit={handleSubmit(onSubmit)}
       >
-        <Text textType="p" className={styles["subscribe-form__description"]}>
-          {translate("upcoming_subscription_form_description")}
-        </Text>
+        <CustomInput
+          type={InputTypes.email}
+          placeholder={translate(FormFieldLangCodes.emailRequired)}
+          className={styles['subscribe-form__input-field']}
+          errorText={errors.email && translate(FormFieldValidationErrorsLangCodes.emailError)}
+          validate={register("email", { pattern: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/ })}
+        />
 
-        <div className={styles["subscribe-form__fieldset"]}>
-          <CustomInput
-            type={InputTypes.email}
-            placeholder={translate(FormFieldLangCodes.emailRequired)}
-            className={styles["subscribe-form__input-field"]}
-            errorText={
-              errors.email &&
-              translate(FormFieldValidationErrorsLangCodes.emailError)
-            }
-            validate={register("email", {
-              required: true,
-              pattern: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/,
-            })}
-            label={translate(FormFieldLangCodes.emailRequired)}
-          />
-
-          <Button
-            className={styles["subscribe-form__submit"]}
-            buttonTitle={translate("subscribe_button")}
-            type="primary"
-            isSubmit={true}
-          />
-        </div>
+        <Button
+          className={styles['subscribe-form__submit']}
+          buttonTitle={translate("subscribe_button")}
+          type='primary'
+          isSubmit={true}
+        />
       </form>
-    </div>
-  );
-};
+
+      <Text
+        textType='p'
+        className={styles['subscribe-form__description']}
+      >
+        {description}
+      </Text>
+    </Container>
+  )
+}
 
 export default SubscribeForm;

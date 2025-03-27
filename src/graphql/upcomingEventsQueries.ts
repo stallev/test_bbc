@@ -6,7 +6,6 @@ export const getUpcomingEventData = `query getUpcomingEventData ($id: ID!, $idTy
   upcoming(id: $id, idType: $idType) {
     translation(language: $language) {
       ${FeaturedImageBlock}
-      upcomingEventShortDescription
       upcomingEventStart
       upcomingEventEnd
       title

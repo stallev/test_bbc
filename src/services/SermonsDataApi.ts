@@ -1,9 +1,7 @@
 import { getSermonsList, getSermonsCategoriesList } from "@/graphql/sermonsQueries";
 import { fetchAPI } from "./WordPressFetchAPI";
-import { getFormattedDate, getDateWithoutTime } from "@/utils/dateFormatter";
-import { getCategoryConvertedListItem } from "@/utils/getPostCategoriesList";
+import { getFormattedDate, getDateWithoutTime } from "@/hooks/useLocaleFormattedDate";
 import { FetchedSermonCardDataType, RenderingSermonCardDataType } from "@/types/WPDataTypes/SermonPostsDataTypes";
-import { PostCategoryFetchedListItem, PostCategoryConvertedListItem } from "@/types/postTypes";
 
 class SermonsDataApi {
   static getSermonsCardRenderingData(item: any) {
@@ -24,12 +22,13 @@ class SermonsDataApi {
       item.sermonDate = getDateWithoutTime(item.sermonDate).toISOString();
     }
     
-    item.topics = getCategoryConvertedListItem(item.sermonsTopics.nodes);
-    item.preachers = getCategoryConvertedListItem(item.sermonsPreachers.nodes);
-    item.biblebooks = getCategoryConvertedListItem(item.biblebooks.nodes);
+    item.topics = item.sermonsTopics.nodes.map((node: { name: string}) => node.name);
+    item.preachers = item.sermonsPreachers.nodes.map((node: { name: string}) => node.name);
+    item.biblebooks = item.biblebooks.nodes.map((node: { name: string}) => node.name);
     
     delete item.sermonsTopics;
     delete item.sermonsPreachers;
+    console.log(item)
 
     return item;
   }
@@ -43,7 +42,7 @@ class SermonsDataApi {
     return item;
   }
 
-  static async getSermonsList(locale: string): Promise<RenderingSermonCardDataType[]> {
+  static async getSermonsList(locale: string) {
     const variables = {
       language: locale.toUpperCase(),
     }
@@ -75,9 +74,9 @@ class SermonsDataApi {
     } = await fetchAPI(getSermonsCategoriesList, { variables });
 
     return {
-      biblebooks: getCategoryConvertedListItem(biblebooks),
-      preachers: getCategoryConvertedListItem(preachers),
-      topics: getCategoryConvertedListItem(topics),
+      biblebooks: biblebooks.map((node: { name: string}) => node.name),
+      preachers: preachers.map((node: { name: string}) => node.name),
+      topics: topics.map((node: { name: string}) => node.name),
     };
   }
 }

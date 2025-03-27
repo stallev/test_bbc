@@ -12,51 +12,9 @@ export const getPastorsPostsByLang = `query getPastorsPostsByLang ($language: La
         excerpt
         date
         slug
-        pastorsPostsCategories {
-          nodes {
-            id
-          }
-        }
         ${FeaturedImageBlock}
         ${AuthorInfoBlock}
         ${SeoBlock}
-      }
-    }
-  }
-}
-`;
-
-export const getPastorsPostsByLangAndAuthor = `query getPastorsPostsByLangAndAuthor ($language: LanguageCodeFilterEnum, $authorName: String!) {
-  allPastorsPost(
-    where: {language: $language, authorName: $authorName, status: PUBLISH, orderby: {field: DATE, order: DESC}}
-  ) {
-    edges {
-      node {
-        title
-        excerpt
-        date
-        slug
-        pastorsPostsCategories {
-          nodes {
-            id
-          }
-        }
-        ${FeaturedImageBlock}
-        ${AuthorInfoBlock}
-        ${SeoBlock}
-      }
-    }
-  }
-}
-`;
-
-export const getPastorsPostsCategoriesByLang = `query getPastorsPostsCategoriesByLang ($language: LanguageCodeFilterEnum) {
-  pastorsPostsCategories(where: {hideEmpty: true, language: $language}) {
-    edges {
-      node {
-        count
-        id
-        name
       }
     }
   }

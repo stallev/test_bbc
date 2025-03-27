@@ -1,25 +1,17 @@
 import { BlogCardProps } from "@/ui/components/page-specific/blog/BlogCard/types";
 import { PageContentDataType } from "./WPDataTypes/PageContentDataTypes";
-import { Locale } from "@/i18n.config";
 
 export interface StandartPageDataType {
   pageData: PageContentDataType
 }
 export interface BlogPageCardsListProps {
   postsList: BlogCardProps[]
-  authorsList: PostCategoryConvertedListItem[]
-  yearsList: PostCategoryConvertedListItem[]
+  authorsList: PostCategoryListItem[]
+  yearsList: PostCategoryListItem[]
 }
 
 export interface AuthorNodeProps {
   node: authorSourceContent
-}
-export interface PastorsPostCategoryNodeProps {
-  node: {
-    count: number
-    id: string
-    name: string
-  }
 }
 
 export interface authorSourceContent {
@@ -48,25 +40,13 @@ export interface FormattedPostDateProps {
   day: number
 }
 
-export interface PostCategoryFetchedListItem {
-  id: string;
-  name: string;
-}
-export interface PostCategoryConvertedListItem {
+export interface PostCategoryListItem {
   id: string;
   value: string;
 }
 
 export interface Avatar {
   url: string
-}
-
-export interface PostsListBySameAuthorItemType {
-  slug: string
-  title: string
-  featuredImageUrl: string
-  excerpt: string
-  authorData: authorFinishedContentProps
 }
 
 export interface FeaturedImageMediaItemUrlProps {
@@ -131,15 +111,4 @@ export interface postSitemapFieldsItemProps {
 
 export interface PostParams {
   postSlug: string;
-  author?: string;
-  locale: Locale;
-}
-export interface PastorsPostParams {
-  postSlug: string;
-  author: string;
-  locale: Locale;
-}
-export interface AuthorPastorsPageParams {
-  author: string;
-  locale: Locale;
 }

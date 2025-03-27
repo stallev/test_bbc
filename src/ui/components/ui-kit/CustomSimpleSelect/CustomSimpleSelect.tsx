@@ -2,17 +2,15 @@ import { ALL_TAXONOMY_ITEMS_NAME } from '@/constants/mock';
 import { Text } from '..';
 
 import styles from './styles/custom-simple-select.module.scss';
-import { PostCategoryConvertedListItem } from '@/types/postTypes';
 
 interface CustomSelectProps {
-  options: PostCategoryConvertedListItem[] | []
+  options: string[] | []
   name: string
   title: string
   defaultValueText?: string
   selectedValue: string
   ariaLabel: string
   onChangeValue: (event: React.ChangeEvent<HTMLSelectElement>) => void
-  className?: string
 }
 
 const CustomSimpleSelect: React.FC<CustomSelectProps> = ({
@@ -22,11 +20,10 @@ const CustomSimpleSelect: React.FC<CustomSelectProps> = ({
   defaultValueText = 'all',
   selectedValue,
   ariaLabel,
-  onChangeValue,
-  className,
+  onChangeValue
 }) => {
   return (
-    <div className={`${styles["custom-simple-select"]} ${className}`}>
+    <div className={styles["custom-simple-select"]}>
       <Text
         textType='span'
         className={styles["custom-simple-select__name"]}
@@ -37,9 +34,9 @@ const CustomSimpleSelect: React.FC<CustomSelectProps> = ({
       <select aria-label={ariaLabel} size={1} name={name} onChange={onChangeValue} value={selectedValue}>
         <option value={ALL_TAXONOMY_ITEMS_NAME}>{defaultValueText}</option>
 
-        {options.map((option) => (
-          <option key={option.id} value={option.id}>
-            {option.value}
+        {options.map((option, index) => (
+          <option key={index} value={option}>
+            {option}
           </option>
         ))}
       </select>

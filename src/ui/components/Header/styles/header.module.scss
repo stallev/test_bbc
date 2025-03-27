@@ -6,7 +6,7 @@
   left: 0;
   right: 0;
   display: flex;
-  background-color: var(--main-bg-color);
+  background-color: $color-light-bg;
   width: 100%;
   z-index: $z-index-level3;
   transition: 0.8s;
@@ -15,7 +15,7 @@
     position: absolute;
     width: 100vw;
     height: 100vh;
-    z-index: $z-index-level4;
+    background-color: $color-black-opacity-double-full;
   }
 
   &__content {
@@ -24,15 +24,13 @@
     align-items: center;
     width: 100%;
     height: $header-height;
-    padding: $gutter-md;
-    z-index: $z-index-level5;
+    padding: $gutter-ms;
   }
 
   &__tooglers {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 24px;
+    gap: 30px;
   }
 
   &.visible {
@@ -40,6 +38,6 @@
   }
 
   &.hidden {
-    top: -$header-height;
+    top: -80px;
   }
 }

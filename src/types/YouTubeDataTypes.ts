@@ -1,26 +1,32 @@
-import { Dispatch, SetStateAction } from "react";
-import { Locale } from "@/i18n.config";
 export interface YouTubeVideosDataType {
-  finishedVideos: YoutubeConvertedVideoItemType[] | []
-  liveVideos: YoutubeConvertedVideoItemType[] | []
-  upcomingVideos: YoutubeConvertedVideoItemType[] | []
+  finishedVideos: FinishedVideoItemType[]
+  liveVideos: LiveVideoItemType[]
+  upcomingVideos: UpcomingVideoItemType[]
 }
 
-export interface YoutubeConvertedVideoItemType  {
+export interface FinishedVideoItemType  {
   id: string
   title: string
   url: string
-  date: string
+  publishedAt: string
+  status: string
+}
+export interface LiveVideoItemType  {
+  id: string
+  title: string
+  url: string
+  actualStartTime: string
+  status: string
+}
+export interface UpcomingVideoItemType  {
+  id: string
+  title: string
+  url: string
+  scheduledStartTime: string
   status: string
 }
 
-export interface FetchedVideoItemsList {
-  finishedVideos: YoutubeConvertedVideoItemType[] | []
-  liveVideos: YoutubeConvertedVideoItemType[] | []
-  upcomingVideos: YoutubeConvertedVideoItemType[] | []
-}
-
-export interface YoutubeFetchedVideoItemType {
+export interface YoutubeVideoItemType {
   kind: string
   etag: string
   id: string
@@ -103,30 +109,4 @@ export interface LiveStreamingDetails {
   actualStartTime: string
   actualEndTime: string
   scheduledStartTime: string
-}
-
-export interface YearVideoItemsSortedData {
-  yearNumber: number
-  monthListArray: MonthVideoItemsSortedData []
-}
-
-export interface MonthVideoItemsSortedData {
-  monthNumber: number
-  videoListArray: YoutubeConvertedVideoItemType []
-}
-
-export interface VideoStreamsListProps {
-  locale: Locale
-  data: YearVideoItemsSortedData[]
-}
-export interface SelectedStreamsPeriod {
-  year: number | null
-  month: number | null
-}
-
-export interface YearStreamsListProps {
-  locale: Locale
-  data: YearVideoItemsSortedData
-  selectedStreamsPeriod: SelectedStreamsPeriod
-  setSelectedStreamsPeriod: Dispatch<SetStateAction<SelectedStreamsPeriod>>
 }

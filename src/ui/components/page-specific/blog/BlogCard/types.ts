@@ -8,11 +8,9 @@ export interface BlogCardDataProps {
 export interface BlogCardProps {
   title: string
   excerpt: string
-  simpleDate: string
   date: FormattedPostDateProps
   slug: string
   featuredImageData: PostFeaturedImageData
   author: authorFinishedContentProps
-  topics: string[] | []
   readingTime: number
 }

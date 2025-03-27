@@ -1,8 +1,13 @@
-"use client"
-
 import React, { useState } from 'react';
-import YearStreamsList from '@/ui/components/page-specific/live-streams/YearStreamsList/YearStreamsList';
-import { VideoStreamsListProps, YearVideoItemsSortedData, SelectedStreamsPeriod } from '@/types/YouTubeDataTypes';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { Loader } from '@/ui/components/ui-kit';
+import YouTubePlayer from '@/ui/components/page-specific/live-streams/YouTubePlayer/YouTubePlayer';
+
+import styles from './styles/videostreams-list.module.scss';
+
+export interface VideoStreamsListProps {
+  data: VideoItem[];
+}
 
 export interface VideoItem {
   title: string;
@@ -10,24 +15,33 @@ export interface VideoItem {
   url: string;
 }
 
-const VideoStreamsList: React.FC<VideoStreamsListProps> = ({ data, locale }) => {
-  const [selectedStreamsPeriod, setSelectedStreamsPeriod] = useState<SelectedStreamsPeriod>({
-    year: data[0].yearNumber,
-    month: (new Date()).getMonth()
-  });
+const VideoStreamsList: React.FC<VideoStreamsListProps> = ({ data }) => {
+  const PLAYLIST_PORTION = 10;
+  const [renderedData, setRenderedData] = useState(data.slice(0, PLAYLIST_PORTION));
+  const [offset, setOffset] = useState(PLAYLIST_PORTION);
+
+  const fetchMoreData = () => {
+    const newData = data.slice(offset, offset + PLAYLIST_PORTION); 
+    setRenderedData([...renderedData, ...newData]);
+    setOffset(offset + PLAYLIST_PORTION);
+  };
 
   return (
-    <div className="">
-      {data.map((year: YearVideoItemsSortedData) => (
-        <YearStreamsList
-          key={year.yearNumber}
-          data={year}
-          locale={locale}
-          selectedStreamsPeriod={selectedStreamsPeriod}
-          setSelectedStreamsPeriod={setSelectedStreamsPeriod}
+    <InfiniteScroll
+      className={styles['videostreams-list']}
+      dataLength={renderedData.length}
+      next={fetchMoreData}
+      hasMore={offset < data.length} 
+      loader={<Loader />}
+    >
+      {renderedData.map((video: VideoItem) => (
+        <YouTubePlayer
+          videoId={video.id}
+          title={video.title}
+          key={video.id}
         />
       ))}
-    </div>
+    </InfiniteScroll>
   );
 };
 

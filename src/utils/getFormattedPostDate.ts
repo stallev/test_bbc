@@ -1,4 +1,4 @@
-import { getShortMonthFormattedDate } from "@/utils/dateFormatter";
+import { getShortMonthFormattedDate } from "@/hooks/useLocaleFormattedDate";
 import { FormattedPostDateProps } from "@/types/postTypes";
 
 export const getFormattedPostDate = (dateString: string, locale: string): FormattedPostDateProps => {

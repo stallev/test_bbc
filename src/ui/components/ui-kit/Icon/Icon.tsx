@@ -1,17 +1,15 @@
 import { ComponentsMap } from './getIcons';
 interface IconProps {
   iconName?: string
-  className?: string
 }
 
 const Icon:React.FC<IconProps> = ({
-  iconName = '',
-  className = ''
+  iconName = ''
 }) => {
 
   const IconComponent = ComponentsMap[iconName];
 
-  return <IconComponent className={className} />;
+  return <IconComponent />;
 };
 
 export default Icon;

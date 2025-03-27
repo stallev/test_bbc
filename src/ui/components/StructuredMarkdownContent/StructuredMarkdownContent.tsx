@@ -1,17 +1,15 @@
-"use client"
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { Text } from '../ui-kit';
 import Audio from '../Audio/Audio';
 import MediaGallery from '../MediaGallery/MediaGallery';
-import MediaGallerySlider from '../MediaGallerySlider/MediaGallerySlider';
 import FileDownload from '../FileDownload/FileDownload';
 import Video from '../Video/Video';
 import Blockquote from '../Blockquote/Blockquote';
 import { GutenbergBlocksTypes } from '@/constants';
 import { DefaultTextFontSizes } from '@/constants/TextConstants';
-import { ConvertedGutenbergBlockType, GutenbergBlock } from '@/types/WPDataTypes/GutenbergBlocksTypes';
+import { ConvertedGutenbergBlockType } from '@/types/WPDataTypes/GutenbergBlocksTypes';
 
 import styles from './styles/structured-markdown-content.module.scss';
 
@@ -30,7 +28,6 @@ const StructuredMarkdownContent:React.FC<StructuredMarkdownContentProps> = ({
   isFontSizeResizable = true 
 }) => {
   const [currentBlocksFontSizes, setCurrentBlocksFontSizes] = useState(DefaultTextFontSizes.mobile);
-  
   return (
     <div className={`${styles['structured-markdown-content']} ${className}`}>
       {
@@ -40,17 +37,17 @@ const StructuredMarkdownContent:React.FC<StructuredMarkdownContentProps> = ({
           />
       }
 
-      <div className={styles['structured-markdown-content__blocks']}>
-        {content.map((block: ConvertedGutenbergBlockType) => {
+      <div className={styles['structured-markdown-content__blocks']} >
+        {content.map((block) => {
           switch (block.type) {
             case GutenbergBlocksTypes.paragraph:
               return (
                 <Text
                   key={block.order}
                   textType='p'
-                  fontSize={isFontSizeResizable ? currentBlocksFontSizes && currentBlocksFontSizes.p : null}
+                  fontSize={currentBlocksFontSizes && currentBlocksFontSizes.p}
                 >
-                  {typeof block.content === 'string' ? block.content : ''}
+                  {block.content}
                 </Text>
               );
             case 'heading':
@@ -59,10 +56,10 @@ const StructuredMarkdownContent:React.FC<StructuredMarkdownContentProps> = ({
                   key={block.order}
                   textType={block?.headingType ? block?.headingType : ""}
                   fontSize={
-                    isFontSizeResizable ? currentBlocksFontSizes && currentBlocksFontSizes[block.headingType as keyof typeof currentBlocksFontSizes] : null
+                    currentBlocksFontSizes && currentBlocksFontSizes[block.headingType as keyof typeof currentBlocksFontSizes]
                   }
                 >
-                  {typeof block.content === 'string' ? block.content : ''}
+                  {block.content}
                 </Text>
               )
             case GutenbergBlocksTypes.image:
@@ -78,27 +75,20 @@ const StructuredMarkdownContent:React.FC<StructuredMarkdownContentProps> = ({
                 </div>
                 );
             case GutenbergBlocksTypes.gallery:
-              case GutenbergBlocksTypes.gallery:
-                return Array.isArray(block.content) ? (
-                  <MediaGallerySlider key={block.order} data={block.content} />
-                ) : null;
+              return <MediaGallery key={block.order} data={block.content} />;
             case GutenbergBlocksTypes.audio:
               return <Audio key={block.order} src={block?.src ? block?.src : ''} label={block?.caption && block.caption} />;
             case GutenbergBlocksTypes.file:
               return <FileDownload key={block.order} src={block?.src ? block?.src : ''} label={block?.label ? block?.label : ""} />;
             case GutenbergBlocksTypes.video:
               return <Video key={block.order} src={block?.src ? block?.src : ''} label={block?.caption && block.caption} />;
-            case GutenbergBlocksTypes.list:
-              return typeof block.content === 'string' ? (
-                <div key={block.order} dangerouslySetInnerHTML={{ __html: block.content }}></div>
-              ) : null;
             case GutenbergBlocksTypes.quote:
               return (
                 <Blockquote
                   key={block.order}
                   text={block?.text ? block?.text : ""}
                   citation={block?.citation && block.citation}
-                  fontSize={isFontSizeResizable ? currentBlocksFontSizes && currentBlocksFontSizes.blockquote : null}
+                  fontSize={currentBlocksFontSizes && currentBlocksFontSizes.blockquote}
                 />
               );
             default:

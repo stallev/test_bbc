@@ -6,9 +6,8 @@ import { stripHtmlTags } from "@/utils";
 import { convertGutenbergBlocksData } from "@/utils/convertGutenbergBlocksData";
 import { convertFeaturedImageData } from "@/utils/convertFeaturedImageData";
 import { getPostSeoData } from "@/utils/getPostSeoData";
-import { FetchedRestUpcomingEventType, UpcomingEventDataProps } from "@/types/WPDataTypes/UpcomingEventDataTypes";
+import { FetchedRestUpcomingEventType } from "@/types/WPDataTypes/UpcomingEventDataTypes";
 import { PostNodeSlugType, PostSitemapSourceData } from "@/types/WPDataTypes/CommonWPDataTypes";
-import { ConvertedGutenbergBlockType } from "@/types/WPDataTypes/GutenbergBlocksTypes";
 
 class UpcomingEventsDataApi {
   static async getUpcomingEventsItemsIDs() {
@@ -30,7 +29,7 @@ class UpcomingEventsDataApi {
     return translation;
   }
 
-  static async getUpcomingEventItemDataBySlug(slug: string, locale: string): Promise<UpcomingEventDataProps | null> {
+  static async getUpcomingEventItemDataBySlug(slug: string, locale: string) {
     const variables = {
       slug,
       language: locale.toUpperCase(),
@@ -40,14 +39,9 @@ class UpcomingEventsDataApi {
 
     if(!!fetchedData?.upcomingBy) {
       const { upcomingBy: { translation } } = fetchedData;
-      
-      const convertedBlocks = convertGutenbergBlocksData(translation.blocks);
-      if (!Array.isArray(convertedBlocks)) {
-        throw new Error('Invalid blocks data format');
-      }
 
       return {
-        blocks: convertedBlocks as unknown as ConvertedGutenbergBlockType[],
+        blocks: convertGutenbergBlocksData(translation.blocks),
         featuredImageData: convertFeaturedImageData(translation.featuredImage),
         seo: getPostSeoData(translation, locale),
         title: translation.title,
@@ -57,7 +51,7 @@ class UpcomingEventsDataApi {
       }
     }
 
-    return null;
+    return {};
   }
 
   static async getUpcomingEvents(locale: string): Promise<any> {
@@ -68,23 +62,17 @@ class UpcomingEventsDataApi {
       const itemData = await this.getUpcomingEventItemData(item, locale.toUpperCase());
       const featuredImageUrl = !!itemData.featuredImage ? itemData.featuredImage.node.mediaItemUrl : DEFAULT_FEATURED_IMAGE;
 
-      itemData.upcomingEventShortDescription = stripHtmlTags(itemData?.upcomingEventShortDescription ? itemData.upcomingEventShortDescription : itemData.excerpt);
+      itemData.shortDescription = stripHtmlTags(itemData.excerpt);
       
       itemData.featuredImageUrl = featuredImageUrl;
 
       delete itemData.featuredImage;
       delete itemData.excerpt;
 
-      resultItems.push({ ...itemData });
+      resultItems.push({ data: itemData });
     }
     
     return resultItems;
-  }
-
-  static async getUpcomingEventsReduced(locale: string): Promise<any> {
-    const items = await this.getUpcomingEvents(locale);
-    
-    return items.slice(0, 3);
   }
 
   static async getUpcomingEventsPaths() {
