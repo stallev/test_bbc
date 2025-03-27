@@ -1,5 +1,21 @@
 customHeaders:
+  - pattern: "**/*.html"
+    headers:
+      - key: Cache-Control
+        value: "public, max-age=31536000, immutable"
+  - pattern: "**/*.js"
+    headers:
+      - key: Cache-Control
+        value: "public, max-age=31536000, immutable"
+  - pattern: "**/*.css"
+    headers:
+      - key: Cache-Control
+        value: "public, max-age=31536000, immutable"
   - pattern: "/blog/*"
+    headers:
+      - key: Cache-Control
+        value: "public, max-age=0, s-maxage=600, stale-while-revalidate=600"
+  - pattern: "/sermons/"
     headers:
       - key: Cache-Control
         value: "public, max-age=0, s-maxage=600, stale-while-revalidate=600"
@@ -7,6 +23,14 @@ customHeaders:
     headers:
       - key: Cache-Control
         value: "public, max-age=0, s-maxage=600, stale-while-revalidate=600"
+  - pattern: "/ministries/*"
+    headers:
+      - key: Cache-Control
+        value: "public, max-age=0, s-maxage=600, stale-while-revalidate=600"
+  - pattern: "/{terms,privacy,contact-us,giving}"
+    headers:
+      - key: Cache-Control
+        value: "public, max-age=0, s-maxage=600, stale-while-revalidate=600"      
   - pattern: "/staff/*"
     headers:
       - key: Cache-Control
