@@ -19,7 +19,7 @@ export async function generateStaticParams() {
   return [];
 }
 
-export const revalidate = 5 * 60;
+export const revalidate = 10 * 60;
 
 export async function generateMetadata({
   params,

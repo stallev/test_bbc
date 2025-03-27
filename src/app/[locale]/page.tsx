@@ -90,4 +90,4 @@ export default async function Home({
   );
 }
 
-export const revalidate = 5 * 60;
+export const revalidate = 10 * 60;

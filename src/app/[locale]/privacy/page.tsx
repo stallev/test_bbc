@@ -11,7 +11,7 @@ import { i18n, Locale } from "@/i18n.config";
 
 import styles from "@/styles/pages/privacy.module.scss";
 
-export const revalidate = 5 * 60;
+export const revalidate = 10 * 60;
 
 export async function generateMetadata({
   params: { locale },

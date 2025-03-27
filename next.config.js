@@ -65,6 +65,10 @@ const nextConfig = {
             key: 'X-DNS-Prefetch-Control',
             value: 'on'
           },
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, s-maxage=600, stale-while-revalidate=600',
+          },
         ],
       },
     ]
