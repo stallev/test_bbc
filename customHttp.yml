@@ -1,4 +1,16 @@
 customHeaders:
+  - pattern: "/blog/*"
+    headers:
+      - key: Cache-Control
+        value: "public, max-age=0, s-maxage=600, stale-while-revalidate=600"
+  - pattern: "/upcoming-events/*"
+    headers:
+      - key: Cache-Control
+        value: "public, max-age=0, s-maxage=600, stale-while-revalidate=600"
+  - pattern: "/staff/*"
+    headers:
+      - key: Cache-Control
+        value: "public, max-age=0, s-maxage=600, stale-while-revalidate=600"
   - pattern: "/"
     headers:
       - key: Cache-Control
