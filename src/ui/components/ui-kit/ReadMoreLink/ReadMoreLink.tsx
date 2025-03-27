@@ -23,7 +23,7 @@ const ReadMoreLink:React.FC<ReadMoreLinkProps> = ({
   const href = slugSelector(locale, to);
 
   return (
-    <Link className={`${styles["read-more-link"]} ${className ? className : ''}`} href={href}>
+    <Link prefetch={true} className={`${styles["read-more-link"]} ${className ? className : ''}`} href={href}>
       <Icon className={styles["read-more-link__icon"]} iconName='rightArrow'/>
       
       <span>{label}</span>
