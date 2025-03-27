@@ -4,6 +4,8 @@ import { SeoContentDataProps } from "@/types/globalTypes";
 import { fetchAPI } from "./WordPressFetchAPI";
 import { FetchedStaffPersonDataType, TranslationFetchedData } from "@/types/WPDataTypes/StaffContentDataType";
 import { PostNodeSlugType, PostSitemapSourceData } from "@/types/WPDataTypes/CommonWPDataTypes";
+import { MinisterPostDataProps } from "@/types/WPDataTypes/MinisterPostDataTypes";
+import { convertGutenbergBlocksData } from "@/utils/convertGutenbergBlocksData";
 
 class StaffDataApi {
   static getOtherImagesSizesUrls(item: TranslationFetchedData) {
@@ -43,7 +45,7 @@ class StaffDataApi {
     return result;
   }
 
-   static async getMinisterItemDataBySlug(id: string, locale: string) {
+   static async getMinisterItemDataBySlug(id: string, locale: string): Promise<MinisterPostDataProps | null | undefined> {
     const variables = {
       id,
       language: locale.toUpperCase(), 
@@ -52,18 +54,22 @@ class StaffDataApi {
     
     const fetchedData = await fetchAPI(getMinisterData, { variables });
 
+    if(!fetchedData?.minister) {
+      return null;
+    }
+
     if(!!fetchedData?.minister) {
       const { minister: { translation } } = fetchedData;
       
       const postData  = this.getOtherImagesSizesUrls(translation);
+      const blocks = convertGutenbergBlocksData(postData.blocks);
       
-      return {
+      return <MinisterPostDataProps>{
         ...postData,
+        blocks,
         seo: this.getMinisterPageSeoData(postData, locale)
       };
-    } 
-
-    return {};
+    }
   }
 
   static getMinisterPageSeoData(postData: TranslationFetchedData, locale: string) {

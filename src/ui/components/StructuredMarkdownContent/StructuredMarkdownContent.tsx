@@ -11,7 +11,7 @@ import Video from '../Video/Video';
 import Blockquote from '../Blockquote/Blockquote';
 import { GutenbergBlocksTypes } from '@/constants';
 import { DefaultTextFontSizes } from '@/constants/TextConstants';
-import { ConvertedGutenbergBlockType } from '@/types/WPDataTypes/GutenbergBlocksTypes';
+import { ConvertedGutenbergBlockType, GutenbergBlock } from '@/types/WPDataTypes/GutenbergBlocksTypes';
 
 import styles from './styles/structured-markdown-content.module.scss';
 
@@ -41,7 +41,7 @@ const StructuredMarkdownContent:React.FC<StructuredMarkdownContentProps> = ({
       }
 
       <div className={styles['structured-markdown-content__blocks']}>
-        {content.map((block) => {
+        {content.map((block: ConvertedGutenbergBlockType) => {
           switch (block.type) {
             case GutenbergBlocksTypes.paragraph:
               return (
@@ -50,7 +50,7 @@ const StructuredMarkdownContent:React.FC<StructuredMarkdownContentProps> = ({
                   textType='p'
                   fontSize={isFontSizeResizable ? currentBlocksFontSizes && currentBlocksFontSizes.p : null}
                 >
-                  {block.content}
+                  {typeof block.content === 'string' ? block.content : ''}
                 </Text>
               );
             case 'heading':
@@ -62,7 +62,7 @@ const StructuredMarkdownContent:React.FC<StructuredMarkdownContentProps> = ({
                     isFontSizeResizable ? currentBlocksFontSizes && currentBlocksFontSizes[block.headingType as keyof typeof currentBlocksFontSizes] : null
                   }
                 >
-                  {block.content}
+                  {typeof block.content === 'string' ? block.content : ''}
                 </Text>
               )
             case GutenbergBlocksTypes.image:
@@ -78,14 +78,20 @@ const StructuredMarkdownContent:React.FC<StructuredMarkdownContentProps> = ({
                 </div>
                 );
             case GutenbergBlocksTypes.gallery:
-              // return <MediaGallery key={block.order} data={block.content} />;
-              return <MediaGallerySlider key={block.order} data={block.content} />;
+              case GutenbergBlocksTypes.gallery:
+                return Array.isArray(block.content) ? (
+                  <MediaGallerySlider key={block.order} data={block.content} />
+                ) : null;
             case GutenbergBlocksTypes.audio:
               return <Audio key={block.order} src={block?.src ? block?.src : ''} label={block?.caption && block.caption} />;
             case GutenbergBlocksTypes.file:
               return <FileDownload key={block.order} src={block?.src ? block?.src : ''} label={block?.label ? block?.label : ""} />;
             case GutenbergBlocksTypes.video:
               return <Video key={block.order} src={block?.src ? block?.src : ''} label={block?.caption && block.caption} />;
+            case GutenbergBlocksTypes.list:
+              return typeof block.content === 'string' ? (
+                <div key={block.order} dangerouslySetInnerHTML={{ __html: block.content }}></div>
+              ) : null;
             case GutenbergBlocksTypes.quote:
               return (
                 <Blockquote

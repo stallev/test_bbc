@@ -42,6 +42,8 @@ export const ContactsInfo = {
   workHours: '6:00 – 21:00',
 }
 
+export const PASTORS_POST_BLOCK_ID = 'pastorsPosts';
+
 export const videoData = [
   {
       "id": "PJ1NbUMeBYM",

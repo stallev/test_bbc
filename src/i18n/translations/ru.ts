@@ -98,6 +98,7 @@ export const ru = {
   pastors_list_title: "Пасторы нашей церкви",
   all_events_link_label: "Все события",
   reflections_of_pastors: "Размышления пасторов",
+  posts_of_the_pastor: "Посты пастора",
   read_more_label: "Подробнее",
   another_posts_by_author: "Еще статьи от автора",
   ministries_section_title: "Служения",

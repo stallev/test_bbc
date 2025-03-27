@@ -25,6 +25,7 @@ const PastorsBlog = ({ translations, data }: PastorsBlogProps) => {
 
         <PostsList
           data={data}
+          isLandingPage
         />
       </Container>
     </section>

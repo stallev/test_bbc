@@ -120,12 +120,6 @@ export const MainNavBarLinks = [
   },
 
   {
-    link: RoutePath.Giving,
-    label: NavBarLinksNames.GivingLinkName,
-    children: [],
-  },  
-
-  {
     link: RoutePath.Contacts,
     label: NavBarLinksNames.ContactsLinkName,
     children: [],
@@ -136,4 +130,11 @@ export const MainNavBarLinks = [
     label: NavBarLinksNames.Blog,
     children: [],
   },
+
+  {
+    link: RoutePath.Giving,
+    label: NavBarLinksNames.GivingLinkName,
+    children: [],
+    iconName: 'donateIcon'
+  }, 
 ];

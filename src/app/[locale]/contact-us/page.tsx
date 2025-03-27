@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import PageContentDataApi from "@/services/PageDataApi";
-import StaffDataApi from "@/services/StaffDataApi";
 import { RoutePath, PagesIDs } from "@/constants";
 import { getTranslations } from "@/utils/languageParser";
 import { getPagePathData } from "@/utils/getPostSeoData";

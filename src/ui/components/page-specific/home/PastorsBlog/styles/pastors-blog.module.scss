@@ -3,6 +3,15 @@
 
 .pastors-blog {
   @extend %section;
+  margin-bottom: 70px;
+
+  @media screen and (min-width: $smallDesktop) {
+    margin-bottom: 100px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    margin-bottom: 200px;
+  }
 
   &__title {
     @extend %sectionTitle;

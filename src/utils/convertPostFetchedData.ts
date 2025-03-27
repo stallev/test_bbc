@@ -6,6 +6,7 @@ import { stripHtmlTags } from ".";
 import { Locale } from "@/i18n.config";
 import { getLocaleFormattedDate } from "@/utils/dateFormatter";
 import { convertGutenbergBlocksData } from "./convertGutenbergBlocksData";
+import { GutenbergBlock } from "@/types/WPDataTypes/GutenbergBlocksTypes";
 
 export interface PostFetchedDataProps {
   title: string

@@ -1,4 +1,6 @@
-import React from "react";
+'use client'
+import React, { useEffect } from "react";
+import BlogDataApi from "@/services/BlogDataApi";
 import { Text } from "@/ui/components/ui-kit";
 
 import styles from "./styles/blog-post-author-date.module.scss";

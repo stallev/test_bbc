@@ -1,4 +1,5 @@
-import { WPPostSeoType, ImageLinks } from "./CommonWPDataTypes"
+import { WPPostSeoType, ImageLinks } from "./CommonWPDataTypes";
+import { GutenbergBlockType } from "./PageContentDataTypes";
 
 export interface RenderedPastorCardDataType {
   data: TranslationFetchedData
@@ -17,6 +18,8 @@ export interface TranslationFetchedData {
   ministerPosition: string
   ministerDepartment: string
   ministerDescription: string
+  ministerUserSlug: string
+  blocks: GutenbergBlockType[]
   slug: string
   excerpt: string
   translations: Translation[]

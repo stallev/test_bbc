@@ -1,5 +1,7 @@
+"use client"
+
 import React, { useState, useEffect } from "react";
-import { useRouter } from 'next/router';
+import { useLocale } from "@/hooks/useLocale";
 import { IoStopCircle, IoPlay } from "react-icons/io5";
 import { PiPauseCircleFill } from "react-icons/pi";
 import { stripHtmlTags } from '@/utils/stripHtmlTags';
@@ -8,7 +10,7 @@ import { TextToSpeechProps } from './types';
 import styles from './styles/text-to-speech.module.scss';
 
 const TextToSpeech:React.FC<TextToSpeechProps> = ({ data }) => {
-  const { locale } = useRouter();
+  const locale = useLocale();
 
   const [isPaused, setIsPaused] = useState(false);
   const [isOnStart, setIsOnStart] = useState(true);

@@ -40,9 +40,14 @@ class UpcomingEventsDataApi {
 
     if(!!fetchedData?.upcomingBy) {
       const { upcomingBy: { translation } } = fetchedData;
+      
+      const convertedBlocks = convertGutenbergBlocksData(translation.blocks);
+      if (!Array.isArray(convertedBlocks)) {
+        throw new Error('Invalid blocks data format');
+      }
 
       return {
-        blocks: convertGutenbergBlocksData(translation.blocks) as ConvertedGutenbergBlockType[],
+        blocks: convertedBlocks as unknown as ConvertedGutenbergBlockType[],
         featuredImageData: convertFeaturedImageData(translation.featuredImage),
         seo: getPostSeoData(translation, locale),
         title: translation.title,

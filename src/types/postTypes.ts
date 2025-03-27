@@ -131,5 +131,15 @@ export interface postSitemapFieldsItemProps {
 
 export interface PostParams {
   postSlug: string;
+  author?: string;
+  locale: Locale;
+}
+export interface PastorsPostParams {
+  postSlug: string;
+  author: string;
+  locale: Locale;
+}
+export interface AuthorPastorsPageParams {
+  author: string;
   locale: Locale;
 }

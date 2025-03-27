@@ -8,7 +8,7 @@
   &__blocks {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 6px;
 
     @media screen and (min-width: $tablet) {
@@ -17,12 +17,6 @@
 
     @media screen and (min-width: $smallDesktop) {
       gap: 14px;
-    }
-
-    @media screen and (min-width: $desktop) {
-    }
-
-    @media screen and (min-width: $largeDesktop) {
     }
   }
 
@@ -54,7 +48,6 @@
 
   h5 {
     @extend %h5Style;
-    margin-bottom: $gutter-sm;
 
     &:first-child {
       margin-top: 0;
@@ -64,9 +57,25 @@
   p {
     @extend %smallParagraphMediumDescriptionTextStyle;
     
-    &:nth-of-type(1) {
+    &:nth-child(1) {
       margin-top: 0;
     }
+  }
+
+  ul, ol {
+    padding-left: 24px;
+
+    @media screen and (min-width: $tablet) {
+      padding-left: 30px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      padding-left: 36px;
+    }
+  }
+
+  li {
+    @extend %smallParagraphMediumDescriptionTextStyle;
   }
 
   &__single-image-wrap {

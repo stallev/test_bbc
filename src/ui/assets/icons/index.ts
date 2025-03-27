@@ -12,3 +12,4 @@ export { default as LeftQuotes } from './LeftQuotes';
 export { default as RightQuotes } from './RightQuotes';
 export { default as SmallLogoIcon } from './SmallLogoIcon';
 export { default as PrayerIcon } from './PrayerIcon';
+export { default as DonateIcon } from './DonateIcon';

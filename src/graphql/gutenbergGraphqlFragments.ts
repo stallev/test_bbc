@@ -109,6 +109,14 @@ export const GutenbergQuoteBlock = `
   }
 `;
 
+export const GutenbergListBlock = `
+  ... on CoreListBlock {
+    saveContent
+    name
+    order
+  }
+`;
+
 export const FullGutenbergBlockList = `
   blocks {
     ${GutenbergParagraphBlock}
@@ -119,5 +127,6 @@ export const FullGutenbergBlockList = `
     ${GutenbergFileBlock}
     ${GutenbergVideoBlock}
     ${GutenbergQuoteBlock}
+    ${GutenbergListBlock}
   }
-`
+`;

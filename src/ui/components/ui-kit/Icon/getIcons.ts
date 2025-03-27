@@ -19,4 +19,5 @@ export const ComponentsMap: ComponentsMap = {
   prayer: IconsComponent.PrayerIcon,
   leftQuotes: IconsComponent.LeftQuotes,
   rightQuotes: IconsComponent.RightQuotes,
+  donateIcon: IconsComponent.DonateIcon,
 };

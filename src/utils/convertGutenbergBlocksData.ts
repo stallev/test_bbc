@@ -1,11 +1,12 @@
 import { GutenbergBlocksTypes } from "@/constants";
 import { S3_BUCKET_URL } from "@/constants";
 import { getFileNameFromUrl } from ".";
-import { stripHtmlTags } from ".";
+import { removeClasses, stripHtmlTags } from "./stripHtmlTags";
 import { parseQuoteBlock } from "./htmlParser";
 import { GutenbergBlockType, InnerBlock } from "@/types/WPDataTypes/PageContentDataTypes";
+import { GutenbergBlock } from "@/types/WPDataTypes/GutenbergBlocksTypes";
 
-export const convertGutenbergBlocksData = (blocks: GutenbergBlockType[]) => {
+export const convertGutenbergBlocksData = (blocks: GutenbergBlockType[]): GutenbergBlock[] => {
   return blocks
     .filter((item:GutenbergBlockType) => !!item.name)
     .sort((a:GutenbergBlockType, b:GutenbergBlockType) => a.order - b.order)
@@ -16,6 +17,12 @@ export const convertGutenbergBlocksData = (blocks: GutenbergBlockType[]) => {
             type: GutenbergBlocksTypes.paragraph,
             order: block.order,
             content: stripHtmlTags(block.saveContent),
+          }
+        case 'core/list':
+          return {
+            type: GutenbergBlocksTypes.list,
+            order: block.order,
+            content: removeClasses(block.saveContent),
           }
         case 'core/image':
           return {
@@ -65,7 +72,6 @@ export const convertGutenbergBlocksData = (blocks: GutenbergBlockType[]) => {
           }
         case 'core/video':
           const videoFile = getFileNameFromUrl(block.attributes.src);
-
           return {
             type: GutenbergBlocksTypes.video,
             src: S3_BUCKET_URL + videoFile,
@@ -73,7 +79,6 @@ export const convertGutenbergBlocksData = (blocks: GutenbergBlockType[]) => {
           }
         case 'core/pullquote':
           const quoteContent =  parseQuoteBlock(block?.originalContent);
-          
           return {
             type: GutenbergBlocksTypes.quote,
             text: quoteContent.quoteText,

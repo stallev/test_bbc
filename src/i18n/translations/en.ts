@@ -98,6 +98,7 @@ export const en = {
   pastors_list_title: "Pastors of our church",
   all_events_link_label: "All events",
   reflections_of_pastors: "Reflections of Pastors",
+  posts_of_the_pastor: "Posts of the pastors",
   read_more_label: "Read more",
   another_posts_by_author: "More articles from the author",
   ministries_section_title: "Ministries",

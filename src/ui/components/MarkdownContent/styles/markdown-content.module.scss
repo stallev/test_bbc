@@ -3,7 +3,7 @@
 
 .markdown-content {
   h2 {
-    @extend %h2Style;
+    @extend %h3Style;
     margin-bottom: $gutter-ml;
   }
 

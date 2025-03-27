@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import CustomLink from "../ui-kit/CustomLink";
-import Text from "../ui-kit/Text";
+import { Text, Icon } from "../ui-kit";
 import { MainNavBarLinks } from "@/constants/NavBarLinks";
 import { LinkTypes } from "@/constants/LinkTypes";
 import useDropdown from "@/hooks/useDropDown";
@@ -12,11 +12,16 @@ import { MobileMenuStateProps } from "@/types/globalTypes";
 import styles from "./styles/navbar.module.scss";
 
 interface NavBarProps {
-  setMobileMenuState: React.Dispatch<React.SetStateAction<MobileMenuStateProps>>
-  mobileMenuState: MobileMenuStateProps
+  setMobileMenuState: React.Dispatch<
+    React.SetStateAction<MobileMenuStateProps>
+  >;
+  mobileMenuState: MobileMenuStateProps;
 }
 
-const NavBar: React.FC<NavBarProps> = ({ setMobileMenuState, mobileMenuState }) => {
+const NavBar: React.FC<NavBarProps> = ({
+  setMobileMenuState,
+  mobileMenuState,
+}) => {
   const pathname = usePathname();
 
   const { handleMouseEnter, handleMouseLeave, handleClick } = useDropdown({
@@ -29,74 +34,83 @@ const NavBar: React.FC<NavBarProps> = ({ setMobileMenuState, mobileMenuState }) 
   useEffect(() => {
     setMobileMenuState({
       isMenuOpen: false,
-      activeDropDownMenuItem: false
+      activeDropDownMenuItem: false,
     });
   }, [pathname, setMobileMenuState]);
 
   return (
-    <nav className={`${styles.navbar} ${isMenuOpen ? styles["navbar--show"] : ""}`}>
-      {MainNavBarLinks.map(
-        ({ link, label, children }, index) => (
-          <div
-            key={index}
-            onMouseLeave={handleMouseLeave}
-            className={styles.navbar__item}
-          >
-            {
-              !children?.length ? (
-                <CustomLink
-                  to={link}
-                  ariaLabel={translate(label) as string}
+    <nav
+      className={`${styles.navbar} ${isMenuOpen ? styles["navbar--show"] : ""}`}
+    >
+      {MainNavBarLinks.map(({ link, label, children, iconName }, index) => (
+        <div
+          key={index}
+          onMouseLeave={handleMouseLeave}
+          className={styles.navbar__item}
+        >
+          {!children?.length ? (
+            <CustomLink
+              to={link}
+              ariaLabel={translate(label) as string}
+              className={`${styles.navbar__link} ${
+                iconName ? styles["navbar__link--outlined"] : ""
+              }`}
+              type={LinkTypes.navLink}
+            >
+              {iconName ? (
+                <>
+                  <Icon iconName={iconName} />
+                  <span>{translate(label)}</span>
+                </>
+              ) : (
+                translate(label)
+              )}
+            </CustomLink>
+          ) : (
+            <>
+              <div
+                className={styles.navbar__label}
+                onClick={() => handleClick({ link, label, children })}
+              >
+                <Text
+                  textType="span"
                   className={styles.navbar__link}
-                  type={LinkTypes.navLink}
+                  onHover={() => handleMouseEnter({ link, label, children })}
                 >
                   {translate(label)}
-                </CustomLink>
-              ) : (
-                <>
-                  <div
-                    className={styles.navbar__label}
-                    onClick={() => handleClick({ link, label, children })}
-                  >
-                    <Text
-                      textType="span"
-                      className={styles.navbar__link}
-                      onHover={() => handleMouseEnter({ link, label, children })}
-                    >
-                      {translate(label)}
-                    </Text>
+                </Text>
 
-                    <div className={styles.arrowIcon}>
-                      {children.length > 0 &&
-                        (!!activeDropDownMenuItem && activeDropDownMenuItem.label === label ? (
-                          <IoCaretUpSharp />
-                        ) : (
-                          <IoCaretDownSharp />
-                        ))}
-                    </div>
+                <div className={styles.arrowIcon}>
+                  {children.length > 0 &&
+                    (!!activeDropDownMenuItem &&
+                    activeDropDownMenuItem.label === label ? (
+                      <IoCaretUpSharp />
+                    ) : (
+                      <IoCaretDownSharp />
+                    ))}
+                </div>
+              </div>
+
+              {!!activeDropDownMenuItem &&
+                activeDropDownMenuItem.label === label && (
+                  <div className={styles.navbar__submenu}>
+                    {children.map(({ link, label }, index) => (
+                      <CustomLink
+                        key={index}
+                        ariaLabel={translate(label) as string}
+                        to={link}
+                        className={styles["navbar__submenu-link"]}
+                        type={LinkTypes.navLink}
+                      >
+                        {translate(label)}
+                      </CustomLink>
+                    ))}
                   </div>
-
-                  {!!activeDropDownMenuItem && activeDropDownMenuItem.label === label && (
-                    <div className={styles.navbar__submenu}>
-                      {children.map(({ link, label }, index) => (
-                        <CustomLink
-                          key={index}
-                          ariaLabel={translate(label) as string}
-                          to={link}
-                          className={styles["navbar__submenu-link"]}
-                          type={LinkTypes.navLink}
-                        >
-                          {translate(label)}
-                        </CustomLink>
-                      ))}
-                    </div>
-                  )}
-                </>
-              )
-            }
-          </div>
-        )
-      )}
+                )}
+            </>
+          )}
+        </div>
+      ))}
     </nav>
   );
 };

@@ -44,6 +44,7 @@
 
 %h2Style {
   margin-top: 20px;
+  width: 100%;
   text-align: center;
   font-family: $accia-font-family;
   font-size: 40px;
@@ -68,7 +69,7 @@
 
   @media screen and (min-width: $largeDesktop) {
     margin-top: 56px;
-    font-size: 100;
+    font-size: 100px;
   }
 }
 
@@ -127,6 +128,7 @@
 
 %h3SubsectionStyle {
   margin-bottom: 27px;
+  width: 100%;
   text-align: center;
   font-size: 40px;
   line-height: 1;
@@ -151,10 +153,10 @@
 }
 
 %h5Style {
-  margin-top: 8px;
+  margin-top: 22px;
   font-size: 22px;
   line-height: 1;
-  font-weight: 400;
+  font-weight: 700;
   font-family: $accia-font-family;
   color: var(--text-main-color);
 
@@ -164,6 +166,39 @@
 
   @media screen and (min-width: $smallDesktop) {
     font-size: 30px;
+  }
+}
+
+%h5PrivacyTermsStyle {
+  @extend %h5Style;
+
+  &::first-letter {
+    color: $color-red;
+    letter-spacing: 8px;
+
+    @media screen and (min-width: $smallDesktop) {
+     letter-spacing: 14px;
+    }
+  }
+
+  &:not(:nth-child(1)) {
+    margin-top: 30px;
+
+    @media screen and (min-width: $tablet) {
+      margin-top: 34px;
+    }
+
+    @media screen and (min-width: $smallDesktop) {
+      margin-top: 40px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      margin-top: 50px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      margin-top: 60px;
+    }
   }
 }
 
@@ -255,9 +290,10 @@
 
 %smallParagraphMediumDescriptionTextStyle {
   margin-top: 10px;
+  text-align: justify;
   color: var(--text-main-color);
   font-size: 13px;
-  line-height: 1;
+  line-height: 1.6;
   font-weight: 500;
   font-family: $gilroy-medium-font-family;
 
