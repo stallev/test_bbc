@@ -59,51 +59,60 @@ const nextConfig = {
   },
   async headers() {
     return [
-      // {
-      //   source: '/_next/static/:path*',
-      //   headers: [
-      //     {
-      //       key: 'Cache-Control',
-      //       value: 'public, max-age=31536000, immutable',
-      //     },
-      //   ],
-      // },
-      // {
-      //   source: '/:path*.html',
-      //   headers: [
-      //     {
-      //       key: 'Cache-Control',
-      //       value: 'public, max-age=31536000, immutable',
-      //     },
-      //   ],
-      // },
-      // {
-      //   source: '/:path*.js',
-      //   headers: [
-      //     {
-      //       key: 'Cache-Control',
-      //       value: 'public, max-age=31536000, immutable',
-      //     },
-      //   ],
-      // },
-      // {
-      //   source: '/:path*.css',
-      //   headers: [
-      //     {
-      //       key: 'Cache-Control',
-      //       value: 'public, max-age=31536000, immutable',
-      //     },
-      //   ],
-      // },
-      // {
-      //   source: '/:path*.{jpg,jpeg,png,webp,avif,gif,svg}',
-      //   headers: [
-      //     {
-      //       key: 'Cache-Control',
-      //       value: 'public, max-age=31536000, immutable',
-      //     },
-      //   ],
-      // },
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/:path*.html',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/:path*.js',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/:path*.css',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/:path*.{jpg,jpeg,png,webp,avif,gif,svg}',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, s-maxage=600, stale-while-revalidate=600'
+          },
+        ],
+      },
       {
         source: '/(.*)',
         headers: [
