@@ -3,6 +3,7 @@ import PageContentDataApi from "@/services/PageDataApi";
 import YouTubeApiService from '@/services/YouTubeApi';
 import { YouTubePlaylistIDs, YouTubeApiKeys } from '@/constants';
 import { RoutePath, PagesIDs } from "@/constants";
+import { PAGE_REVALIDATE_TIME_IN_SECONDS } from "@/constants/mock";
 import { getTranslations } from "@/utils/languageParser";
 import { getPagePathData } from "@/utils/getPostSeoData";
 import { getSeoData } from "@/utils/getSeoData";

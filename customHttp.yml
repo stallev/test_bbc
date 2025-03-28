@@ -1,37 +1,13 @@
 customHeaders:
-  - pattern: "**/*.html"
+  - pattern: "**/*.{html,js,css,jpg,jpeg,png,webp,avif,gif,svg}"
     headers:
       - key: Cache-Control
         value: "public, max-age=31536000, immutable"
-  - pattern: "**/*.js"
-    headers:
-      - key: Cache-Control
-        value: "public, max-age=31536000, immutable"
-  - pattern: "**/*.css"
-    headers:
-      - key: Cache-Control
-        value: "public, max-age=31536000, immutable"
-  - pattern: "/blog/*"
+  - pattern: "/:locale(en|ru)/{blog/*,sermons/,upcoming-events/*,ministries/*,terms,privacy,contact-us,giving,staff/*}"
     headers:
       - key: Cache-Control
         value: "public, max-age=0, s-maxage=600, stale-while-revalidate=600"
-  - pattern: "/sermons/"
-    headers:
-      - key: Cache-Control
-        value: "public, max-age=0, s-maxage=600, stale-while-revalidate=600"
-  - pattern: "/upcoming-events/*"
-    headers:
-      - key: Cache-Control
-        value: "public, max-age=0, s-maxage=600, stale-while-revalidate=600"
-  - pattern: "/ministries/*"
-    headers:
-      - key: Cache-Control
-        value: "public, max-age=0, s-maxage=600, stale-while-revalidate=600"
-  - pattern: "/{terms,privacy,contact-us,giving}"
-    headers:
-      - key: Cache-Control
-        value: "public, max-age=0, s-maxage=600, stale-while-revalidate=600"      
-  - pattern: "/staff/*"
+  - pattern: "/:locale(en|ru)"
     headers:
       - key: Cache-Control
         value: "public, max-age=0, s-maxage=600, stale-while-revalidate=600"
@@ -39,7 +15,3 @@ customHeaders:
     headers:
       - key: Cache-Control
         value: "public, max-age=0, s-maxage=600, stale-while-revalidate=600"
-  - pattern: "**/*.{jpg,jpeg,png,webp,avif,gif,svg}"
-    headers:
-      - key: Cache-Control
-        value: "public, max-age=31536000, immutable"      

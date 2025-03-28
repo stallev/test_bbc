@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import PageContentDataApi from "@/services/PageDataApi";
 import { RoutePath, PagesIDs } from "@/constants";
+import { PAGE_REVALIDATE_TIME_IN_SECONDS } from "@/constants/mock";
 import { getPagePathData } from "@/utils/getPostSeoData";
 import { getSeoData } from "@/utils/getSeoData";
 import { PagePathProps } from "@/types/globalTypes";
@@ -17,7 +18,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export const revalidate = 10 * 60;
+export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;
 
 export async function generateMetadata({
   params: { locale },

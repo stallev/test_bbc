@@ -60,6 +60,15 @@ const nextConfig = {
   async headers() {
     return [
       {
+        source: '/:path*.(html|js|css|jpg|jpeg|png|webp|avif|gif|svg)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
         source: '/_next/static/:path*',
         headers: [
           {
@@ -69,38 +78,20 @@ const nextConfig = {
         ],
       },
       {
-        source: '/:path*.html',
+        source: '/:locale(en|ru)/:path*',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            value: 'public, max-age=0, s-maxage=600, stale-while-revalidate=600',
           },
         ],
       },
       {
-        source: '/:path*.js',
+        source: '/:locale(en|ru)',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        source: '/:path*.css',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        source: '/:path*.{jpg,jpeg,png,webp,avif,gif,svg}',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            value: 'public, max-age=0, s-maxage=600, stale-while-revalidate=600',
           },
         ],
       },
@@ -109,7 +100,7 @@ const nextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=0, s-maxage=600, stale-while-revalidate=600'
+            value: 'public, max-age=0, s-maxage=600, stale-while-revalidate=600',
           },
         ],
       },
@@ -136,10 +127,10 @@ const nextConfig = {
             key: 'X-DNS-Prefetch-Control',
             value: 'on',
           },
-          // {
-          //   key: 'Cache-Control',
-          //   value: 'public, max-age=0, s-maxage=600, stale-while-revalidate=600',
-          // },
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, s-maxage=600, stale-while-revalidate=600',
+          },
         ],
       },
     ];

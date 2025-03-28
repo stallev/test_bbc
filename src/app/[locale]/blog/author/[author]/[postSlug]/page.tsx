@@ -18,6 +18,8 @@ export async function generateStaticParams() {
   return [];
 }
 
+export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;
+
 export async function generateMetadata({
   params,
 }: {

@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import { Metadata } from 'next'
 import { getTranslations } from "@/utils/languageParser";
 import { PagesIDs, RoutePath } from "@/constants";
+import { PAGE_REVALIDATE_TIME_IN_SECONDS } from "@/constants/mock";
 import UpcomingEventsDataApi from "@/services/UpcomingDataApi";
 import YouTubeApiService from "@/services/YouTubeApi";
 import StaffDataApi from "@/services/StaffDataApi";
@@ -96,4 +97,4 @@ export default async function Home({
   );
 }
 
-export const revalidate = 10 * 60;
+export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;
