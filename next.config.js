@@ -31,8 +31,25 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [425, 570, 768, 1024],
     imageSizes: [16, 64, 96, 128, 256, 384, 512],
-    domains: ['testwordpressmedia1.s3.amazonaws.com', 'secure.gravatar.com', 'testchurchapi.stallevs.ru', '3.85.115.123'],
-    minimumCacheTTL: 86400,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'testwordpressmedia1.s3.amazonaws.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'secure.gravatar.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'testchurchapi.stallevs.ru',
+      },
+      {
+        protocol: 'https',
+        hostname: '3.85.115.123',
+      },
+    ],
+    minimumCacheTTL: 31536000,
   },
   reactStrictMode: true,
   output: "standalone",
@@ -71,6 +88,15 @@ const nextConfig = {
       },
       {
         source: '/:path*.css',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/:path*.{jpg,jpeg,png,webp,avif,gif,svg}',
         headers: [
           {
             key: 'Cache-Control',

@@ -11,6 +11,12 @@ import { i18n, Locale } from "@/i18n.config";
 
 import styles from "@/styles/pages/terms.module.scss";
 
+export async function generateStaticParams() {
+  return i18n.locales.map((locale) => ({
+    locale: locale,
+  }));
+}
+
 export const revalidate = 10 * 60;
 
 export async function generateMetadata({

@@ -14,6 +14,12 @@ import styles from "@/styles/pages/pastors-blog.module.scss";
 
 export const revalidate = 10 * 60;
 
+export async function generateStaticParams() {
+  return i18n.locales.map((locale) => ({
+    locale: locale,
+  }));
+}
+
 export async function generateMetadata({
   params: { locale },
 }: PagePathProps): Promise<Metadata> {

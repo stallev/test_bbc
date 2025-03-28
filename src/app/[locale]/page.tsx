@@ -25,6 +25,12 @@ const PastorsBlog = dynamic(() => import('@/ui/components/page-specific/home/Pas
 const Donation = dynamic(() => import('@/ui/components/Donation/Donation'));
 const MapLocation = dynamic(() => import('@/ui/components/MapLocation/MapLocation'));
 
+export async function generateStaticParams() {
+  return i18n.locales.map((locale) => ({
+    locale: locale,
+  }));
+}
+
 export async function generateMetadata(
   { params: { locale } }: PagePathProps
 ): Promise<Metadata> {

@@ -9,10 +9,13 @@ import Container from "@/ui/containers/Container/Container";
 import MediaPageHeader from "@/ui/components/page-specific/media/MediaPageHeader/MediaPageHeader";
 import SermonsContent from "@/ui/components/page-specific/sermons/SermonsContent/SermonsContent";
 import { PagePathProps } from "@/types/globalTypes";
-import { Text } from "@/ui/components/ui-kit";
 import { i18n, Locale } from "@/i18n.config";
 
-import styles from "@/styles/pages/sermons.module.scss";
+export async function generateStaticParams() {
+  return i18n.locales.map((locale) => ({
+    locale: locale,
+  }));
+}
 
 export const revalidate = 10 * 60;
 
