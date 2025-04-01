@@ -27,9 +27,7 @@ const Donation = dynamic(() => import('@/ui/components/Donation/Donation'));
 const MapLocation = dynamic(() => import('@/ui/components/MapLocation/MapLocation'));
 
 export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({
-    locale: locale,
-  }));
+  return [];
 }
 
 export async function generateMetadata(
