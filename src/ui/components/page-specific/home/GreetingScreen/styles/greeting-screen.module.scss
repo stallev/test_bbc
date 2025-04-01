@@ -5,6 +5,7 @@
   height: 558px;
   width: 100%;
   background: var(--main-bg-color);
+  z-index: $z-index-level3;
 
   @media screen and (min-width: $smallDesktop) {
     height: 700px;

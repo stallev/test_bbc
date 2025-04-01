@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import { Metadata } from 'next'
 import { getTranslations } from "@/utils/languageParser";
 import { PagesIDs, RoutePath } from "@/constants";
+import { PAGE_REVALIDATE_TIME_IN_SECONDS } from "@/constants/mock";
 import UpcomingEventsDataApi from "@/services/UpcomingDataApi";
 import YouTubeApiService from "@/services/YouTubeApi";
 import StaffDataApi from "@/services/StaffDataApi";
@@ -24,6 +25,12 @@ const LiveStreamsDynamic = dynamic(() => import('@/ui/components/page-specific/h
 const PastorsBlog = dynamic(() => import('@/ui/components/page-specific/home/PastorsBlog/PastorsBlog'));
 const Donation = dynamic(() => import('@/ui/components/Donation/Donation'));
 const MapLocation = dynamic(() => import('@/ui/components/MapLocation/MapLocation'));
+
+export async function generateStaticParams() {
+  return i18n.locales.map((locale) => ({
+    locale: locale,
+  }));
+}
 
 export async function generateMetadata(
   { params: { locale } }: PagePathProps
@@ -48,7 +55,7 @@ export default async function Home({
   
   const upcomingEventsData = await UpcomingEventsDataApi.getUpcomingEventsReduced(locale);
   const videosData = await YouTubeApiService.getPortionYouTubeStreamsItems(
-    YouTubePlaylistIDs.generalLiveStreams,
+    YouTubePlaylistIDs.myStream,
     YouTubeApiKeys.alexander
   );
   const staffData = await StaffDataApi.getMinisters(locale);
@@ -90,4 +97,4 @@ export default async function Home({
   );
 }
 
-export const revalidate = 5 * 60;
+export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;

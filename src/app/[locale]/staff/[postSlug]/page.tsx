@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import StaffDataApi from "@/services/StaffDataApi";
 import { RoutePath } from "@/constants";
+import { PAGE_REVALIDATE_TIME_IN_SECONDS } from "@/constants/mock";
 import Container from "@/ui/containers/Container/Container";
 import { Text, CustomImage } from "@/ui/components/ui-kit";
 import StaffBlogPosts from "@/ui/components/page-specific/staff/StaffBlogPosts/StaffBlogPosts";
@@ -19,7 +20,7 @@ export async function generateStaticParams() {
   return [];
 }
 
-export const revalidate = 5 * 60;
+export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;
 
 export async function generateMetadata({
   params,

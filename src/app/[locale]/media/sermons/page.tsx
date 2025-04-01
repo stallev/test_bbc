@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import PageContentDataApi from "@/services/PageDataApi";
 import SermonsDataApi from "@/services/SermonsDataApi";
 import { RoutePath, PagesIDs } from "@/constants";
+import { PAGE_REVALIDATE_TIME_IN_SECONDS } from "@/constants/mock";
 import { getTranslations } from "@/utils/languageParser";
 import { getPagePathData } from "@/utils/getPostSeoData";
 import { getSeoData } from "@/utils/getSeoData";
@@ -9,12 +10,15 @@ import Container from "@/ui/containers/Container/Container";
 import MediaPageHeader from "@/ui/components/page-specific/media/MediaPageHeader/MediaPageHeader";
 import SermonsContent from "@/ui/components/page-specific/sermons/SermonsContent/SermonsContent";
 import { PagePathProps } from "@/types/globalTypes";
-import { Text } from "@/ui/components/ui-kit";
 import { i18n, Locale } from "@/i18n.config";
 
-import styles from "@/styles/pages/sermons.module.scss";
+export async function generateStaticParams() {
+  return i18n.locales.map((locale) => ({
+    locale: locale,
+  }));
+}
 
-export const revalidate = 5 * 60;
+export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;
 
 export async function generateMetadata({
   params: { locale },

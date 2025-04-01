@@ -1,7 +1,10 @@
 import { Metadata } from "next";
 import BlogDataApi from "@/services/BlogDataApi";
 import { RoutePath } from "@/constants";
-import { SAME_AUTHOR_POST_CARD_POST_PAGE_COUNT } from "@/constants/mock";
+import {
+  SAME_AUTHOR_POST_CARD_POST_PAGE_COUNT,
+  PAGE_REVALIDATE_TIME_IN_SECONDS,
+} from "@/constants/mock";
 import Container from "@/ui/containers/Container/Container";
 import { Text, CustomImage } from "@/ui/components/ui-kit";
 import StructuredMarkdownContent from "@/ui/components/StructuredMarkdownContent/StructuredMarkdownContent";
@@ -17,6 +20,8 @@ import styles from "@/styles/pages/pastors-post.module.scss";
 export async function generateStaticParams() {
   return [];
 }
+
+export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;
 
 export async function generateMetadata({
   params,
@@ -54,7 +59,10 @@ export default async function PastorsPostPage({
       params.author
     );
 
-    const relatedPosts = postsListBySameAuthor.slice(0, SAME_AUTHOR_POST_CARD_POST_PAGE_COUNT);
+  const relatedPosts = postsListBySameAuthor.slice(
+    0,
+    SAME_AUTHOR_POST_CARD_POST_PAGE_COUNT
+  );
 
   if (!postData) {
     return (
