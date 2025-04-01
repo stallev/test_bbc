@@ -6,12 +6,12 @@ customHeaders:
   - pattern: "/:locale(en|ru)/{blog/*,sermons/,upcoming-events/*,ministries/*,terms,privacy,contact-us,giving,staff/*}"
     headers:
       - key: Cache-Control
-        value: "public, max-age=0, s-maxage=600, stale-while-revalidate=600"
+        value: "public, max-age=0, s-maxage=60, stale-while-revalidate=60"
   - pattern: "/:locale(en|ru)"
     headers:
       - key: Cache-Control
-        value: "public, max-age=0, s-maxage=600, stale-while-revalidate=600"
+        value: "public, max-age=0, s-maxage=60, stale-while-revalidate=60"
   - pattern: "/"
     headers:
       - key: Cache-Control
-        value: "public, max-age=0, s-maxage=600, stale-while-revalidate=600"
+        value: "public, max-age=0, s-maxage=60, stale-while-revalidate=60"
