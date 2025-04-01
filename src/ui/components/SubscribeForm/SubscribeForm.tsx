@@ -11,10 +11,10 @@ import {
   InputTypes,
 } from "@/constants";
 import { useClientTranslationFunction } from "@/hooks/useLocale";
-
-import styles from "./styles/subscribe-form.module.scss";
 import { eventSubscriptionInputDataType } from "@/types/formTypes";
 import { subscribeToEventsAction } from "@/app/actions/eventsSubscriptions";
+
+import styles from "./styles/subscribe-form.module.scss";
 
 interface SubscribeFormInput {
   email: string;

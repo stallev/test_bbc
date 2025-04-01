@@ -2,5 +2,6 @@ import { UpcomingEventCardItemProps  } from "../../upcoming-event/UpcomingEventC
 
 export interface UpcomingEventListProps {
   data: UpcomingEventCardItemProps[]
+  translations: Record<string, string>
   isLandingPage?: boolean
 }

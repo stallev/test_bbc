@@ -61,8 +61,8 @@
 
   &__months-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, auto);
+    display: flex;
+    justify-content: space-between;
     gap: 16px;
     padding: 22px 20px;
 
@@ -76,6 +76,7 @@
 
   &__month {
     display: inline-block;
+    width: 30%;
     font-size: 18px;
     line-height: 1;
     font-weight: 500;
@@ -83,6 +84,10 @@
     color: var(--text-light-gray-color);
     text-transform: capitalize;
     cursor: pointer;
+
+    @media screen and (min-width: $desktop) {
+      width: fit-content;
+    }
 
     &--active {
       color: $color-red;

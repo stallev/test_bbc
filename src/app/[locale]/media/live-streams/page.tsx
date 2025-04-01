@@ -22,7 +22,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export const revalidate = 5 * 60;
+export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;
 
 export async function generateMetadata(
   { params: { locale } }: PagePathProps
@@ -50,7 +50,7 @@ export default async function Livestreams({
     liveVideos,
     upcomingVideos,
   } = await YouTubeApiService.getAllYouTubePlaylistItems(
-    YouTubePlaylistIDs.myStream,
+    YouTubePlaylistIDs.generalLiveStreams,
     YouTubeApiKeys.alexander
   );
 

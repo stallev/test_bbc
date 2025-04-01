@@ -13,7 +13,7 @@ export interface VideoItem {
 const VideoStreamsList: React.FC<VideoStreamsListProps> = ({ data, locale }) => {
   const [selectedStreamsPeriod, setSelectedStreamsPeriod] = useState<SelectedStreamsPeriod>({
     year: data[0].yearNumber,
-    month: (new Date()).getMonth()
+    month: data[0].monthListArray[data[0].monthListArray.length - 1].monthNumber,
   });
 
   return (

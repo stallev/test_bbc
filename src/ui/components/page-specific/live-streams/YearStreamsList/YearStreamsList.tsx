@@ -18,6 +18,7 @@ const YearStreamsList = ({
   const isSmallDesktop = isSmallWindowSize(width);
   const yearStreamsListRef = useRef<HTMLDivElement>(null);
   const isThisYearSelected = data.yearNumber === selectedStreamsPeriod.year;
+  console.log('selectedStreamsPeriod', selectedStreamsPeriod)
   const currentYearMonth = {
     year: new Date().getFullYear(),
     month: new Date().getMonth(),
@@ -27,9 +28,11 @@ const YearStreamsList = ({
 
   const onCrossClick = () => {
     setSelectedStreamsPeriod((prevState) => {
+      const firstMonthInTheList = data.monthListArray[0].monthNumber;
+
       const newState = isThisYearSelected
         ? { ...prevState, year: null, month: null }
-        : { ...prevState, year: data.yearNumber, month: currentYearMonth.month };
+        : { ...prevState, year: data.yearNumber, month: firstMonthInTheList };
         
       if (!isThisYearSelected && yearStreamsListRef.current) {
         setTimeout(() => {
