@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import UpcomingEventsDataApi from "@/services/UpcomingDataApi";
 import { RoutePath } from "@/constants";
-import { PAGE_REVALIDATE_TIME_IN_SECONDS } from "@/constants/mock";
 import Container from "@/ui/containers/Container/Container";
 import { Text, CustomImage } from "@/ui/components/ui-kit";
 import EventPeriod from "@/ui/components/page-specific/upcoming-event/EventPeriod/EventPeriod";
@@ -15,8 +14,6 @@ import styles from "@/styles/pages/upcoming-event.module.scss";
 export async function generateStaticParams() {
   return [];
 }
-
-export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;
 
 export async function generateMetadata({
   params,

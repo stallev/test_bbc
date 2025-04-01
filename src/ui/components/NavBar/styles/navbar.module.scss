@@ -73,12 +73,8 @@
 
   @media (min-width: $smallDesktop) {
     display: flex;
-    gap: 20px;
-    align-items: center;
-  }
-
-  @media (min-width: $desktop) {
     gap: 40px;
+    align-items: center;
   }
 
   &--show {

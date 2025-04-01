@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import PageContentDataApi from "@/services/PageDataApi";
 import { RoutePath, PagesIDs } from "@/constants";
-import { PAGE_REVALIDATE_TIME_IN_SECONDS } from "@/constants/mock";
 import { getTranslations } from "@/utils/languageParser";
 import { getPagePathData } from "@/utils/getPostSeoData";
 import { getSeoData } from "@/utils/getSeoData";
@@ -12,13 +11,7 @@ import { i18n, Locale } from "@/i18n.config";
 
 const Donation = dynamic(() => import('@/ui/components/Donation/Donation'));
 
-export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({
-    locale: locale,
-  }));
-}
-
-export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;
+export const revalidate = 5 * 60;
 
 export async function generateMetadata(
   { params: { locale } }: PagePathProps

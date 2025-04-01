@@ -10,7 +10,7 @@
   align-items: center;
   margin: 0 auto;
   width: fit-content;
-  z-index: $z-index-level1;
+  z-index: 100;
 
   &--one-day {
     flex-direction: row;

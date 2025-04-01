@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import PageContentDataApi from "@/services/PageDataApi";
 import UpcomingEventsDataApi from '@/services/UpcomingDataApi';
 import { RoutePath, PagesIDs } from "@/constants";
-import { PAGE_REVALIDATE_TIME_IN_SECONDS } from "@/constants/mock";
 import { getPagePathData } from "@/utils/getPostSeoData";
 import { getSeoData } from "@/utils/getSeoData";
 import { PagePathProps } from "@/types/globalTypes";
@@ -14,13 +13,7 @@ import { i18n, Locale } from "@/i18n.config";
 
 import styles from "@/styles/pages/upcoming-events.module.scss";
 
-export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({
-    locale: locale,
-  }));
-}
-
-export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;
+export const revalidate = 5 * 60;
 
 export async function generateMetadata(
   { params: { locale } }: PagePathProps

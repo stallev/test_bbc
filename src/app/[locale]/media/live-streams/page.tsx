@@ -3,7 +3,6 @@ import PageContentDataApi from "@/services/PageDataApi";
 import YouTubeApiService from '@/services/YouTubeApi';
 import { YouTubePlaylistIDs, YouTubeApiKeys } from '@/constants';
 import { RoutePath, PagesIDs } from "@/constants";
-import { PAGE_REVALIDATE_TIME_IN_SECONDS } from "@/constants/mock";
 import { getTranslations } from "@/utils/languageParser";
 import { getPagePathData } from "@/utils/getPostSeoData";
 import { getSeoData } from "@/utils/getSeoData";
@@ -15,12 +14,6 @@ import { PagePathProps } from "@/types/globalTypes";
 import { i18n, Locale } from "@/i18n.config";
 
 import { getFormattedYoutubeVideosData } from '@/utils/getFormattedYoutubeVideosData';
-
-export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({
-    locale: locale,
-  }));
-}
 
 export const revalidate = 5 * 60;
 
@@ -50,7 +43,7 @@ export default async function Livestreams({
     liveVideos,
     upcomingVideos,
   } = await YouTubeApiService.getAllYouTubePlaylistItems(
-    YouTubePlaylistIDs.myStream,
+    YouTubePlaylistIDs.generalLiveStreams,
     YouTubeApiKeys.alexander
   );
 

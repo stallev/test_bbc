@@ -20,7 +20,7 @@ const Logo: React.FC<TranslationsType> = ({ translations }) => {
 
   return (
     <div className={styles.logo} onClick={toggleMenuButton}>
-      <Link prefetch={true} aria-label={translations["site_name"]} href={RoutePath.Home} >
+      <Link aria-label={translations["site_name"]} href={RoutePath.Home} >
         <Icon iconName="logo" />
       </Link>
     </div>

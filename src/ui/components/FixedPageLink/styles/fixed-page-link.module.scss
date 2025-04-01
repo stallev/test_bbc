@@ -3,18 +3,11 @@
 
 .fixed-page-link {
   position: fixed;
-  top: 30vh;
+  top: 50vh;
   right: 5vw;
   border-radius: 50%;
-  border: 1px solid $color-red;
-  z-index: $z-index-level2;
+  z-index: $z-index-level5;
   box-shadow: $button-shadow;
-  overflow: hidden;
-  background-color: var(--main-bg-color);
-
-  @media (min-width: $smallDesktop) {
-    border: 2px solid $color-red;
-  }
 
   a {
     display: flex;
@@ -39,7 +32,8 @@
   }
 
   a {
-    svg path{
+    svg path,
+    svg circle {
       stroke: $color-red;
       stroke-width: 1.5px;
     }
