@@ -104,7 +104,6 @@ const nextConfig = {
       //     },
       //   ],
       // },
-      
       {
         source: '/(.*)',
         headers: [
