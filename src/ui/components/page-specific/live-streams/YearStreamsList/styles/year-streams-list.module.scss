@@ -60,15 +60,13 @@
   }
 
   &__months-list {
-    display: grid;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     gap: 16px;
     padding: 22px 20px;
 
     @media screen and (min-width: $desktop) {
-      display: flex;
-      flex-direction: row;
       justify-content: flex-start;
       gap: 30px;
     }

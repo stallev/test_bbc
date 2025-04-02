@@ -49,8 +49,8 @@ export default async function Livestreams({
     finishedVideos,
     liveVideos,
     upcomingVideos,
-  } = await YouTubeApiService.getAllYouTubePlaylistItems(
-    YouTubePlaylistIDs.generalLiveStreams,
+  } = await YouTubeApiService.getPortionYouTubeStreamsItems(
+    YouTubePlaylistIDs.myStream,
     YouTubeApiKeys.alexander
   );
 

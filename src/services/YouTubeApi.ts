@@ -58,7 +58,7 @@ class YouTubeApiService {
               title: item.snippet.title,
               url: `https://youtube.com/watch?v=${item.id}`,
               status: YouTubeStreamStatus.finished,
-              date: item.snippet?.publishedAt,
+              date: !!item.liveStreamingDetails?.actualStartTime ? item.liveStreamingDetails?.actualStartTime : item.snippet?.publishedAt,
             })
         }
       })
@@ -123,7 +123,7 @@ class YouTubeApiService {
             title: item.snippet.title,
             url: `https://youtube.com/watch?v=${item.id}`,
             status: YouTubeStreamStatus.finished,
-            date: item.snippet?.publishedAt,
+            date: !!item.liveStreamingDetails?.actualStartTime ? item.liveStreamingDetails?.actualStartTime : item.snippet?.publishedAt,
           })
       }
     })

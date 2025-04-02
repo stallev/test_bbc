@@ -18,11 +18,6 @@ const YearStreamsList = ({
   const isSmallDesktop = isSmallWindowSize(width);
   const yearStreamsListRef = useRef<HTMLDivElement>(null);
   const isThisYearSelected = data.yearNumber === selectedStreamsPeriod.year;
-  console.log('selectedStreamsPeriod', selectedStreamsPeriod)
-  const currentYearMonth = {
-    year: new Date().getFullYear(),
-    month: new Date().getMonth(),
-  };
 
   const minusedAddedTop = isSmallDesktop ? 70 : 55;
 

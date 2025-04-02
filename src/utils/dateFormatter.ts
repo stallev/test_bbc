@@ -43,10 +43,10 @@ export const getShortMonthFormattedDate = (dateString:string, locale:string | un
   return date.toLocaleDateString(locale, options);
 };
 
-export const getDayMonthFormattedDate = (dateString:string, locale:string | undefined): string => {
+export const getDayMonthFormattedDate = (dateString:string, locale:string | undefined): string => {  
   const options = {
     day: 'numeric' as const,
-    month: 'long' as const,  
+    month: 'long' as const,
   };
   const date = new Date(dateString);
   
