@@ -77,24 +77,6 @@ const nextConfig = {
           },
         ],
       },
-      // {
-      //   source: '/:locale(en|ru)/:path*',
-      //   headers: [
-      //     {
-      //       key: 'Cache-Control',
-      //       value: 'public, max-age=0, s-maxage=600, stale-while-revalidate=600',
-      //     },
-      //   ],
-      // },
-      // {
-      //   source: '/:locale(en|ru)',
-      //   headers: [
-      //     {
-      //       key: 'Cache-Control',
-      //       value: 'public, max-age=0, s-maxage=600, stale-while-revalidate=600',
-      //     },
-      //   ],
-      // },
       {
         source: '/',
         headers: [
@@ -127,10 +109,10 @@ const nextConfig = {
             key: 'X-DNS-Prefetch-Control',
             value: 'on',
           },
-          // {
-          //   key: 'Cache-Control',
-          //   value: 'public, max-age=0, s-maxage=600, stale-while-revalidate=600',
-          // },
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, s-maxage=600, stale-while-revalidate=600',
+          },
         ],
       },
     ];

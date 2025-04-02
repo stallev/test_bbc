@@ -53,7 +53,7 @@ export default async function Home({
   
   const upcomingEventsData = await UpcomingEventsDataApi.getUpcomingEventsReduced(locale);
   const videosData = await YouTubeApiService.getPortionYouTubeStreamsItems(
-    YouTubePlaylistIDs.generalLiveStreams,
+    YouTubePlaylistIDs.myStream,
     YouTubeApiKeys.alexander
   );
   const staffData = await StaffDataApi.getMinisters(locale);
