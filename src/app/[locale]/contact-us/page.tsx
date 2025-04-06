@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import PageContentDataApi from "@/services/PageDataApi";
 import { RoutePath, PagesIDs } from "@/constants";
 import { PAGE_REVALIDATE_TIME_IN_SECONDS } from "@/constants/mock";
-import { getTranslations } from "@/utils/languageParser";
 import { getPagePathData } from "@/utils/getPostSeoData";
 import { getSeoData } from "@/utils/getSeoData";
 import { PagePathProps } from "@/types/globalTypes";
@@ -42,8 +41,6 @@ export default async function ContactUs({
 }: {
   params: { locale: Locale }
 }) {
-  const translations = getTranslations(locale);
-
   const pageId = locale == i18n.defaultLocale ? PagesIDs.Contacts[i18n.defaultLocale] : PagesIDs.Contacts.ru;
 
   const { title } = await PageContentDataApi.getPageContentData(pageId);

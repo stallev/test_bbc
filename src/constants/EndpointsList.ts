@@ -5,6 +5,7 @@ export const PostsQueryMaxCount = 10000;
 export const EndpointsList = {
   PagesStandartRestEndpoint: `${SiteUrl}/wp-json/wp/v2/pages/`,
   MediaStandartRestEndpoint: `${SiteUrl}/wp-json/wp/v2/media/`,
+  AboutUsRestEndpoint: `${SiteUrl}/wp-json/custom/v1/about-us-page/`,
   UpcomingEventsCustomRestEndpoint: `${SiteUrl}/wp-json/events/upcoming-events-list`,
   MinistersCustomRestEndpoint: `${SiteUrl}/wp-json/ministers/selected-ministers-list`,
   TimelineCustomRestEndpoint: `${SiteUrl}/wp-json/timeline/timeline-data`,

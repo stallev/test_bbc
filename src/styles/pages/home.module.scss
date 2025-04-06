@@ -1,11 +1,7 @@
 @import '../variables.scss';
 @import '../placeholders.scss';
 
-.ministry {
-  &__title {
-    @extend %h1PageTitleStyle;
-  }
-
+.home {
   &__page-content {
     @extend %sectionGaps;
   }

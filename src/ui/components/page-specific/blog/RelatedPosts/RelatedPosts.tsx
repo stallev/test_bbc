@@ -23,7 +23,7 @@ const RelatedPosts = ({
   authorData,
   locale,
 }: RelatedPostsProps) => {
-  const authorPageLink = locale === i18n.defaultLocale ? `${RoutePath.Staff}/${authorData.slug}` : `${RoutePath.Staff}/${authorData.slug}-ru`
+  const authorPageLink = locale === i18n.defaultLocale ? `${RoutePath.Staff}/${authorData.slug}` : `${RoutePath.Staff}/${authorData.slug}-ru`;
   return (
     <div className={styles["related-posts"]}>
       <Link

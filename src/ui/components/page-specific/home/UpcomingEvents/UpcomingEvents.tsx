@@ -1,5 +1,4 @@
 import React from "react";
-import dynamic from "next/dynamic";
 import Container from "@/ui/containers/Container/Container";
 import { Text, CustomLink, Icon } from "@/ui/components/ui-kit";
 import UpcomingEventsList from "@/ui/components/page-specific/upcoming-event/UpcomingEventsList/UpcomingEventsList";
@@ -7,10 +6,6 @@ import { RoutePath, LinkTypes } from "@/constants";
 import { UpcomingEventListProps } from "./types";
 
 import styles from "./styles/upcoming-events.module.scss";
-
-const SubscribeForm = dynamic(() => import("@/ui/components/SubscribeForm/SubscribeForm"), {
-  ssr: false,
-});
 
 const UpcomingEvents = ({ data, translations }: UpcomingEventListProps) => {
   return (
@@ -35,8 +30,6 @@ const UpcomingEvents = ({ data, translations }: UpcomingEventListProps) => {
           <Icon iconName="rightArrow" />
         </CustomLink>
       </div>
-      
-      <SubscribeForm />
     </Container>
   );
 };

@@ -22,6 +22,23 @@
 
   h2 {
     @extend %h2Style;
+    margin-top: 20px;
+
+    @media screen and (min-width: $tablet) {
+      margin-top: 30px;
+    }
+  
+    @media screen and (min-width: $smallDesktop) {
+      margin-top: 40px;
+    }
+  
+    @media screen and (min-width: $desktop) {
+      margin-top: 48px;
+    }
+  
+    @media screen and (min-width: $largeDesktop) {
+      margin-top: 56px;
+    }
 
     &:first-child {
       margin-top: 0;

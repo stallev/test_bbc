@@ -19,12 +19,17 @@ import { getPagePathData } from "@/utils/getPostSeoData";
 import { getSeoData } from "@/utils/getSeoData";
 import { PagePathProps } from "@/types/globalTypes";
 
+import styles from '@/styles/pages/home.module.scss';
+
 const UpcomingEvents = dynamic(() => import('@/ui/components/page-specific/home/UpcomingEvents/UpcomingEvents'));
 const Ministries = dynamic(() => import('@/ui/components/page-specific/home/Ministries/Ministries'));
 const LiveStreamsDynamic = dynamic(() => import('@/ui/components/page-specific/home/LiveStreams/LiveStreams'));
 const PastorsBlog = dynamic(() => import('@/ui/components/page-specific/home/PastorsBlog/PastorsBlog'));
 const Donation = dynamic(() => import('@/ui/components/Donation/Donation'));
 const MapLocation = dynamic(() => import('@/ui/components/MapLocation/MapLocation'));
+const SubscribeForm = dynamic(() => import("@/ui/components/SubscribeForm/SubscribeForm"), {
+  ssr: false,
+});
 
 export async function generateStaticParams() {
   return [];
@@ -53,14 +58,14 @@ export default async function Home({
   
   const upcomingEventsData = await UpcomingEventsDataApi.getUpcomingEventsReduced(locale);
   const videosData = await YouTubeApiService.getPortionYouTubeStreamsItems(
-    YouTubePlaylistIDs.myStream,
+    YouTubePlaylistIDs.generalLiveStreams,
     YouTubeApiKeys.alexander
   );
   const staffData = await StaffDataApi.getMinisters(locale);
   const postsData = await BlogDataApi.getLastPostsDataHomePageByLang(locale);
 
   return (
-    <>
+    <div className={styles["home__page-content"]}>
       <FixedPageLink
         link={RoutePath.Giving}
         iconName="donateIcon"
@@ -80,6 +85,10 @@ export default async function Home({
 
       <UpcomingEvents data={upcomingEventsData} translations={translations} />
 
+      <Container>
+        <SubscribeForm />
+      </Container>
+
       <Ministries translations={translations} />
 
       <Staff data={staffData} translations={translations} />
@@ -91,7 +100,7 @@ export default async function Home({
       </Container>
 
       <MapLocation mapId={MAP_IDs.homePage} />
-    </>
+    </div>
   );
 }
 

@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import { Metadata } from 'next';
+import { Metadata } from "next";
 import PageContentDataApi from "@/services/PageDataApi";
 import StaffDataApi from "@/services/StaffDataApi";
 import MinistryDataApi from "@/services/MinistryDataApi";
@@ -25,65 +25,76 @@ export async function generateStaticParams() {
 
 export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;
 
-export async function generateMetadata(
-  { params: { locale } }: PagePathProps
-): Promise<Metadata> {
-  const pageId = locale == i18n.defaultLocale ? PagesIDs.KidsMinistry[i18n.defaultLocale] : PagesIDs.KidsMinistry.ru;
+export async function generateMetadata({
+  params: { locale },
+}: PagePathProps): Promise<Metadata> {
+  const pageId =
+    locale == i18n.defaultLocale
+      ? PagesIDs.KidsMinistry[i18n.defaultLocale]
+      : PagesIDs.KidsMinistry.ru;
 
-  const { seo: seoContentData } = await PageContentDataApi.getPageContentData(pageId);
+  const { seo: seoContentData } = await PageContentDataApi.getPageContentData(
+    pageId
+  );
   const seoPathData = getPagePathData({
     locale,
-    path: RoutePath.KidsMinistry
+    path: RoutePath.KidsMinistry,
   });
 
   return getSeoData({ seoContentData, seoPathData });
 }
 
-const PastorsBlog = dynamic(() => import('@/ui/components/page-specific/home/PastorsBlog/PastorsBlog'));
-const Staff = dynamic(() => import('@/ui/components/page-specific/home/Staff/Staff'));
+const PastorsBlog = dynamic(
+  () => import("@/ui/components/page-specific/home/PastorsBlog/PastorsBlog")
+);
+const Staff = dynamic(
+  () => import("@/ui/components/page-specific/home/Staff/Staff")
+);
 
 export default async function KidsMinistry({
-  params: { locale }
+  params: { locale },
 }: {
-  params: { locale: Locale }
+  params: { locale: Locale };
 }) {
   const translations = getTranslations(locale);
 
-  const pageId = locale == i18n.defaultLocale ? PagesIDs.KidsMinistry[i18n.defaultLocale] : PagesIDs.KidsMinistry.ru;
-  const ministryPageId = locale == i18n.defaultLocale ? '788' : '793';
+  const pageId =
+    locale == i18n.defaultLocale
+      ? PagesIDs.KidsMinistry[i18n.defaultLocale]
+      : PagesIDs.KidsMinistry.ru;
+  const ministryPageId = locale == i18n.defaultLocale ? "788" : "793";
 
   const { title } = await PageContentDataApi.getPageContentData(pageId);
   const staffData = await StaffDataApi.getMinisters(locale);
   const postsData = await BlogDataApi.getLastPostsDataHomePageByLang(locale);
-  const ministryData = await MinistryDataApi.getMinistryPageData(ministryPageId, locale);
+  const ministryData = await MinistryDataApi.getMinistryPageData(
+    ministryPageId,
+    locale
+  );
 
   const ministryInfoData = {
     pageContent: ministryData.pageContent,
     ministryDays: ministryData.ministryDays,
     ministryHours: ministryData.ministryHours,
     ministryShortDescription: ministryData.ministryShortDescription,
-    ministryImagesData: ministryData.ministryImagesData
+    ministryImagesData: ministryData.ministryImagesData,
   };
 
   return (
     <>
       <Container>
-        <Text
-          textType="h1"
-          className={ministryStyles.ministry__title}
-        >
+        <Text textType="h1" className={ministryStyles.ministry__title}>
           {title}
         </Text>
       </Container>
 
-      <MinistryInfo
-        translations={translations}
-        data={ministryInfoData}
-      />
+      <div className={ministryStyles["ministry__page-content"]}>
+        <MinistryInfo translations={translations} data={ministryInfoData} />
 
-      <Staff data={staffData} translations={translations} />
+        <Staff data={staffData} translations={translations} />
 
-      <PastorsBlog data={postsData} translations={translations} />
+        <PastorsBlog data={postsData} translations={translations} />
+      </div>
     </>
-  )
+  );
 }

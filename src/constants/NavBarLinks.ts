@@ -84,13 +84,17 @@ export const MainNavBarLinks = [
         label: NavBarLinksNames.Staff,
       },
       {
+        link: RoutePath.AboutUs,
+        label: NavBarLinksNames.AboutChurchLinkName,
+      },
+      {
         link: RoutePath.OurBeliefs,
         label: NavBarLinksNames.OurBeliefs,
       },
-      {
-        link: RoutePath.Timeline,
-        label: NavBarLinksNames.Timeline,
-      },
+      // {
+      //   link: RoutePath.Timeline,
+      //   label: NavBarLinksNames.Timeline,
+      // },
       {
         link: RoutePath.GospelPage,
         label: NavBarLinksNames.GospelPageLinkName,

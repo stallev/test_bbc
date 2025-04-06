@@ -1,0 +1,21 @@
+@import '../../../../../../styles/variables.scss';
+@import "../../../../../../styles/placeholders.scss";
+@import '../../../../../../styles/mixins.scss';
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+
+  @media screen and (min-width: $smallDesktop) {
+    gap: 90px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    gap: 110px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    gap: 120px;
+  }
+}
