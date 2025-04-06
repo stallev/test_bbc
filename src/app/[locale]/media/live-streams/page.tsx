@@ -17,9 +17,7 @@ import { i18n, Locale } from "@/i18n.config";
 import { getFormattedYoutubeVideosData } from '@/utils/getFormattedYoutubeVideosData';
 
 export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({
-    locale: locale,
-  }));
+  return [];
 }
 
 export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;
