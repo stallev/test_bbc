@@ -2,7 +2,8 @@
 
 import React, { useRef } from "react";
 import { useOnceIntersection } from "@/hooks/useOnceIntersection";
-import { Map, AdvancedMarker } from "@vis.gl/react-google-maps";
+import { Map, AdvancedMarker, APIProvider } from "@vis.gl/react-google-maps";
+import { GENERAL_GOOGLE_API_KEY } from "@/constants/APIs";
 
 import styles from "./styles/map-location.module.scss";
 
@@ -15,22 +16,27 @@ const center = {
   lng: -121.2940813, // default longitude
 };
 
+const libraries = ["geometry", "places"];
+
 const MapLocation = ({ mapId }: MapLocationProps) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const isMapVisible = useOnceIntersection(mapRef);
+
   return (
     <div ref={mapRef}>
       {isMapVisible && (
-        <Map
-          defaultCenter={center}
-          defaultZoom={12}
-          gestureHandling={"greedy"}
-          disableDefaultUI={true}
-          mapId={mapId}
-          className={styles["map-location"]}
-        >
-          <AdvancedMarker position={center} />
-        </Map>
+        <APIProvider apiKey={GENERAL_GOOGLE_API_KEY} libraries={libraries}>
+          <Map
+            defaultCenter={center}
+            defaultZoom={12}
+            gestureHandling={"greedy"}
+            disableDefaultUI={true}
+            mapId={mapId}
+            className={styles["map-location"]}
+          >
+            <AdvancedMarker position={center} />
+          </Map>
+        </APIProvider>
       )}
     </div>
   );
