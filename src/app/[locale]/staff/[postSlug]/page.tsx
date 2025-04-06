@@ -93,11 +93,6 @@ export default async function StaffPerson({ params }: { params: PostParams }) {
         <TextToSpeech data={postData.ministerDescription} />
       </div>
 
-      {/* <MarkdownContent
-        content={postData.ministerDescription}
-        className={styles["staff-person__page-content"]}
-      /> */}
-
       <StructuredMarkdownContent
         content={postData.blocks}
         className={styles["staff-person__structured-content"]}

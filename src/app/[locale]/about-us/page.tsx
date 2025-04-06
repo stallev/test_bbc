@@ -20,9 +20,7 @@ import { i18n, Locale } from "@/i18n.config";
 import styles from "@/styles/pages/about-us.module.scss";
 
 export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({
-    locale: locale,
-  }));
+  return [];
 }
 
 export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;
