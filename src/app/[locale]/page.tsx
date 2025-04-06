@@ -104,4 +104,4 @@ export default async function Home({
   );
 }
 
-export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;
+export const revalidate = 86400;

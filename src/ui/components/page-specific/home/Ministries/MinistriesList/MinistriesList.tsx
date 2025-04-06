@@ -21,7 +21,7 @@ const MinistriesList = ({ translations }: MinistriesListProps) => {
   const { width } = useWindowDimensions();
 
   return (
-    <>
+    <div className={styles["ministries-list__wrap"]}>
       {
         isSmallWindowSize(width)
           ? <div className={styles["ministries-slider-container"]}>
@@ -68,7 +68,7 @@ const MinistriesList = ({ translations }: MinistriesListProps) => {
           </div>
       }
       <PrayerRequest translations={translations} />
-    </>
+    </div>
   )
 }
 
