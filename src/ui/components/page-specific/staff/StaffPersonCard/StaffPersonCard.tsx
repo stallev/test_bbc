@@ -35,7 +35,7 @@ const StaffPersonCard: React.FC<StaffPersonCardProps> = ({
         <div className={styles["staff-person-card__image-wrap"]}>
           <CustomImage
             className={styles["staff-person-card__image"]}
-            imageURL={data.imageLinks.large}
+            imageURL={`${data.imageLinks.large}1`}
             priority={priorityFetching}
             sizes="38vw"
           />

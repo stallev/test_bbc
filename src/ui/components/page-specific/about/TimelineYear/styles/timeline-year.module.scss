@@ -144,3 +144,7 @@
     }
   }
 }
+
+[data-theme=dark] .timeline-year__header--coloured {
+  background-color: var(--dark-gray-color);
+}

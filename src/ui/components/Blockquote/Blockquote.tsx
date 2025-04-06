@@ -10,10 +10,11 @@ const Blockquote:React.FC<BlockquoteProps> = ({
   text,
   citation ='',
   fontSize = DefaultParagraphFontSize,
+  className = ''
 }) => {
   return (
     <blockquote
-      className={styles.blockquote}
+    className={`${styles.blockquote} ${!!className ? className : ''}`}
     >
       <div className={styles.blockquote__content}>
         <Icon iconName='customQuotes' className={styles.blockquote__quotes} />
