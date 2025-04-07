@@ -2,4 +2,5 @@ import { UpcomingEventCardItemProps  } from "../../upcoming-event/UpcomingEventC
 
 export interface UpcomingEventListProps {
   data: UpcomingEventCardItemProps[]
+  isLandingPage?: boolean
 }
