@@ -1,3 +1,5 @@
+import { PostFeaturedImageData } from "../postTypes"
+import { ConvertedGutenbergBlockType } from "./GutenbergBlocksTypes"
 export interface FetchedRestUpcomingEventType {
   id: string
   title: string
@@ -7,4 +9,14 @@ export interface FetchedRestUpcomingEventType {
   upcoming_event_short_description: string
   created_at: string
   updated_at: string
+}
+
+export interface UpcomingEventDataProps {
+  blocks: ConvertedGutenbergBlockType[]
+  featuredImageData: PostFeaturedImageData
+  seo: any
+  title: string
+  slug: string
+  upcomingEventStart: string
+  upcomingEventEnd: string
 }

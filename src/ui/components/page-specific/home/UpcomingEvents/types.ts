@@ -1,4 +1,4 @@
-import { UpcomingEventCardItemProps  } from "../UpcomingEventCard/types";
+import { UpcomingEventCardItemProps  } from "../../upcoming-event/UpcomingEventCard/types";
 
 export interface UpcomingEventListProps {
   data: UpcomingEventCardItemProps[]

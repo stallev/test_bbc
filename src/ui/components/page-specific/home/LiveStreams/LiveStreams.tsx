@@ -18,8 +18,8 @@ interface LiveStreamsProps {
 
 const LiveStreams = ({ data, locale }: LiveStreamsProps) => {
   const translations = getTranslations(locale);
-  const videoItemsList = [...data.liveVideos, ...data.finishedVideos].slice(0, 3);
-  
+  const videoItemsList = data.finishedVideos.slice(0, 3);
+
   return (
     <section className={styles.livestreams}>
       <Container>
@@ -44,12 +44,22 @@ const LiveStreams = ({ data, locale }: LiveStreamsProps) => {
           >
             <div className={styles["livestreams__page-link-inner-wrap"]}>
               <div className={styles["livestreams__page-link-content"]}>
-                {/* <Icon iconName='rightArrow' /> */}
+                <div className={styles["livestreams__page-link-content-top"]}>
+                  <Icon iconName='rightArrow' />
+                  
+                  <Text
+                    textType='span'
+                    className={styles["livestreams__page-link-text"]}
+                  >
+                    {translations.all}
+                  </Text>
+                </div>
+
                 <Text
                   textType='span'
                   className={styles["livestreams__page-link-text"]}
                 >
-                  &#10141; {translations.all_broadcasts}
+                  {translations.broadcasts}
                 </Text>
               </div>
             </div>

@@ -1,10 +1,11 @@
-import { SermonCardProps } from "../SermonCard/types";
+import { RenderingSermonCardDataType } from "@/types/WPDataTypes/SermonPostsDataTypes";
 import { SermonsListProps } from '../SermonsContent/types';
+import { PostCategoryConvertedListItem } from "@/types/postTypes";
 
 export interface SermonsCategoriesListProps {
-  biblebooks: string[];
-  preachers: string[];
-  topics: string[];
+  biblebooks: PostCategoryConvertedListItem[];
+  preachers: PostCategoryConvertedListItem[];
+  topics: PostCategoryConvertedListItem[];
 }
 
 export interface SermonsFiltersProps {
@@ -17,7 +18,7 @@ export interface SermonsFiltersProps {
 
 export interface SermonsFiltersComponentProps {
   categoriesData: SermonsCategoriesListProps
-  fullSermonsList: SermonCardProps[]
+  fullSermonsList: RenderingSermonCardDataType[]
   filters: SermonsFiltersProps
   setFilters: (filters: SermonsFiltersProps) => void
   setSermons: (sermons: SermonsListProps) => void

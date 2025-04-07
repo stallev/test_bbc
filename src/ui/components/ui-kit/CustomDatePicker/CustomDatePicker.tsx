@@ -17,7 +17,6 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
       onChangeValue(date);
     }
   };
-
   return (
     <label className={`${styles["custom-date-picker"]} ${className}`}>
       <span className={styles["custom-date-picker__name"]}>{title}</span>

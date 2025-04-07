@@ -18,7 +18,7 @@ const BlogCard: React.FC<BlogCardDataProps> = ({
   const translate = useClientTranslationFunction();
   const locale = useLocale();
 
-  const postLink = `${RoutePath.Blog}/${data.slug}`;
+  const postLink = `${RoutePath.BlogAuthor}/${data.author.slug}/${data.slug}`;
   const imagePriorityLoading = index < 1 ? true : false;
 
   return (

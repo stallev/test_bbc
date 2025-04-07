@@ -1,13 +1,13 @@
-import { SermonCardProps } from "../SermonCard/types";
 import { SermonsCategoriesListProps } from "../SermonFilters/types";
+import { RenderingSermonCardDataType } from "@/types/WPDataTypes/SermonPostsDataTypes";
 
 export interface SermonsContentProps {
   contentData?: any
-  sermonsData: SermonCardProps[]
+  sermonsData: RenderingSermonCardDataType[]
   sermonsCategories: SermonsCategoriesListProps
 }
 
 export interface SermonsListProps {
-  currentSermons: SermonCardProps[]
-  searchedSermons: SermonCardProps[] | []
+  currentSermons: RenderingSermonCardDataType[]
+  searchedSermons: RenderingSermonCardDataType[] | []
 }

@@ -1,11 +1,75 @@
 @import '../../../../../../styles/variables.scss';
+@import '../../../../../../styles/placeholders.scss';
 
 .sermons-content {
   display: flex;
   flex-direction: column;
-  gap: $gutter-lg;
+  gap: 40px;
 
-  &__markdown {
-    margin-top: $gutter-xl;
+  @media screen and (min-width: $tablet) {
+    gap: 60px;
   }
+
+  @media screen and (min-width: $smallDesktop) {
+    gap: 100px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    gap: 150px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    gap: 200px;
+  }
+
+  .sermons-content__markdown {
+    & > div {
+      gap: 20px;
+
+      @media screen and (min-width: $tablet) {
+        gap: 30px;
+      }
+
+      @media screen and (min-width: $smallDesktop) {
+        gap: 40px;
+      }
+
+      @media screen and (min-width: $largeDesktop) {
+        gap: 60px;
+      }
+    }
+    p {
+      @extend %pageParagraphDescriptionTextStyle;
+      text-align: center;
+      margin-top: 0;
+    }
+  }
+
+  &__sermons-data {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    @media screen and (min-width: $tablet) {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 40px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      gap: 60px;
+    }
+  }
+
+  &__searched-message {
+    @extend %smallParagraphMediumDescriptionTextStyle;
+    margin-bottom: 20px;
+  }
+
+  &__sermons-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
 }

@@ -1,5 +1,5 @@
 import { BlogCardProps } from "../BlogCard/types";
-import { PostCategoryListItem } from "@/types/postTypes";
+import { PostCategoryConvertedListItem } from "@/types/postTypes";
 import { BlogCategoriesData } from "../BlogFilters/types";
 
 export interface BlogContentProps {
