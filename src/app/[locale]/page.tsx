@@ -104,4 +104,4 @@ export default async function Home({
   );
 }
 
-export const revalidate = 86400;
+export const revalidate = 600;
