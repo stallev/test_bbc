@@ -1,4 +1,5 @@
 @import "../../../../../styles/variables.scss";
+@import "../../../../../styles/placeholders.scss";
 
 .custom-input {
   display: flex;
@@ -20,19 +21,19 @@
     display: block;
     box-sizing: border-box;
     flex: 1;
-    padding: $gutter-ms $gutter-base $gutter-xs 0;
+    padding: 8px 0;
     z-index: 1;
     width: 100%;
     border: none;
-    font-size: 20px;
-    line-height: 20px;
+    font-size: 12px;
+    line-height: 1;
     background-color: inherit;
     border-bottom: 1px solid $color-medium-gray;
     color: $color-gray;
 
     @media screen and (min-width: $desktop) {
       font-size: 24px;
-      line-height: 24px;
+      padding: 16px 0;
     }
 
     &:focus {
@@ -44,6 +45,10 @@
   &--error input,
   &--error input:focus {
     border-bottom: 1px solid $color-red;
+  }
+
+  label {
+    @extend %inputLabelStyle;
   }
 
   &__error-message {

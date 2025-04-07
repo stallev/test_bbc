@@ -1,0 +1,76 @@
+@import "../../../../../../../styles/variables.scss";
+@import "../../../../../../../styles/placeholders.scss";
+
+.posts-list {
+  @extend %animatedArticlesListStyles;
+  margin-bottom: 70px;
+
+  @media screen and (min-width: $smallDesktop) {
+    margin-bottom: 100px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    margin-bottom: 200px;
+  }
+
+  &__blog-link {
+    display: flex;
+    border: 1px solid $color-red;
+    border-radius: 5px;
+    padding: $gutter-ml;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 350px;
+
+    @media screen and (min-width: $smallDesktop) {
+      align-self: flex-start;
+      height: 444px;
+      border: 2px solid $color-red;
+    }
+
+    @media screen and (min-width: $desktop) {
+      height: 514px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      height: 643px;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: $gutter-xs;
+
+      @media screen and (min-width: $smallDesktop) {
+        gap: $gutter-ml;
+      }
+    }
+
+    svg {
+      display: inline-block;
+      width: 19px;
+      height: 18px;
+
+      @media screen and (min-width: $smallDesktop) {
+        width: 41px;
+        height: 40px;
+      }
+    }
+
+    svg path {
+      fill: $color-red;
+    }
+
+    span {
+      font-size: 32px;
+      line-height: 1.2;
+      color: var(--text-main-color);
+
+      @media screen and (min-width: $smallDesktop) {
+        font-size: 70px;
+      }
+    }
+  }
+}

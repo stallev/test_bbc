@@ -1,7 +1,7 @@
 import React from 'react';
 import { RoutePath } from '@/constants';
 import { StaffPersonCardProps } from './types';
-import { CustomImage, CustomLink, Text, Icon } from '@/ui/components/ui-kit';
+import { CustomImage, CustomLink, Text, Icon, ReadMoreLink } from '@/ui/components/ui-kit';
 
 import styles from './styles/staff-person-card.module.scss';
 
@@ -35,17 +35,10 @@ const StaffPersonCard: React.FC<StaffPersonCardProps> = ({ data, translations, i
           {`${data.ministerFirstName} ${data.ministerLastName}`}
         </Text>
 
-        <CustomLink
+        <ReadMoreLink
           to={`${RoutePath.Staff}/${data.slug}`}
-          className={styles["staff-person-card__read-more-link"]}
-        >
-          <Icon className='test' iconName='rightArrow'/>
-          <Text
-            textType='span'
-          >
-            {translations.read_more_label}
-          </Text>
-        </CustomLink>
+          label={translations.read_more_label}
+        />
       </div>
     </article>
   )

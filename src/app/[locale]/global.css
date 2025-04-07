@@ -3,7 +3,9 @@
   --foreground: #171717;
   --text-main-color: #000000;
   --text-secondary-color: #373737;
+  --text-light-gray-color: #adadad;
   --fill-main-color: #373737;
+  --color-red: #FF3838;
 }
 
 .dark,
@@ -12,7 +14,9 @@
   --main-bg-color: #2c2c2c;
   --text-main-color: #FAF8F2;
   --text-secondary-color: #FAF8F2;
+  --text-light-gray-color: #adadad;
   --fill-main-color: #FAF8F2;
+  --color-red: #FF3838;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,7 +24,9 @@
     --main-bg-color: #2c2c2c;
     --text-main-color: #FAF8F2;
     --foreground: #ededed;
+    --text-light-gray-color: #adadad;
     --fill-main-color: #FAF8F2;
+    --color-red: #FF3838;
   }
 }
 
@@ -64,4 +70,27 @@ footer svg path.logo-text {
 
 footer svg path.logo-book {
   stroke: #5f5f5f;
+}
+
+.swiper-scrollbar {
+  background: rgba(129, 114, 122, 0.8);
+
+  &-drag {
+    background: rgba(129, 114, 122, 0.8);
+  }
+}
+
+.ministries-slider .swiper-slide.swiper-slide-active a,
+.ministries-slider .swiper-slide.swiper-slide-active + .swiper-slide + .swiper-slide + .swiper-slide + .swiper-slide a {
+  opacity: .3;
+}
+
+.ministries-slider .swiper-slide.swiper-slide-active + .swiper-slide a,
+.ministries-slider .swiper-slide.swiper-slide-active + .swiper-slide + .swiper-slide + .swiper-slide a {
+  opacity: .5;
+}
+
+.ministries-slider .swiper-slide.swiper-slide-active + .swiper-slide + .swiper-slide a {
+  color: var(--color-red);
+  font-size: 60px;
 }

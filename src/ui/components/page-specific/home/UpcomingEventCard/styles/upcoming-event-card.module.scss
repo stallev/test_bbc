@@ -2,72 +2,14 @@
 @import "../../../../../../styles/placeholders.scss";
 
 .upcoming-event-card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 280px;
-  max-width: 350px;
-  color: var(--text-main-color);
-
-  @media screen and (min-width: $tablet) {
-    max-width: none;
-    width: 350px;
-  }
-
-  @media screen and (min-width: $smallDesktop) {
-    width: 100%;
-  }
+  @extend %postCardStyles;
 
   &__start-date {
-    margin-bottom: $gutter-ms;
-    font-style: italic;
-    font-weight: 300;
-    font-size: 20px;
-    line-height: 1;
-
-    @media screen and (min-width: $smallDesktop) {
-      margin-bottom: $gutter-md;
-      font-size: 48px;
-    }
+    @extend %postCardStartDateStyles;
   }
 
   &__image {
-    position: relative;
-    height: 250px;
-    margin-bottom: 30px;
-
-    &::before {
-      position: absolute;
-      content: '';
-      display: block;
-      width: 100%;
-      height: 90%;
-      top: 0;
-      left: 0;
-      z-index: $z-index-level1;
-      background: 
-        linear-gradient(
-          rgba(250, 248, 242, 1),
-          rgba(250, 248, 242, 0)
-        );
-    }
-
-    @media screen and (min-width: $tablet) {
-      height: 400px;
-      margin-bottom: 35px;
-    }
-
-    @media screen and (min-width: $smallDesktop) {
-      height: 380px;
-    }
-
-    @media screen and (min-width: desktop) {
-      height: 450px;
-    }
-
-    @media screen and (min-width: $smallDesktop) {
-      height: 580px;
-    }
+    @extend %postCardImageStyles;
   }
 
   &__title {
@@ -83,11 +25,15 @@
   }
 
   &__description {
-    @extend %textOverflowEllipsis;
-    margin-bottom: $gutter-ms;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: $gutter-xl;
     font-size: 13px;
     font-weight: 500;
-    line-height: 1;
+    line-height: 1.2;
 
     @media screen and (min-width: $smallDesktop) {
       margin-bottom: $gutter-lg;
@@ -97,36 +43,5 @@
 
   &__readmore-link {
     margin-top: auto;
-    width: fit-content;
-
-    a {
-      display: flex;
-      align-items: center;
-      gap: $gutter-ms;
-      transition: all 0.3 ease-in-out;
-
-      &:hover {
-        svg {
-          fill: $color-red;
-        }
-
-        color: var(--text-main-color);
-      }
-    }
-
-    svg {
-      width: 17px;
-      height: 15px;
-      fill: var(--text-main-color);
-    }
-
-    span {
-      font-size: 20px;
-      line-height: 1;
-
-      @media screen and (min-width: $smallDesktop) {
-        font-size: 24px;
-      }
-    }
   }
 }

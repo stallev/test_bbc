@@ -21,7 +21,7 @@ const Layout = async ({
   const translations = getTranslations(locale);
 
   return (
-    <html lang={locale}>
+    <html suppressHydrationWarning={true} lang={locale}>
       <meta
         name="viewport"
         title={translations.site_name}

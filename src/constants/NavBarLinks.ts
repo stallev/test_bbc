@@ -24,6 +24,7 @@ export const NavBarLinksNames = {
   FamilyMinistry: "family_ministry_nav_link",
   MissionaryMinistry: "missionary_ministry_nav_link",
   SmallGroupsMinistry: "small_groups_ministry_nav_link",
+  WomenMinistry: "women_ministry_nav_link",
   Participation: "participation_nav_link",
   Timeline: "timeline_nav_link",
   Media: "media_nav_link",
@@ -36,36 +37,42 @@ export const NavBarLinksNames = {
   Marriage: "marriage_blog_nav_link",
 };
 
+export const NavBarMinistryLinks = [
+  {
+    link: RoutePath.KidsMinistry,
+    label: NavBarLinksNames.KidsMinistry,
+  },
+  {
+    link: RoutePath.YouthMinistry,
+    label: NavBarLinksNames.YouthMinistry,
+  },
+  {
+    link: RoutePath.SmallGroupsMinistry,
+    label: NavBarLinksNames.SmallGroupsMinistry,
+  },
+  {
+    link: RoutePath.MissionaryMinistry,
+    label: NavBarLinksNames.MissionaryMinistry,
+  },
+  {
+    link: RoutePath.FamilyMinistry,
+    label: NavBarLinksNames.FamilyMinistry,
+  },
+  {
+    link: RoutePath.WorshipMinistry,
+    label: NavBarLinksNames.WorshipMinistry,
+  },
+  {
+    link: RoutePath.WomenMinistry,
+    label: NavBarLinksNames.WomenMinistry,
+  },
+];
+
 export const MainNavBarLinks = [
   {
     link: "",
     label: NavBarLinksNames.Ministries,
-    children: [
-      {
-        link: RoutePath.KidsMinistry,
-        label: NavBarLinksNames.KidsMinistry,
-      },
-      {
-        link: RoutePath.YouthMinistry,
-        label: NavBarLinksNames.YouthMinistry,
-      },
-      {
-        link: RoutePath.SmallGroupsMinistry,
-        label: NavBarLinksNames.SmallGroupsMinistry,
-      },
-      {
-        link: RoutePath.MissionaryMinistry,
-        label: NavBarLinksNames.MissionaryMinistry,
-      },
-      {
-        link: RoutePath.FamilyMinistry,
-        label: NavBarLinksNames.FamilyMinistry,
-      },
-      {
-        link: RoutePath.WorshipMinistry,
-        label: NavBarLinksNames.WorshipMinistry,
-      },
-    ],
+    children: NavBarMinistryLinks,
   },
 
   {
