@@ -2,25 +2,47 @@
 @import "../../../../../../styles/placeholders.scss";
 
 .event-period {
+  position: relative;
   display: flex;
-  align-items: flex-start;
-  gap: $gutter-sm;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   margin: 0 auto;
   width: fit-content;
+  z-index: 100;
 
-  @media screen and (min-width: $mobile) {
-    flex-wrap: wrap;
-    align-items: center;
+  &--one-day {
+    flex-direction: row;
   }
 
-  &__dates {
-    display: flex;
-    flex-wrap: wrap;
-    gap: $gutter-xs;
+  @media screen and (min-width: $tablet) {
+    flex-direction: row;
+    gap: 20px;
   }
 
   &__date {
-    font-size: $font-size-sm;
-    line-height: 1.6;
+    @extend %eventPeriodStyle;
+
+    @media screen and (min-width: $tablet) {
+      gap: 24px;
+    }
+
+    @media screen and (min-width: $smallDesktop) {
+      gap: 28px;
+    } 
+
+    @media screen and (min-width: $desktop) {
+      gap: 30px;
+    }
+  }
+
+  &__date-value {
+    @extend %eventPeriodDateValueStyle;
+    color: var(--text-light-gray-color);
+  }
+
+  &__time-value {
+    @extend %eventPeriodTimeValueStyle;
   }
 }

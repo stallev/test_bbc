@@ -12,6 +12,7 @@ import PageContentDataApi from "@/services/PageDataApi";
 import { i18n, Locale } from "@/i18n.config";
 import GreetingScreen from "@/ui/components/page-specific/home/GreetingScreen/GreetingScreen";
 import Staff from "@/ui/components/page-specific/home/Staff/Staff";
+import Container from "@/ui/containers/Container/Container";
 import { getPagePathData } from "@/utils/getPostSeoData";
 import { getSeoData } from "@/utils/getSeoData";
 import { PagePathProps } from "@/types/globalTypes";
@@ -20,6 +21,7 @@ const UpcomingEvents = dynamic(() => import('@/ui/components/page-specific/home/
 const Ministries = dynamic(() => import('@/ui/components/page-specific/home/Ministries/Ministries'));
 const LiveStreamsDynamic = dynamic(() => import('@/ui/components/page-specific/home/LiveStreams/LiveStreams'));
 const PastorsBlog = dynamic(() => import('@/ui/components/page-specific/home/PastorsBlog/PastorsBlog'));
+const Donation = dynamic(() => import('@/ui/components/Donation/Donation'));
 const MapLocation = dynamic(() => import('@/ui/components/MapLocation/MapLocation'));
 
 export async function generateMetadata(
@@ -43,7 +45,7 @@ export default async function Home({
 }) {
   const translations = getTranslations(locale);
   
-  const upcomingEventsData = await UpcomingEventsDataApi.getUpcomingEvents(locale);
+  const upcomingEventsData = await UpcomingEventsDataApi.getUpcomingEventsReduced(locale);
   const videosData = await YouTubeApiService.getPortionYouTubeStreamsItems(
     YouTubePlaylistIDs.generalLiveStreams,
     YouTubeApiKeys.alexander
@@ -72,13 +74,13 @@ export default async function Home({
 
       <PastorsBlog data={postsData} translations={translations}/>
 
+      <Container>
+        <Donation isDonationPage={false} translations={translations} />
+      </Container>
+
       <MapLocation mapId={MAP_IDs.homePage} />
     </>
   );
 }
 
-export const revalidate = 5 * 60 * 60;
-
-export async function generateStaticParams() {
-  return i18n.locales.map(locale => ({ locale }));
-}
+export const revalidate = 5 * 60;

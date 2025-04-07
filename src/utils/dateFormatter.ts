@@ -1,3 +1,5 @@
+import { Locale } from "@/i18n.config";
+
 export const getDateWithoutTime = (dateString: string): Date => {
   const dateParts = dateString.split('-');
   const year = parseInt(dateParts[0]);
@@ -10,7 +12,7 @@ export const getDateWithoutTime = (dateString: string): Date => {
   return date;
 }
 
-export const getLocaleFormattedDate = (date: string, locale: string | undefined):string => {
+export const getLocaleFormattedDate = (date: string, locale: Locale):string => {
   const options = {
     day: 'numeric' as const,
     month: 'long' as const, 
@@ -31,7 +33,7 @@ export const getFormattedDate = (dateString:string, locale:string) => {
   return date.toLocaleDateString(locale, options);
 };
 
-export const getShortMonthFormattedDate = (dateString:string, locale:string | undefined) => {
+export const getShortMonthFormattedDate = (dateString:string, locale:string | undefined): string => {
   const options = {
     day: 'numeric' as const,
     month: 'short' as const, 
@@ -41,7 +43,7 @@ export const getShortMonthFormattedDate = (dateString:string, locale:string | un
   return date.toLocaleDateString(locale, options);
 };
 
-export const getDayMonthFormattedDate = (dateString:string, locale:string | undefined) => {
+export const getDayMonthFormattedDate = (dateString:string, locale:string | undefined): string => {
   const options = {
     day: 'numeric' as const,
     month: 'long' as const,  
@@ -51,7 +53,29 @@ export const getDayMonthFormattedDate = (dateString:string, locale:string | unde
   return date.toLocaleDateString(locale, options);
 };
 
-export const getShortMonthWithTimeFormattedDate = (dateString:string, locale:string | undefined) => {
+export const getDayMonthYearTimeFormattedDate = (dateString:string, locale:string | undefined): {
+  date: string
+  time: string
+} => {
+  const date = new Date(dateString);
+  const dateOptions = {
+    day: 'numeric' as const,
+    month: 'long' as const,
+    year: 'numeric' as const,
+  };
+
+  const timeOptions = {
+    hour: 'numeric' as const,
+    minute: 'numeric' as const,
+  };
+  
+  return {
+    date: date.toLocaleDateString(locale, dateOptions),
+    time: date.toLocaleTimeString(locale, timeOptions),
+  }
+};
+
+export const getShortMonthWithTimeFormattedDate = (dateString:string, locale:string | undefined): string => {
   const options = {
     weekday: 'short' as const, 
     year: 'numeric' as const, 
@@ -63,4 +87,10 @@ export const getShortMonthWithTimeFormattedDate = (dateString:string, locale:str
   const date = new Date(dateString);
 
   return date.toLocaleDateString(locale, options);
+};
+
+export const getMonthName = (monthNumber: number, locale: string): string => {
+  const date = new Date();
+  date.setMonth(monthNumber);
+  return date.toLocaleString(locale, { month: 'long' });
 };

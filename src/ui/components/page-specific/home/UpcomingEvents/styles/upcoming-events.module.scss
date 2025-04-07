@@ -17,9 +17,15 @@
 
   &__all-events-link {
     align-self: center;
+    margin-top: 30px;
 
     @media screen and (min-width: $smallDesktop) {
       align-self: flex-end;
+      margin-top: 40px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      margin-top: 60px;
     }
   }
 }

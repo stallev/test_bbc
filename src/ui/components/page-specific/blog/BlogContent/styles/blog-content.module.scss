@@ -9,5 +9,18 @@
 
   @media screen and (min-width: $tablet) {
     max-width: none;
+    gap: 40px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    gap: 60px;
+  } 
+
+  @media screen and (min-width: $desktop) {
+    gap: 80px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    gap: 90px;
   }
 }

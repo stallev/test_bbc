@@ -12,6 +12,8 @@
     display: flex;
     align-items: center;
     gap: $gutter-ms;
+    font-family: $accia-font-family;
+    color: var(--text-main-color);
 
     @media screen and (min-width: $smallDesktop) {
       gap: 25px;
@@ -20,7 +22,7 @@
     p {
       font-size: 10px;
 
-      @media screen and (min-width: $smallDesktop) {
+      @media screen and (min-width: $tablet) {
         font-size: 20px;
       }
     }

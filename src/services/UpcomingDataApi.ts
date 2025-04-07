@@ -6,8 +6,9 @@ import { stripHtmlTags } from "@/utils";
 import { convertGutenbergBlocksData } from "@/utils/convertGutenbergBlocksData";
 import { convertFeaturedImageData } from "@/utils/convertFeaturedImageData";
 import { getPostSeoData } from "@/utils/getPostSeoData";
-import { FetchedRestUpcomingEventType } from "@/types/WPDataTypes/UpcomingEventDataTypes";
+import { FetchedRestUpcomingEventType, UpcomingEventDataProps } from "@/types/WPDataTypes/UpcomingEventDataTypes";
 import { PostNodeSlugType, PostSitemapSourceData } from "@/types/WPDataTypes/CommonWPDataTypes";
+import { ConvertedGutenbergBlockType } from "@/types/WPDataTypes/GutenbergBlocksTypes";
 
 class UpcomingEventsDataApi {
   static async getUpcomingEventsItemsIDs() {
@@ -29,7 +30,7 @@ class UpcomingEventsDataApi {
     return translation;
   }
 
-  static async getUpcomingEventItemDataBySlug(slug: string, locale: string) {
+  static async getUpcomingEventItemDataBySlug(slug: string, locale: string): Promise<UpcomingEventDataProps | null> {
     const variables = {
       slug,
       language: locale.toUpperCase(),
@@ -41,7 +42,7 @@ class UpcomingEventsDataApi {
       const { upcomingBy: { translation } } = fetchedData;
 
       return {
-        blocks: convertGutenbergBlocksData(translation.blocks),
+        blocks: convertGutenbergBlocksData(translation.blocks) as ConvertedGutenbergBlockType[],
         featuredImageData: convertFeaturedImageData(translation.featuredImage),
         seo: getPostSeoData(translation, locale),
         title: translation.title,
@@ -51,7 +52,7 @@ class UpcomingEventsDataApi {
       }
     }
 
-    return {};
+    return null;
   }
 
   static async getUpcomingEvents(locale: string): Promise<any> {
@@ -73,6 +74,12 @@ class UpcomingEventsDataApi {
     }
     
     return resultItems;
+  }
+
+  static async getUpcomingEventsReduced(locale: string): Promise<any> {
+    const items = await this.getUpcomingEvents(locale);
+    
+    return items.slice(0, 3);
   }
 
   static async getUpcomingEventsPaths() {

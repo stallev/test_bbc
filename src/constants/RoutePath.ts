@@ -6,6 +6,7 @@ export const RoutePath = {
   Contacts: "/contact-us",
   GetInTouch: "/get-in-touch",
   Blog: "/blog",
+  BlogAuthor: "/blog/author",
   AboutUs: "/about-us",
   Giving: "/giving",
   LiveStreams: "/media/live-streams",
