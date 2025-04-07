@@ -3,160 +3,99 @@
 .sermon-card {
   display: flex;
   flex-direction: column;
-  padding: 14px;
-  border-radius: 3px;
-  background-color: var(--super-light-gray-color);
-  color: var(--text-dark-gray-color);
-
-  @media screen and (min-width: $tablet) {
-    padding: 20px;
-  }
+  width: 270px;
 
   @media screen and (min-width: $smallDesktop) {
-    padding: 24px;
-    border-radius: 6px;
+    width: 260px;
   }
 
   @media screen and (min-width: $desktop) {
-    padding: 28px;
+    width: 250px;
   }
 
   @media screen and (min-width: $largeDesktop) {
-    padding: 33px;
+    width: 296px;
   }
 
   &--active {
-    background-color: $color-red;
-    color: $color-white;
-    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
-
-    .sermon-card__play-control-icon {
-      fill: $color-white;
-      stroke: $color-white;
+    .sermon-card__info {
+      background: hsla(33, 100%, 53%, 1);
+      background: linear-gradient(90deg, hsla(33, 100%, 53%, 1) 0%, hsla(58, 100%, 68%, 1) 100%);
     }
   }
 
-  &__preacher {
-    margin-bottom: 50px;
-    font-family: $gilroy-medium-font-family;
-    font-weight: 500;
-    font-size: 15px;
-    line-height: 1.1;
+  &__image-wrap {
+    position: relative;
+    height: 400px;
 
-    @media screen and (min-width: $tablet) {
-      margin-bottom: 60px;
-      font-size: 18px;
-    }
-
-    @media screen and (min-width: $smallDesktop) {
-      margin-bottom: 70px;
-      font-size: 22px;
-    }
-
-    @media screen and (min-width: $desktop) {
-      margin-bottom: 90px;
-      font-size: 30px;
-    }
-
-    @media screen and (min-width: $largeDesktop) {
-      margin-bottom: 115px;
-      font-size: 36px;
+    img {
+      object-fit: cover;
     }
   }
 
-  &__date {
-    margin-bottom: 25px;
-    font-family: $livret-display-font-family;
-    font-size: 13px;
-    font-weight: 300;
-    font-style: italic;
-    line-height: 1.1;
-
-    @media screen and (min-width: $tablet) {
-      font-size: 18px;
-    }
-
-    @media screen and (min-width: $smallDesktop) {
-      font-size: 22px;
-    } 
-
-    @media screen and (min-width: $desktop) {
-      font-size: 28px;
-    } 
-
-    @media screen and (min-width: $largeDesktop) {
-      font-size: 36px;
-    }
-  }
-
-  &__title {
-    margin-bottom: 18px;
-    font-family: $gilroy-medium-font-family;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 1.1;
-
-    @media screen and (min-width: $tablet) {
-      margin-bottom: 30px;
-      font-size: 24px;
-    }
-
-    @media screen and (min-width: $smallDesktop) {
-      margin-bottom: 40px;
-      font-size: 30px;
-    }
-
-    @media screen and (min-width: $desktop) {
-      margin-bottom: 50px;
-      font-size: 38px;
-    }
-
-    @media screen and (min-width: $largeDesktop) {
-      margin-bottom: 60px;
-      font-size: 43px;
-    }
-  }
-
-  &__play-control {
-    width: fit-content;
-    margin-top: auto;
+  &__start {
+    position: absolute;
+    display: flex;
+    bottom: 10px;
+    left: 25px;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: hsla(33, 100%, 53%, 1);
+    background: linear-gradient(90deg, hsla(33, 100%, 53%, 1) 0%, hsla(58, 100%, 68%, 1) 100%);
     cursor: pointer;
   }
 
-  &__play-control-icon {
-    width: 26px;
-    height: 28px;
-    fill: var(--text-dark-gray-color);
-    stroke: var(--text-dark-gray-color);
-
-    @media screen and (min-width: $tablet) {
-      width: 34px;
-      height: 37px;
-    }
-
-    @media screen and (min-width: $smallDesktop) {
-      width: 42px;
-      height: 48px;
-    }
-
-    @media screen and (min-width: $desktop) {
-      width: 52px;
-      height: 57px;
-    }
-
-    @media screen and (min-width: $largeDesktop) {
-      width: 64px;
-      height: 69px;
-    }
+  &__info {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    row-gap: $gutter-sm;
+    flex-grow: 2;
+    padding: $gutter-ms $gutter-ms;
+    background-color: $color-light-backgrond-gray;
   }
-}
 
-:global([data-theme='dark']) .sermon-card {
-  background-color: var(--dark-gray-color);  
-  color: var(--text-main-color);
+  &__title {
+    color: $color-black;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-md;
+    line-height: $line-height-lg;
+  }
 
-  &__play-control-icon {
-    fill: var(--text-main-color);
-    stroke: var(--text-main-color);
+  &__text-data {
+    display: flex;
+    flex-direction: column;
+    row-gap: $gutter-sm;
+    flex-grow: 2;
+  }
+
+  &__preacher {
+    font-weight: $font-weight-bold;
+  }
+
+  &__source-data {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $gutter-sm;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-default;
+    line-height: $line-height-ms;
+    padding-right: $gutter-xl;
+    margin-top: auto;
+  }
+
+  &__video-link {
+    position: absolute;
+    right: 12px;
+    bottom: 8px;
+    display: inline-block;
+
+    svg {
+      width: 22px;
+      height: 22px;
+    }
   }
 }

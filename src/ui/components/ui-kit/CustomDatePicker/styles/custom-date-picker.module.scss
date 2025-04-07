@@ -1,74 +1,41 @@
 @import '../../../../../styles/variables.scss';
-@import '../../../../../styles/placeholders.scss';
 
 .custom-date-picker {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: $gutter-sm;
   max-width: 260px;
+
+  @media screen and (min-width: 350px) {
+    flex-grow: 2;
+  }
 
   @media screen and (min-width: $tablet) {
     width: 100%;
     max-width: 260px;
+    flex-grow: 2;
   }
 
   @media screen and (min-width: $desktop) {
     width: auto;
+    flex-grow: 1;
   }
   
   &__name {
     display: inline-block;
     padding-left: $gutter-sm;
-    font-family: $gilroy-regular-font-family;
-    font-size: 12px;
-    line-height: 1.2;
-    color: var(--text-main-color);
+    font-size: $font-size-ms;
+    line-height: $line-height-ms;
     text-transform: capitalize;
-
-    @media screen and (min-width: $tablet) {
-      font-size: 16px;
-    }
-
-    @media screen and (min-width: $smallDesktop) {
-      font-size: 18px;
-    }
-
-    @media screen and (min-width: $desktop) {
-      font-size: 20px;
-    }
-
-    @media screen and (min-width: $largeDesktop) {
-      font-size: 24px;
-    }
   }
 
   &__input {
     display: inline-block;
     padding: 0 4px;
-    border: none;
+    border: 0.5px solid #aaa;
     border-radius: 5px;
+    height: 37px;
     width: 100%;
-    font-family: $gilroy-regular-font-family;
-    font-size: 14px;
-    line-height: 1.1;
-    background-color: transparent;
-    color: var(--text-light-gray-color);
-    cursor: pointer;
-
-    @media screen and (min-width: $tablet) {
-      font-size: 18px;
-    }
-  
-    @media screen and (min-width: $smallDesktop) {
-      font-size: 22px;
-    }
-  
-    @media screen and (min-width: $desktop) {
-      font-size:26px;
-    }
-  
-    @media screen and (min-width: $largeDesktop) {
-      font-size: 29px;
-    }
+    font-size: $font-size-sm;
   }
 }

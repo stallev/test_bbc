@@ -1,8 +1,10 @@
 import { YouTubeVideoStatuses, YouTubeStreamStatus } from "@/constants";
 import {
   YoutubePlaylistItemType,
-  YoutubeFetchedVideoItemType,
-  YoutubeConvertedVideoItemType,
+  YoutubeVideoItemType,
+  LiveVideoItemType,
+  FinishedVideoItemType,
+  UpcomingVideoItemType,
   FetchedVideoItemsList
 } from "@/types/YouTubeDataTypes";
 
@@ -15,7 +17,7 @@ class YouTubeApiService {
 
     return items;
   }
-  static async getAllYouTubePlaylistItems(playlistId: string, apiKey: string): Promise<FetchedVideoItemsList> {
+  static async getAllYouTubePlaylistItems(playlistId: string, apiKey: string) {
     const upcoming: any[] = [];
     const liveVideos: any[] = [];
     const finishedVideos: any[] = [];
@@ -34,31 +36,31 @@ class YouTubeApiService {
 
       const videoItemsData = await this.getVideoItemsData(videoListIds, apiKey);
 
-      videoItemsData.map((item: YoutubeFetchedVideoItemType) => {
+      videoItemsData.map((item: YoutubeVideoItemType) => {
         switch (item.snippet.liveBroadcastContent) {
           case 'live':
             return liveVideos.push({
               id: item.id,
               title: item.snippet.title,
               url: `https://youtube.com/watch?v=${item.id}`,
-              date: item.liveStreamingDetails.actualStartTime,
-              status: YouTubeStreamStatus.live,
+              actualStartTime: item.liveStreamingDetails.actualStartTime,
+              status: item.snippet.liveBroadcastContent,
             })
           case 'upcoming':
             return upcoming.push({
               id: item.id,
               title: item.snippet.title,
               url: `https://youtube.com/watch?v=${item.id}`,
-              date: item?.liveStreamingDetails?.scheduledStartTime,
-              status: YouTubeStreamStatus.upcoming,
+              scheduledStartTime: item?.liveStreamingDetails?.scheduledStartTime,
+              status: item.snippet.liveBroadcastContent,
             })
           case 'none':
             return finishedVideos.push({
               id: item.id,
               title: item.snippet.title,
               url: `https://youtube.com/watch?v=${item.id}`,
-              status: YouTubeStreamStatus.finished,
-              date: item.snippet?.publishedAt,
+              status: item.snippet.liveBroadcastContent,
+              publishedAt: item.snippet?.publishedAt,
             })
         }
       })
@@ -70,10 +72,10 @@ class YouTubeApiService {
     const currentTimestamp = new Date().getTime();
 
     const upcomingVideos = upcoming
-      .filter((item) => !!item.date)
-      .filter((item) => new Date(item.date).getTime() > currentTimestamp)
+      .filter((item) => !!item.scheduledStartTime)
+      .filter((item) => new Date(item.scheduledStartTime).getTime() > currentTimestamp)
       .sort((a, b) =>
-        (new Date(a.date).getTime() - new Date(b.date).getTime())
+        (new Date(a.scheduledStartTime).getTime() - new Date(b.scheduledStartTime).getTime())
       );
 
     return {
@@ -84,13 +86,13 @@ class YouTubeApiService {
   }
 
   static async getPortionYouTubeStreamsItems(playlistId: string, apiKey: string): Promise<FetchedVideoItemsList> {
-    const upcoming: YoutubeConvertedVideoItemType[] = [];
-    const liveVideos: YoutubeConvertedVideoItemType[] = [];
-    const finishedVideos: YoutubeConvertedVideoItemType[] = [];
+    const upcoming: UpcomingVideoItemType[] = [];
+    const liveVideos: LiveVideoItemType[] = [];
+    const finishedVideos: FinishedVideoItemType[] = [];
 
     const url: string = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=${playlistId}&key=${apiKey}&maxResults=10`;
 
-    const response = await fetch(url);
+    const response = await fetch(url, { next: { revalidate: 300 } });
     const data = await response.json();
 
     const videoListIds = data.items
@@ -99,14 +101,14 @@ class YouTubeApiService {
 
     const videoItemsData = await this.getVideoItemsData(videoListIds, apiKey);
 
-    videoItemsData.map((item: YoutubeFetchedVideoItemType) => {
+    videoItemsData.map((item: YoutubeVideoItemType) => {
       switch (item.snippet.liveBroadcastContent) {
         case 'live':
           return liveVideos.push({
             id: item.id,
             title: item.snippet.title,
             url: `https://youtube.com/watch?v=${item.id}`,
-            date: item.liveStreamingDetails.actualStartTime,
+            actualStartTime: item.liveStreamingDetails.actualStartTime,
             status: YouTubeStreamStatus.live,
           })
         case 'upcoming':
@@ -114,7 +116,7 @@ class YouTubeApiService {
             id: item.id,
             title: item.snippet.title,
             url: `https://youtube.com/watch?v=${item.id}`,
-            date: item?.liveStreamingDetails?.scheduledStartTime,
+            scheduledStartTime: item?.liveStreamingDetails?.scheduledStartTime,
             status: YouTubeStreamStatus.upcoming,
           })
         case 'none':
@@ -123,7 +125,7 @@ class YouTubeApiService {
             title: item.snippet.title,
             url: `https://youtube.com/watch?v=${item.id}`,
             status: YouTubeStreamStatus.finished,
-            date: item.snippet?.publishedAt,
+            publishedAt: item.snippet?.publishedAt,
           })
       }
     })
@@ -131,10 +133,10 @@ class YouTubeApiService {
     const currentTimestamp = new Date().getTime();
 
     const upcomingVideos = upcoming
-      .filter((item) => !!item.date)
-      .filter((item) => new Date(item.date).getTime() > currentTimestamp)
+      .filter((item) => !!item.scheduledStartTime)
+      .filter((item) => new Date(item.scheduledStartTime).getTime() > currentTimestamp)
       .sort((a, b) =>
-        (new Date(a.date).getTime() - new Date(b.date).getTime())
+        (new Date(a.scheduledStartTime).getTime() - new Date(b.scheduledStartTime).getTime())
       );
 
     return {

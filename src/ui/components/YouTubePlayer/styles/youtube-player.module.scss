@@ -14,8 +14,6 @@
   &__title {
     font-size: 15px;
     color: var(--text-main-color);
-    font-weight: 500;
-    font-family: $gilroy-medium-font-family;
 
     @media screen and (min-width: $tablet) {
       font-size: $font-size-lms;
@@ -40,12 +38,9 @@
     margin-bottom: $gutter-sm;
 
     &-date {
-      flex-shrink: 0;
       padding: 0 $gutter-md 0 0;
       font-size: 13px;
       line-height: 15px;
-      font-weight: 500;
-      font-family: $gilroy-medium-font-family;
   
       @media screen and (min-width: $smallDesktop) {
         font-size: $font-size-md;
@@ -59,7 +54,12 @@
 
 
       &--live {
-        @extend %liveStreamsStyle;
+        background-color: $color-red;
+        padding-right: $gutter-lg;
+
+        @media screen and (min-width: $largeDesktop) {
+          padding-right: $gutter-xlg;
+        }
       }
   
       &--published {

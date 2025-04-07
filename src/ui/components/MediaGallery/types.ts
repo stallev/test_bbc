@@ -1,5 +1,5 @@
 export interface MediaGalleryProps {
-  data: MediaGalleryItemProps[]
+  data: [MediaGalleryItemProps]
 } 
 
 export interface MediaGalleryItemProps {

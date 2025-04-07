@@ -11,7 +11,7 @@
   }
 
   &__container {
-    @extend %section;
+    padding: $gutter-lg 0 0;
   }
 
   &__title {
@@ -19,7 +19,7 @@
   }
 
   &__description {
-    @extend %smallParagraphRegularDescriptionTextStyle;
+    @extend %paragraphDescriptionTextStyle;
 
     @media screen and (min-width: $smallDesktop) {
       width: 100%;

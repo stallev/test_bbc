@@ -4,19 +4,17 @@
   display: flex;
   column-gap: $gutter-lg;
   width: fit-content;
-  font-weight: 500;
-  font-family: $gilroy-medium-font-family;
 
   @media screen and (min-width: $smallDesktop) {
     column-gap: 64px;
   }
   
   @media screen and (min-width: $desktop) {
-    column-gap: 100px;
+    column-gap: 80px;
   }
 
   @media screen and (min-width: $largeDesktop) {
-    column-gap: 150px;
+    column-gap: 100px;
   }
 
   nav {
@@ -32,7 +30,7 @@
     color: $color-red;
 
     &:hover {
-      color: var(--text-main-color);
+      text-decoration: underline;
     }
 
     @media screen and (min-width: $smallDesktop) {

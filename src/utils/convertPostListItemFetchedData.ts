@@ -13,19 +13,6 @@ export interface PostListItemFetchedDataProps {
   featuredImage: FeaturedImageMediaItemUrlProps
   author: AuthorNodeProps
   seo: SeoPostProps
-  pastorsPostsCategories: any
-}
-
-interface PastorsPostCategoryNodeProps {
-  nodes: PostTopicNodeProps[]
-}
-
-interface PostTopicNodeProps {
-  id: string
-}
-
-const getPostTopics = (categories: PastorsPostCategoryNodeProps) => {
-  return categories.nodes.map((item: PostTopicNodeProps) => item.id);
 }
 
 
@@ -38,8 +25,6 @@ export const convertPostListItemFetchedData = (data: PostListItemFetchedDataProp
     slug: data.slug,
     featuredImageData: convertFeaturedImageData(data.featuredImage),
     author: convertAuthorData(data.author),
-    // topics: [],
-    topics: getPostTopics(data.pastorsPostsCategories),
     readingTime: data.seo.readingTime || 1
   }
 }
