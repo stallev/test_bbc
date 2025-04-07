@@ -28,7 +28,7 @@ const LanguageSwitcher: React.FC = () => {
     >
       <AiOutlineGlobal className={styles['language-switcher__icon']} />
       
-      {availableLocale}
+      <span>{availableLocale}</span>
     </div>
   );
 };

@@ -36,6 +36,20 @@
   }
 }
 
+%h3SubsectionStyle {
+  margin-bottom: 27px;
+  text-align: center;
+  font-size: 40px;
+  line-height: 1;
+  font-weight: 400;
+  color: var(--text-main-color);
+
+  @media screen and (min-width: $smallDesktop) {
+    margin-bottom: 70px;
+    font-size: 90px;
+  }
+}
+
 %h5Style {
   margin-top: $gutter-xs;
   margin-bottom: -$gutter-sm;
@@ -84,8 +98,35 @@
   line-height: 1.4;
 }
 
+%paragraphDescriptionTextStyle {
+  color: var(--text-main-color);
+  font-size: 13px;
+  line-height: 15px;
+  font-weight: 400;
+
+  @media screen and (min-width: $smallDesktop) {
+    font-size: 24px;
+    line-height: 27px;
+  }
+}
+
+%inputLabelStyle {
+  color: var(--text-main-color);
+  font-size: 20px;
+  line-height: 15px;
+  font-weight: 400;
+
+  @media screen and (min-width: $smallDesktop) {
+    margin-bottom: 50px;
+    font-size: 48px;
+    line-height: 48px;
+  }
+}
+
 %primaryBtnLink {
-  display: inline-flex;
+  display: flex;
+  align-items: center;
+  gap: $gutter-sm;
   padding: $gutter-ms $gutter-ms $gutter-sm;
   border: 1px solid $color-white;
   border-radius: $border-radius-ms;
@@ -95,38 +136,94 @@
   color: $color-white;
   transition: all 0.3 ease-in;
 
-  &:hover {
+  &:hover,
+  &:active,
+  &:focus {
     border-color: $color-red;
     background-color: $color-red;
   }
 
   @media screen and (min-width: $tablet) {
+    gap: $gutter-ml;
     border-radius: 5px;
     padding: $gutter-md $gutter-md 14px;
     font-size: $font-size-lg;
     line-height: $line-height-lg;
   }
+
+  svg {
+    width: 22px;
+    height: 21px;
+    fill: $color-white;
+
+    @media screen and (min-width: $tablet) {
+      width: 34px;
+      height: 32px;
+    }
+  }
+}
+
+%btnLinkWhite {
+  border: 1px solid $color-white;
+  color: $color-white;
+
+  &:hover,
+  &:active,
+  &:focus {
+    border-color: $color-red;
+    background-color: $color-red;
+
+    svg {
+      fill: $color-red;
+    }
+  }
 }
 
 %secondaryBtnLink {
-  display: inline-block;
-  padding: $gutter-ms $gutter-md;
+  display: flex;
+  align-items: center;
+  gap: $gutter-md;
+  width: fit-content;
+  padding: $gutter-ms $gutter-ms $gutter-sm;
+  background-color: var(--main-bg-color);
+  border: 1px solid $color-red !important;
+  box-shadow: none;
   border-radius: $border-radius-ms;
   font-weight: $font-weight-default;
-  font-size: $font-size-xxs;
-  line-height: 1.4;
-  color: $color-black;
-  text-transform: uppercase;
-  background-color: $color-success;
+  font-size: $font-size-md;
+  line-height: $line-height-md;
+  color: $color-red;
+  transition: all 0.3 ease-in;
 
-  &:hover {
-    background-color: $color-orange;
+  &:hover,
+  &:active,
+  &:focus {
+    border-color: $color-red;
+    background-color: $color-red;
+    color: $color-white;
+
+    svg {
+      fill: $color-white;
+    }
+  }
+
+  svg {
+    width: 22px;
+    height: 21px;
+    fill: $color-red;
+
+    @media screen and (min-width: $tablet) {
+      width: 34px;
+      height: 32px;
+    }
   }
 
   @media screen and (min-width: $tablet) {
-    border-radius: $border-radius-md;
-    padding: $gutter-md $gutter-lg;
-    font-size: $font-size-sm;
+    gap: $gutter-ml;
+    border-radius: 5px;
+    padding: $gutter-md $gutter-md 14px;
+    font-size: $font-size-lg;
+    line-height: $line-height-lg;
   }
 }
 
@@ -181,4 +278,100 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+%section {
+  padding: $gutter-xl 0 0;
+  background-color: var(--main-bg-color);
+
+  @media screen and (min-width: $tablet) {
+    padding-top: $gutter-xlg;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    padding-top: $gutter-xxlg;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    padding-top: 130px;
+  }
+}
+
+%sectionTitle {
+  margin-bottom: $gutter-ms;
+  text-align: center;
+  font-size: 40px;
+  line-height: 38px;
+  font-weight: $font-weight-default;
+  color: var(--text-main-color);
+
+  @media screen and (min-width: $tablet) {
+    margin-bottom: $gutter-xlg;
+    font-size: 55px;
+    line-height: 50px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    margin-bottom: 120px;
+    font-size: 90px;
+    line-height: 80px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    margin-bottom: 137px;
+    font-size: 100px;
+    line-height: 95px;
+  }
+}
+
+%animatedArticlesListStyles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $gutter-ml;
+  margin-bottom: $gutter-lg;
+
+  @media screen and (min-width: $smallDesktop) {
+    gap: $gutter-lg;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    margin-bottom: $gutter-xlg;
+
+    article:nth-child(2n) {
+      transform: translateY(200px);
+      transition: transform 2s ease-out;
+    }
+
+    &.animated {
+      article:nth-child(2n) {
+        transform: translateY(0);
+      }
+    }
+  }
+
+
+  @media screen and (min-width: $desktop) {
+    gap: $gutter-xl;
+  }
+}
+
+%youtubeFrameHeight {
+  height: 195px;
+
+  @media screen and (min-width: $tablet) {
+    height: 174px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    height: 230px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    height: 280px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    height: 354px;
+  }
 }

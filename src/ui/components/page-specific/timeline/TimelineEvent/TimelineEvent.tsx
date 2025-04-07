@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { RoutePath } from '@/constants/RoutePath';
 import { BlurDataURLs } from '@/constants/BlurDataURLs';
 import useTranslationFunction from '@/hooks/useTranslationFunction';
-import { getShortMonthFormattedDate } from '@/hooks/useLocaleFormattedDate';
+import { getShortMonthFormattedDate } from '@/utils/dateFormatter';
 import { stripHtmlTags } from '@/utils';
 import { TimelineEventProps } from '../types';
 

@@ -1,0 +1,13 @@
+@import "../../../../styles/variables.scss";
+@import "../../../../styles/placeholders.scss";
+
+.theme-switcher {
+  display: block;
+  cursor: pointer;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--fill-main-color);
+  }
+}

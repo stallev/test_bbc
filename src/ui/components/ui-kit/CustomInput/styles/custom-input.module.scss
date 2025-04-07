@@ -5,7 +5,6 @@
   align-items: center;
   justify-content: space-between;
   position: relative;
-  background: $color-light-gray;
   width: 100%;
 
   &:not(:first-child) {
@@ -21,19 +20,22 @@
     display: block;
     box-sizing: border-box;
     flex: 1;
-    padding: $gutter-ms $gutter-base;
+    padding: $gutter-ms $gutter-base $gutter-xs 0;
     z-index: 1;
     width: 100%;
     border: none;
-    font-size: $font-size-ms;
-    background-color: transparent;
-    border: 1px solid $color-medium-gray;
-    border-radius: $border-radius-sm;
+    font-size: 20px;
+    line-height: 20px;
+    background-color: inherit;
+    border-bottom: 1px solid $color-medium-gray;
     color: $color-gray;
 
+    @media screen and (min-width: $desktop) {
+      font-size: 24px;
+      line-height: 24px;
+    }
+
     &:focus {
-      border-color: $color-black;
-      background: $color-light-gray;
       outline: none;
       outline-offset: 0;
     }
@@ -41,7 +43,7 @@
 
   &--error input,
   &--error input:focus {
-    border: 1px solid $color-red;
+    border-bottom: 1px solid $color-red;
   }
 
   &__error-message {

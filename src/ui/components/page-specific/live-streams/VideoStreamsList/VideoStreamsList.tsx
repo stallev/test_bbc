@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Loader } from '@/ui/components/ui-kit';
-import YouTubePlayer from '@/ui/components/page-specific/live-streams/YouTubePlayer/YouTubePlayer';
+import YouTubePlayer from '@/ui/components/YouTubePlayer/YouTubePlayer';
 
 import styles from './styles/videostreams-list.module.scss';
 
@@ -27,21 +27,22 @@ const VideoStreamsList: React.FC<VideoStreamsListProps> = ({ data }) => {
   };
 
   return (
-    <InfiniteScroll
-      className={styles['videostreams-list']}
-      dataLength={renderedData.length}
-      next={fetchMoreData}
-      hasMore={offset < data.length} 
-      loader={<Loader />}
-    >
-      {renderedData.map((video: VideoItem) => (
-        <YouTubePlayer
-          videoId={video.id}
-          title={video.title}
-          key={video.id}
-        />
-      ))}
-    </InfiniteScroll>
+    // <InfiniteScroll
+    //   className={styles['videostreams-list']}
+    //   dataLength={renderedData.length}
+    //   next={fetchMoreData}
+    //   hasMore={offset < data.length} 
+    //   loader={<Loader />}
+    // >
+    //   {renderedData.map((video: VideoItem) => (
+    //     <YouTubePlayer
+    //       videoId={video.id}
+    //       title={video.title}
+    //       key={video.id}
+    //     />
+    //   ))}
+    // </InfiniteScroll>
+    <></>
   );
 };
 

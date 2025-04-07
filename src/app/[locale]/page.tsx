@@ -3,15 +3,19 @@ import { Metadata } from 'next'
 import { getTranslations } from "@/utils/languageParser";
 import { PagesIDs, RoutePath } from "@/constants";
 import UpcomingEventsDataApi from "@/services/UpcomingDataApi";
+import YouTubeApiService from "@/services/YouTubeApi";
+import StaffDataApi from "@/services/StaffDataApi";
+import { YouTubePlaylistIDs, YouTubeApiKeys } from "@/constants";
 import PageContentDataApi from "@/services/PageDataApi";
 import { i18n, Locale } from "@/i18n.config";
 import GreetingScreen from "@/ui/components/page-specific/home/GreetingScreen/GreetingScreen";
+import Staff from "@/ui/components/page-specific/home/Staff/Staff";
 import { getPagePathData } from "@/utils/getPostSeoData";
 import { getSeoData } from "@/utils/getSeoData";
 import { PagePathProps } from "@/types/globalTypes";
 
-const UpcomingEventsList = dynamic(() => import('@/ui/components/page-specific/home/UpcomingEventsList/UpcomingEventsList'));
-const SubscribeFormDynamic = dynamic(() => import('@/ui/components/SubscribeForm/SubscribeForm'));
+const UpcomingEvents = dynamic(() => import('@/ui/components/page-specific/home/UpcomingEvents/UpcomingEvents'));
+const LiveStreamsDynamic = dynamic(() => import('@/ui/components/page-specific/home/LiveStreams/LiveStreams'));
 
 export async function generateMetadata(
   { params: { locale } }: PagePathProps
@@ -35,6 +39,11 @@ export default async function Home({
   const translations = getTranslations(locale);
   
   const upcomingEventsData = await UpcomingEventsDataApi.getUpcomingEvents(locale);
+  const videosData = await YouTubeApiService.getPortionYouTubeStreamsItems(
+    YouTubePlaylistIDs.generalLiveStreams,
+    YouTubeApiKeys.alexander
+  );
+  const staffData = await StaffDataApi.getMinisters(locale);
 
   return (
     <>
@@ -44,12 +53,14 @@ export default async function Home({
         about_church_link_label={translations.about_church_nav_link_text}
       />
 
-      <UpcomingEventsList data={upcomingEventsData} />
-
-      <SubscribeFormDynamic
-        title={translations.home_subscription_title}
-        description={translations.home_subscription_descr}
+      <LiveStreamsDynamic
+        data={videosData}
+        locale={locale}
       />
+
+      <UpcomingEvents data={upcomingEventsData} />
+
+      <Staff data={staffData} translations={translations} />
     </>
   );
 }

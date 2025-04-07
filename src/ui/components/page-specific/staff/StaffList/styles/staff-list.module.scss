@@ -3,28 +3,29 @@
 .staff-list {
   display: grid;
   justify-content: center;
-  grid-template-columns: minmax(100px, auto);
+  grid-template-columns: repeat(2, 144px);
   row-gap: $gutter-ml;
+  column-gap: $gutter-ml;
   grid-auto-rows: minmax(100px, auto);
   padding: $gutter-ml 0;
 
-  @media screen and (min-width: 450px) {
-    grid-template-columns: repeat(2, 1fr);
-    justify-content: flex-start;
-    column-gap: $gutter-xl;
+  @media screen and (min-width: $mobile) {
+    grid-template-columns: repeat(2, 180px);
+    column-gap: 48px;
   }
 
   @media screen and (min-width: $tablet) {
-    grid-template-columns: repeat(3, 1fr);
-    justify-content: flex-start;
-    column-gap: $gutter-xl;
+    grid-template-columns: repeat(2, 230px);
+    column-gap: 64px;
   }
 
   @media screen and (min-width: $smallDesktop) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 300px);
+    column-gap: 90px;
   }
 
   @media screen and (min-width: $desktop) {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 360px);
+    column-gap: 130px;
   }
 }

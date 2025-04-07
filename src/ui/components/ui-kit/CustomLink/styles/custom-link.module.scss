@@ -17,4 +17,8 @@
   &--primary a {
     @extend %primaryBtnLink;
   }
+
+  &--secondary a {
+    @extend %secondaryBtnLink;
+  }
 }

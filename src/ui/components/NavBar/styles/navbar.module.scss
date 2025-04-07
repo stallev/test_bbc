@@ -27,7 +27,7 @@
     font-size: 15px;
     line-height: $line-height-ms;
     text-align: right;
-    color: $color-dark-gray;
+    color: var(--text-secondary-color);
     opacity: 0.9;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -54,7 +54,7 @@
     align-items: flex-end;
     padding: $gutter-lg 0;
     width: 100%;
-    background-color: $color-light-bg;
+    background-color: var(--main-bg-color);
 
     @media (min-width: $smallDesktop) {
       display: none;
@@ -77,7 +77,7 @@
       width: fit-content;
       margin: auto;
       box-shadow: $navDropDown-box-shadow;
-      background-color: $color-light-bg;
+      background-color: var(--main-bg-color);
     }
 
     &-link {
@@ -87,7 +87,7 @@
       width: $navDropDown-link-width;
       font-size: 13px;
       line-height: 20px;
-      color: $color-dark-gray;
+      color: var(--text-secondary-color);
       text-decoration: none;
 
       &:hover {

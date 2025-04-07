@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { getShortMonthWithTimeFormattedDate } from "@/hooks/useLocaleFormattedDate";
+import { getShortMonthWithTimeFormattedDate } from '@/utils/dateFormatter';
 import { RxCalendar } from "react-icons/rx";
 import { Text } from '@/ui/components/ui-kit';
 import { EventPeriodProps } from './types';

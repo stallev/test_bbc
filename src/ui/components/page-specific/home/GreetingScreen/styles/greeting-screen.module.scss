@@ -4,7 +4,7 @@
   position: relative;
   height: 558px;
   width: 100%;
-  background: $color-light-backgrond-gray;
+  background: var(--main-bg-color);
 
   @media screen and (min-width: $smallDesktop) {
     height: 700px;
@@ -75,19 +75,6 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-
-    div:nth-child(1) a {
-      flex-direction: row-reverse;
-    }
-  }
-
-  &__link a {
-    gap: $gutter-xs;
-    align-items: center;
-    
-    @media screen and (min-width: $tablet) {
-      gap: $gutter-md;
-    }
   }
 
   &__description {

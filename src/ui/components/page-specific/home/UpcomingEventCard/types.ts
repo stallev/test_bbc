@@ -15,7 +15,12 @@ export interface UpcomingEventData {
   featuredImageUrl: string
 }
 
-export interface UpcomingEventProps {
-  data: UpcomingEventData
-  isActive: boolean
+export interface UpcomingEventCardItemProps {
+  upcomingEventStart: string
+  upcomingEventEnd: string
+  upcomingEventShortDescription: string
+  upcomingEventDescription: string
+  title: string
+  slug: string
+  featuredImageUrl: string
 }

@@ -12,7 +12,7 @@ export const useClientTranslationFunction = () => {
   const locale = useLocale();
   const translations = getTranslations(locale);
 
-  const t = (key: string) => {
+  const translate = (key: string) => {
     if(key in translations) {
       return translations[key as keyof typeof translations]
     }
@@ -20,5 +20,5 @@ export const useClientTranslationFunction = () => {
     return key;
   }
 
-  return t;
+  return translate;
 }

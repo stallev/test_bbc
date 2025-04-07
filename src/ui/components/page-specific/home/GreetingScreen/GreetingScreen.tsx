@@ -39,19 +39,20 @@ const GreetingScreen: React.FC<GreetingScreenProps> = ({
             <div className={styles["greeting-screen__links"]}>
               <CustomLink
                 to={RoutePath.UpcomingEvents}
-                label={events_link_label}
                 type={LinkTypes.primary}
                 className={styles["greeting-screen__link"]}
               >
-                <IoArrowBackSharp />
-              </CustomLink>    
+                <Icon iconName="leftArrow" />
+                <Text textType="span">{events_link_label}</Text>
+              </CustomLink>
+
               <CustomLink
                 to={RoutePath.AboutUs}
-                label={about_church_link_label}
                 type={LinkTypes.primary}
                 className={styles["greeting-screen__link"]}
               >
-                <IoArrowForwardSharp />
+                <Text textType="span">{about_church_link_label}</Text>
+                <Icon iconName="rightArrow" />
               </CustomLink>
             </div>
           </div>

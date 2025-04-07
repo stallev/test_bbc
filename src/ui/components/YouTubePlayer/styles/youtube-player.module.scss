@@ -1,0 +1,105 @@
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/placeholders.scss';
+
+.youtube-player {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+
+  @media screen and (min-width: $tablet) {
+    max-width: none;
+  }
+
+  &__title {
+    font-size: 15px;
+    color: var(--text-main-color);
+
+    @media screen and (min-width: $tablet) {
+      font-size: $font-size-lms;
+      line-height: $line-height-ms;
+    }
+
+    @media screen and (min-width: $smallDesktop) {
+      font-size: $font-size-md;
+      line-height: $line-height-md;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      font-size: 30px;
+      line-height: 30px;
+    }
+  }
+
+  &__info {
+    display: flex;
+    align-items: center;
+    gap: $gutter-ms;
+    margin-bottom: $gutter-sm;
+
+    &-date {
+      padding: 0 $gutter-md 0 0;
+      font-size: 13px;
+      line-height: 15px;
+  
+      @media screen and (min-width: $smallDesktop) {
+        font-size: $font-size-md;
+        line-height: $line-height-md;
+      }
+  
+      @media screen and (min-width: $largeDesktop) {
+        font-size: 30px;
+        line-height: 30px;
+      }
+
+
+      &--live {
+        background-color: $color-red;
+        padding-right: $gutter-lg;
+
+        @media screen and (min-width: $largeDesktop) {
+          padding-right: $gutter-xlg;
+        }
+      }
+  
+      &--published {
+        color: #ADADAD;
+        border-right: 2px solid $color-red;
+      }
+    }
+  }
+
+  article  {
+    @extend %youtubeFrameHeight;
+  }
+}
+
+.youtube-player__play-button {
+  position: relative;
+  width: 30px;
+  height: 33px;
+  background: none;
+}
+
+.youtube-player__play-button::before,
+.youtube-player__play-button::after {
+  content: '';
+  position: absolute;
+  background: white;
+}
+
+.youtube-player__play-button::before {
+  width: 5px;
+  height: 100%;
+  left: 0;
+  top: 0;
+  clip-path: polygon(0 0, 100% 20%, 100% 80%, 0 100%);
+}
+
+.youtube-player__play-button::after {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  clip-path: polygon(10% 10%, 90% 50%, 10% 90%);
+}

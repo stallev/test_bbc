@@ -62,14 +62,14 @@ class UpcomingEventsDataApi {
       const itemData = await this.getUpcomingEventItemData(item, locale.toUpperCase());
       const featuredImageUrl = !!itemData.featuredImage ? itemData.featuredImage.node.mediaItemUrl : DEFAULT_FEATURED_IMAGE;
 
-      itemData.shortDescription = stripHtmlTags(itemData.excerpt);
+      itemData.upcomingEventShortDescription = stripHtmlTags(itemData?.upcomingEventShortDescription ? itemData.upcomingEventShortDescription : itemData.excerpt);
       
       itemData.featuredImageUrl = featuredImageUrl;
 
       delete itemData.featuredImage;
       delete itemData.excerpt;
 
-      resultItems.push({ data: itemData });
+      resultItems.push({ ...itemData });
     }
     
     return resultItems;

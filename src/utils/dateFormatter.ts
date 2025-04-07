@@ -1,17 +1,3 @@
-export const useLocaleFormattedTime = (date: Date, locale: string):string => {
-  const options = { 
-    weekday: 'long' as const, 
-    year: 'numeric' as const, 
-    month: 'long' as const, 
-    day: 'numeric' as const,
-    hour: 'numeric' as const,
-    minute: 'numeric' as const
-  };
-  
-  const formatter = new Intl.DateTimeFormat(locale, options);
-  return formatter.format(date);
-}
-
 export const getDateWithoutTime = (dateString: string): Date => {
   const dateParts = dateString.split('-');
   const year = parseInt(dateParts[0]);
@@ -52,6 +38,16 @@ export const getShortMonthFormattedDate = (dateString:string, locale:string | un
     year: 'numeric' as const,    
   };
   const date = new Date(dateString);
+  return date.toLocaleDateString(locale, options);
+};
+
+export const getDayMonthFormattedDate = (dateString:string, locale:string | undefined) => {
+  const options = {
+    day: 'numeric' as const,
+    month: 'long' as const,  
+  };
+  const date = new Date(dateString);
+  
   return date.toLocaleDateString(locale, options);
 };
 

@@ -1,24 +1,46 @@
 @import '../../../../styles/variables.scss';
+@import '../../../../styles/placeholders.scss';
 
 .subscribe-form {
   display: flex;
   flex-direction: column;
-  margin: $gutter-ml 0 $gutter-ml;
-  align-items: center;
-  gap: $gutter-ml;
+  gap: $gutter-lg;
 
-  @media screen and (min-width: $tablet) {
+  @media screen and (min-width: $smallDesktop) {
     flex-direction: row;
-    flex-wrap: wrap;
-    gap: $gutter-ml;
   }
 
   &__container {
-    padding: $gutter-lg 0;
+    padding: $gutter-lg 0 0;
   }
 
   &__title {
-    font-size: $font-size-md;
+    @extend %h3SubsectionStyle;
+  }
+
+  &__description {
+    @extend %paragraphDescriptionTextStyle;
+
+    @media screen and (min-width: $smallDesktop) {
+      padding-top: $gutter-md;
+      width: 100%;
+      max-width: 450px;
+    }
+  }
+
+  &__fieldset {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &__input-field-wrap {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__input-label {
+    @extend %inputLabelStyle;
   }
 
   &__input-field {
@@ -27,16 +49,17 @@
     &:not(:first-child) {
       margin-top: 0;
     }
+  }
 
-    @media screen and (min-width: $tablet) {
-      width: calc(50% - $gutter-ms);
-      max-width: 350px;
-    }
+  &__input-field-wrap {
+    margin-bottom: 37px;
   }
 
   &__submit {
-    margin-top: 0 !important;
-    padding: $gutter-ms $gutter-ml;
-    font-size: $font-size-ms;
+    align-self: center;
+
+    @media screen and (min-width: $smallDesktop) {
+      align-self: flex-start;
+    }
   }
 }

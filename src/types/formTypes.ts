@@ -5,3 +5,7 @@ export interface IFormInput {
   email: string;
   userMessage: string;
 }
+
+export interface eventSubscriptionInputDataType {
+  email: string
+}

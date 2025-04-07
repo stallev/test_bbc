@@ -9,7 +9,7 @@ export { InputTypes } from './InputTypes';
 export { MainNavBarLinks, NavBarLinksNames } from './NavBarLinks';
 export { RoutePath } from './RoutePath';
 export { YouTubePlaylistIDs } from './YouTubeConstants';
-export { YouTubeVideoStatuses } from './YouTubeConstants';
+export { YouTubeVideoStatuses, YouTubeStreamStatus } from './YouTubeConstants';
 export { YouTubeApiKeys } from './YouTubeConstants';
 export { YouTubeLiveStreamsUrls } from './YouTubeConstants';
 export { NotificationTypes } from './NotificationsTypes';

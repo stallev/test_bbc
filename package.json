@@ -13,6 +13,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "cookies-next": "4.3.0",
     "next": "14.2.17",
     "next-seo": "6.6.0",
     "next-sitemap": "4.2.3",

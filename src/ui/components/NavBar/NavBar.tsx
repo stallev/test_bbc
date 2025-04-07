@@ -10,22 +10,17 @@ import { IoCaretDownSharp, IoCaretUpSharp } from "react-icons/io5";
 import { MobileMenuStateProps } from "@/types/globalTypes";
 
 interface NavBarProps {
-  toggleMobileMenu: () => void
   setMobileMenuState: React.Dispatch<React.SetStateAction<MobileMenuStateProps>>
   mobileMenuState: MobileMenuStateProps
 }
 
-const NavBar: React.FC<NavBarProps> = ({ toggleMobileMenu, setMobileMenuState, mobileMenuState }) => {
+const NavBar: React.FC<NavBarProps> = ({ setMobileMenuState, mobileMenuState }) => {
   const { handleMouseEnter, handleMouseLeave, handleClick } = useDropdown({
     setMobileMenuState,
     mobileMenuState,
   })
   const { isMenuOpen, activeDropDownMenuItem } = mobileMenuState;
   const translate = useClientTranslationFunction();
-
-  const handleLinkClick = () => {
-    toggleMobileMenu();
-  }
 
   return (
     <nav className={`${styles.navbar} ${isMenuOpen ? styles["navbar--show"] : ""}`}>
@@ -43,7 +38,6 @@ const NavBar: React.FC<NavBarProps> = ({ toggleMobileMenu, setMobileMenuState, m
                   ariaLabel={translate(label) as string}
                   className={styles.navbar__link}
                   type={LinkTypes.navLink}
-                  onCLick={handleLinkClick}
                 >
                   {translate(label)}
                 </CustomLink>
@@ -80,7 +74,6 @@ const NavBar: React.FC<NavBarProps> = ({ toggleMobileMenu, setMobileMenuState, m
                           to={link}
                           className={styles["navbar__submenu-link"]}
                           type={LinkTypes.navLink}
-                          onCLick={handleLinkClick}
                         >
                           {translate(label)}
                         </CustomLink>

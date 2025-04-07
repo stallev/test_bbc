@@ -1,0 +1,10 @@
+@import "../../../../../../styles/variables.scss";
+@import "../../../../../../styles/placeholders.scss";
+
+.staff {
+  @extend %section;
+
+  &__title {
+    @extend %sectionTitle;
+  }
+}

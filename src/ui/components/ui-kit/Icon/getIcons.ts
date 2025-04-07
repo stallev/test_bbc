@@ -9,4 +9,7 @@ export const ComponentsMap: ComponentsMap = {
   logo: IconsComponent.Logo,
   hamburger: IconsComponent.HamburgerIcon,
   cross: IconsComponent.CrossIcon,
+  rightArrow: IconsComponent.RightArrowIcon,
+  leftArrow: IconsComponent.LeftArrowIcon,
+  smallLogo: IconsComponent.SmallLogoIcon,
 };

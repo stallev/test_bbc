@@ -5,6 +5,7 @@ export const YouTubeVideoStatuses = {
 export const YouTubeStreamStatus = {
   live: 'live',
   upcoming: 'upcoming',
+  finished: 'finished',
 };
 
 export const YouTubePlaylistIDs = {
