@@ -45,14 +45,14 @@
 
   &--show {
     position: absolute;
-    top: 80px;
+    top: $header-height;
     left: 0;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     row-gap: $gutter-md;
     align-items: flex-end;
-    padding: $gutter-ml 0;
+    padding: $gutter-lg 0;
     width: 100%;
     background-color: $color-light-bg;
 
@@ -73,7 +73,7 @@
 
     @media (min-width: $smallDesktop) {
       position: absolute;
-      top: 50px;
+      top: 40px;
       width: fit-content;
       margin: auto;
       box-shadow: $navDropDown-box-shadow;

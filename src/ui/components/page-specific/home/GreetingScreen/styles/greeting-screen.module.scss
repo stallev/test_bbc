@@ -2,9 +2,13 @@
 
 .greeting-screen {
   position: relative;
-  height: 100svh;
+  height: 558px;
   width: 100%;
   background: $color-light-backgrond-gray;
+
+  @media screen and (min-width: $smallDesktop) {
+    height: 700px;
+  }
 
   &__image {
     position: absolute !important;
@@ -16,12 +20,74 @@
   &__content-wrap {
     display: flex;
     align-items: center;
-    height: calc(100vh - $header-height);
+    height: 558px;
+
+    @media screen and (min-width: $smallDesktop) {
+      height: 700px;
+    }
   }
 
   &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 70px;
+    width: 100%;
     color: $color-white;
     z-index: $z-index-level1;
+
+    @media screen and (min-width: $tablet) {
+      align-items: flex-start;
+      row-gap: 100px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      row-gap: 113px;
+    }
+  }
+
+  &__icon {
+    svg {
+      width: 250px;
+
+      path {
+        fill: $color-white;
+      }
+    }
+
+    @media screen and (min-width: $tablet) {
+      margin-left: 40%;
+
+      svg {
+        width: 450px;
+      }
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      svg {
+        width: 650px;
+      }
+    }
+  }
+
+  &__links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    div:nth-child(1) a {
+      flex-direction: row-reverse;
+    }
+  }
+
+  &__link a {
+    gap: $gutter-xs;
+    align-items: center;
+    
+    @media screen and (min-width: $tablet) {
+      gap: $gutter-md;
+    }
   }
 
   &__description {

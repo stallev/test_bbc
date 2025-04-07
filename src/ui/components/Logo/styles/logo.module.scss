@@ -2,12 +2,13 @@
 
 .logo {
   display: flex;
+  height: 38px;
 
   &__link a {
     display: inline-block;
   }
 
-  &__icon {
+  svg {
     width: 134px;
     height: 38px;
   }

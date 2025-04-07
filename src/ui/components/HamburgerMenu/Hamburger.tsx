@@ -2,7 +2,7 @@
 
 import React from "react";
 import styles from "././styles/hamburger.module.scss";
-import { IoMenu, IoClose } from "react-icons/io5";
+import { Icon } from "../ui-kit";
 
 interface HamburgerProps {
   toggleMobileMenu: () => void
@@ -11,8 +11,8 @@ interface HamburgerProps {
 
 const Hamburger: React.FC<HamburgerProps> = ({ toggleMobileMenu, isMenuOpen }) => {
   return (
-    <div className={styles.hamburger} onClick={toggleMobileMenu}>
-      {!isMenuOpen ? <IoMenu /> : <IoClose />}
+    <div role="button" tabIndex={0} aria-label="navigation menu" className={styles.hamburger} onClick={toggleMobileMenu}>
+      {!isMenuOpen ? <Icon iconName="hamburger" /> : <Icon iconName="cross" />}
     </div>
   );
 };

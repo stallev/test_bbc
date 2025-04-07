@@ -5,11 +5,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: $hamburger-bar-width;
-  height: $hamburger-bar-height;
   border-radius: $hamburger-border-radius;
 
   svg {
+    width: 18px;
+    height: 16px; 
     font-size: $hamburger-font-size;
     color: $hamburger-color;
   }

@@ -7,4 +7,6 @@ interface ComponentsMap {
 export const ComponentsMap: ComponentsMap = {
   locationIcon: IconsComponent.LocationIcon,
   logo: IconsComponent.Logo,
+  hamburger: IconsComponent.HamburgerIcon,
+  cross: IconsComponent.CrossIcon,
 };

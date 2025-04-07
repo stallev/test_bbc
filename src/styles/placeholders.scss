@@ -85,25 +85,26 @@
 }
 
 %primaryBtnLink {
-  display: inline-block;
-  padding: $gutter-md $gutter-ml;
-  border-radius: $border-radius-md;
+  display: inline-flex;
+  padding: $gutter-ms $gutter-ms $gutter-sm;
+  border: 1px solid $color-white;
+  border-radius: $border-radius-ms;
   font-weight: $font-weight-default;
-  font-size: $font-size-xs;
-  line-height: $line-height-xs;
-  color: $color-black;
-  text-transform: uppercase;
-  background-color: $color-primary;
+  font-size: $font-size-md;
+  line-height: $line-height-md;
+  color: $color-white;
+  transition: all 0.3 ease-in;
 
   &:hover {
-    background-color: $color-orange;
+    border-color: $color-red;
+    background-color: $color-red;
   }
 
   @media screen and (min-width: $tablet) {
-    border-radius: $border-radius-lg;
-    padding: $gutter-ml $gutter-xlg;
-    font-size: $font-size-ms;
-    line-height: $line-height-sm;
+    border-radius: 5px;
+    padding: $gutter-md $gutter-md 14px;
+    font-size: $font-size-lg;
+    line-height: $line-height-lg;
   }
 }
 

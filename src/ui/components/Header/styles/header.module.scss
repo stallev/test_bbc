@@ -15,7 +15,7 @@
     position: absolute;
     width: 100vw;
     height: 100vh;
-    background-color: $color-black-opacity-double-full;
+    z-index: $z-index-level4;
   }
 
   &__content {
@@ -24,13 +24,14 @@
     align-items: center;
     width: 100%;
     height: $header-height;
-    padding: $gutter-ms;
+    padding: $gutter-md;
+    z-index: $z-index-level5;
   }
 
   &__tooglers {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 66px;
   }
 
   &.visible {
@@ -38,6 +39,6 @@
   }
 
   &.hidden {
-    top: -80px;
+    top: -$header-height;
   }
 }

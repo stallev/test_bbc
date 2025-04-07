@@ -34,7 +34,7 @@ export const en = {
   timeline_nav_link: "Timeline",
   media_nav_link: "Media",
   our_plans_nav_link: "Our plans",
-  upcoming_events_nav_link: "Upcoming Events",
+  upcoming_events_nav_link: "Events",
   phones_nav_link: "Phones",
   spiritual_life_nav_link: "Spiritual life",
   pastors_blog_nav_link: "Blog",

@@ -40,8 +40,8 @@ export default async function Home({
     <>
       <GreetingScreen
         header_h1_title={translations.home_title}
-        header_descr={translations.home_header_descr}
-        header_button_label={translations.home_header_button_label}
+        events_link_label={translations.upcoming_events_nav_link}
+        about_church_link_label={translations.about_church_nav_link_text}
       />
 
       <UpcomingEventsList data={upcomingEventsData} />
