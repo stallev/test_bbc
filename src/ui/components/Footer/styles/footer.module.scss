@@ -1,169 +1,59 @@
 @import "../../../../styles/variables.scss";
 
 .footer {
-  padding: 78px 0 14px;
-
-  @media screen and (min-width: $tablet) {
-    padding: 100px 0 16px;
-  }
-
-  @media screen and (min-width: $smallDesktop) {
-    padding: 140px 0 18px;
-  }
-
-  @media screen and (min-width: $largeDesktop) {
-    padding: 200px 0 20px;
-  }
+  padding: $gutter-lg 0;
+  background-color: $color-footer-bg;
 
   &__top {
     display: flex;
-    gap: 34px;
+    gap: $gutter-md;
     flex-direction: column;
-    padding: 0 $gutter-ms 24px;
+    padding: 0 $gutter-ms;
+    color: $color-black;
 
-    @media screen and (min-width: $tablet) {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-    }
-
-    @media screen and (min-width: $smallDesktop) {
-      gap: 0;
-      padding-bottom: 50px;
-    }
-
-    @media screen and (min-width: $largeDesktop) {
-      padding-bottom: 74px;
+    @media screen and (min-width: $mobile) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
     }
   }
 
-  &__contacts {
-    display: flex;    
-    flex-direction: column;
-    color: var(--text-main-color);
-    font-family: $gilroy-regular-font-family;
-
-    .footer__work-hours {
-      color: $color-red;
-    }
-
-    a, span {
+  &__logo {
+    svg {
       display: inline-block;
-      font-size: 14px;
-      line-height: 1.1;
-      transition: all .3s ease-in-out;
 
       @media screen and (min-width: $tablet) {
-        font-size: 18px;
+        width: 250px !important;
+        height: auto !important;
       }
-
-      @media screen and (min-width: $smallDesktop) {
-        font-size: 22px;
-      }
-
-      @media screen and (min-width: $largeDesktop) {
-        font-size: 24px;
-      }
-
-      &::nth-of-type(1) {
-        margin-bottom: 10px;
-
-        @media screen and (min-width: $smallDesktop) {
-          margin-bottom: 16px;
-        }
-      }      
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    @media screen and (min-width: $smallDesktop) {
-      width: 50%;
     }
   }
 
   &__address-link {
-    margin-bottom: 14px;
+    display: flex;
+    gap: $gutter-xs;
     max-width: 260px;
+    font-size: $font-size-sm;
+    line-height: $line-height-ms;
 
     @media screen and (min-width: $tablet) {
-      margin-bottom: 18px;
-      max-width: none;
+      font-size: $font-size-ms;
+      line-height: $font-size-md;
     }
 
-    @media screen and (min-width: $smallDesktop) {
-      margin-bottom: 30px;
-      max-width: none;
-    }
-  }
-
-  &__phone-link {
-    margin-bottom: 10px;
-
-    @media screen and (min-width: $tablet) {
-      margin-bottom: 20px;
+    svg {
+      width: 20px;
+      height: 20px;
     }
   }
 
   &__bottom {
     display: flex;
-    flex-direction: column-reverse;
-    gap: 10px;
-    font-size: 10px;
-    line-height: 1.5;
-    color: var(--text-light-gray-color);
-    font-weight: 500;
-    font-family: $gilroy-medium-font-family;
+    padding: 0 $gutter-ms;
+    margin-top: $gutter-ml;
 
-    @media screen and (min-width: $smallDesktop) {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      font-size: 20px;
-    }
-
-    @media screen and (min-width: $largeDesktop) {
-      font-size: 30px;
-    }
-  }
-
-  &__copyright {
-    font-size: 10px;
-    line-height: 1.5;
-    color: var(--text-light-gray-color);
-
-    @media screen and (min-width: $smallDesktop) {
-      font-size: 15px;
-    }
-
-    @media screen and (min-width: $largeDesktop) {
-      font-size: 20px;
-    }
-  }
-
-  &__bottom-nav {
-    display: flex;
-    gap: 4px;
-
-    a:hover {
-      text-decoration: underline;
-    }
-  }
-
-  &__bottom-nav-link,
-  &__bottom-nav {
-    font-size: 10px;
-    line-height: 1.5;
-    color: var(--text-light-gray-color);
-
-    @media screen and (min-width: $smallDesktop) {
-      font-size: 15px;
-      gap:8px;
-    }
-
-    @media screen and (min-width: $largeDesktop) {
-      font-size: 20px;
+    @media screen and (min-width: $mobile) {
+      justify-content: center;
     }
   }
 }

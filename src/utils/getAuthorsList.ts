@@ -1,8 +1,8 @@
-import { PostCategoryConvertedListItem } from "@/types/postTypes";
+import { PostCategoryListItem } from "@/types/postTypes";
 import { BlogCardProps } from "@/ui/components/page-specific/blog/BlogCard/types";
 
-export const getAuthorsList = (postsList: BlogCardProps[]):PostCategoryConvertedListItem[] => {
-  const authors: PostCategoryConvertedListItem[] = postsList.reduce((acc: PostCategoryConvertedListItem[], post) => {
+export const getAuthorsList = (postsList: BlogCardProps[]):PostCategoryListItem[] => {
+  const authors: PostCategoryListItem[] = postsList.reduce((acc: PostCategoryListItem[], post) => {
     const existingAuthor = acc.find((author) => author.id === post.author.id);
     
     if (!existingAuthor) {

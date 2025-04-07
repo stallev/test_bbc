@@ -1,11 +1,11 @@
 @import "../../../../../styles/variables.scss";
-@import "../../../../../styles/placeholders.scss";
 
 .custom-input {
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
+  background: $color-light-gray;
   width: 100%;
 
   &:not(:first-child) {
@@ -21,23 +21,19 @@
     display: block;
     box-sizing: border-box;
     flex: 1;
-    padding: 8px 0;
+    padding: $gutter-ms $gutter-base;
     z-index: 1;
     width: 100%;
     border: none;
-    font-size: 12px;
-    font-family: $gilroy-regular-font-family;
-    line-height: 1;
-    background-color: inherit;
-    border-bottom: 1px solid $color-medium-gray;
+    font-size: $font-size-ms;
+    background-color: transparent;
+    border: 1px solid $color-medium-gray;
+    border-radius: $border-radius-sm;
     color: $color-gray;
 
-    @media screen and (min-width: $desktop) {
-      font-size: 24px;
-      padding: 16px 0;
-    }
-
     &:focus {
+      border-color: $color-black;
+      background: $color-light-gray;
       outline: none;
       outline-offset: 0;
     }
@@ -45,34 +41,14 @@
 
   &--error input,
   &--error input:focus {
-    border-bottom: 1px solid $color-red;
-  }
-
-  label {
-    @extend %inputLabelStyle;
+    border: 1px solid $color-red;
   }
 
   &__error-message {
     position: absolute;
     left: 10px;
-    bottom: -15px;
-    font-family: $gilroy-regular-font-family;
-    font-size: 10px;
+    bottom: -20px;
+    font-size: $font-size-xs;
     color: $color-red;
-
-    @media screen and (min-width: $tablet) {
-      bottom: -20px;
-      font-size: 12px;
-    }
-
-    @media screen and (min-width: $smallDesktop) {
-      bottom: -24px;
-      font-size: 14px;
-    }
-
-    @media screen and (min-width: $desktop) {
-      bottom: -28px;
-      font-size: 18px;
-    }
   }
 }

@@ -1,6 +1,5 @@
-@import "../variables.scss";
-@import "../placeholders.scss";
-@import "../mixins.scss";
+@import '../variables.scss';
+@import '../placeholders.scss';
 
 .pastors-post {
   &__title {
@@ -8,29 +7,29 @@
     @extend %pageTitleStyles;
   }
 
-  &__post-image {
+  &__post-content {
+    margin: $gutter-xl 0;
+  }
+
+  &__image-wrap {
     position: relative;
-    height: 150px;
-    margin-bottom: 40px;
+    display: block;
+    height: 180px;
+    margin-top: $gutter-ml;
+    border-radius: $border-radius-md;
+    overflow: hidden;
 
     @media screen and (min-width: $tablet) {
-      height: 250px;
-      margin-bottom: 60px;
+      height: 400px;
+      margin-top: $gutter-xl;
     }
-
-    @media screen and (min-width: $smallDesktop) {
-      height: 350px;
-      margin-bottom: 70px;
-    }
-
+  
     @media screen and (min-width: $desktop) {
-      height: 450px;
-      margin-bottom: 80px;
+      height: 500px;
     }
 
-    @media screen and (min-width: $largeDesktop) {
-      height: 560px;
-      margin-bottom: 120px;
+    img {
+      object-fit: cover;
     }
   }
 
@@ -41,5 +40,3 @@
     margin: $gutter-ms auto 0;
   }
 }
-
-@include postImageShadowStyles(".pastors-post__post-image");

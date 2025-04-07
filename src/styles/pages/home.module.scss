@@ -1,8 +1,0 @@
-@import '../variables.scss';
-@import '../placeholders.scss';
-
-.home {
-  &__page-content {
-    @extend %sectionGaps;
-  }
-}

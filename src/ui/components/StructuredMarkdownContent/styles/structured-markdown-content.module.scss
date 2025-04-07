@@ -4,65 +4,18 @@
 .structured-markdown-content {
   display: flex;
   flex-direction: column;
+  gap: $gutter-ml;
 
   &__blocks {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-
-    @media screen and (min-width: $tablet) {
-      gap: 20px;
-    }
-
-    @media screen and (min-width: $smallDesktop) {
-      gap: 24px;
-    }
-
-    @media screen and (min-width: $desktop) {
-      gap: 30px;
-    }
-
-    @media screen and (min-width: $largeDesktop) {
-      gap: 36px;
-    }
-  }
-
-  &__blockquote {
-    padding: 20px 0;
-
-    @media screen and (min-width: $tablet) {
-      padding: 30px 0;
-    }
-
-    @media screen and (min-width: $smallDesktop) {
-      padding: 40px 0;
-    }
-
-    @media screen and (min-width: $largeDesktop) {
-      padding: 50px 0;
-    }
+    align-items: center;
+    gap: $gutter-ml;
   }
 
   h2 {
     @extend %h2Style;
-    margin-top: 20px;
-
-    @media screen and (min-width: $tablet) {
-      margin-top: 30px;
-    }
-  
-    @media screen and (min-width: $smallDesktop) {
-      margin-top: 40px;
-    }
-  
-    @media screen and (min-width: $desktop) {
-      margin-top: 48px;
-    }
-  
-    @media screen and (min-width: $largeDesktop) {
-      margin-top: 56px;
-    }
+    // margin-bottom: $gutter-ml;
 
     &:first-child {
       margin-top: 0;
@@ -89,6 +42,7 @@
 
   h5 {
     @extend %h5Style;
+    margin-bottom: $gutter-sm;
 
     &:first-child {
       margin-top: 0;
@@ -96,27 +50,29 @@
   }
 
   p {
-    @extend %smallParagraphMediumDescriptionTextStyle;
+    @extend %paragraphStyle;
     
-    &:nth-child(1) {
+    &:first-child {
       margin-top: 0;
     }
   }
 
-  ul, ol {
-    padding-left: 24px;
+  blockquote {
+    @extend %blockquoteStyles;
 
-    @media screen and (min-width: $tablet) {
-      padding-left: 30px;
+    p {
+      font-style: italic;
+
+      &:first-child {
+        margin-top: 0;
+      }
     }
 
-    @media screen and (min-width: $desktop) {
-      padding-left: 36px;
+    cite {
+      display: inline-block;
+      margin-top: $gutter-xs;
+      font-size: smaller;
     }
-  }
-
-  li {
-    @extend %smallParagraphMediumDescriptionTextStyle;
   }
 
   &__single-image-wrap {

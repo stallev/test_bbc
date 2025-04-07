@@ -1,7 +1,25 @@
 @import '../../../../../../styles/variables.scss';
-@import '../../../../../../styles/placeholders.scss';
 
 .blog-cards-list {
-  @extend %animatedArticlesListStyles;
-  overflow: hidden !important;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: $gutter-lg;
+  padding-bottom: $gutter-xl;
+  align-items: stretch;
+
+  @media screen and (min-width: $tablet) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: flex-start;
+  }
+
+  @media screen and (min-width: $desktop) {
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: flex-start;
+  }
 }

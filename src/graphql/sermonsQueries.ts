@@ -45,7 +45,6 @@ export const getSermonsCategoriesList = `query getSermonsCategoriesList ($langua
     language: $language
   }, first: ${PostsQueryMaxCount}) {
     nodes {
-      id
       name
     }
   }
@@ -53,13 +52,11 @@ export const getSermonsCategoriesList = `query getSermonsCategoriesList ($langua
     language: $language
   }, first: ${PostsQueryMaxCount}) {
     nodes {
-      id
       name
     }
   }
   sermonsTopics(where: {hideEmpty: true, language: $language}, first: ${PostsQueryMaxCount}) {
     nodes {
-      id
       name
     }
   }

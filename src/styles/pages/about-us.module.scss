@@ -3,10 +3,11 @@
 
 .about-us {
   &__title {
-    @extend %h1PageTitleStyle;
+    @extend %paddingTopHeader;
+    @extend %pageTitleStyles;
   }
 
   &__page-content {
-    @extend %sectionGaps;
+    margin-top: $gutter-xl;
   }
 }

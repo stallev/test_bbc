@@ -2,8 +2,6 @@
 
 .navbar {
   display: none;
-  font-weight: 500;
-  font-family: $gilroy-medium-font-family;
 
   &__label {
     display: flex;
@@ -29,7 +27,7 @@
     font-size: 15px;
     line-height: $line-height-ms;
     text-align: right;
-    color: var(--text-secondary-color);
+    color: $color-dark-gray;
     opacity: 0.9;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -37,62 +35,26 @@
     &:hover {
       color: $color-red;
     }
-  }
 
-  &__link--outlined {
-    padding: 0;
-    border-radius: 6px;
-    border: 1px solid $color-red;
-
-    a {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 10px;
-    }
-
-    svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    a:hover {
-      svg path,
-      svg circle {
-        stroke: $color-red;
-      }
-    }
-
-    svg path,
-    svg circle {
-      stroke: var(--text-main-color);
-      stroke-width: 1.5px;
-      transition: all 0.3s ease;
-    }
   }
 
   @media (min-width: $smallDesktop) {
     display: flex;
-    gap: 20px;
-    align-items: center;
-  }
-
-  @media (min-width: $desktop) {
     gap: 40px;
   }
 
   &--show {
     position: absolute;
-    top: $header-height;
+    top: 80px;
     left: 0;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     row-gap: $gutter-md;
     align-items: flex-end;
-    padding: $gutter-lg 0;
+    padding: $gutter-ml 0;
     width: 100%;
-    background-color: var(--main-bg-color);
+    background-color: $color-light-bg;
 
     @media (min-width: $smallDesktop) {
       display: none;
@@ -107,25 +69,25 @@
     text-align: center;
     padding: $navDropDown-padding;
     z-index: $navDropDown-z-index;
+    
 
     @media (min-width: $smallDesktop) {
       position: absolute;
-      top: 40px;
+      top: 50px;
       width: fit-content;
       margin: auto;
       box-shadow: $navDropDown-box-shadow;
-      background-color: var(--main-bg-color);
+      background-color: $color-light-bg;
     }
 
     &-link {
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 7px;
       width: $navDropDown-link-width;
       font-size: 13px;
       line-height: 20px;
-      color: var(--text-secondary-color);
+      color: $color-dark-gray;
       text-decoration: none;
 
       &:hover {

@@ -3,10 +3,11 @@
 
 .upcoming-events {
   &__title {
-    @extend %h1PageTitleStyle;
+    @extend %paddingTopHeader;
+    @extend %pageTitleStyles;
   }
 
-  &__content {
-    @extend %sectionGaps;
+  &__page-content {
+    margin-top: $gutter-xl;
   }
 }

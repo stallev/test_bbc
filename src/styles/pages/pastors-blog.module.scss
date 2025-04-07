@@ -9,7 +9,8 @@
   }
 
   &__title {
-    @extend %h1PageTitleStyle;
+    @extend %paddingTopHeader;
+    @extend %pageTitleStyles;
   }
 
   &__page-content {

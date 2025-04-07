@@ -4,8 +4,6 @@ import { SeoContentDataProps } from "@/types/globalTypes";
 import { fetchAPI } from "./WordPressFetchAPI";
 import { FetchedStaffPersonDataType, TranslationFetchedData } from "@/types/WPDataTypes/StaffContentDataType";
 import { PostNodeSlugType, PostSitemapSourceData } from "@/types/WPDataTypes/CommonWPDataTypes";
-import { MinisterPostDataProps } from "@/types/WPDataTypes/MinisterPostDataTypes";
-import { convertGutenbergBlocksData } from "@/utils/convertGutenbergBlocksData";
 
 class StaffDataApi {
   static getOtherImagesSizesUrls(item: TranslationFetchedData) {
@@ -45,7 +43,7 @@ class StaffDataApi {
     return result;
   }
 
-   static async getMinisterItemDataBySlug(id: string, locale: string): Promise<MinisterPostDataProps | null | undefined> {
+   static async getMinisterItemDataBySlug(id: string, locale: string) {
     const variables = {
       id,
       language: locale.toUpperCase(), 
@@ -54,22 +52,18 @@ class StaffDataApi {
     
     const fetchedData = await fetchAPI(getMinisterData, { variables });
 
-    if(!fetchedData?.minister) {
-      return null;
-    }
-
     if(!!fetchedData?.minister) {
       const { minister: { translation } } = fetchedData;
       
       const postData  = this.getOtherImagesSizesUrls(translation);
-      const blocks = convertGutenbergBlocksData(postData.blocks);
       
-      return <MinisterPostDataProps>{
+      return {
         ...postData,
-        blocks,
         seo: this.getMinisterPageSeoData(postData, locale)
       };
-    }
+    } 
+
+    return {};
   }
 
   static getMinisterPageSeoData(postData: TranslationFetchedData, locale: string) {
@@ -102,9 +96,7 @@ class StaffDataApi {
 
     for (const item of res) {
       const itemData = await this.getMinisterItemData(item, locale.toUpperCase());
-      const { seo, translations, ...ministerData } = itemData;
-      
-      resultItems.push(ministerData );
+      resultItems.push({ data: itemData });
     }
     
     return resultItems;

@@ -19,13 +19,6 @@ $gutter-xl: $gutter-base * 3; // 48
 $gutter-xlg: $gutter-base * 4; // 64
 $gutter-xxlg: $gutter-base * 5; // 80
 
-// Font Family
-$accia-font-family: var(--font-accia-reg);
-$gilroy-semibold-font-family: var(--font-gilroy-semibold);
-$gilroy-medium-font-family: var(--font-gilroy-medium);
-$gilroy-regular-font-family: var(--font-gilroy-regular);
-$livret-display-font-family: var(--font-livret-display);
-
 // Font Sizes
 $font-size-xxxs: 8px;
 $font-size-xxs: 10px;
@@ -56,12 +49,11 @@ $font-weight-semi-bold: 500;
 $font-weight-bold: 700;
 
 //Colors
-$color-light-bg: rgb(250 248 242);
-$color-light-yellow: #FAF8F2;
+$color-light-bg: #FAF8F2;
 $color-white: #fff;
 $color-black: #000;
-$color-text-gray: #bab5b1;
-$color-gray: #adadad;
+$color-dark-gray: #373737;
+//$color-header: rgba(0, 0, 0, 0.6);
 $color-dark-green: #4e594a;
 $color-gold: #dbb047;
 $color-red: #FF3838;
@@ -104,10 +96,9 @@ $z-index-level1: 10;
 $z-index-level2: 20;
 $z-index-level3: 30;
 $z-index-level4: 40;
-$z-index-level5: 50;
 
 //Elements sizes
-$header-height: 62px;
+$header-height: 80px;
 $desctop-footer-height: 180px;
 $BottomNav-height: 40px;
 $upcomingEventsSectionHeightOnMobile: 350px;
@@ -160,5 +151,3 @@ $navDropDown-link-width: 100%;
 $navDropDown-link-padding: 8px;
 
 $smallMobileBlogWidth: 320px;
-
-$staff-person-card-deg: 12deg;
