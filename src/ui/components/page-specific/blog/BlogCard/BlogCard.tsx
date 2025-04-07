@@ -7,24 +7,19 @@ import { Text, CustomImage } from '@/ui/components/ui-kit';
 import ReadMoreLink from '@/ui/components/ui-kit/ReadMoreLink/ReadMoreLink';
 import { getDayMonthFormattedDate } from '@/utils/dateFormatter';
 import { useClientTranslationFunction, useLocale } from '@/hooks/useLocale';
-import { BlogCardProps } from './types';
+import { BlogCardDataProps } from './types';
 
 import styles from './styles/blog-card.module.scss';
 
-const BlogCard = ({
+const BlogCard: React.FC<BlogCardDataProps> = ({
   data,
-  index = 1,
-  isLandingPage = false
-}: {
-  data: BlogCardProps,
-  index: number
-  isLandingPage?: boolean
+  index = 1
 }) => {
   const translate = useClientTranslationFunction();
   const locale = useLocale();
 
   const postLink = `${RoutePath.BlogAuthor}/${data.author.slug}/${data.slug}`;
-  const imagePriorityLoading = !isLandingPage ? (index < 1 ? true : false) : false;
+  const imagePriorityLoading = index < 1 ? true : false;
 
   return (
     <article className={styles["blog-card"]}>

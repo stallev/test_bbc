@@ -1,36 +1,23 @@
-import React from "react";
-import { RoutePath } from "@/constants";
-import { StaffPersonCardProps } from "./types";
-import { CustomImage, Text, Icon, ReadMoreLink } from "@/ui/components/ui-kit";
-import { stripHtmlTags } from "@/utils";
+import React from 'react';
+import { RoutePath } from '@/constants';
+import { StaffPersonCardProps } from './types';
+import { CustomImage, Text, Icon, ReadMoreLink } from '@/ui/components/ui-kit';
+import { stripHtmlTags } from '@/utils';
 
-import styles from "./styles/staff-person-card.module.scss";
+import styles from './styles/staff-person-card.module.scss';
 
-const StaffPersonCard: React.FC<StaffPersonCardProps> = ({
-  data,
-  translations,
-  isDetailed,
-  index,
-  isLandingPage = false,
-}: StaffPersonCardProps) => {
-  const priorityFetching = !isLandingPage ? (!index ? 1 : index) < 1 : false;
+const StaffPersonCard: React.FC<StaffPersonCardProps> = ({ data, translations, isDetailed, index }: StaffPersonCardProps) => {
+  const priorityFetching = (!index ? 1 : index) < 1;
 
   return (
     <article
       className={`
         ${styles["staff-person-card"]}
-        ${
-          isDetailed
-            ? styles["staff-person-card--detailed"]
-            : styles["staff-person-card--reduced"]
-        }
+        ${isDetailed ? styles["staff-person-card--detailed"] : styles["staff-person-card--reduced"]}
       `}
     >
       <div className={styles["staff-person-card__photo"]}>
-        <Icon
-          iconName="smallLogo"
-          className={styles["staff-person-card__logo-icon"]}
-        />
+        <Icon iconName='smallLogo' className={styles["staff-person-card__logo-icon"]} />
 
         <div className={styles["staff-person-card__image-wrap"]}>
           <CustomImage
@@ -43,22 +30,29 @@ const StaffPersonCard: React.FC<StaffPersonCardProps> = ({
       </div>
 
       <div className={styles["staff-person-card__info"]}>
-        <Text textType="span" className={styles["staff-person-card__position"]}>
+        <Text
+          textType='span'
+          className={styles["staff-person-card__position"]}
+        >
           {data.ministerPosition}
         </Text>
 
-        <Text textType="h3" className={styles["staff-person-card__name"]}>
+        <Text
+          textType='h3'
+          className={styles["staff-person-card__name"]}
+        >
           {`${data.ministerFirstName} ${data.ministerLastName}`}
         </Text>
 
-        {isDetailed && (
-          <Text
-            textType="p"
+        {
+          isDetailed
+          && <Text
+            textType='p'
             className={styles["staff-person-card__description"]}
           >
             {data?.excerpt && stripHtmlTags(data.excerpt)}
           </Text>
-        )}
+        }
 
         <ReadMoreLink
           to={`${RoutePath.Staff}/${data.slug}`}
@@ -67,7 +61,7 @@ const StaffPersonCard: React.FC<StaffPersonCardProps> = ({
         />
       </div>
     </article>
-  );
-};
+  )
+}
 
-export default StaffPersonCard;
+export default StaffPersonCard

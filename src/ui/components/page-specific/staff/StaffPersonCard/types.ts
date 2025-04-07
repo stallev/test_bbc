@@ -15,5 +15,4 @@ export interface StaffPersonCardProps {
   isDetailed?: boolean
   translations: Record<string, string>
   index?: number
-  isLandingPage?: boolean
 }

@@ -24,7 +24,7 @@ const UpcomingEvents = ({ data }: UpcomingEventListProps) => {
           {translate("upcoming_events_section_title")}
         </Text>
 
-        <UpcomingEventsList data={data} isLandingPage />
+        <UpcomingEventsList data={data} />
 
         <CustomLink
           to={RoutePath.UpcomingEvents}

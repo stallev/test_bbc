@@ -49,9 +49,8 @@ const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
         id={data.id}
         title={data.title}
         webp={true}
-        wrapperClass={styles["youtube-player__wrap"]}
         // playerClass={styles["youtube-player__wrap"]}
-        playerClass={styles["youtube-player__play-button"]}
+        // playerClass={styles["youtube-player__play-button"]}
       />
     </div>
   )
