@@ -1,4 +1,4 @@
-import { PostCategoryConvertedListItem } from "@/types/postTypes";
+import { PostCategoryListItem } from "@/types/postTypes";
 import { BlogCardProps } from "../BlogCard/types";
 import { BlogFiltersProps, BlogPostsStateProps } from "../BlogContent/types";
 
@@ -12,7 +12,6 @@ export interface BlogFiltersComponentsProps {
 }
 
 export interface BlogCategoriesData {
-  authorsData: PostCategoryConvertedListItem[] | []
-  yearsData: PostCategoryConvertedListItem[] | []
-  topicsData: PostCategoryConvertedListItem[] | []
+  authorsData: PostCategoryListItem[] | []
+  yearsData: PostCategoryListItem[] | []
 }

@@ -4,20 +4,17 @@
   --text-main-color: #000000;
   --text-secondary-color: #373737;
   --text-light-gray-color: #adadad;
-  --super-light-gray-color: #EFECE4;
-  --dark-gray-color: #4E4E4E;
   --fill-main-color: #373737;
   --color-red: #FF3838;
 }
 
 .dark,
-[data-theme='dark'] {
+[data-theme222='dark'],
+[data-theme222='dark'] body {
   --main-bg-color: #2c2c2c;
   --text-main-color: #FAF8F2;
   --text-secondary-color: #FAF8F2;
   --text-light-gray-color: #adadad;
-  --super-light-gray-color: #EFECE4;
-  --dark-gray-color: #4E4E4E;
   --fill-main-color: #FAF8F2;
   --color-red: #FF3838;
 }
@@ -28,21 +25,7 @@
     --text-main-color: #FAF8F2;
     --foreground: #ededed;
     --text-light-gray-color: #adadad;
-    --super-light-gray-color: #EFECE4;
-    --dark-gray-color: #4E4E4E;
     --fill-main-color: #FAF8F2;
-    --color-red: #FF3838;
-  }
-  
-  [data-theme='light'] {
-    --main-bg-color: #FAF8F2;
-    --foreground: #171717;
-    --text-main-color: #000000;
-    --text-secondary-color: #373737;
-    --text-light-gray-color: #adadad;
-    --super-light-gray-color: #EFECE4;
-    --dark-gray-color: #4E4E4E;
-    --fill-main-color: #373737;
     --color-red: #FF3838;
   }
 }
@@ -107,35 +90,7 @@ footer svg path.logo-book {
   opacity: .5;
 }
 
-.ministries-slider .swiper-slide.swiper-slide-active {
-  height: fit-content !important;
-}
-
 .ministries-slider .swiper-slide.swiper-slide-active + .swiper-slide + .swiper-slide a {
   color: var(--color-red);
-  font-size: 50px;
-}
-
-/* Player */
-
-.rhap_progress-section .rhap_current-time,
-.rhap_progress-section .rhap_total-time {
-  color: #FFF;
-}
-
-
-.rhap_progress-indicator {
-  background-color: #FFF !important;
-}
-
-.rhap_progress-indicator {
-  background-color: #FFF !important;
-}
-
-.rhap_controls-section button svg path {
-  fill: #FFF !important;
-}
-
-.rhap_volume-bar .rhap_volume-indicator {
-  background: #FFF;
+  font-size: 60px;
 }

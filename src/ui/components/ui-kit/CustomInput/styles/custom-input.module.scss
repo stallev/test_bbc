@@ -26,7 +26,6 @@
     width: 100%;
     border: none;
     font-size: 12px;
-    font-family: $gilroy-regular-font-family;
     line-height: 1;
     background-color: inherit;
     border-bottom: 1px solid $color-medium-gray;
@@ -55,24 +54,8 @@
   &__error-message {
     position: absolute;
     left: 10px;
-    bottom: -15px;
-    font-family: $gilroy-regular-font-family;
-    font-size: 10px;
+    bottom: -20px;
+    font-size: $font-size-xs;
     color: $color-red;
-
-    @media screen and (min-width: $tablet) {
-      bottom: -20px;
-      font-size: 12px;
-    }
-
-    @media screen and (min-width: $smallDesktop) {
-      bottom: -24px;
-      font-size: 14px;
-    }
-
-    @media screen and (min-width: $desktop) {
-      bottom: -28px;
-      font-size: 18px;
-    }
   }
 }

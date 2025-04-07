@@ -1,43 +1,39 @@
-import dynamic from "next/dynamic";
-import { useClientTranslationFunction } from "@/hooks/useLocale";
-import { CustomDatePicker, Text, Icon } from "@/ui/components/ui-kit";
-import { DEFAULT_SERMONS_FILTER_STATE } from "@/constants/mock";
-import { RenderingSermonCardDataType } from "@/types/WPDataTypes/SermonPostsDataTypes";
+import dynamic from 'next/dynamic';
+import useTranslationFunction from '@/hooks/useTranslationFunction';
+import Container from '@/ui/containers/Container/Container';
+import { CustomDatePicker } from '@/ui/components/ui-kit';
+import { DEFAULT_SERMONS_FILTER_STATE } from '@/constants/mock';
 
-import styles from "./styles/sermons-filters.module.scss";
+import styles from './styles/sermons-filters.module.scss';
 
-import { SermonsFiltersComponentProps, SermonsFiltersProps } from "./types";
-import { Button } from "@/ui/components/ui-kit";
+import { SermonsFiltersComponentProps, SermonsFiltersProps } from './types';
+import { SermonCardProps } from '../SermonCard/types';
+import { Button } from '@/ui/components/ui-kit';
 
-const CustomSimpleSelect = dynamic(
-  () => import("@/ui/components/ui-kit/CustomSimpleSelect")
-);
+type ValuePiece = Date | null;
 
-const SermonFilters: React.FC<SermonsFiltersComponentProps> = ({
-  categoriesData,
+type Value = ValuePiece | [ValuePiece, ValuePiece];
+
+const CustomSimpleSelect = dynamic(() => import('@/ui/components/ui-kit/CustomSimpleSelect'));
+
+const SermonFilters: React.FC<SermonsFiltersComponentProps> = ({ 
+  categoriesData, 
   fullSermonsList,
   filters,
   setFilters,
   setSermons,
-  sermons,
-}) => {
-  const translate = useClientTranslationFunction();
+  sermons
+ }) => {
+  const translate = useTranslationFunction();
 
   const resetFilters = () => {
     setFilters(DEFAULT_SERMONS_FILTER_STATE);
   };
 
-  const isResetBtnActive = (
-    Object.keys(filters) as (keyof SermonsFiltersProps)[]
-  ).some(
-    (filterKey) =>
-      filters[filterKey] != DEFAULT_SERMONS_FILTER_STATE[filterKey]
-  );
-
   const filterAndSortSermons = (
-    sermons: RenderingSermonCardDataType[],
+    sermons: SermonCardProps[],
     filterState: SermonsFiltersProps
-  ): RenderingSermonCardDataType[] => {
+  ): SermonCardProps[] => {
     const filteredSermons = sermons.filter((sermon) => {
       const { biblebooks, preachers, topics, startDate, endDate } = filterState;
 
@@ -45,37 +41,28 @@ const SermonFilters: React.FC<SermonsFiltersComponentProps> = ({
       const startFilterDate = new Date(startDate);
       const endFilterDate = new Date(endDate);
 
-      if (
-        biblebooks !== "all" &&
-        !sermon.biblebooks.some((item) => item.id === biblebooks)
-      ) {
+      console.log('biblebooks is', biblebooks)
+      if (biblebooks !== 'all' && !sermon.biblebooks.includes(biblebooks)) {
         return false;
       }
 
-      if (
-        preachers !== "all" &&
-        !sermon.preachers.some((item) => item.id === preachers)
-      ) {
+      if (preachers !== 'all' && !sermon.preachers.includes(preachers)) {
         return false;
       }
 
-      if (
-        topics !== "all" &&
-        !sermon.topics.some((item) => item.id === topics)
-      ) {
+      if (topics !== 'all' && !sermon.topics.includes(topics)) {
         return false;
       }
-
+  
       return sermonDate >= startFilterDate && sermonDate <= endFilterDate;
     });
-
+  
     const sortedSermons = filteredSermons.sort(
-      (a, b) =>
-        new Date(a.sermonDate).getTime() - new Date(b.sermonDate).getTime()
+      (a, b) => new Date(a.sermonDate).getTime() - new Date(b.sermonDate).getTime()
     );
-
+  
     return sortedSermons;
-  };
+  }
 
   const getSearchedSermons = async (filterKey: string, filterValue: any) => {
     const activeFilters = {
@@ -84,120 +71,103 @@ const SermonFilters: React.FC<SermonsFiltersComponentProps> = ({
     };
     setFilters(activeFilters);
 
-    const searchedSermons = filterAndSortSermons(
-      fullSermonsList,
-      activeFilters
-    );
+    const searchedSermons = filterAndSortSermons(fullSermonsList, activeFilters);
 
     setSermons({
       ...sermons,
-      searchedSermons: [...searchedSermons],
+      searchedSermons: [
+        ...searchedSermons,
+      ],
     });
-  };
+  }
 
-  const handleCategoriesOnChange = (
-    filterKey: string,
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
+  const handleCategoriesOnChange = (filterKey: string, event: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log('event.target.value', event.target.value)
     getSearchedSermons(filterKey, event.target.value);
   };
 
   const handleStartDateOnChange = (dateValue: Date) => {
-    getSearchedSermons("startDate", dateValue);
+    getSearchedSermons('startDate', dateValue);
   };
 
   const handleEndDateOnChange = (dateValue: Date) => {
-    getSearchedSermons("endDate", dateValue);
+    getSearchedSermons('endDate', dateValue);
   };
 
-  const handlePreachersOnChange = async (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    handleCategoriesOnChange("preachers", event);
+  const handlePreachersOnChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
+    handleCategoriesOnChange('preachers', event);
   };
 
-  const handleBibleBooksOnChange = async (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    handleCategoriesOnChange("biblebooks", event);
+  const handleBibleBooksOnChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
+    handleCategoriesOnChange('biblebooks', event);
   };
 
-  const handleTopicsOnChange = async (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    handleCategoriesOnChange("topics", event);
+  const handleTopicsOnChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
+    handleCategoriesOnChange('topics', event);
   };
 
   return (
-    <div className={styles["sermons-filters"]}>
-      <div className={styles["sermons-filters__categories"]}>
-        <CustomSimpleSelect
-          options={categoriesData.biblebooks}
-          name="Books"
-          title={translate("bible_books_list_name")}
-          defaultValueText={translate("all_bible_books")}
-          onChangeValue={handleBibleBooksOnChange}
-          selectedValue={filters.biblebooks}
-          ariaLabel={translate("bible_books_list_name")}
-        />
+    <Container>
+      <div className={styles["sermons-filters"]}>
+        <div className={styles["sermons-filters__categories"]}>
+          <CustomSimpleSelect
+            options={categoriesData.biblebooks}
+            name='Books'
+            title={translate("bible_books_list_name")}
+            defaultValueText={translate("all_bible_books")}
+            onChangeValue={handleBibleBooksOnChange}
+            selectedValue={filters.biblebooks}
+            ariaLabel={translate("bible_books_list_name")}
+          />
+          <CustomSimpleSelect
+            options={categoriesData.preachers}
+            name='Preachers'
+            title={translate("preachers_list_name")}
+            defaultValueText={translate("all_preachers")}
+            onChangeValue={handlePreachersOnChange}
+            selectedValue={filters.preachers}
+            ariaLabel={translate("preachers_list_name")}
+          />
+          <CustomSimpleSelect
+            options={categoriesData.topics}
+            name='Topics'
+            title={translate("topics_list_name")}
+            defaultValueText={translate("all_topics")}
+            onChangeValue={handleTopicsOnChange}
+            selectedValue={filters.topics}
+            ariaLabel={translate("topics_list_name")}
+          />
+        </div>
 
-        <CustomSimpleSelect
-          options={categoriesData.preachers}
-          name="Preachers"
-          title={translate("preachers_list_name")}
-          defaultValueText={translate("all_preachers")}
-          onChangeValue={handlePreachersOnChange}
-          selectedValue={filters.preachers}
-          ariaLabel={translate("preachers_list_name")}
-        />
-
-        <CustomSimpleSelect
-          options={categoriesData.topics}
-          name="Topics"
-          title={translate("topics_list_name")}
-          defaultValueText={translate("all_topics")}
-          onChangeValue={handleTopicsOnChange}
-          selectedValue={filters.topics}
-          ariaLabel={translate("topics_list_name")}
-        />
-
-        <CustomDatePicker
-          className={styles["sermons-filters__date-picker"]}
-          title={translate("start_dates_range")}
-          selectedValue={filters.startDate}
-          minDate={DEFAULT_SERMONS_FILTER_STATE.startDate}
-          maxDate={filters.endDate}
-          onChangeValue={handleStartDateOnChange}
-          calendarAriaLabel="start date"
-        />
-
-        <CustomDatePicker
-          className={styles["sermons-filters__date-picker"]}
-          title={translate("end_dates_range")}
-          selectedValue={filters.endDate}
-          onChangeValue={handleEndDateOnChange}
-          minDate={filters.startDate}
-          maxDate={DEFAULT_SERMONS_FILTER_STATE.endDate}
-          calendarAriaLabel="end date"
-        />
-
-        {isResetBtnActive && (
-          <Button
-            className={styles["sermons-filters__reset-btn"]}
-            type="primary"
-            onClick={resetFilters}
-          >
-            <Text textType="span">{translate("reset")}</Text>
-
-            <Icon
-              className={styles["sermons-filters__reset-btn-icon"]}
-              iconName="rightArrow"
+         <div className={styles["sermons-filters__dates"]}>
+            <CustomDatePicker
+              className={styles["sermons-filters__date-picker"]}
+              title={translate("start_dates_range")}
+              selectedValue={filters.startDate}
+              minDate={DEFAULT_SERMONS_FILTER_STATE.startDate}
+              maxDate={filters.endDate}
+              onChangeValue={handleStartDateOnChange}
+              calendarAriaLabel="start date"
             />
-          </Button>
-        )}
-      </div>
-    </div>
-  );
-};
+            <CustomDatePicker
+              className={styles["sermons-filters__date-picker"]}
+              title={translate("end_dates_range")}
+              selectedValue={filters.endDate}
+              onChangeValue={handleEndDateOnChange}
+              minDate={filters.startDate}
+              maxDate={DEFAULT_SERMONS_FILTER_STATE.endDate}
+              calendarAriaLabel="end date"
+            />
 
-export default SermonFilters;
+            <Button
+              className={styles["sermons-filters__reset-btn"]}
+              buttonTitle={translate("reset")}
+              onClick={resetFilters}
+            />
+         </div>
+      </div>
+    </Container>
+  )
+}
+
+export default SermonFilters

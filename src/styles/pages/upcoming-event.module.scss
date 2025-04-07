@@ -1,6 +1,5 @@
-@import "../variables.scss";
-@import "../placeholders.scss";
-@import "../mixins.scss";
+@import '../variables.scss';
+@import '../placeholders.scss';
 
 .upcoming-event {
   &__title {
@@ -8,31 +7,7 @@
     @extend %pageTitleStyles;
   }
 
-  &__event-image {
-    position: relative;
-    height: 150px;
-    margin-bottom: 40px;
-
-    @media screen and (min-width: $tablet) {
-      height: 250px;
-      margin-bottom: 60px;
-    }
-
-    @media screen and (min-width: $smallDesktop) {
-      height: 350px;
-      margin-bottom: 70px;
-    }
-
-    @media screen and (min-width: $desktop) {
-      height: 450px;
-      margin-bottom: 80px;
-    }
-
-    @media screen and (min-width: $largeDesktop) {
-      height: 560px;
-      margin-bottom: 120px;
-    }
+  &__page-content {
+    margin: $gutter-xl 0;
   }
 }
-
-@include postImageShadowStyles(".upcoming-event__event-image");

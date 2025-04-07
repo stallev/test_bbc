@@ -3,8 +3,7 @@ import { convertAuthorData } from "./convertAuthorData";
 import { AuthorNodeProps, FeaturedImageMediaItemUrlProps, SeoPostProps, BlogPostProps } from "@/types/postTypes";
 import { GutenbergBlockType } from "@/types/WPDataTypes/PageContentDataTypes";
 import { stripHtmlTags } from ".";
-import { Locale } from "@/i18n.config";
-import { getLocaleFormattedDate } from "@/utils/dateFormatter";
+import { getShortMonthFormattedDate } from "@/utils/dateFormatter";
 import { convertGutenbergBlocksData } from "./convertGutenbergBlocksData";
 
 export interface PostFetchedDataProps {
@@ -18,11 +17,12 @@ export interface PostFetchedDataProps {
   seo: SeoPostProps
 }
 
-export const convertPostFetchedData = (data: PostFetchedDataProps, locale: Locale): BlogPostProps => {
+export const convertPostFetchedData = (data: PostFetchedDataProps, locale: string): BlogPostProps => {
+  console.log(data.blocks)
   return {
     title: data.title,
     excerpt: stripHtmlTags(data.excerpt),
-    date: getLocaleFormattedDate(data.date, locale),
+    date: getShortMonthFormattedDate(data.date, locale),
     slug: data.slug,
     featuredImageData: convertFeaturedImageData(data.featuredImage),
     author: convertAuthorData(data.author),

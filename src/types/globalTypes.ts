@@ -27,7 +27,7 @@ export interface SeoPagePathDataProps {
 }
 
 export interface GetSeoDataProps {
-  seoContentData: SeoContentDataProps | undefined
+  seoContentData: SeoContentDataProps
   seoPathData: SeoPagePathDataProps
 }
 

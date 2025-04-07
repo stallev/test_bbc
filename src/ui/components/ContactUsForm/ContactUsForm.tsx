@@ -54,6 +54,7 @@ const ContactUsForm: React.FC<ContactUsFormprops> = ({
         data: modifiedData,
         contactType: ContactFormType
       }).then(async(res) => await JSON.parse(res));
+      console.log(response)
 
       const notificationData = {
         isVisibleNotification: true,

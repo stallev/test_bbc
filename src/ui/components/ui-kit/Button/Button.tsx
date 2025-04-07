@@ -33,7 +33,6 @@ const Button: FC<CustomButtonProps> = ({
       type={isSubmit ? 'submit' : 'button'}
       onClick={onClick || undefined}
       tabIndex={tabIndex}
-      disabled={disabled}
     >
       {buttonTitle && buttonTitle}
       {children && children}

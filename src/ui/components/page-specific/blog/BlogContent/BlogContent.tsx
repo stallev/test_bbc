@@ -1,7 +1,6 @@
-"use client";
-
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import useTranslationFunction from '@/hooks/useTranslationFunction';
 import { CARDS_PORTION } from '@/constants/mock';
 import { DEFAULT_BLOG_POSTS_FILTER_STATE } from '@/constants/mock';
 import BlogFilters from '../BlogFilters/BlogFilters';
@@ -15,6 +14,8 @@ const BlogContent:React.FC<BlogContentProps> = ({
   postsData,
   postsCategories,
 }) => {
+  const translate = useTranslationFunction();
+
   const [posts, setPosts] = useState<BlogPostsStateProps>({
     currentPosts: postsData.slice(0, CARDS_PORTION),
     searchedPosts: [],

@@ -1,15 +1,13 @@
-import React, { useEffect } from "react";
-import { usePathname } from "next/navigation";
+import React from "react";
 import CustomLink from "../ui-kit/CustomLink";
 import Text from "../ui-kit/Text";
 import { MainNavBarLinks } from "@/constants/NavBarLinks";
 import { LinkTypes } from "@/constants/LinkTypes";
+import styles from "./styles/navbar.module.scss";
 import useDropdown from "@/hooks/useDropDown";
 import { useClientTranslationFunction } from "@/hooks/useLocale";
 import { IoCaretDownSharp, IoCaretUpSharp } from "react-icons/io5";
 import { MobileMenuStateProps } from "@/types/globalTypes";
-
-import styles from "./styles/navbar.module.scss";
 
 interface NavBarProps {
   setMobileMenuState: React.Dispatch<React.SetStateAction<MobileMenuStateProps>>
@@ -17,21 +15,12 @@ interface NavBarProps {
 }
 
 const NavBar: React.FC<NavBarProps> = ({ setMobileMenuState, mobileMenuState }) => {
-  const pathname = usePathname();
-
   const { handleMouseEnter, handleMouseLeave, handleClick } = useDropdown({
     setMobileMenuState,
     mobileMenuState,
-  });
+  })
   const { isMenuOpen, activeDropDownMenuItem } = mobileMenuState;
   const translate = useClientTranslationFunction();
-
-  useEffect(() => {
-    setMobileMenuState({
-      isMenuOpen: false,
-      activeDropDownMenuItem: false
-    });
-  }, [pathname, setMobileMenuState]);
 
   return (
     <nav className={`${styles.navbar} ${isMenuOpen ? styles["navbar--show"] : ""}`}>
