@@ -9,7 +9,16 @@ export const getSeoData = ({ seoContentData, seoPathData}: GetSeoDataProps): Met
   const { asPath, locale, defaultLocale } = seoPathData;
 
   const translations = getTranslations(locale);
-  const { data, isPostType } = seoContentData;
+  const { data = {} as { 
+    featuredImageUrl?: string; 
+    slug?: string;
+    alternateLinksSlugs?: {
+      en?: string;
+      ru?: string;
+    };
+    title?: string;
+    metaDesc?: string;
+  }, isPostType = false } = seoContentData || {};
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
   const normalizedPath = asPath !== '/' ? asPath : '';

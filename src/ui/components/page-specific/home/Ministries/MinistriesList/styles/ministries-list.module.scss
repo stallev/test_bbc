@@ -60,6 +60,8 @@
     text-align: center;
     font-size: 30px;
     line-height: 1;
+    font-family: $accia-font-family;
+    font-weight: 400;
     
     a {
       transition: all .3s ease-in-out;
@@ -96,26 +98,6 @@
       }
     }
   }
-
-  // &__nav-prev,
-  // &__nav-next {
-  //   &::after {
-  //     color: $color-text-gray;
-  //     font-size: 24px;
-  //   }
-
-  //   &:hover::after {
-  //     color: $color-red;
-  //   }
-  // }
-
-  // &__nav-prev {
-  //   left: -30px;
-  // }
-
-  // &__nav-next {
-  //   right: -30px;
-  // }
 
   &__nav-prev,
   &__nav-next {

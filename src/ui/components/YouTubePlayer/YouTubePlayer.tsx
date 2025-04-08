@@ -4,19 +4,21 @@ import { Text } from '@/ui/components/ui-kit';
 import { getDayMonthFormattedDate } from '@/utils/dateFormatter';
 import { removeFromFirstPipe } from '@/utils/getFileNameFromUrl';
 import { getTranslations } from '@/utils/languageParser';
-import { YouTubeVideoItemType } from '@/types/YouTubeDataTypes';
+import { YoutubeConvertedVideoItemType } from '@/types/YouTubeDataTypes';
+import { YouTubeStreamStatus } from '@/constants';
 import { Locale } from '@/i18n.config';
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css"
 
 import styles from './styles/youtube-player.module.scss';
 
 interface YouTubePlayerProps {
-  data: YouTubeVideoItemType
+  data: YoutubeConvertedVideoItemType
   locale: Locale
 }
 
 const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
   const translations = getTranslations(locale);
+  const isLiveStream = data?.status === YouTubeStreamStatus.live;
 
   return (
     <div className={styles['youtube-player']}>
@@ -25,12 +27,12 @@ const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
           textType='span'
           className={`
             ${styles["youtube-player__info-date"]} 
-            ${data?.actualStartTime ? styles["youtube-player__info-date--live"] : styles["youtube-player__info-date--published"]}
+            ${isLiveStream  ? styles["youtube-player__info-date--live"] : styles["youtube-player__info-date--published"]}
           `}
         >
-          {!!data?.actualStartTime 
+          {isLiveStream  
           ? translations.live_stream_marker 
-          : (!!data?.publishedAt && getDayMonthFormattedDate(data?.publishedAt, locale))}
+          : getDayMonthFormattedDate(data?.date, locale)}
         </Text>
 
         <Text

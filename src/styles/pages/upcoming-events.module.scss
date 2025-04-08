@@ -3,11 +3,14 @@
 
 .upcoming-events {
   &__title {
-    @extend %paddingTopHeader;
-    @extend %pageTitleStyles;
+    @extend %h1PageTitleStyle;
   }
 
-  &__page-content {
-    margin-top: $gutter-xl;
+  &__content {
+    margin-bottom: 80px;
+
+    @media screen and (min-width: $smallDesktop) {
+      align-self: flex-end;
+    }
   }
 }

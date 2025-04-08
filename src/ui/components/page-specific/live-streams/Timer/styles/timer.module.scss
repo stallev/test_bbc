@@ -4,52 +4,105 @@
   &__time-items {
     display: flex;
     align-items: center;
-    gap: $gutter-xxs;
-    margin-top: $gutter-ml;
+    gap: 16px;
+    margin-bottom: 30px;
 
     @media screen and (min-width: $tablet) {
-      gap: $gutter-xs;
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      gap: 48px;
+      margin-bottom: 70px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      gap: 65px;
+      margin-bottom: 100px;
     }
   }
 
   &__time-item {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: $gutter-xxs;
-    width: 65px;
-    height: 55px;
-    border-radius: 5px;
-    background-color: $color-black;
+    align-items: baseline;
+    gap: 8px;
     box-sizing: border-box;
 
     @media screen and (min-width: $tablet) {
-      width: 100px;
-      height: 65px;
+      gap: 10px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      gap: 12px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      gap: 16px;
+    }
+  }
+
+  &__separator {
+    display: inline-block;
+    font-size: 32px;
+    line-height: 1s;
+    color: var(--text-main-color);
+    font-family: $livret-display-font-family;
+    font-weight: 300;
+    font-style: italic;
+
+    @media screen and (min-width: $tablet) {
+      font-size: 48px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      font-size: 64px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      font-size: 80px;  
     }
   }
 
   &__time-item-value {
-    font-size: $font-size-ms;
-    line-height: $line-height-ms;
-    color: $color-white;
+    font-size: 32px;
+    line-height: 1s;
+    color: var(--text-main-color);
+    font-family: $livret-display-font-family;
+    font-weight: 300;
+    font-style: italic;
 
     @media screen and (min-width: $tablet) {
-      font-size: $font-size-md;
-      line-height: $line-height-md;
+      font-size: 48px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      font-size: 64px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      font-size: 80px;  
     }
   }
 
   &__time-item-unit {
-    font-size: $font-size-xxxs;
-    line-height: $line-height-xs;
-    color: $color-gray;
-    text-transform: uppercase;
+    font-size: 20px;
+    line-height: 1;
+    color: var(--text-main-color);
+    font-family: $livret-display-font-family;
+    font-weight: 300;
+    font-style: italic;
 
     @media screen and (min-width: $tablet) {
-      font-size: $font-size-xs;
-      line-height: $line-height-xs;
+      font-size: 30px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      font-size: 40px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      font-size: 48px;  
     }
   }
 }

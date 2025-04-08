@@ -8,11 +8,14 @@
   width: 100dvw;
   z-index: 10;
   border-top: 1px solid $color-extra-light-gray;
-  background-color: $color-white;
+  font-family: $gilroy-medium-font-family;
+  background-color: $color-red;
+  color: $color-white;
 
   &__body {
     padding-left: $gutter-lg !important;
     padding-right: $gutter-lg !important;
+    background-color: $color-red !important;
   }
 
   &__header {
@@ -32,8 +35,10 @@
   &__close-button {
     margin-top: 0 !important;
     border-radius: 50%;
+    background-color: $color-red;
 
     svg {
+      fill: $color-white;
       width: 22px;
       height: 22px;
     }

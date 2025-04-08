@@ -1,47 +1,26 @@
+import { Dispatch, SetStateAction } from "react";
+import { Locale } from "@/i18n.config";
 export interface YouTubeVideosDataType {
-  finishedVideos: YouTubeVideoItemType[] | []
-  liveVideos: YouTubeVideoItemType[] | []
-  upcomingVideos: YouTubeVideoItemType[] | []
+  finishedVideos: YoutubeConvertedVideoItemType[] | []
+  liveVideos: YoutubeConvertedVideoItemType[] | []
+  upcomingVideos: YoutubeConvertedVideoItemType[] | []
 }
 
-export interface FinishedVideoItemType  {
+export interface YoutubeConvertedVideoItemType  {
   id: string
   title: string
   url: string
-  publishedAt: string
-  status: string
-}
-export interface LiveVideoItemType  {
-  id: string
-  title: string
-  url: string
-  actualStartTime: string
-  status: string
-}
-export interface UpcomingVideoItemType  {
-  id: string
-  title: string
-  url: string
-  scheduledStartTime: string
-  status: string
-}
-export interface YouTubeVideoItemType  {
-  id: string
-  title: string
-  url: string
-  scheduledStartTime?: string
-  actualStartTime?: string
-  publishedAt?: string
+  date: string
   status: string
 }
 
 export interface FetchedVideoItemsList {
-  finishedVideos: YouTubeVideoItemType[] | []
-  liveVideos: YouTubeVideoItemType[] | []
-  upcomingVideos: YouTubeVideoItemType[] | []
+  finishedVideos: YoutubeConvertedVideoItemType[] | []
+  liveVideos: YoutubeConvertedVideoItemType[] | []
+  upcomingVideos: YoutubeConvertedVideoItemType[] | []
 }
 
-export interface YoutubeVideoItemType {
+export interface YoutubeFetchedVideoItemType {
   kind: string
   etag: string
   id: string
@@ -124,4 +103,30 @@ export interface LiveStreamingDetails {
   actualStartTime: string
   actualEndTime: string
   scheduledStartTime: string
+}
+
+export interface YearVideoItemsSortedData {
+  yearNumber: number
+  monthListArray: MonthVideoItemsSortedData []
+}
+
+export interface MonthVideoItemsSortedData {
+  monthNumber: number
+  videoListArray: YoutubeConvertedVideoItemType []
+}
+
+export interface VideoStreamsListProps {
+  locale: Locale
+  data: YearVideoItemsSortedData[]
+}
+export interface SelectedStreamsPeriod {
+  year: number | null
+  month: number | null
+}
+
+export interface YearStreamsListProps {
+  locale: Locale
+  data: YearVideoItemsSortedData
+  selectedStreamsPeriod: SelectedStreamsPeriod
+  setSelectedStreamsPeriod: Dispatch<SetStateAction<SelectedStreamsPeriod>>
 }

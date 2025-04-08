@@ -1,3 +1,5 @@
+import { PostCategoryConvertedListItem } from "../postTypes";
+
 export interface SermonsCategoriesListTypes {
   biblebooks: string[]
   topics: string[]
@@ -11,10 +13,10 @@ export interface RenderingSermonCardDataType {
   sermonYoutubeLink: string
   sermonBookChapter: string
   sermonBookChapterTextNumber: string
-  biblebooks: string[]
+  biblebooks: PostCategoryConvertedListItem[] | []
   imageLinks: ImageLinks
-  topics: string[]
-  preachers: string[]
+  topics: PostCategoryConvertedListItem[] | []
+  preachers: PostCategoryConvertedListItem[] | []
 }
 
 export interface FetchedSermonCardDataType {

@@ -96,12 +96,15 @@ export const GutenbergVideoBlock = `
 `;
 
 export const GutenbergQuoteBlock = `
-  ... on CoreQuoteBlock {
+  ... on CorePullquoteBlock {
     name
     order
     originalContent
     innerBlocks {
-      originalContent
+      saveContent
+      dynamicContent
+      name
+      order
     }
   }
 `;

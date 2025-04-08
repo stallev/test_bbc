@@ -8,7 +8,7 @@ type Headings = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' ;
 type TextType = Headings | 'p' | 'span';
 
 interface TextProps extends HTMLProps<HTMLElement> {
-  fontSize?: number
+  fontSize?: number | null
   textType: string;
   onHover?: () => void;
 }

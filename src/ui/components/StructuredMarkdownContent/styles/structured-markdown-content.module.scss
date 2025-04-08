@@ -4,18 +4,30 @@
 .structured-markdown-content {
   display: flex;
   flex-direction: column;
-  gap: $gutter-ml;
 
   &__blocks {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: $gutter-ml;
+    gap: 6px;
+
+    @media screen and (min-width: $tablet) {
+      gap: 10px;
+    }
+
+    @media screen and (min-width: $smallDesktop) {
+      gap: 14px;
+    }
+
+    @media screen and (min-width: $desktop) {
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+    }
   }
 
   h2 {
     @extend %h2Style;
-    // margin-bottom: $gutter-ml;
 
     &:first-child {
       margin-top: 0;
@@ -50,28 +62,10 @@
   }
 
   p {
-    @extend %paragraphStyle;
+    @extend %smallParagraphMediumDescriptionTextStyle;
     
-    &:first-child {
+    &:nth-of-type(1) {
       margin-top: 0;
-    }
-  }
-
-  blockquote {
-    @extend %blockquoteStyles;
-
-    p {
-      font-style: italic;
-
-      &:first-child {
-        margin-top: 0;
-      }
-    }
-
-    cite {
-      display: inline-block;
-      margin-top: $gutter-xs;
-      font-size: smaller;
     }
   }
 
