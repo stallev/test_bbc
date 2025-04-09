@@ -7,10 +7,6 @@
   }
 
   &__content {
-    margin-bottom: 80px;
-
-    @media screen and (min-width: $smallDesktop) {
-      align-self: flex-end;
-    }
+    @extend %sectionGaps;
   }
 }

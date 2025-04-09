@@ -1,11 +1,12 @@
-"use client"
+'use client';
 
-import React from "react";
-import Link from "next/link";
-import { slugSelector } from "@/utils/slugSelector";
-import { useLocale } from "@/hooks/useLocale";
+import Link from 'next/link';
+import React from 'react';
 
-import styles from "./styles/custom-link.module.scss";
+import { useLocale } from '@/hooks/useLocale';
+import { slugSelector } from '@/utils/slugSelector';
+
+import styles from './styles/custom-link.module.scss';
 
 interface CustomLinkProps {
   to: string;
@@ -20,11 +21,11 @@ interface CustomLinkProps {
 
 const CustomLink: React.FC<CustomLinkProps> = ({
   to,
-  label = "",
-  ariaLabel = "",
+  label = '',
+  ariaLabel = '',
   children,
   className,
-  type = "link",
+  type = 'link',
   onCLick,
   onHover,
 }: CustomLinkProps) => {
@@ -35,12 +36,9 @@ const CustomLink: React.FC<CustomLinkProps> = ({
     <div
       onClick={onCLick}
       onMouseEnter={onHover}
-      className={`${styles["custom-link"]} ${styles[`custom-link--${type}`]} ${className}`}
+      className={`${styles['custom-link']} ${styles[`custom-link--${type}`]} ${className}`}
     >
-      <Link
-        aria-label={ariaLabel || label}
-        href={href}
-      >
+      <Link aria-label={ariaLabel || label} href={href} prefetch={true}>
         {label && label}
         {children}
       </Link>

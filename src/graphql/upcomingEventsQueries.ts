@@ -1,6 +1,7 @@
-import { PostsQueryMaxCount } from "@/constants";
-import { SeoBlock, FeaturedImageBlock } from "./commonGraphqlFragments";
-import { FullGutenbergBlockList } from "./gutenbergGraphqlFragments";
+import { PostsQueryMaxCount } from '@/constants';
+
+import { SeoBlock, FeaturedImageBlock } from './commonGraphqlFragments';
+import { FullGutenbergBlockList } from './gutenbergGraphqlFragments';
 
 export const getUpcomingEventData = `query getUpcomingEventData ($id: ID!, $idType: UpcomingIdType!, $language: LanguageCodeEnum!) {
   upcoming(id: $id, idType: $idType) {

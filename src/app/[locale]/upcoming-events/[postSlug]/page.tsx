@@ -1,25 +1,24 @@
-import { Metadata } from "next";
-import UpcomingEventsDataApi from "@/services/UpcomingDataApi";
-import { RoutePath } from "@/constants";
-import Container from "@/ui/containers/Container/Container";
-import { Text, CustomImage } from "@/ui/components/ui-kit";
-import EventPeriod from "@/ui/components/page-specific/upcoming-event/EventPeriod/EventPeriod";
-import StructuredMarkdownContent from "@/ui/components/StructuredMarkdownContent/StructuredMarkdownContent";
-import { PostParams } from "@/types/postTypes";
-import { getPagePathData } from "@/utils/getPostSeoData";
-import { getSeoData } from "@/utils/getSeoData";
+import { Metadata } from 'next';
 
-import styles from "@/styles/pages/upcoming-event.module.scss";
+import { RoutePath } from '@/constants';
+import { PAGE_REVALIDATE_TIME_IN_SECONDS } from '@/constants/mock';
+import UpcomingEventsDataApi from '@/services/UpcomingDataApi';
+import styles from '@/styles/pages/upcoming-event.module.scss';
+import { PostParams } from '@/types/postTypes';
+import EventPeriod from '@/ui/components/page-specific/upcoming-event/EventPeriod/EventPeriod';
+import StructuredMarkdownContent from '@/ui/components/StructuredMarkdownContent/StructuredMarkdownContent';
+import { Text, CustomImage } from '@/ui/components/ui-kit';
+import Container from '@/ui/containers/Container/Container';
+import { getPagePathData } from '@/utils/getPostSeoData';
+import { getSeoData } from '@/utils/getSeoData';
 
 export async function generateStaticParams() {
   return [];
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: PostParams;
-}): Promise<Metadata> {
+export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;
+
+export async function generateMetadata({ params }: { params: PostParams }): Promise<Metadata> {
   const data = await UpcomingEventsDataApi.getUpcomingEventItemDataBySlug(
     params.postSlug,
     params.locale
@@ -37,11 +36,7 @@ export async function generateMetadata({
   return getSeoData({ seoContentData: data.seo, seoPathData });
 }
 
-export default async function UpcomingEventPage({
-  params,
-}: {
-  params: PostParams;
-}) {
+export default async function UpcomingEventPage({ params }: { params: PostParams }) {
   const postData = await UpcomingEventsDataApi.getUpcomingEventItemDataBySlug(
     params.postSlug,
     params.locale
@@ -57,7 +52,7 @@ export default async function UpcomingEventPage({
 
   return (
     <Container>
-      <Text textType="h1" className={styles["upcoming-event__title"]}>
+      <Text textType="h1" className={styles['upcoming-event__title']}>
         {postData.title}
       </Text>
 
@@ -71,13 +66,13 @@ export default async function UpcomingEventPage({
         <CustomImage
           imageURL={postData.featuredImageData.featuredImageUrl}
           alt={postData.title}
-          className={styles["upcoming-event__event-image"]}
+          className={styles['upcoming-event__event-image']}
         />
       )}
 
       <StructuredMarkdownContent
         content={postData.blocks}
-        className={styles["upcoming-event__page-content"]}
+        className={styles['upcoming-event__page-content']}
         isFontSizeResizable={false}
       />
     </Container>

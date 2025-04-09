@@ -1,19 +1,19 @@
-"use client"
+'use client';
 
-import React, { useState } from 'react';
 import cx from 'classnames';
-import { TbSquare, TbSquareCheck } from "react-icons/tb";
+import React, { useState } from 'react';
+import { TbSquare, TbSquareCheck } from 'react-icons/tb';
 
 import styles from './styles/checkbox.module.scss';
 
 interface CheckboxProps {
-  name: string
-  isChecked: boolean
-  inputType?: string
-  onChangeSelectedValue?: () => void
-  children?: React.ReactNode,
-  className?: string
-  classNameLabel?: string
+  name: string;
+  isChecked: boolean;
+  inputType?: string;
+  onChangeSelectedValue?: () => void;
+  children?: React.ReactNode;
+  className?: string;
+  classNameLabel?: string;
 }
 
 const Checkbox = ({
@@ -28,9 +28,7 @@ const Checkbox = ({
   const [checked, setChecked] = useState(isChecked);
 
   return (
-    <div
-      className={cx(styles.checkbox, className)}
-    >
+    <div className={cx(styles.checkbox, className)}>
       <input
         checked={checked}
         type={inputType}
@@ -48,7 +46,7 @@ const Checkbox = ({
           classNameLabel,
           {
             [styles['checkbox--checked']]: isChecked,
-          },
+          }
         )}
         htmlFor={name}
       >

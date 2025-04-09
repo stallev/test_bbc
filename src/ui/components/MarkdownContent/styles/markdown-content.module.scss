@@ -3,12 +3,15 @@
 
 .markdown-content {
   h2 {
-    @extend %h2Style;
+    @extend %h3Style;
     margin-bottom: $gutter-ml;
   }
 
   p {
     @extend %smallParagraphMediumDescriptionTextStyle;
+    font-weight: 400;
+    font-family: $gilroy-regular-font-family;
+    line-height: 1.2;
 
     &:not(:last-of-type) {
       margin-bottom: 15px;
@@ -16,21 +19,103 @@
   }
 
   blockquote {
-    @extend %blockquoteStyles;
-    margin-bottom: $gutter-ml;
+    position: relative;
+    padding-top: 100px;
+    margin-top: 40px;
+
+    @media screen and (min-width: $smallDesktop) {
+      width: 70%;
+      padding-top: 134px;
+      margin-top: 80px;
+      font-size: 24px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      padding-top: 156px;
+      margin-top: 100px;
+      font-size: 30px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      padding-top: 176px;
+      margin-top: 120px;
+      font-size: 36px;
+    }
 
     p {
-      font-style: italic;
+      color: var(--text-main-color);
+      font-size: 18px;
+      line-height: 1.2;
+      font-weight: 400;
+      font-family: $gilroy-regular-font-family;
+
+      @media screen and (min-width: $smallDesktop) {
+        font-size: 24px;
+      }
+  
+      @media screen and (min-width: $desktop) {
+        font-size: 30px;
+      }
+  
+      @media screen and (min-width: $largeDesktop) {
+        font-size: 36px;
+      }
 
       &:first-child {
         margin-top: 0;
       }
     }
 
-    cite {
-      display: inline-block;
-      margin-top: $gutter-xs;
-      font-size: smaller;
+    &::before {
+      position: absolute;
+      content: "";
+      display: block;
+      width: 90px;
+      height: 90px;
+      top: 0;
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg viewBox='0 0 44 38' role='presentation' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23FF3838' d='M1.537 19.789H0.75V20.119L0.985 20.35L1.537 19.789ZM18.82 1.21L19.369 0.646L18.818 0.109L18.269 0.649L18.82 1.21ZM22.469 4.762L23.043 5.3L23.57 4.737L23.018 4.199L22.469 4.762ZM9.123 19.021L8.549 18.483L8.044 19.023L8.55 19.56L9.123 19.021ZM22.469 33.183L23.022 33.743L23.569 33.203L23.042 32.644L22.469 33.183ZM18.82 36.784L18.269 37.345L18.822 37.888L19.373 37.344L18.82 36.784ZM21.893 19.789H21.106V20.119L21.341 20.35L21.893 19.789ZM39.176 1.21L39.732 0.654L39.181 0.102L38.625 0.649L39.176 1.21ZM42.729 4.762L43.304 5.299L43.822 4.743L43.285 4.206L42.729 4.762ZM29.43 19.021L28.855 18.484L28.353 19.023L28.857 19.559L29.43 19.021ZM42.729 33.183L43.289 33.736L43.82 33.197L43.302 32.645L42.729 33.183ZM39.176 36.784L38.625 37.345L39.185 37.895L39.736 37.336L39.176 36.784ZM2.324 19.789V18.205H0.75V19.789H2.324ZM2.089 18.766L19.372 1.771L18.269 0.649L0.986 17.644L2.089 18.766ZM18.272 1.773L21.92 5.326L23.018 4.199L19.369 0.646L18.272 1.773ZM21.895 4.225L8.549 18.483L9.697 19.558L23.043 5.3L21.895 4.225ZM8.55 19.56L21.897 33.723L23.042 32.644L9.695 18.481L8.55 19.56ZM21.917 32.624L18.268 36.224L19.373 37.344L23.022 33.743L21.917 32.624ZM19.372 36.223L2.089 19.228L0.986 20.35L18.269 37.345L19.372 36.223ZM22.68 19.789V18.205H21.106V19.789H22.68ZM22.445 18.766L39.728 1.771L38.625 0.649L21.342 17.644L22.445 18.766ZM38.62 1.766L42.173 5.319L43.285 4.206L39.732 0.654L38.62 1.766ZM42.154 4.226L28.855 18.484L30.006 19.557L43.304 5.299L42.154 4.226ZM28.857 19.559L42.155 33.722L43.302 32.645L30.004 18.482L28.857 19.559ZM42.169 32.631L38.616 36.232L39.736 37.336L43.289 33.736L42.169 32.631ZM39.728 36.223L22.445 19.228L21.342 20.35L38.625 37.345L39.728 36.223Z'%3E%3C/path%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+
+      @media screen and (min-width: $smallDesktop) {
+        width: 120px;
+        height: 120px;
+      }
+
+      @media screen and (min-width: $desktop) {
+        width: 140px;
+        height: 140px;
+      }
+
+      @media screen and (min-width: $largeDesktop) {
+        width: 160px;
+        height: 160px;
+      }
+    }
+  }
+
+  cite {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 14px;
+    font-family: $gilroy-medium-font-family;
+    font-weight: 500;
+    font-size: 21px;
+    font-style: normal;
+    color: var(--text-light-gray-color);
+
+    @media screen and (min-width: $tablet) {
+      margin-top: 16px;
+      font-size: 24px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      margin-top: 18px;
+      font-size: 28px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      margin-top: 20px;
+      font-size: 30px;
     }
   }
 }

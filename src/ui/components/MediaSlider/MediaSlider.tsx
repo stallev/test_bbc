@@ -1,18 +1,14 @@
-import React from 'react';
 import cx from 'classnames';
 import Image from 'next/image';
-import { useSwipeable } from "react-swipeable";
-import { MediaSliderProps } from './types';
-import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
-import { MediaGalleryItemProps } from '../MediaGallery/types';
+import React from 'react';
+import { IoIosArrowDropleft, IoIosArrowDropright } from 'react-icons/io';
+import { useSwipeable } from 'react-swipeable';
 
+import { MediaSliderProps } from './types';
+import { MediaGalleryItemProps } from '../MediaGallery/types';
 import styles from './styles/media-slider.module.scss';
 
-const MediaSlider:React.FC<MediaSliderProps> = ({
-  data,
-  activeMediaItem,
-  setActiveMediaItem,
-}) => {
+const MediaSlider: React.FC<MediaSliderProps> = ({ data, activeMediaItem, setActiveMediaItem }) => {
   const onChangeActiveMediaItem = (mediaItem: MediaGalleryItemProps) => () => {
     setActiveMediaItem(mediaItem);
   };
@@ -45,55 +41,57 @@ const MediaSlider:React.FC<MediaSliderProps> = ({
     onSwipedRight: () => onSwipe('right'),
     swipeDuration: 500,
     preventScrollOnSwipe: true,
-    trackMouse: true
+    trackMouse: true,
   });
 
   return (
-    <div className={styles["media-slider"]}>
-      <button tabIndex={0} aria-label='Previous slide' className={styles["media-slider__button-prev"]} onClick={handlePrev}>
+    <div className={styles['media-slider']}>
+      <button
+        tabIndex={0}
+        aria-label="Previous slide"
+        className={styles['media-slider__button-prev']}
+        onClick={handlePrev}
+      >
         <IoIosArrowDropleft />
       </button>
 
-      {
-        activeMediaItem.type == 'image' && (
-          <div className={styles["media-slider__active-img-wrap"]}  {...swipeHandlers}>
-            <Image
-              priority
-              fill
-              alt=''
-              sizes='50vw'
-              key={activeMediaItem.order}
-              src={activeMediaItem.src}
-            />
-          </div>
-        )
-      }
+      {activeMediaItem.type === 'image' && (
+        <div className={styles['media-slider__active-img-wrap']} {...swipeHandlers}>
+          <Image
+            priority
+            fill
+            alt=""
+            sizes="50vw"
+            key={activeMediaItem.order}
+            src={activeMediaItem.src}
+          />
+        </div>
+      )}
 
-      <button tabIndex={0} aria-label='Next slide' className={styles["media-slider__button-next"]} onClick={handleNext}>
+      <button
+        tabIndex={0}
+        aria-label="Next slide"
+        className={styles['media-slider__button-next']}
+        onClick={handleNext}
+      >
         <IoIosArrowDropright />
       </button>
 
-      <div className={styles["media-slider__points-list"]}>
-        {data.map((mediaItem) =>
+      <div className={styles['media-slider__points-list']}>
+        {data.map(mediaItem => (
           <div
             key={mediaItem.order}
-            className={cx(
-              styles["media-slider__item-point"],
-              {
-                [styles['media-slider__item-point--active']]: mediaItem === activeMediaItem,
-              },
-            )}
+            className={cx(styles['media-slider__item-point'], {
+              [styles['media-slider__item-point--active']]: mediaItem === activeMediaItem,
+            })}
             onClick={onChangeActiveMediaItem(mediaItem)}
           ></div>
-        )}
+        ))}
       </div>
-      
-      <div className={styles["media-slider__buttons"]}>
-        
-        
-      </div>
-    </div>
-  )
-}
 
-export default MediaSlider
+      <div className={styles['media-slider__buttons']}></div>
+    </div>
+  );
+};
+
+export default MediaSlider;

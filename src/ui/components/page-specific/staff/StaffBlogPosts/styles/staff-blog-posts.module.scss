@@ -1,0 +1,27 @@
+@import "../../../../../../styles/variables.scss";
+@import "../../../../../../styles/placeholders.scss";
+
+.staff-blog-posts {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: 50px;
+
+  @media screen and (min-width: $tablet) {
+    margin-top: 60px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    margin-top: 80px;
+    gap: 60px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    margin-top: 100px;
+    gap: 80px;
+  }
+  
+  &__title {
+    @extend %h2Style;
+  }
+}

@@ -1,21 +1,20 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
-import { useClientTranslationFunction } from "@/hooks/useLocale";
-import Container from "@/ui/containers/Container/Container";
-import StructuredMarkdownContent from "@/ui/components/StructuredMarkdownContent/StructuredMarkdownContent";
-import { Text } from "@/ui/components/ui-kit";
-import SermonFilters from "../SermonFilters/SermonFilters";
-import { SermonsContentProps, SermonsListProps } from "./types";
-import { DEFAULT_SERMONS_FILTER_STATE, CARDS_PORTION } from "@/constants/mock";
-import { SermonsFiltersProps } from "../SermonFilters/types";
+import dynamic from 'next/dynamic';
+import React, { useState, useEffect } from 'react';
 
-import styles from "./styles/sermons-content.module.scss";
+import { DEFAULT_SERMONS_FILTER_STATE, CARDS_PORTION } from '@/constants/mock';
+import { useClientTranslationFunction } from '@/hooks/useLocale';
+import StructuredMarkdownContent from '@/ui/components/StructuredMarkdownContent/StructuredMarkdownContent';
+import { Text } from '@/ui/components/ui-kit';
+import Container from '@/ui/containers/Container/Container';
 
-const SermonCardsList = dynamic(
-  () => import("../SermonCardsList/SermonCardsList")
-);
+import { SermonsContentProps, SermonsListProps } from './types';
+import SermonFilters from '../SermonFilters/SermonFilters';
+import { SermonsFiltersProps } from '../SermonFilters/types';
+import styles from './styles/sermons-content.module.scss';
+
+const SermonCardsList = dynamic(() => import('../SermonCardsList/SermonCardsList'));
 
 const SermonsContent: React.FC<SermonsContentProps> = ({
   contentData,
@@ -28,24 +27,18 @@ const SermonsContent: React.FC<SermonsContentProps> = ({
     currentSermons: sermonsData.slice(0, CARDS_PORTION),
     searchedSermons: [],
   });
-  const [filters, setFilters] = useState<SermonsFiltersProps>(
-    DEFAULT_SERMONS_FILTER_STATE
-  );
+  const [filters, setFilters] = useState<SermonsFiltersProps>(DEFAULT_SERMONS_FILTER_STATE);
 
   const [offset, setOffset] = useState(CARDS_PORTION);
 
-  const isActiveSearchedSermons = (
-    Object.keys(filters) as (keyof SermonsFiltersProps)[]
-  ).some(
-    (filterKey) =>
-      filters[filterKey] != DEFAULT_SERMONS_FILTER_STATE[filterKey]
+  const isActiveSearchedSermons = (Object.keys(filters) as (keyof SermonsFiltersProps)[]).some(
+    filterKey => filters[filterKey] !== DEFAULT_SERMONS_FILTER_STATE[filterKey]
   );
 
   const searchedSermonsMessage =
     isActiveSearchedSermons && !!sermons.searchedSermons.length
-      ? translate("yes_searched_sermons") +
-        sermons.searchedSermons.length.toString()
-      : translate("no_searched_sermons");
+      ? translate('yes_searched_sermons') + sermons.searchedSermons.length.toString()
+      : translate('no_searched_sermons');
 
   const fetchMoreData = () => {
     const newData = sermonsData.slice(offset, offset + CARDS_PORTION);
@@ -64,16 +57,16 @@ const SermonsContent: React.FC<SermonsContentProps> = ({
   }, [sermonsData]);
 
   return (
-    <div className={styles["sermons-content"]}>
+    <div className={styles['sermons-content']}>
       <Container isNarrowContent>
         <StructuredMarkdownContent
           content={contentData}
-          className={styles["sermons-content__markdown"]}
+          className={styles['sermons-content__markdown']}
           isFontSizeResizable={false}
         />
       </Container>
       <Container>
-        <div className={styles["sermons-content__sermons-data"]}>
+        <div className={styles['sermons-content__sermons-data']}>
           <SermonFilters
             categoriesData={sermonsCategories}
             fullSermonsList={sermonsData}
@@ -83,18 +76,16 @@ const SermonsContent: React.FC<SermonsContentProps> = ({
             sermons={sermons}
           />
 
-          <div className={styles["sermons-content__sermons-list"]}>
+          <div className={styles['sermons-content__sermons-list']}>
             {isActiveSearchedSermons && (
-              <Text className={styles["sermons-content__searched-message"]} textType="p">{searchedSermonsMessage}</Text>
+              <Text className={styles['sermons-content__searched-message']} textType="p">
+                {searchedSermonsMessage}
+              </Text>
             )}
 
             <SermonCardsList
               fetchMoreData={fetchMoreData}
-              data={
-                !isActiveSearchedSermons
-                  ? sermons.currentSermons
-                  : sermons.searchedSermons
-              }
+              data={!isActiveSearchedSermons ? sermons.currentSermons : sermons.searchedSermons}
               hasMore={offset < sermonsData.length}
             />
           </div>

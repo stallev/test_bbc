@@ -1,21 +1,14 @@
-"use client";
+'use client';
 
-import { ReactNode } from "react";
 import { ThemeProvider } from 'next-themes';
-import { APIProvider } from '@vis.gl/react-google-maps';
-import { AppProvider } from "@/ui/globalState/AppContext";
-import { GENERAL_GOOGLE_API_KEY } from "@/constants/APIs";
+import { ReactNode } from 'react';
 
-const libraries = ['geometry', 'places'];
+import { AppProvider } from '@/ui/globalState/AppContext';
 
 const Providers = ({ children }: { children: ReactNode }) => {
   return (
     <AppProvider>
-      <APIProvider apiKey={GENERAL_GOOGLE_API_KEY} libraries={libraries}>
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
-      </APIProvider>
+      <ThemeProvider>{children}</ThemeProvider>
     </AppProvider>
   );
 };

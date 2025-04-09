@@ -3,11 +3,20 @@
 
 .terms {
   &__title {
-    @extend %paddingTopHeader;
-    @extend %pageTitleStyles;
+    @extend %h1PageTitleStyle;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
 
   &__page-content {
-    margin-top: $gutter-xl;
+    display: flex;
+
+    h5 {
+      @extend %h5PrivacyTermsStyle;
+    }
   }
 }

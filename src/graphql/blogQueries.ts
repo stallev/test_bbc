@@ -1,10 +1,35 @@
-import { PostsQueryMaxCount } from "@/constants";
-import { FullGutenbergBlockList } from "./gutenbergGraphqlFragments";
-import { SeoBlock, FeaturedImageBlock, AuthorInfoBlock } from "./commonGraphqlFragments";
+import { PostsQueryMaxCount } from '@/constants';
+
+import { SeoBlock, FeaturedImageBlock, AuthorInfoBlock } from './commonGraphqlFragments';
+import { FullGutenbergBlockList } from './gutenbergGraphqlFragments';
 
 export const getPastorsPostsByLang = `query getPastorsPostsByLang ($language: LanguageCodeFilterEnum) {
   allPastorsPost(
     where: {language: $language, status: PUBLISH, orderby: {field: DATE, order: DESC}}
+  ) {
+    edges {
+      node {
+        title
+        excerpt
+        date
+        slug
+        pastorsPostsCategories {
+          nodes {
+            id
+          }
+        }
+        ${FeaturedImageBlock}
+        ${AuthorInfoBlock}
+        ${SeoBlock}
+      }
+    }
+  }
+}
+`;
+
+export const getPastorsPostsByLangAndAuthor = `query getPastorsPostsByLangAndAuthor ($language: LanguageCodeFilterEnum, $authorName: String!) {
+  allPastorsPost(
+    where: {language: $language, authorName: $authorName, status: PUBLISH, orderby: {field: DATE, order: DESC}}
   ) {
     edges {
       node {

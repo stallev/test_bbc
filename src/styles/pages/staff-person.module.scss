@@ -1,9 +1,9 @@
 @import '../variables.scss';
 @import '../placeholders.scss';
+@import '../mixins.scss';
 
 .staff-person {
   &__title {
-    @extend %paddingTopHeader;
     @extend %pageTitleStyles;
   }
 
@@ -16,13 +16,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: $gutter-md;
-
-    @media screen and (min-width: $tablet) {
-      flex-direction: row;
-      align-items: flex-start;
-      gap: $gutter-lg;
-    }
+    gap: 20px;
   }
 
   &__info {
@@ -30,35 +24,71 @@
     flex-direction: column;
     text-align: center;
     align-items: center;
+    gap: 35px;
 
     @media screen and (min-width: $tablet) {
-      justify-content: end;
-      align-self: flex-end;
-      align-items: flex-start;
+      gap: 42px;
+    }
+
+    @media screen and (min-width: $smallDesktop) {
+      gap: 48px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      gap: 54px;
     }
   }
-
+  
+  &__image-container {
+    // position: relative;
+    // transform: skewY(11deg);
+    // overflow: hidden;
+    // height: 350px;
+    height: 400px;
+    width: 280px;
+    // border-radius: 5px;
+  }
 
   &__image {
-    height: 45vw;
-    width: 34vw;
-    overflow: hidden;
-  
-    @media screen and (min-width: $tablet) {
-      height: 280px;
-      width: 200px;
-    }
+    // bottom: 10%;
+    // height: 120%;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px
+  }
+
+  &__image img {
+    // transform: skewY(-11deg);
   }
 
   &__name {
-    font-size: $font-size-md;
-    line-height: $line-height-lg;
-    font-weight: $font-weight-bold;
+    @extend %h2Style;
+    color: $color-red;
   }
 
   &__position {
-    font-size: $font-size-ms;
-    line-height: $line-height-md;
-    font-style: italic;
+    @extend %pageParagraphDescriptionTextStyle;
+  }
+
+  &__structured-content {
+    margin-top: 40px;
+
+    @media screen and (min-width: $tablet) {
+      margin-top: 60px;
+    }
+
+    @media screen and (min-width: $smallDesktop) {
+      margin-top: 70px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      margin-top: 80px;
+    }
+
+    h2 {
+      text-align: left !important;
+    }
   }
 }
+
+@include staffImageShadowStyles(".staff-person__image");

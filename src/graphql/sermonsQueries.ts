@@ -1,4 +1,4 @@
-import { PostsQueryMaxCount } from "@/constants";
+import { PostsQueryMaxCount } from '@/constants';
 
 export const getSermonsList = `query getSermonsList ($language: LanguageCodeFilterEnum!) {
   sermons(where: {language: $language, status: PUBLISH}, first: ${PostsQueryMaxCount}) {

@@ -1,27 +1,22 @@
+import { POST_CARD_HOME_PAGE_COUNT } from '@/constants/mock';
 import {
   getPastorsPostData,
   getPastorsPostsByLang,
   getAllPastorsPostSlugs,
   getPastorsPostsSitemapData,
   getPastorsPostsCategoriesByLang,
-} from "@/graphql/blogQueries";
-import { convertPostListItemFetchedData } from "@/utils/convertPostListItemFetchedData";
-import { convertPostFetchedData } from "@/utils/convertPostFetchedData";
-import { getAuthorsList } from "@/utils/getAuthorsList";
-import { getPostsYearsList } from "@/utils/getPostsYearsList";
-import { getPostSeoData } from "@/utils/getPostSeoData";
-import { fetchAPI } from "./WordPressFetchAPI";
-import {
-  POST_CARD_HOME_PAGE_COUNT,
-  DEFAULT_FEATURED_IMAGE,
-  SAME_AUTHOR_POST_CARD_POST_PAGE_COUNT,
-} from "@/constants/mock";
-import {
-  PostNodeSlugType,
-  PostSitemapSourceData,
-} from "@/types/WPDataTypes/CommonWPDataTypes";
-import { Locale } from "@/i18n.config";
-import { PastorsPostCategoryNodeProps } from "@/types/postTypes";
+  getPastorsPostsByLangAndAuthor,
+} from '@/graphql/blogQueries';
+import { Locale } from '@/i18n.config';
+import { PastorsPostCategoryNodeProps } from '@/types/postTypes';
+import { PostNodeSlugType, PostSitemapSourceData } from '@/types/WPDataTypes/CommonWPDataTypes';
+import { convertPostFetchedData } from '@/utils/convertPostFetchedData';
+import { convertPostListItemFetchedData } from '@/utils/convertPostListItemFetchedData';
+import { getAuthorsList } from '@/utils/getAuthorsList';
+import { getPostSeoData } from '@/utils/getPostSeoData';
+import { getPostsYearsList } from '@/utils/getPostsYearsList';
+
+import { fetchAPI } from './WordPressFetchAPI';
 
 class BlogDataApi {
   static async getPostsDataByLang(locale: Locale) {
@@ -59,6 +54,23 @@ class BlogDataApi {
     };
   }
 
+  static async getPostsDataByLangAndAuthor(locale: Locale, author: string) {
+    const variables = {
+      language: locale.toUpperCase(),
+      authorName: author,
+    };
+
+    const {
+      allPastorsPost: { edges },
+    } = await fetchAPI(getPastorsPostsByLangAndAuthor, { variables });
+
+    const postsList = edges
+      .map((item: any) => item.node)
+      .map((item: any) => convertPostListItemFetchedData(item, locale));
+
+    return postsList;
+  }
+
   static async getLastPostsDataHomePageByLang(locale: string) {
     const variables = {
       language: locale.toUpperCase(),
@@ -78,7 +90,8 @@ class BlogDataApi {
   static async getPastorsPostItemDataBySlug(
     id: string,
     locale: Locale,
-    idType = "SLUG"
+    author: string,
+    idType = 'SLUG'
   ) {
     const variables = {
       id,
@@ -87,33 +100,15 @@ class BlogDataApi {
     };
 
     const fetchedData = await fetchAPI(getPastorsPostData, { variables });
-    const {
-      allPastorsPost: { edges: postsEdges },
-    } = await fetchAPI(getPastorsPostsByLang, {
-      variables: { language: locale.toUpperCase() },
-    });
 
     if (!!fetchedData?.pastorsPost) {
       const {
         pastorsPost: { translation },
       } = fetchedData;
-      const authorId = translation.author ? translation.author.node.id : null;
-      const postSlug = translation.slug;
 
       const data = convertPostFetchedData(translation, locale);
-      const postsListBySameAuthor = postsEdges
-        .filter((item: any) => item.node.author.node.id === authorId)
-        .filter((item: any) => item.node.slug !== postSlug)
-        .map((item: any) => ({
-          slug: item.node.slug,
-          title: item.node.title,
-          excerpt: item.node.excerpt,
-          authorData: data.author,
-          featuredImageUrl: !!item.node.featuredImage?.node?.mediaItemUrl
-            ? item.node.featuredImage.node.mediaItemUrl
-            : DEFAULT_FEATURED_IMAGE,
-        }))
-        .slice(0, SAME_AUTHOR_POST_CARD_POST_PAGE_COUNT);
+
+      const postsListBySameAuthor = await BlogDataApi.getPostsDataByLangAndAuthor(locale, author);
 
       return {
         postData: data,

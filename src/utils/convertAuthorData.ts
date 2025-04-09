@@ -1,4 +1,4 @@
-import { AuthorNodeProps, authorFinishedContentProps } from "@/types/postTypes";
+import { AuthorNodeProps, authorFinishedContentProps } from '@/types/postTypes';
 
 export const convertAuthorData = (authorData: AuthorNodeProps): authorFinishedContentProps => {
   const authorFullName = `${authorData.node?.firstName} ${authorData.node?.lastName}`;
@@ -9,5 +9,5 @@ export const convertAuthorData = (authorData: AuthorNodeProps): authorFinishedCo
     slug: authorData.node.slug,
     avatarUrl: authorData.node.avatar.url,
     description: authorData.node.description,
-  }
+  };
 };

@@ -56,6 +56,10 @@ body {
   background: #fff;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   color: var(--foreground);
   background: var(--main-bg-color);
@@ -138,4 +142,10 @@ footer svg path.logo-book {
 
 .rhap_volume-bar .rhap_volume-indicator {
   background: #FFF;
+}
+
+/*YouTube Player*/
+
+.yt-lite {
+  position: relative;
 }

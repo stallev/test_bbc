@@ -1,11 +1,14 @@
 import { useState, useEffect, RefObject } from 'react';
 
-export const useOnceIntersection = (elementRef: RefObject<HTMLElement>, options?: IntersectionObserverInit) => {
+export const useOnceIntersection = (
+  elementRef: RefObject<HTMLElement>,
+  options?: IntersectionObserverInit
+) => {
   const [isIntersected, setIsIntersected] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
+      entries => {
         const entry = entries[0];
         if (entry.isIntersecting && !isIntersected) {
           setIsIntersected(true);

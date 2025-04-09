@@ -17,7 +17,9 @@
   @media screen and (min-width: $smallDesktop) {
     flex-direction: row;
     justify-content: space-around;
-    gap: 0;
+    column-gap: 0;
+    flex-wrap: wrap;
+    row-gap: 24px;
     margin-bottom: 80px;
   }
 

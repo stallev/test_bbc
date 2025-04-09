@@ -1,5 +1,7 @@
-import { PostsQueryMaxCount } from "@/constants";
-import { SeoBlock } from "./commonGraphqlFragments";
+import { PostsQueryMaxCount } from '@/constants';
+
+import { SeoBlock } from './commonGraphqlFragments';
+import { FullGutenbergBlockList } from './gutenbergGraphqlFragments';
 
 export const getMinisterData = `query getMinisterData ($id: ID!, $idType: MinisterIdType!, $language: LanguageCodeEnum!) {
   minister(id: $id, idType: $idType) {
@@ -10,8 +12,10 @@ export const getMinisterData = `query getMinisterData ($id: ID!, $idType: Minist
       ministerPosition
       ministerDepartment
       ministerDescription
+      ministerUserSlug
       slug
       excerpt
+      ${FullGutenbergBlockList}
       ministerPhoto {
         size
         url

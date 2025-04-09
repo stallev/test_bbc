@@ -1,8 +1,13 @@
-"use client"
+'use client';
 
 import React, { useState } from 'react';
+
+import {
+  VideoStreamsListProps,
+  YearVideoItemsSortedData,
+  SelectedStreamsPeriod,
+} from '@/types/YouTubeDataTypes';
 import YearStreamsList from '@/ui/components/page-specific/live-streams/YearStreamsList/YearStreamsList';
-import { VideoStreamsListProps, YearVideoItemsSortedData, SelectedStreamsPeriod } from '@/types/YouTubeDataTypes';
 
 export interface VideoItem {
   title: string;
@@ -13,7 +18,7 @@ export interface VideoItem {
 const VideoStreamsList: React.FC<VideoStreamsListProps> = ({ data, locale }) => {
   const [selectedStreamsPeriod, setSelectedStreamsPeriod] = useState<SelectedStreamsPeriod>({
     year: data[0].yearNumber,
-    month: (new Date()).getMonth()
+    month: data[0].monthListArray[data[0].monthListArray.length - 1].monthNumber,
   });
 
   return (

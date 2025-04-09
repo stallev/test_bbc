@@ -1,39 +1,36 @@
-"use client"
+'use client';
 
-import React from 'react';
 import cx from 'classnames';
 import Image from 'next/image';
-import getImages from './getImages';
+import React from 'react';
 
+import getImages from './getImages';
 import styles from './styles/custom-image.module.scss';
 
 interface CustomImageProps {
-  className?: string, 
-  imageName?: string, 
-  imageURL?: string, 
-  onClick?: () => void,
-  alt?: string, 
-  ariaLabel?: string,
-  priority?: boolean,
-  sizes?: string,
+  className?: string;
+  imageName?: string;
+  imageURL?: string;
+  onClick?: () => void;
+  alt?: string;
+  ariaLabel?: string;
+  priority?: boolean;
+  sizes?: string;
 }
 
-const CustomImage: React.FC<CustomImageProps> = ({ 
-  className, 
-  imageName, 
-  imageURL, 
+const CustomImage: React.FC<CustomImageProps> = ({
+  className,
+  imageName,
+  imageURL,
   onClick,
-  alt, 
+  alt,
   ariaLabel = '',
   priority,
   sizes = '100vw',
 }) => {
   return (
     <div
-      className={cx(
-        styles['custom-image'],
-        className,
-      )}
+      className={cx(styles['custom-image'], className)}
       onClick={onClick}
       aria-label={ariaLabel}
       role={onClick ? 'button' : 'none'}

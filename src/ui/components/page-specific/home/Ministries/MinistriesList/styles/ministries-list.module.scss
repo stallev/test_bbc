@@ -47,6 +47,9 @@
     background-size: 353px auto;
   }
 
+  &__wrap {
+    @extend %sectionGaps;
+  }
 
   &__slide {
     display: flex;

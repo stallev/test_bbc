@@ -6,4 +6,4 @@ export const getFileNameFromUrl = (url: string): string | null => {
 
 export const removeFromFirstPipe = (str: string) => {
   return str.replace(/\|.*/, '').trim();
-}
+};
