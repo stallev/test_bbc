@@ -1,7 +1,7 @@
 import { DEFAULT_FEATURED_IMAGE } from '@/constants/mock';
 import { i18n } from '@/i18n.config';
 import { SeoContentDataProps, PagePathDataProps, SeoPagePathDataProps } from '@/types/globalTypes';
-import { FullPostFetchedDataProps } from './convertPostFetchedData';
+import { FullPostFetchedDataProps } from '@/utils/convertPostFetchedData';
 
 export const getPostSeoData = (data: FullPostFetchedDataProps, locale: string) => {
   const featuredImageUrl = !!data.featuredImage
