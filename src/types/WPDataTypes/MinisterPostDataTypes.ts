@@ -22,3 +22,10 @@ export interface MinisterPostDataProps {
   translations: Translation[];
   seo: SeoContentDataProps;
 }
+
+export interface MinisterIDFetchedData {
+  value: string;
+  type: string;
+  subtype: string;
+  id: string;
+}

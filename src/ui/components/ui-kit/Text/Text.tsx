@@ -1,6 +1,6 @@
 'use client';
 
-import React, { FC, HTMLProps } from 'react';
+import { FC, HTMLProps, createElement } from 'react';
 
 import styles from './styles/text.module.scss';
 
@@ -26,7 +26,7 @@ const Text: FC<TextProps> = ({ fontSize, textType, children, className, onClick,
     }
   };
 
-  return React.createElement(
+  return createElement(
     Element,
     {
       className: `text ${className} ${styles[`text--${textType}`]}`,

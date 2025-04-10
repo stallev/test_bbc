@@ -4,6 +4,7 @@ import {
   FeaturedImageMediaItemUrlProps,
   SeoPostProps,
   BlogPostProps,
+  Translation,
 } from '@/types/postTypes';
 import { GutenbergBlockType } from '@/types/WPDataTypes/PageContentDataTypes';
 import { getLocaleFormattedDate } from '@/utils/dateFormatter';
@@ -14,7 +15,7 @@ import { convertGutenbergBlocksData } from './convertGutenbergBlocksData';
 
 import { stripHtmlTags } from '.';
 
-export interface PostFetchedDataProps {
+export interface FullPostFetchedDataProps {
   title: string;
   slug: string;
   excerpt: string;
@@ -23,10 +24,11 @@ export interface PostFetchedDataProps {
   blocks: GutenbergBlockType[];
   featuredImage: FeaturedImageMediaItemUrlProps;
   seo: SeoPostProps;
+  translations: Translation[];
 }
 
 export const convertPostFetchedData = (
-  data: PostFetchedDataProps,
+  data: FullPostFetchedDataProps,
   locale: Locale
 ): BlogPostProps => {
   return {

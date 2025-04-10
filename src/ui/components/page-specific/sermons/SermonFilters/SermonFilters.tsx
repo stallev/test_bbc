@@ -61,7 +61,7 @@ const SermonFilters: React.FC<SermonsFiltersComponentProps> = ({
     return sortedSermons;
   };
 
-  const getSearchedSermons = async (filterKey: string, filterValue: any) => {
+  const getSearchedSermons = async (filterKey: string, filterValue: string | Date) => {
     const activeFilters = {
       ...filters,
       [filterKey]: filterValue,

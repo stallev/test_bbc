@@ -1,6 +1,7 @@
 import * as IconsComponent from '../../../assets/icons';
 
 interface ComponentsMap {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: React.ComponentType<any>;
 }
 

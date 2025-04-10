@@ -34,13 +34,9 @@ export interface GetSeoDataProps {
 export interface SeoContentDataProps {
   data: {
     metaDesc: string;
-    metaRobotsNofollow: string;
-    metaRobotsNoindex: string;
-    readingTime: number;
     schema: Schema;
     title: string;
     twitterDescription: string;
-    twitterImage: any;
     featuredImageUrl?: string;
     slug?: string;
     canonicalUrl?: string;

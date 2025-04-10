@@ -58,7 +58,7 @@ const BlogFilters: React.FC<BlogFiltersComponentsProps> = ({
     return sortedPosts;
   };
 
-  const getSearchedPosts = async (filterKey: string, filterValue: any) => {
+  const getSearchedPosts = async (filterKey: string, filterValue: string) => {
     const activeFilters = {
       ...filters,
       [filterKey]: filterValue,

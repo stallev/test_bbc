@@ -106,6 +106,14 @@ export interface LiveStreamingDetails {
   scheduledStartTime: string;
 }
 
+export interface ConvertedYoutubeFetchedVideoItemType {
+  id: string;
+  title: string;
+  url: string;
+  date: string;
+  status: string;
+}
+
 export interface YearVideoItemsSortedData {
   yearNumber: number;
   monthListArray: MonthVideoItemsSortedData[];

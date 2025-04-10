@@ -13,8 +13,8 @@ export interface SermonsFiltersProps {
   biblebooks: string;
   preachers: string;
   topics: string;
-  startDate: any;
-  endDate: any;
+  startDate: Date;
+  endDate: Date;
 }
 
 export interface SermonsFiltersComponentProps {
