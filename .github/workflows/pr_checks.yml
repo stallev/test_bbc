@@ -1,0 +1,33 @@
+name: Run Checks
+run-name: run_checks_${{github.run_number}}
+on:
+  pull_request:
+    branches-ignore:
+      - master
+      - development
+jobs:
+  lint_test:
+    name: Run linter and tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.13.0
+          cache: 'yarn'
+
+      - name: Install Yarn
+        run: npm install --global yarn@1.22.22
+
+      - name: Install Dependencies
+        run: yarn --ignore-engines
+
+      - name: Run ESLint
+        run: yarn lint
+
+      # - name: Run Tests
+      #   run: yarn test  # Uncomment if you want to run tests
