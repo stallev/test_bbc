@@ -5,6 +5,10 @@ on:
     branches-ignore:
       - master
       - development
+  pull_request:
+    branches:
+      - development
+
 jobs:
   lint_test:
     name: Run linter and tests
@@ -12,22 +16,26 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20.13.0
-          cache: 'yarn'
+          cache: 'npm'
 
-      - name: Install Yarn
-        run: npm install --global yarn@1.22.22
+      - name: Verify package-lock.json exists
+        run: |
+          if [ ! -f "package-lock.json" ]; then
+            echo "::error::package-lock.json file not found!"
+            exit 1
+          fi
 
       - name: Install Dependencies
-        run: yarn --ignore-engines
+        run: npm ci
 
       - name: Run ESLint
-        run: yarn lint
+        run: npm run lint
 
       # - name: Run Tests
-      #   run: yarn test  # Uncomment if you want to run tests
+      #   run: npm test  # Uncomment if you want to run tests
