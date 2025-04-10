@@ -1,21 +1,23 @@
-import { RoutePath } from "@/constants";
-import { CustomImage, CustomLink, Text } from "@/ui/components/ui-kit";
-import { BlogCardProps } from "../BlogCard/types";
-import { NO_IMAGE } from "@/constants/mock";
+import { RoutePath } from '@/constants';
+import { NO_IMAGE } from '@/constants/mock';
+import { CustomImage, CustomLink, Text } from '@/ui/components/ui-kit';
 
-import styles from "./styles/related-post-card.module.scss";
+import { BlogCardProps } from '../BlogCard/types';
+import styles from './styles/related-post-card.module.scss';
 
 const RelatedPostCard = ({ post }: { post: BlogCardProps }) => {
   return (
-    <div className={styles["related-post-card"]}>
+    <div className={styles['related-post-card']}>
       <CustomImage
-        imageURL={post.featuredImageData.isExist ? post.featuredImageData.featuredImageUrl : NO_IMAGE}
+        imageURL={
+          post.featuredImageData.isExist ? post.featuredImageData.featuredImageUrl : NO_IMAGE
+        }
         alt={post.title}
-        className={styles["related-post-card__image"]}
+        className={styles['related-post-card__image']}
       />
 
       <CustomLink to={`${RoutePath.BlogAuthor}/${post.author.slug}/${post.slug}`}>
-        <Text textType="h4" className={styles["related-post-card__title"]}>
+        <Text textType="h4" className={styles['related-post-card__title']}>
           {post.title}
         </Text>
       </CustomLink>

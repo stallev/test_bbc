@@ -1,0 +1,150 @@
+@import '../../../../../../styles/variables.scss';
+@import "../../../../../../styles/placeholders.scss";
+@import '../../../../../../styles/mixins.scss';
+
+.timeline-year {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+
+  @media screen and (min-width: $smallDesktop) {
+    gap: 60px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    gap: 70px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    gap: 80px;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;    
+
+    &--coloured {
+      padding: 60px 30px 45px;
+      background-color: var(--super-light-gray-color);
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 100% 100%, 10% 100%);
+
+      @media screen and (min-width: $tablet) {
+        padding: 76px 46px 50px;
+      }
+  
+      @media screen and (min-width: $smallDesktop) {
+        padding: 90px 70px 70px;
+      }
+  
+      @media screen and (min-width: $desktop) {
+        padding: 110px 140px 140px;
+      }
+  
+      @media screen and (min-width: $largeDesktop) {
+        padding: 130px 160px 160px;
+      }
+    }
+
+    @media screen and (min-width: $tablet) {
+      gap: 60px;
+    }
+
+    @media screen and (min-width: $smallDesktop) {
+      gap: 80px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      gap: 100px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      gap: 110px;
+    }
+  }
+
+  &__title {
+    display: inline-block;
+    width: fit-content;
+    align-self: center;
+    font-size: 32px;
+    line-height: 1;
+    color: $color-red;
+    font-family: $livret-display-font-family;
+    font-weight: 300;
+    font-style: italic;
+
+    @media screen and (min-width: $tablet) {
+      font-size: 240px;
+    }
+
+    @media screen and (min-width: $smallDesktop) {
+      font-size: 240px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      font-size: 240px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      font-size: 240px;
+    }
+  }
+
+  &__short-descr {
+    width: 68%;
+    color: var(--text-main-color);
+    font-family: $gilroy-regular-font-family;
+    font-weight: 400;
+    line-height: 1.1;
+    font-size: 14px;
+
+    @media screen and (min-width: $tablet) {
+      font-size: 18px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      font-size: 20px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      width: 835px;
+      font-size: 24px;
+    }
+  }
+
+  &__images {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    @media screen and (min-width: $smallDesktop) {
+      gap: 30px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      gap: 40px;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 30vw;
+    border-radius: 4px;
+    overflow: hidden;
+
+    @media screen and (min-width: $smallDesktop) {
+      border-radius: 6px;
+    }
+    
+    @media screen and (min-width: $largeDesktop) {
+      max-height: 550px;
+      border-radius: 8px;
+    }
+  }
+}
+
+[data-theme=dark] .timeline-year__header--coloured {
+  background-color: var(--dark-gray-color);
+}

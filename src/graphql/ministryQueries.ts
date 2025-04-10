@@ -1,5 +1,5 @@
-import { FullGutenbergBlockList } from "./gutenbergGraphqlFragments";
-import { SeoBlock, FeaturedImageBlock } from "./commonGraphqlFragments";
+import { SeoBlock, FeaturedImageBlock } from './commonGraphqlFragments';
+import { FullGutenbergBlockList } from './gutenbergGraphqlFragments';
 
 export const getMinistryData = `query getMinistryData ($id: ID!, $idType: MinistryIdType!, $language: LanguageCodeEnum!) {
   ministry(id: $id, idType: $idType) {

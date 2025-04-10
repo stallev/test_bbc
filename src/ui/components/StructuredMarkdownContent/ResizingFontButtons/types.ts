@@ -1,3 +1,3 @@
 export interface ResizingFontButtonsProps {
-  setCurrentBlocksFontSizes: ( currentBlocksFontSizes:any) => void
+  setCurrentBlocksFontSizes: (currentBlocksFontSizes: any) => void;
 }

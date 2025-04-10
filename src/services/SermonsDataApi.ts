@@ -1,21 +1,24 @@
-import { getSermonsList, getSermonsCategoriesList } from "@/graphql/sermonsQueries";
-import { fetchAPI } from "./WordPressFetchAPI";
-import { getFormattedDate, getDateWithoutTime } from "@/utils/dateFormatter";
-import { getCategoryConvertedListItem } from "@/utils/getPostCategoriesList";
-import { FetchedSermonCardDataType, RenderingSermonCardDataType } from "@/types/WPDataTypes/SermonPostsDataTypes";
-import { PostCategoryFetchedListItem, PostCategoryConvertedListItem } from "@/types/postTypes";
+import { getSermonsList, getSermonsCategoriesList } from '@/graphql/sermonsQueries';
+import {
+  FetchedSermonCardDataType,
+  RenderingSermonCardDataType,
+} from '@/types/WPDataTypes/SermonPostsDataTypes';
+import { getFormattedDate, getDateWithoutTime } from '@/utils/dateFormatter';
+import { getCategoryConvertedListItem } from '@/utils/getPostCategoriesList';
+
+import { fetchAPI } from './WordPressFetchAPI';
 
 class SermonsDataApi {
   static getSermonsCardRenderingData(item: any) {
     if (!!item.sermonPhoto) {
       let featuredImageLinks: { [key: string]: string } = {};
-      
-      item.sermonPhoto.map(({ name, sourceUrl }: { name: string, sourceUrl: string }) => {
+
+      item.sermonPhoto.map(({ name, sourceUrl }: { name: string; sourceUrl: string }) => {
         featuredImageLinks = { ...featuredImageLinks, [name]: sourceUrl };
-  
+
         return featuredImageLinks;
       });
-      
+
       delete item.sermonPhoto;
       item.imageLinks = featuredImageLinks;
     }
@@ -23,11 +26,11 @@ class SermonsDataApi {
     if (!!item?.sermonDate) {
       item.sermonDate = getDateWithoutTime(item.sermonDate).toISOString();
     }
-    
+
     item.topics = getCategoryConvertedListItem(item.sermonsTopics.nodes);
     item.preachers = getCategoryConvertedListItem(item.sermonsPreachers.nodes);
     item.biblebooks = getCategoryConvertedListItem(item.biblebooks.nodes);
-    
+
     delete item.sermonsTopics;
     delete item.sermonsPreachers;
 
@@ -46,29 +49,31 @@ class SermonsDataApi {
   static async getSermonsList(locale: string): Promise<RenderingSermonCardDataType[]> {
     const variables = {
       language: locale.toUpperCase(),
-    }
+    };
 
-    const {sermons: { edges }} = await fetchAPI(getSermonsList, { variables });
+    const {
+      sermons: { edges },
+    } = await fetchAPI(getSermonsList, { variables });
 
     const sermonsList = edges
-      .map(({ node }: {node: FetchedSermonCardDataType}) => node)
+      .map(({ node }: { node: FetchedSermonCardDataType }) => node)
       .map((item: FetchedSermonCardDataType) => this.getSermonsCardRenderingData(item))
       .sort((a: RenderingSermonCardDataType, b: RenderingSermonCardDataType) => {
         const dateA = new Date(a.sermonDate).getTime();
         const dateB = new Date(b.sermonDate).getTime();
 
         return dateB - dateA;
-      })
-      
+      });
+
     return sermonsList;
   }
 
   static async getSermonsCategories(locale: string) {
     const variables = {
       language: locale.toUpperCase(),
-    }
+    };
 
-    const { 
+    const {
       biblebooks: { nodes: biblebooks },
       sermonsPreachers: { nodes: preachers },
       sermonsTopics: { nodes: topics },

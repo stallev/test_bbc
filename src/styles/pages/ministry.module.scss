@@ -7,6 +7,6 @@
   }
 
   &__page-content {
-    margin-top: $gutter-xl;
+    @extend %sectionGaps;
   }
 }

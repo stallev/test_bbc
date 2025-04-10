@@ -1,6 +1,6 @@
-import * as React from "react";
+import * as React from 'react';
 
-const DonateIcon = ({className}) => (
+const DonateIcon = ({ className }) => (
   <svg
     width={77}
     height={77}

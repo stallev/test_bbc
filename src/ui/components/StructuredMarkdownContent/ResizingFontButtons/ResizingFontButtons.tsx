@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import useTranslationFunction from '@/hooks/useTranslationFunction';
-import useWindowDimensions from "@/hooks/useWindowDimensions";
-import { isTabletWindowSize } from "@/hooks/useWindowSizeType";
+
 import { DefaultTextFontSizes } from '@/constants/TextConstants';
+import useTranslationFunction from '@/hooks/useTranslationFunction';
+import useWindowDimensions from '@/hooks/useWindowDimensions';
+import { isTabletWindowSize } from '@/hooks/useWindowSizeType';
 
 import styles from './styles/resizing-font-buttons.module.scss';
-
 import { ResizingFontButtonsProps } from './types';
 
-const ResizingFontButtons:React.FC<ResizingFontButtonsProps> = ({
-  setCurrentBlocksFontSizes
-}) => {
+const ResizingFontButtons: React.FC<ResizingFontButtonsProps> = ({ setCurrentBlocksFontSizes }) => {
   const [fontResizeValue, setFontResizeValue] = useState(1);
   const translate = useTranslationFunction();
   const { width } = useWindowDimensions();
@@ -20,32 +18,34 @@ const ResizingFontButtons:React.FC<ResizingFontButtonsProps> = ({
   const RESIZE_MAX_VALUE = 2;
 
   const increaseFontSize = () => {
-    if(parseFloat(fontResizeValue.toFixed(1)) < RESIZE_MAX_VALUE) {
+    if (parseFloat(fontResizeValue.toFixed(1)) < RESIZE_MAX_VALUE) {
       setFontResizeValue(fontResizeValue + RESIZE_STEP);
     }
-  }
+  };
 
   const decreaseFontSize = () => {
-    if(parseFloat(fontResizeValue.toFixed(1)) > RESIZE_MIN_VALUE) {
+    if (parseFloat(fontResizeValue.toFixed(1)) > RESIZE_MIN_VALUE) {
       setFontResizeValue(fontResizeValue - RESIZE_STEP);
     }
-  }
+  };
 
   const resetFontSize = () => {
     setFontResizeValue(1);
-  }
+  };
 
   useEffect(() => {
-    const defaultFontSizes = !isTabletWindowSize(width) ? DefaultTextFontSizes.tablet : DefaultTextFontSizes.mobile;
+    const defaultFontSizes = !isTabletWindowSize(width)
+      ? DefaultTextFontSizes.tablet
+      : DefaultTextFontSizes.mobile;
     const changedFontSizesData = { ...defaultFontSizes };
     const keys = Object.keys(defaultFontSizes) as (keyof typeof defaultFontSizes)[];
-  
+
     for (const key of keys) {
       changedFontSizesData[key] = defaultFontSizes[key] * fontResizeValue;
     }
 
     setCurrentBlocksFontSizes(changedFontSizesData);
-  }, [width, fontResizeValue, setCurrentBlocksFontSizes])
+  }, [width, fontResizeValue, setCurrentBlocksFontSizes]);
 
   return (
     <div className={styles['resizing-font-buttons']}>
@@ -73,10 +73,10 @@ const ResizingFontButtons:React.FC<ResizingFontButtonsProps> = ({
         aria-label="reset font size of the content"
         onClick={resetFontSize}
       >
-        {translate("reset")}
+        {translate('reset')}
       </button>
     </div>
-  )
-}
+  );
+};
 
 export default ResizingFontButtons;

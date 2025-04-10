@@ -16,5 +16,5 @@ export const DefaultTextFontSizes = {
     h4: 28,
     h5: 26,
     blockquote: 16,
-  }
+  },
 };

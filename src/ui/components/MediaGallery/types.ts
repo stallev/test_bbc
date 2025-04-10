@@ -1,10 +1,10 @@
 export interface MediaGalleryProps {
-  data: MediaGalleryItemProps[]
-} 
+  data: MediaGalleryItemProps[];
+}
 
 export interface MediaGalleryItemProps {
-  src: string
-  type: string
-  order: number
-  caption?: string
+  src: string;
+  type: string;
+  order: number;
+  caption?: string;
 }

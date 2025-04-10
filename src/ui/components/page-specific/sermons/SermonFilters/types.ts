@@ -1,6 +1,7 @@
-import { RenderingSermonCardDataType } from "@/types/WPDataTypes/SermonPostsDataTypes";
+import { PostCategoryConvertedListItem } from '@/types/postTypes';
+import { RenderingSermonCardDataType } from '@/types/WPDataTypes/SermonPostsDataTypes';
+
 import { SermonsListProps } from '../SermonsContent/types';
-import { PostCategoryConvertedListItem } from "@/types/postTypes";
 
 export interface SermonsCategoriesListProps {
   biblebooks: PostCategoryConvertedListItem[];
@@ -17,12 +18,10 @@ export interface SermonsFiltersProps {
 }
 
 export interface SermonsFiltersComponentProps {
-  categoriesData: SermonsCategoriesListProps
-  fullSermonsList: RenderingSermonCardDataType[]
-  filters: SermonsFiltersProps
-  setFilters: (filters: SermonsFiltersProps) => void
-  setSermons: (sermons: SermonsListProps) => void
-  sermons: SermonsListProps
+  categoriesData: SermonsCategoriesListProps;
+  fullSermonsList: RenderingSermonCardDataType[];
+  filters: SermonsFiltersProps;
+  setFilters: (filters: SermonsFiltersProps) => void;
+  setSermons: (sermons: SermonsListProps) => void;
+  sermons: SermonsListProps;
 }
-
-

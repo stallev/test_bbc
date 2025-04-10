@@ -1,25 +1,24 @@
-import React, { FC } from 'react';
 import cx from 'classnames';
-import { Text } from '..';
-import { InputTypes } from '@/constants';
+import React, { FC } from 'react';
 
+import { Text } from '..';
 import styles from './styles/custom-input.module.scss';
 
 interface CustomInputProps {
-  className?: string,
-  onClick?: () => void,
-  tabIndex?: number,
-  label?: string,
-  errorText?: string,
-  isError?: boolean,
-  validate?: any,
-  placeholder: string
-  type?: string
+  className?: string;
+  onClick?: () => void;
+  tabIndex?: number;
+  label?: string;
+  errorText?: string;
+  isError?: boolean;
+  validate?: any;
+  placeholder: string;
+  type?: string;
 }
 
 const CustomInput: FC<CustomInputProps> = ({
   className,
-  type = "text",
+  type = 'text',
   onClick,
   tabIndex = 0,
   label = '',
@@ -30,16 +29,12 @@ const CustomInput: FC<CustomInputProps> = ({
   return (
     <div
       onClick={onClick || undefined}
-      className={cx(
-        styles['custom-input'],
-        className,
-        {
-          [styles['custom-input--error']]: errorText,
-        }
-      )}
+      className={cx(styles['custom-input'], className, {
+        [styles['custom-input--error']]: errorText,
+      })}
     >
-      {!!label
-        ? <label>
+      {!!label ? (
+        <label>
           {label}
 
           <input
@@ -50,21 +45,21 @@ const CustomInput: FC<CustomInputProps> = ({
             {...validate}
           />
         </label>
-        : <input
+      ) : (
+        <input
           type={type}
           placeholder={placeholder}
           className={styles['custom-input__field']}
           tabIndex={tabIndex}
           {...validate}
         />
-      }
+      )}
 
-      {errorText && <Text
-        textType='p'
-        className={styles['custom-input__error-message']}
-      >
-        {errorText && errorText}
-      </Text>}
+      {errorText && (
+        <Text textType="p" className={styles['custom-input__error-message']}>
+          {errorText && errorText}
+        </Text>
+      )}
     </div>
   );
 };

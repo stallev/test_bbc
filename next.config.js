@@ -31,8 +31,25 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [425, 570, 768, 1024],
     imageSizes: [16, 64, 96, 128, 256, 384, 512],
-    domains: ['testwordpressmedia1.s3.amazonaws.com', 'secure.gravatar.com', 'testchurchapi.stallevs.ru', '3.85.115.123'],
-    minimumCacheTTL: 86400,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'testwordpressmedia1.s3.amazonaws.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'secure.gravatar.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'testchurchapi.stallevs.ru',
+      },
+      {
+        protocol: 'https',
+        hostname: '3.85.115.123',
+      },
+    ],
+    minimumCacheTTL: 31536000,
   },
   reactStrictMode: true,
   output: "standalone",
@@ -43,6 +60,24 @@ const nextConfig = {
   async headers() {
     return [
       {
+        source: '/:path*.(html|js|css|jpg|jpeg|png|webp|avif|gif|svg)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
         source: '/(.*)',
         headers: [
           {
@@ -51,23 +86,27 @@ const nextConfig = {
           },
           {
             key: 'Strict-Transport-Security',
-            value: 'max-age=63072000; includeSubDomains; preload'
+            value: 'max-age=63072000; includeSubDomains; preload',
           },
           {
             key: 'X-Frame-Options',
-            value: 'SAMEORIGIN'
+            value: 'SAMEORIGIN',
           },
           {
             key: 'X-Content-Type-Options',
-            value: 'nosniff'
+            value: 'nosniff',
           },
           {
             key: 'X-DNS-Prefetch-Control',
-            value: 'on'
+            value: 'on',
+          },
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, s-maxage=600, stale-while-revalidate=600',
           },
         ],
       },
-    ]
+    ];
   },
   async rewrites() {
     return [

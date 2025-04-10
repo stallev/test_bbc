@@ -4,6 +4,11 @@
   position: relative;
   display: block;
   max-width: 100%;
+  background-image: url('../../../../../ui/assets/images/loader.svg');
+  background-position: center center;
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: 80%;
 
   img {
     object-fit: cover;

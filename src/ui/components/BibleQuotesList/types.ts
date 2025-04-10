@@ -1,8 +1,8 @@
 export interface BibleQuoteItemProps {
-  source: string
-  content: string
+  source: string;
+  content: string;
 }
 
 export interface BibleQuotesListProps {
-  quotes: BibleQuoteItemProps []
+  quotes: BibleQuoteItemProps[];
 }

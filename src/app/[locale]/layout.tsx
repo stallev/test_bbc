@@ -1,14 +1,15 @@
-import React from "react";
-import dynamic from "next/dynamic";
-import Header from "@/ui/components/Header/Header";
-import Footer from "@/ui/components/Footer/Footer";
-import Notification from "@/ui/components/ui-kit/Notification/Notification";
-import styles from "@/styles/Home.module.scss";
-import Providers from "@/ui/containers/Providers/Providers";
-import { getTranslations } from "@/utils/languageParser";
-import { Locale } from "@/i18n.config";
+import dynamic from 'next/dynamic';
+import React from 'react';
 
-const Player = dynamic(() => import("@/ui/components/Player/Player"));
+import { Locale } from '@/i18n.config';
+import styles from '@/styles/Home.module.scss';
+import Footer from '@/ui/components/Footer/Footer';
+import Header from '@/ui/components/Header/Header';
+import Notification from '@/ui/components/ui-kit/Notification/Notification';
+import Providers from '@/ui/containers/Providers/Providers';
+import { getTranslations } from '@/utils/languageParser';
+
+const Player = dynamic(() => import('@/ui/components/Player/Player'));
 
 const Layout = async ({
   children,

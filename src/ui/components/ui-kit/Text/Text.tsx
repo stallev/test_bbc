@@ -1,14 +1,14 @@
-"use client"
+'use client';
 
-import React, { FC, HTMLProps, MouseEvent } from 'react';
+import React, { FC, HTMLProps } from 'react';
 
 import styles from './styles/text.module.scss';
 
-type Headings = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' ;
+type Headings = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
 type TextType = Headings | 'p' | 'span';
 
 interface TextProps extends HTMLProps<HTMLElement> {
-  fontSize?: number | null
+  fontSize?: number | null;
   textType: string;
   onHover?: () => void;
 }
@@ -17,17 +17,10 @@ const isTextTypeList = (type: string): type is Headings => {
   return ['h1', 'h2', 'h3', 'h4', 'h5', 'p', 'span'].includes(type);
 };
 
-const Text: FC<TextProps> = ({
-  fontSize,
-  textType,
-  children,
-  className,
-  onClick,
-  onHover,
-}) => {
+const Text: FC<TextProps> = ({ fontSize, textType, children, className, onClick, onHover }) => {
   const Element: TextType = isTextTypeList(textType) ? textType : 'p';
 
-  const handleHover = (event: MouseEvent<HTMLElement>) => {
+  const handleHover = () => {
     if (onHover) {
       onHover();
     }
@@ -35,11 +28,11 @@ const Text: FC<TextProps> = ({
 
   return React.createElement(
     Element,
-    { 
+    {
       className: `text ${className} ${styles[`text--${textType}`]}`,
       onClick,
       onMouseEnter: handleHover,
-      style: fontSize && { fontSize: `${fontSize}px` } 
+      style: fontSize && { fontSize: `${fontSize}px` },
     },
     children
   );

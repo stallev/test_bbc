@@ -1,8 +1,7 @@
-import { RoutePath } from "@/constants";
-import { Locale } from "@/i18n.config";
-import { getTranslations } from "@/utils/languageParser";
+import { RoutePath } from '@/constants';
+import { getTranslations } from '@/utils/languageParser';
 
-type TranslationKeys = keyof ReturnType<typeof getTranslations>
+type TranslationKeys = keyof ReturnType<typeof getTranslations>;
 
 export const MediaPagesTitles = {
   livestreams: {
@@ -13,9 +12,9 @@ export const MediaPagesTitles = {
     title: 'sermons_nav_link_text' as TranslationKeys,
     link: RoutePath.Sermons,
   },
-}
+};
 
 export interface MediaPageHeaderProps {
-  isLivestreamPage: boolean
-  translations: Record<string, string>
+  isLivestreamPage: boolean;
+  translations: Record<string, string>;
 }

@@ -1,14 +1,15 @@
-"use client";
+'use client';
 
-import React, { useRef } from "react";
-import { CustomLink, Text, Icon } from "@/ui/components/ui-kit";
-import { RoutePath } from "@/constants";
-import { useOnceIntersection } from "@/hooks/useOnceIntersection";
-import { useClientTranslationFunction } from "@/hooks/useLocale";
-import BlogCard from "@/ui/components/page-specific/blog/BlogCard/BlogCard";
-import { BlogCardProps } from "@/ui/components/page-specific/blog/BlogCard/types";
+import React, { useRef } from 'react';
 
-import styles from "./styles/posts-list.module.scss";
+import { RoutePath } from '@/constants';
+import { useClientTranslationFunction } from '@/hooks/useLocale';
+import { useOnceIntersection } from '@/hooks/useOnceIntersection';
+import BlogCard from '@/ui/components/page-specific/blog/BlogCard/BlogCard';
+import { BlogCardProps } from '@/ui/components/page-specific/blog/BlogCard/types';
+import { CustomLink, Text, Icon } from '@/ui/components/ui-kit';
+
+import styles from './styles/posts-list.module.scss';
 
 const PostsList = ({
   data,
@@ -22,27 +23,16 @@ const PostsList = ({
   const translate = useClientTranslationFunction();
 
   return (
-    <div
-      ref={listRef}
-      className={`${styles["posts-list"]} ${isAnimated ? styles.animated : ""}`}
-    >
+    <div ref={listRef} className={`${styles['posts-list']} ${isAnimated ? styles.animated : ''}`}>
       {data.map((blogcard: BlogCardProps, index: number) => (
-        <BlogCard
-          key={blogcard.slug}
-          data={blogcard}
-          index={index}
-          isLandingPage
-        />
+        <BlogCard key={blogcard.slug} data={blogcard} index={index} isLandingPage />
       ))}
 
       {isLandingPage && (
-        <CustomLink
-          to={RoutePath.Blog}
-          className={styles["posts-list__blog-link"]}
-        >
+        <CustomLink to={RoutePath.Blog} className={styles['posts-list__blog-link']}>
           <Icon iconName="rightArrow" />
 
-          <Text textType="span">{translate("pastors_blog_nav_link")}</Text>
+          <Text textType="span">{translate('pastors_blog_nav_link')}</Text>
         </CustomLink>
       )}
     </div>

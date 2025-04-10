@@ -34,10 +34,15 @@
     line-height: 1.2;
     font-weight: 600;
     font-family: $gilroy-semibold-font-family;
+    transition: all .3s ease;
 
     @media screen and (min-width: $smallDesktop) {
       margin-bottom: $gutter-lg;
       font-size: 20px;
+    }
+
+    &:hover {
+      text-decoration: underline;
     }
   }
 

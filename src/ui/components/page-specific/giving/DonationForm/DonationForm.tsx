@@ -1,15 +1,16 @@
-"use client";
+'use client';
 
-import React, { useRef } from "react";
-import { useOnceIntersection } from "@/hooks/useOnceIntersection";
+import React, { useRef } from 'react';
 
-import styles from "./styles/donation-form.module.scss";
+import { useOnceIntersection } from '@/hooks/useOnceIntersection';
+
+import styles from './styles/donation-form.module.scss';
 
 const DonationForm: React.FC = () => {
   const donationRef = useRef<HTMLDivElement>(null);
   const isIframeVisible = useOnceIntersection(donationRef);
   return (
-    <div className={styles["donation-form"]} ref={donationRef}>
+    <div className={styles['donation-form']} ref={donationRef}>
       {isIframeVisible && (
         <iframe
           src="https://wallet.subsplash.com/ui/embed/XFPQJH/"

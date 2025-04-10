@@ -1,15 +1,16 @@
-"use client"
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { useLocale } from "@/hooks/useLocale";
-import { IoStopCircle, IoPlay } from "react-icons/io5";
-import { PiPauseCircleFill } from "react-icons/pi";
+import React, { useState, useEffect } from 'react';
+import { IoStopCircle, IoPlay } from 'react-icons/io5';
+import { PiPauseCircleFill } from 'react-icons/pi';
+
+import { useLocale } from '@/hooks/useLocale';
 import { stripHtmlTags } from '@/utils/stripHtmlTags';
-import { TextToSpeechProps } from './types';
 
 import styles from './styles/text-to-speech.module.scss';
+import { TextToSpeechProps } from './types';
 
-const TextToSpeech:React.FC<TextToSpeechProps> = ({ data }) => {
+const TextToSpeech: React.FC<TextToSpeechProps> = ({ data }) => {
   const locale = useLocale();
 
   const [isPaused, setIsPaused] = useState(false);
@@ -21,14 +22,14 @@ const TextToSpeech:React.FC<TextToSpeechProps> = ({ data }) => {
   const handlePlay = () => {
     const synth = window.speechSynthesis;
 
-    if(utterance) {
+    if (utterance) {
       if (isPaused) {
         synth.resume();
       }
       synth.speak(utterance);
     }
 
-    setIsOnStart(false)
+    setIsOnStart(false);
     setIsPaused(false);
   };
 
@@ -50,7 +51,7 @@ const TextToSpeech:React.FC<TextToSpeechProps> = ({ data }) => {
   useEffect(() => {
     const synth = window.speechSynthesis;
     const u = new SpeechSynthesisUtterance(textForSpeechGenerating);
-    if(locale) {
+    if (locale) {
       u.lang = locale;
     }
 
@@ -62,19 +63,19 @@ const TextToSpeech:React.FC<TextToSpeechProps> = ({ data }) => {
   }, [textForSpeechGenerating, locale]);
 
   return (
-    <div className={styles["text-to-speech"]}>
-      <div className={styles["text-to-speech__audio-buttons-list"]}>
+    <div className={styles['text-to-speech']}>
+      <div className={styles['text-to-speech__audio-buttons-list']}>
         <button
-          className={styles["text-to-speech__audio-button"]}
-          onClick={(isPaused || isOnStart) ? handlePlay : handlePause}
+          className={styles['text-to-speech__audio-button']}
+          onClick={isPaused || isOnStart ? handlePlay : handlePause}
           tabIndex={0}
-          aria-label={isPaused ? "Resume" : "Play"}
+          aria-label={isPaused ? 'Resume' : 'Play'}
         >
-          {(isPaused || isOnStart) ? <IoPlay /> : <PiPauseCircleFill />}
+          {isPaused || isOnStart ? <IoPlay /> : <PiPauseCircleFill />}
         </button>
 
         <button
-          className={styles["text-to-speech__audio-button"]}
+          className={styles['text-to-speech__audio-button']}
           onClick={handleStop}
           tabIndex={0}
           aria-label="Stop"
@@ -83,7 +84,7 @@ const TextToSpeech:React.FC<TextToSpeechProps> = ({ data }) => {
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default TextToSpeech;

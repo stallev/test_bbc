@@ -1,3 +1,4 @@
+import { POST_CARD_HOME_PAGE_COUNT } from '@/constants/mock';
 import {
   getPastorsPostData,
   getPastorsPostsByLang,
@@ -5,25 +6,17 @@ import {
   getPastorsPostsSitemapData,
   getPastorsPostsCategoriesByLang,
   getPastorsPostsByLangAndAuthor,
-} from "@/graphql/blogQueries";
-import { convertPostListItemFetchedData } from "@/utils/convertPostListItemFetchedData";
-import { convertPostFetchedData } from "@/utils/convertPostFetchedData";
-import { getAuthorsList } from "@/utils/getAuthorsList";
-import { getPostsYearsList } from "@/utils/getPostsYearsList";
-import { getPostSeoData } from "@/utils/getPostSeoData";
-import { fetchAPI } from "./WordPressFetchAPI";
-import {
-  POST_CARD_HOME_PAGE_COUNT,
-  DEFAULT_FEATURED_IMAGE,
-  SAME_AUTHOR_POST_CARD_POST_PAGE_COUNT,
-} from "@/constants/mock";
-import {
-  PostNodeSlugType,
-  PostSitemapSourceData,
-} from "@/types/WPDataTypes/CommonWPDataTypes";
-import { Locale } from "@/i18n.config";
-import { PastorsPostCategoryNodeProps } from "@/types/postTypes";
-import { BlogCardProps } from "@/ui/components/page-specific/blog/BlogCard/types";
+} from '@/graphql/blogQueries';
+import { Locale } from '@/i18n.config';
+import { PastorsPostCategoryNodeProps } from '@/types/postTypes';
+import { PostNodeSlugType, PostSitemapSourceData } from '@/types/WPDataTypes/CommonWPDataTypes';
+import { convertPostFetchedData } from '@/utils/convertPostFetchedData';
+import { convertPostListItemFetchedData } from '@/utils/convertPostListItemFetchedData';
+import { getAuthorsList } from '@/utils/getAuthorsList';
+import { getPostSeoData } from '@/utils/getPostSeoData';
+import { getPostsYearsList } from '@/utils/getPostsYearsList';
+
+import { fetchAPI } from './WordPressFetchAPI';
 
 class BlogDataApi {
   static async getPostsDataByLang(locale: Locale) {
@@ -98,7 +91,7 @@ class BlogDataApi {
     id: string,
     locale: Locale,
     author: string,
-    idType = "SLUG"
+    idType = 'SLUG'
   ) {
     const variables = {
       id,

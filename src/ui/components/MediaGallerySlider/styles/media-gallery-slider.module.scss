@@ -147,3 +147,9 @@
     right: -50px;
   }
 }
+
+[data-theme=dark] .media-gallery-slider__prev-icon,
+[data-theme=dark] .media-gallery-slider__next-icon {
+  fill: var(--text-main-color);
+  stroke: var(--text-main-color);
+}

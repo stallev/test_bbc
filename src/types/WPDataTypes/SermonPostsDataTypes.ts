@@ -1,65 +1,58 @@
-import { PostCategoryConvertedListItem } from "../postTypes";
+import { PostCategoryConvertedListItem } from '../postTypes';
 
 export interface SermonsCategoriesListTypes {
-  biblebooks: string[]
-  topics: string[]
-  preachers: string[]
+  biblebooks: string[];
+  topics: string[];
+  preachers: string[];
 }
 export interface RenderingSermonCardDataType {
-  title: string
-  sermonShortDescription: string
-  sermonDate: string
-  sermonAudio: string
-  sermonYoutubeLink: string
-  sermonBookChapter: string
-  sermonBookChapterTextNumber: string
-  biblebooks: PostCategoryConvertedListItem[] | []
-  imageLinks: ImageLinks
-  topics: PostCategoryConvertedListItem[] | []
-  preachers: PostCategoryConvertedListItem[] | []
+  title: string;
+  sermonShortDescription: string;
+  sermonDate: string;
+  sermonAudio: string;
+  sermonYoutubeLink: string;
+  sermonBookChapter: string;
+  sermonBookChapterTextNumber: string;
+  biblebooks: PostCategoryConvertedListItem[] | [];
+  imageLinks: ImageLinks;
+  topics: PostCategoryConvertedListItem[] | [];
+  preachers: PostCategoryConvertedListItem[] | [];
 }
 
 export interface FetchedSermonCardDataType {
-  title: string
-  sermonShortDescription: string
-  sermonDate: string
-  sermonAudio: string
-  sermonYoutubeLink: string
-  sermonBookChapter: string
-  sermonBookChapterTextNumber: string
-  sermonsTopics: SermonsTopics
-  sermonsPreachers: SermonsPreachers
-  biblebooks: Biblebooks
-  imageLinks: ImageLinks
+  title: string;
+  sermonShortDescription: string;
+  sermonDate: string;
+  sermonAudio: string;
+  sermonYoutubeLink: string;
+  sermonBookChapter: string;
+  sermonBookChapterTextNumber: string;
+  sermonsTopics: SermonsTopics;
+  sermonsPreachers: SermonsPreachers;
+  biblebooks: Biblebooks;
+  imageLinks: ImageLinks;
 }
 
 export interface SermonsTopics {
-  nodes: Taxonomy[]
+  nodes: Taxonomy[];
 }
 
 export interface Taxonomy {
-  id: string
-  name: string
+  id: string;
+  name: string;
 }
 
 export interface SermonsPreachers {
-  nodes: Taxonomy[]
+  nodes: Taxonomy[];
 }
 
 export interface Biblebooks {
-  nodes: Taxonomy[]
+  nodes: Taxonomy[];
 }
 
 export interface ImageLinks {
-  full: string
-  thumbnail: string
-  medium: string
-  large: string
-}
-
-export interface ImageLinks {
-  full: string
-  thumbnail: string
-  medium: string
-  large: string
+  full: string;
+  thumbnail: string;
+  medium: string;
+  large: string;
 }

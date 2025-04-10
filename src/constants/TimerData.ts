@@ -24,11 +24,11 @@ export const UtcTimezoneShiftValue = 7;
 export const TimersIntervals = {
   waitingTime: 10 * 60,
   latencyTime: 45 * 60,
-}
+};
 
 export const MillisecondsCount = {
   inMinute: 60 * 1000,
   inHour: 60 * 60 * 1000,
   inDay: 24 * 60 * 60 * 1000,
   inWeek: 7 * 24 * 60 * 60 * 1000,
-}
+};

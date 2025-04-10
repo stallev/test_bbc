@@ -1,9 +1,9 @@
-"use client"
+'use client';
 
-import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { PiMoonStarsFill } from "react-icons/pi";
-import { BsSun } from "react-icons/bs";
+import { useState, useEffect } from 'react';
+import { BsSun } from 'react-icons/bs';
+import { PiMoonStarsFill } from 'react-icons/pi';
 
 import styles from './styles/theme-switcher.module.scss';
 
@@ -16,21 +16,21 @@ const ThemeSwitcher = () => {
   const toggleTheme = () => {
     setTheme(newThemeValue);
     localStorage.setItem('theme', newThemeValue);
-  }
+  };
 
   useEffect(() => {
     setMounted(true);
-  }, [])
+  }, []);
 
   if (!mounted) {
     return null;
   }
 
   return (
-    <div onClick={toggleTheme} className={styles["theme-switcher"]}>
+    <div onClick={toggleTheme} className={styles['theme-switcher']}>
       {newThemeValue === 'dark' ? <PiMoonStarsFill /> : <BsSun />}
     </div>
-  )
-}
+  );
+};
 
-export default ThemeSwitcher
+export default ThemeSwitcher;

@@ -1,16 +1,16 @@
-import React from "react";
-import { CustomLink } from "../../ui-kit";
-import { FooterNavBarGeneralLinks } from "@/constants/FooterNavBar";
-import { NavBarMinistryLinks } from "@/constants/NavBarLinks";
-import { LinkTypes } from "@/constants/LinkTypes";
-import { TranslationsType } from "@/types/globalTypes";
+import React from 'react';
 
-import styles from "./styles/footer-navbar.module.scss";
+import { FooterNavBarGeneralLinks } from '@/constants/FooterNavBar';
+import { LinkTypes } from '@/constants/LinkTypes';
+import { NavBarMinistryLinks } from '@/constants/NavBarLinks';
+import { TranslationsType } from '@/types/globalTypes';
 
+import { CustomLink } from '../../ui-kit';
+import styles from './styles/footer-navbar.module.scss';
 
 const FooterNavBar: React.FC<TranslationsType> = ({ translations }) => {
   return (
-    <div className={styles["footer-navbar"]}>
+    <div className={styles['footer-navbar']}>
       <nav className={styles['footer-navbar__ministry']}>
         {NavBarMinistryLinks.map(({ link, label }, index) => (
           <CustomLink

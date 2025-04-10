@@ -1,7 +1,10 @@
-import { getShortMonthFormattedDate } from "@/utils/dateFormatter";
-import { FormattedPostDateProps } from "@/types/postTypes";
+import { FormattedPostDateProps } from '@/types/postTypes';
+import { getShortMonthFormattedDate } from '@/utils/dateFormatter';
 
-export const getFormattedPostDate = (dateString: string, locale: string): FormattedPostDateProps => {
+export const getFormattedPostDate = (
+  dateString: string,
+  locale: string
+): FormattedPostDateProps => {
   const date = new Date(dateString);
 
   return {
@@ -11,4 +14,4 @@ export const getFormattedPostDate = (dateString: string, locale: string): Format
     month: date.getMonth() + 1,
     day: date.getDate(),
   };
-}
+};

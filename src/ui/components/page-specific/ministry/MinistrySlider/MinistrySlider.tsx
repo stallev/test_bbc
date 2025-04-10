@@ -1,9 +1,10 @@
-"use client"
+'use client';
 
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { CustomImage } from '@/ui/components/ui-kit';
+
 import { MinistryImageData } from '@/types/WPDataTypes/MinistryWPDataTypes';
+import { CustomImage } from '@/ui/components/ui-kit';
 import Container from '@/ui/containers/Container/Container';
 
 import styles from './styles/ministry-slider.module.scss';
@@ -18,15 +19,12 @@ interface MinistrySliderProps {
 
 const MinistrySlider: React.FC<MinistrySliderProps> = ({ images }) => {
   return (
-    <Container
-      className={styles["ministry-slider__container"]}
-      isSliderContent
-    >
+    <Container className={styles['ministry-slider__container']} isSliderContent>
       <Swiper
         slidesPerView={5}
         centeredSlides={true}
         loop={true}
-        className={`${styles["ministry-slider"]} ministry-page-slider`}
+        className={`${styles['ministry-slider']} ministry-page-slider`}
         breakpoints={{
           320: { spaceBetween: 10 },
           768: { spaceBetween: 20 },
@@ -35,10 +33,10 @@ const MinistrySlider: React.FC<MinistrySliderProps> = ({ images }) => {
         }}
       >
         {images.map((image, index) => (
-          <SwiperSlide key={index} className={styles["ministry-slider__slide"]}>
+          <SwiperSlide key={index} className={styles['ministry-slider__slide']}>
             <CustomImage
               imageURL={image.imageUrl}
-              className={styles["ministry-slider__slide-image"]}
+              className={styles['ministry-slider__slide-image']}
               sizes="(max-width: 768px) 25vw, 20vw"
               priority={index < 1}
             />

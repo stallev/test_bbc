@@ -1,6 +1,7 @@
-import { PostsQueryMaxCount } from "@/constants";
-import { FullGutenbergBlockList } from "./gutenbergGraphqlFragments";
-import { SeoBlock, FeaturedImageBlock, AuthorInfoBlock } from "./commonGraphqlFragments";
+import { PostsQueryMaxCount } from '@/constants';
+
+import { SeoBlock, FeaturedImageBlock, AuthorInfoBlock } from './commonGraphqlFragments';
+import { FullGutenbergBlockList } from './gutenbergGraphqlFragments';
 
 export const getPastorsPostsByLang = `query getPastorsPostsByLang ($language: LanguageCodeFilterEnum) {
   allPastorsPost(

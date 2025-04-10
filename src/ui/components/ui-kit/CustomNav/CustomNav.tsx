@@ -1,8 +1,10 @@
-import React from "react";
-import { CustomLink } from "../../ui-kit";
-import { MainNavBarLinks } from "@/constants/NavBarLinks";
-import { LinkTypes } from "@/constants/LinkTypes";
-import cx from "classnames";
+import cx from 'classnames';
+import React from 'react';
+
+import { LinkTypes } from '@/constants/LinkTypes';
+import { MainNavBarLinks } from '@/constants/NavBarLinks';
+
+import { CustomLink } from '../../ui-kit';
 interface Props {
   mainDiv?: any;
   secondDiv?: any;

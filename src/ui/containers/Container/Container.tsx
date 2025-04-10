@@ -1,14 +1,14 @@
-import React from "react";
 import cx from 'classnames';
+import React from 'react';
 
-import styles from "./styles/container.module.scss";
+import styles from './styles/container.module.scss';
 
 interface ContainerProps {
-  children: React.ReactNode
-  isMarkdownContent?: boolean
-  isNarrowContent?: boolean
-  isSliderContent?: boolean
-  className?: string
+  children: React.ReactNode;
+  isMarkdownContent?: boolean;
+  isNarrowContent?: boolean;
+  isSliderContent?: boolean;
+  className?: string;
 }
 
 const Container: React.FC<ContainerProps> = ({
@@ -16,18 +16,16 @@ const Container: React.FC<ContainerProps> = ({
   isMarkdownContent = false,
   isNarrowContent = false,
   isSliderContent = false,
-  className = ''
+  className = '',
 }) => {
   return (
-    <div className={cx(
-      styles.container,
-      className,
-      {
+    <div
+      className={cx(styles.container, className, {
         [styles['container--markdown-content']]: isMarkdownContent,
         [styles['container--narrow-content']]: isNarrowContent,
         [styles['container--slider-content']]: isSliderContent,
-      },
-    )}>
+      })}
+    >
       {children}
     </div>
   );

@@ -1,5 +1,6 @@
 export interface BlockquoteProps {
-  text: string
-  citation?: string
-  fontSize?: number | null
+  text: string;
+  citation?: string;
+  fontSize?: number | null;
+  className?: string;
 }

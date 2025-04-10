@@ -1,4 +1,4 @@
 export interface PlayerProps {
-  trackName: string
-  trackSrc: string
+  trackName: string;
+  trackSrc: string;
 }

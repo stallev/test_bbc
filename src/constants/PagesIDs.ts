@@ -123,4 +123,4 @@ export const PagesIDs = {
     en: '725',
     ru: '730',
   },
-}
+};
