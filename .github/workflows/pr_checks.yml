@@ -1,7 +1,7 @@
 name: Run Checks
 run-name: run_checks_${{github.run_number}}
 on:
-  pull_request:
+  push:
     branches-ignore:
       - master
       - development
