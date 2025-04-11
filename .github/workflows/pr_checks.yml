@@ -5,9 +5,9 @@ on:
     branches-ignore:
       - master
       - development
-  pull_request:
-    branches:
-      - development
+  # pull_request:
+  #   branches:
+  #     - development
 
 jobs:
   lint_test:
