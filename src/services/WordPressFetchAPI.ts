@@ -1,7 +1,7 @@
 import { WordpressGraphQLEndpoint } from '@/constants';
 
 interface FetchAPIOptions {
-  variables?: Record<string, any>;
+  variables?: Record<string, string>;
 }
 
 const API_URL = WordpressGraphQLEndpoint.dev;

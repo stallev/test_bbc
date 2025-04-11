@@ -13,9 +13,7 @@ import { getPagePathData } from '@/utils/getPostSeoData';
 import { getSeoData } from '@/utils/getSeoData';
 
 export async function generateStaticParams() {
-  return i18n.locales.map(locale => ({
-    locale: locale,
-  }));
+  return [];
 }
 
 export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;

@@ -26,8 +26,8 @@ export interface PastorsPostCategoryNodeProps {
 export interface authorSourceContent {
   slug: string;
   id: string;
-  firstName?: any;
-  lastName?: any;
+  firstName?: string;
+  lastName?: string;
   name: string;
   avatar: Avatar;
   description: string;
@@ -84,7 +84,6 @@ export interface SeoPostProps {
   schema: Schema;
   title: string;
   twitterDescription: string;
-  twitterImage: TwitterImage;
 }
 
 export interface Schema {
@@ -115,6 +114,7 @@ export interface BlogPostProps {
   excerpt: string;
   date: string;
   author: authorFinishedContentProps;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   blocks: any;
   featuredImageData: PostFeaturedImageData;
   seo: SeoPostProps;
@@ -143,4 +143,11 @@ export interface PastorsPostParams {
 export interface AuthorPastorsPageParams {
   author: string;
   locale: Locale;
+}
+
+export interface Translation {
+  slug: string;
+  language: {
+    code: string;
+  };
 }

@@ -1,17 +1,6 @@
 import { SeoContentDataProps } from '@/types/globalTypes';
 
-import { WPPostSeoType } from './CommonWPDataTypes';
 import { ConvertedGutenbergBlockType } from './GutenbergBlocksTypes';
-
-export interface FetchedPageContentDataType {
-  title: string;
-  slug: string;
-  blocks: GutenbergBlockType[];
-  translations: Translation[];
-  date: string;
-  featuredImage: any;
-  seo: WPPostSeoType;
-}
 
 export interface PageContentDataType {
   title: string;
@@ -50,7 +39,7 @@ export interface InnerBlock {
 export interface MediaItem {
   node: {
     mediaItemUrl: string;
-    caption: any;
+    caption?: string;
   };
 }
 

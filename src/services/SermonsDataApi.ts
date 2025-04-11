@@ -9,35 +9,27 @@ import { getCategoryConvertedListItem } from '@/utils/getPostCategoriesList';
 import { fetchAPI } from './WordPressFetchAPI';
 
 class SermonsDataApi {
-  static getSermonsCardRenderingData(item: any) {
-    if (!!item.sermonPhoto) {
-      let featuredImageLinks: { [key: string]: string } = {};
-
-      item.sermonPhoto.map(({ name, sourceUrl }: { name: string; sourceUrl: string }) => {
-        featuredImageLinks = { ...featuredImageLinks, [name]: sourceUrl };
-
-        return featuredImageLinks;
-      });
-
-      delete item.sermonPhoto;
-      item.imageLinks = featuredImageLinks;
-    }
-
+  static getSermonsCardRenderingData(item: FetchedSermonCardDataType): RenderingSermonCardDataType {
     if (!!item?.sermonDate) {
       item.sermonDate = getDateWithoutTime(item.sermonDate).toISOString();
     }
 
-    item.topics = getCategoryConvertedListItem(item.sermonsTopics.nodes);
-    item.preachers = getCategoryConvertedListItem(item.sermonsPreachers.nodes);
-    item.biblebooks = getCategoryConvertedListItem(item.biblebooks.nodes);
-
-    delete item.sermonsTopics;
-    delete item.sermonsPreachers;
-
-    return item;
+    return {
+      title: item.title,
+      sermonShortDescription: item.sermonShortDescription,
+      sermonDate: item.sermonDate,
+      sermonAudio: item.sermonAudio,
+      sermonYoutubeLink: item.sermonYoutubeLink,
+      sermonBookChapter: item.sermonBookChapter,
+      sermonBookChapterTextNumber: item.sermonBookChapterTextNumber,
+      biblebooks: getCategoryConvertedListItem(item.biblebooks.nodes),
+      imageLinks: item.imageLinks,
+      topics: getCategoryConvertedListItem(item.sermonsTopics.nodes),
+      preachers: getCategoryConvertedListItem(item.sermonsPreachers.nodes),
+    };
   }
 
-  static formattDate(item: any, locale: string) {
+  static formattDate(item: FetchedSermonCardDataType, locale: string) {
     if (!!item?.sermonDate) {
       const formattedDate = getFormattedDate(item.sermonDate, locale);
       item.sermonDate = formattedDate;

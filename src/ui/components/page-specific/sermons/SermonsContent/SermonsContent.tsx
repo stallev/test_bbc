@@ -59,12 +59,15 @@ const SermonsContent: React.FC<SermonsContentProps> = ({
   return (
     <div className={styles['sermons-content']}>
       <Container isNarrowContent>
-        <StructuredMarkdownContent
-          content={contentData}
-          className={styles['sermons-content__markdown']}
-          isFontSizeResizable={false}
-        />
+        {contentData && (
+          <StructuredMarkdownContent
+            content={contentData}
+            className={styles['sermons-content__markdown']}
+            isFontSizeResizable={false}
+          />
+        )}
       </Container>
+
       <Container>
         <div className={styles['sermons-content__sermons-data']}>
           <SermonFilters

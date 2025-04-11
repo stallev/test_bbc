@@ -15,7 +15,13 @@ export interface PostListItemFetchedDataProps {
   featuredImage: FeaturedImageMediaItemUrlProps;
   author: AuthorNodeProps;
   seo: SeoPostProps;
-  pastorsPostsCategories: any;
+  pastorsPostsCategories: PastorsPostsCategories;
+}
+
+export interface PastorsPostsCategories {
+  nodes: {
+    id: string;
+  }[];
 }
 
 interface PastorsPostCategoryNodeProps {

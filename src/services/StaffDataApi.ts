@@ -6,7 +6,10 @@ import {
 } from '@/graphql/staffQueries';
 import { SeoContentDataProps } from '@/types/globalTypes';
 import { PostNodeSlugType, PostSitemapSourceData } from '@/types/WPDataTypes/CommonWPDataTypes';
-import { MinisterPostDataProps } from '@/types/WPDataTypes/MinisterPostDataTypes';
+import {
+  MinisterPostDataProps,
+  MinisterIDFetchedData,
+} from '@/types/WPDataTypes/MinisterPostDataTypes';
 import {
   FetchedStaffPersonDataType,
   TranslationFetchedData,
@@ -37,7 +40,7 @@ class StaffDataApi {
     const response = await fetch(EndpointsList.MinistersCustomRestEndpoint);
     const data = await response.json();
 
-    return data.map((item: any) => item.id);
+    return data.map((item: MinisterIDFetchedData) => item.id);
   }
 
   static async getMinisterItemData(id: string, locale: string, idType = 'DATABASE_ID') {
@@ -105,7 +108,6 @@ class StaffDataApi {
           [otherLanguageCode]: otherTranslationSlug,
         },
         twitterDescription: postData.seo.metaDesc,
-        twitterImage: featuredImageUrl,
       },
       isPostType: true,
     };

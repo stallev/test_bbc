@@ -11,7 +11,10 @@ import { Locale } from '@/i18n.config';
 import { PastorsPostCategoryNodeProps } from '@/types/postTypes';
 import { PostNodeSlugType, PostSitemapSourceData } from '@/types/WPDataTypes/CommonWPDataTypes';
 import { convertPostFetchedData } from '@/utils/convertPostFetchedData';
-import { convertPostListItemFetchedData } from '@/utils/convertPostListItemFetchedData';
+import {
+  PostListItemFetchedDataProps,
+  convertPostListItemFetchedData,
+} from '@/utils/convertPostListItemFetchedData';
 import { getAuthorsList } from '@/utils/getAuthorsList';
 import { getPostSeoData } from '@/utils/getPostSeoData';
 import { getPostsYearsList } from '@/utils/getPostsYearsList';
@@ -25,7 +28,7 @@ class BlogDataApi {
     };
 
     const {
-      allPastorsPost: { edges },
+      allPastorsPost: { nodes },
     } = await fetchAPI(getPastorsPostsByLang, { variables });
 
     const {
@@ -39,9 +42,9 @@ class BlogDataApi {
         value: item.node.name,
       }));
 
-    const postsList = edges
-      .map((item: any) => item.node)
-      .map((item: any) => convertPostListItemFetchedData(item, locale));
+    const postsList = nodes.map((item: PostListItemFetchedDataProps) =>
+      convertPostListItemFetchedData(item, locale)
+    );
 
     const authorsList = getAuthorsList(postsList);
     const yearsList = getPostsYearsList(postsList);
@@ -61,12 +64,12 @@ class BlogDataApi {
     };
 
     const {
-      allPastorsPost: { edges },
+      allPastorsPost: { nodes },
     } = await fetchAPI(getPastorsPostsByLangAndAuthor, { variables });
 
-    const postsList = edges
-      .map((item: any) => item.node)
-      .map((item: any) => convertPostListItemFetchedData(item, locale));
+    const postsList = nodes.map((item: PostListItemFetchedDataProps) =>
+      convertPostListItemFetchedData(item, locale)
+    );
 
     return postsList;
   }
@@ -77,12 +80,11 @@ class BlogDataApi {
     };
 
     const {
-      allPastorsPost: { edges },
+      allPastorsPost: { nodes },
     } = await fetchAPI(getPastorsPostsByLang, { variables });
-    const postsList = edges
-      .map((item: any) => item.node)
-      .map((item: any) => convertPostListItemFetchedData(item, locale))
-      .slice(0, POST_CARD_HOME_PAGE_COUNT);
+    const postsList = nodes
+      .slice(0, POST_CARD_HOME_PAGE_COUNT)
+      .map((item: PostListItemFetchedDataProps) => convertPostListItemFetchedData(item, locale));
 
     return postsList;
   }

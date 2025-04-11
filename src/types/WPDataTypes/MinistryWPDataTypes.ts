@@ -1,9 +1,10 @@
 import { SeoContentDataProps } from '../globalTypes';
+import { GutenbergBlock } from './GutenbergBlocksTypes';
 
 export interface MinistryConvertedDataType {
   title: string;
   slug: string;
-  pageContent: any;
+  pageContent: GutenbergBlock[];
   seo: SeoContentDataProps;
   featuredImageUrl: string;
   ministryDays: string;
@@ -17,22 +18,6 @@ export interface MinistryImageData {
   filename: string;
   alt: string;
   imageUrl: string;
-}
-
-export interface Ministry {
-  translation: Translation;
-}
-
-export interface Translation {
-  featuredImage: any;
-  seo: Seo;
-  slug: string;
-  title: string;
-  excerpt: string;
-  ministryDays: string;
-  ministryHours: string;
-  ministryMediaGallery: MinistryMediaGalleryItem[];
-  blocks: Block[];
 }
 
 export interface Seo {
@@ -94,7 +79,7 @@ export interface MediaItem {
 
 export interface Node2 {
   mediaItemUrl: string;
-  caption: any;
+  caption: string;
 }
 
 export interface MediaItem2 {
@@ -103,5 +88,5 @@ export interface MediaItem2 {
 
 export interface Node3 {
   mediaItemUrl: string;
-  caption: any;
+  caption: string;
 }

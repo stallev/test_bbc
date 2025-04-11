@@ -3,26 +3,27 @@ import { PostsQueryMaxCount } from '@/constants';
 import { SeoBlock, FeaturedImageBlock, AuthorInfoBlock } from './commonGraphqlFragments';
 import { FullGutenbergBlockList } from './gutenbergGraphqlFragments';
 
+const ShortPostData = `
+  nodes {
+    title
+    excerpt
+    date
+    slug
+    pastorsPostsCategories {
+      nodes {
+        id
+      }
+    }
+    ${FeaturedImageBlock}
+    ${AuthorInfoBlock}
+    ${SeoBlock}
+  }`;
+
 export const getPastorsPostsByLang = `query getPastorsPostsByLang ($language: LanguageCodeFilterEnum) {
   allPastorsPost(
     where: {language: $language, status: PUBLISH, orderby: {field: DATE, order: DESC}}
   ) {
-    edges {
-      node {
-        title
-        excerpt
-        date
-        slug
-        pastorsPostsCategories {
-          nodes {
-            id
-          }
-        }
-        ${FeaturedImageBlock}
-        ${AuthorInfoBlock}
-        ${SeoBlock}
-      }
-    }
+    ${ShortPostData}
   }
 }
 `;
@@ -31,22 +32,7 @@ export const getPastorsPostsByLangAndAuthor = `query getPastorsPostsByLangAndAut
   allPastorsPost(
     where: {language: $language, authorName: $authorName, status: PUBLISH, orderby: {field: DATE, order: DESC}}
   ) {
-    edges {
-      node {
-        title
-        excerpt
-        date
-        slug
-        pastorsPostsCategories {
-          nodes {
-            id
-          }
-        }
-        ${FeaturedImageBlock}
-        ${AuthorInfoBlock}
-        ${SeoBlock}
-      }
-    }
+    ${ShortPostData}
   }
 }
 `;

@@ -12,6 +12,7 @@ import {
   FetchedRestUpcomingEventType,
   UpcomingEventDataProps,
 } from '@/types/WPDataTypes/UpcomingEventDataTypes';
+import { UpcomingEventCardItemProps } from '@/ui/components/page-specific/upcoming-event/UpcomingEventCard/types';
 import { stripHtmlTags } from '@/utils';
 import { convertFeaturedImageData } from '@/utils/convertFeaturedImageData';
 import { convertGutenbergBlocksData } from '@/utils/convertGutenbergBlocksData';
@@ -76,7 +77,7 @@ class UpcomingEventsDataApi {
     return null;
   }
 
-  static async getUpcomingEvents(locale: string): Promise<any> {
+  static async getUpcomingEvents(locale: string): Promise<UpcomingEventCardItemProps[]> {
     const res = await this.getUpcomingEventsItemsIDs();
     const resultItems = [];
 
@@ -103,7 +104,7 @@ class UpcomingEventsDataApi {
     return resultItems;
   }
 
-  static async getUpcomingEventsReduced(locale: string): Promise<any> {
+  static async getUpcomingEventsReduced(locale: string): Promise<UpcomingEventCardItemProps[]> {
     const items = await this.getUpcomingEvents(locale);
 
     return items.slice(0, 3);

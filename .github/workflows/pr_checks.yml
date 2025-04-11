@@ -1,0 +1,41 @@
+name: Run Checks
+run-name: run_checks_${{github.run_number}}
+on:
+  push:
+    branches-ignore:
+      - master
+      - development
+  # pull_request:
+  #   branches:
+  #     - development
+
+jobs:
+  lint_test:
+    name: Run linter and tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.13.0
+          cache: 'npm'
+
+      - name: Verify package-lock.json exists
+        run: |
+          if [ ! -f "package-lock.json" ]; then
+            echo "::error::package-lock.json file not found!"
+            exit 1
+          fi
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+      # - name: Run Tests
+      #   run: npm test  # Uncomment if you want to run tests

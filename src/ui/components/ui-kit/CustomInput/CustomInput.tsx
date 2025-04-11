@@ -1,6 +1,7 @@
 import cx from 'classnames';
 import React, { FC } from 'react';
 
+import { UseFormRegisterReturn } from 'react-hook-form';
 import { Text } from '..';
 import styles from './styles/custom-input.module.scss';
 
@@ -11,7 +12,7 @@ interface CustomInputProps {
   label?: string;
   errorText?: string;
   isError?: boolean;
-  validate?: any;
+  validate?: UseFormRegisterReturn;
   placeholder: string;
   type?: string;
 }

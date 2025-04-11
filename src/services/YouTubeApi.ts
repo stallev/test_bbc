@@ -4,6 +4,7 @@ import {
   YoutubeFetchedVideoItemType,
   YoutubeConvertedVideoItemType,
   FetchedVideoItemsList,
+  ConvertedYoutubeFetchedVideoItemType,
 } from '@/types/YouTubeDataTypes';
 
 class YouTubeApiService {
@@ -19,9 +20,9 @@ class YouTubeApiService {
     playlistId: string,
     apiKey: string
   ): Promise<FetchedVideoItemsList> {
-    const upcoming: any[] = [];
-    const liveVideos: any[] = [];
-    const finishedVideos: any[] = [];
+    const upcoming: ConvertedYoutubeFetchedVideoItemType[] = [];
+    const liveVideos: ConvertedYoutubeFetchedVideoItemType[] = [];
+    const finishedVideos: ConvertedYoutubeFetchedVideoItemType[] = [];
 
     let nextPageToken = null;
 
