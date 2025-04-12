@@ -36,7 +36,6 @@ export async function generateMetadata({ params: { locale } }: PagePathProps): P
     locale,
     path: RoutePath.LiveStreams,
   });
-
   return getSeoData({ seoContentData, seoPathData });
 }
 
