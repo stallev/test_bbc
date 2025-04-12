@@ -70,7 +70,14 @@ const YearStreamsList = ({
       <Text
         key={monthItem.monthNumber}
         textType="span"
-        className={`${styles['year-streams-list__month']}`}
+        className={`
+            ${styles['year-streams-list__month']}
+            ${
+              monthItem.monthNumber === selectedStreamsPeriod.month
+                ? styles['year-streams-list__month--active']
+                : ''
+            }
+          `}
         onClick={selectActiveMonth(monthItem.monthNumber)}
       >
         {getMonthName(monthItem.monthNumber, locale)}
@@ -96,11 +103,7 @@ const YearStreamsList = ({
         </div>
       </div>
 
-      <div
-        className={`${styles['year-streams-list__content']} ${
-          isThisYearSelected ? styles['year-streams-list__content--expanded'] : ''
-        }`}
-      >
+      <div className={styles['year-streams-list__content']}>
         <div className={styles['year-streams-list__months-list']}>{currentYearMonthsList}</div>
         <div className={styles['year-streams-list__videos-list']}>
           {selectedVideos?.map((video: YoutubeConvertedVideoItemType) => (
