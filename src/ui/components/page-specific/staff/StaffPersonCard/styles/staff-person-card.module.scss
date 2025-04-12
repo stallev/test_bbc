@@ -244,6 +244,10 @@
     }
   }
 
+  &__read-more {
+    cursor: pointer;
+  }
+
   &.staff-person-card--detailed {
     display: flex;
     flex-direction: row;
