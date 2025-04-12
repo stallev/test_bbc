@@ -58,9 +58,9 @@ export default async function Livestreams({ params: { locale } }: { params: { lo
 
   return (
     <Container>
-      <MediaPageHeader isLivestreamPage={true} translations={translations} />
+      {/* <MediaPageHeader isLivestreamPage={true} translations={translations} />
 
-      <LiveStream data={LiveStreamData} />
+      <LiveStream data={LiveStreamData} /> */}
 
       <VideoStreamsList data={streamsData} locale={locale} />
     </Container>
