@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 
 import { YouTubePlaylistIDs, YouTubeApiKeys, RoutePath, PagesIDs } from '@/constants';
 import { PAGE_REVALIDATE_TIME_IN_SECONDS } from '@/constants/mock';
@@ -10,10 +11,14 @@ import LiveStream from '@/ui/components/page-specific/live-streams/LiveStream/Li
 // import VideoStreamsList from '@/ui/components/page-specific/live-streams/VideoStreamsList/VideoStreamsList';
 import MediaPageHeader from '@/ui/components/page-specific/media/MediaPageHeader/MediaPageHeader';
 import Container from '@/ui/containers/Container/Container';
-// import { getFormattedYoutubeVideosData } from '@/utils/getFormattedYoutubeVideosData';
+import { getFormattedYoutubeVideosData } from '@/utils/getFormattedYoutubeVideosData';
 import { getPagePathData } from '@/utils/getPostSeoData';
 import { getSeoData } from '@/utils/getSeoData';
 import { getTranslations } from '@/utils/languageParser';
+
+const VideoStreamsList = dynamic(
+  () => import('@/ui/components/page-specific/live-streams/VideoStreamsList/VideoStreamsList')
+);
 
 export async function generateStaticParams() {
   return [];
@@ -39,12 +44,13 @@ export async function generateMetadata({ params: { locale } }: PagePathProps): P
 export default async function Livestreams({ params: { locale } }: { params: { locale: Locale } }) {
   const translations = getTranslations(locale);
 
-  const { liveVideos, upcomingVideos } = await YouTubeApiService.getAllYouTubePlaylistItems(
-    YouTubePlaylistIDs.generalLiveStreams,
-    YouTubeApiKeys.alexander
-  );
+  const { finishedVideos, liveVideos, upcomingVideos } =
+    await YouTubeApiService.getAllYouTubePlaylistItems(
+      YouTubePlaylistIDs.generalLiveStreams,
+      YouTubeApiKeys.alexander
+    );
 
-  // const streamsData = getFormattedYoutubeVideosData(finishedVideos);
+  const streamsData = getFormattedYoutubeVideosData(finishedVideos);
 
   const LiveStreamData = {
     liveVideos,
@@ -57,7 +63,7 @@ export default async function Livestreams({ params: { locale } }: { params: { lo
 
       <LiveStream data={LiveStreamData} />
 
-      {/* <VideoStreamsList data={streamsData} locale={locale} /> */}
+      <VideoStreamsList data={streamsData} locale={locale} />
     </Container>
   );
 }
