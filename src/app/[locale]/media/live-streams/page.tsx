@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 
 import { YouTubePlaylistIDs, YouTubeApiKeys, RoutePath, PagesIDs } from '@/constants';
 import { PAGE_REVALIDATE_TIME_IN_SECONDS } from '@/constants/mock';
@@ -8,16 +8,16 @@ import PageContentDataApi from '@/services/PageDataApi';
 import YouTubeApiService from '@/services/YouTubeApi';
 import { PagePathProps } from '@/types/globalTypes';
 import VideoStreamsList from '@/ui/components/page-specific/live-streams/VideoStreamsList/VideoStreamsList';
-import MediaPageHeader from '@/ui/components/page-specific/media/MediaPageHeader/MediaPageHeader';
+// import MediaPageHeader from '@/ui/components/page-specific/media/MediaPageHeader/MediaPageHeader';
 import Container from '@/ui/containers/Container/Container';
 import { getFormattedYoutubeVideosData } from '@/utils/getFormattedYoutubeVideosData';
 import { getPagePathData } from '@/utils/getPostSeoData';
 import { getSeoData } from '@/utils/getSeoData';
-import { getTranslations } from '@/utils/languageParser';
+// import { getTranslations } from '@/utils/languageParser';
 
-const LiveStream = dynamic(
-  () => import('@/ui/components/page-specific/live-streams/LiveStream/LiveStream')
-);
+// const LiveStream = dynamic(
+//   () => import('@/ui/components/page-specific/live-streams/LiveStream/LiveStream')
+// );
 
 export async function generateStaticParams() {
   return [];
@@ -41,20 +41,19 @@ export async function generateMetadata({ params: { locale } }: PagePathProps): P
 }
 
 export default async function Livestreams({ params: { locale } }: { params: { locale: Locale } }) {
-  const translations = getTranslations(locale);
+  // const translations = getTranslations(locale);
 
-  const { finishedVideos, liveVideos, upcomingVideos } =
-    await YouTubeApiService.getAllYouTubePlaylistItems(
-      YouTubePlaylistIDs.generalLiveStreams,
-      YouTubeApiKeys.alexander
-    );
+  const { finishedVideos } = await YouTubeApiService.getAllYouTubePlaylistItems(
+    YouTubePlaylistIDs.generalLiveStreams,
+    YouTubeApiKeys.alexander
+  );
 
   const streamsData = getFormattedYoutubeVideosData(finishedVideos);
 
-  const LiveStreamData = {
-    liveVideos,
-    upcomingVideos,
-  };
+  // const LiveStreamData = {
+  //   liveVideos,
+  //   upcomingVideos,
+  // };
 
   return (
     <Container>
