@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 
 import { YouTubePlaylistIDs, YouTubeApiKeys, RoutePath, PagesIDs } from '@/constants';
 import { PAGE_REVALIDATE_TIME_IN_SECONDS } from '@/constants/mock';
@@ -6,7 +7,6 @@ import { i18n, Locale } from '@/i18n.config';
 import PageContentDataApi from '@/services/PageDataApi';
 import YouTubeApiService from '@/services/YouTubeApi';
 import { PagePathProps } from '@/types/globalTypes';
-import LiveStream from '@/ui/components/page-specific/live-streams/LiveStream/LiveStream';
 import VideoStreamsList from '@/ui/components/page-specific/live-streams/VideoStreamsList/VideoStreamsList';
 import MediaPageHeader from '@/ui/components/page-specific/media/MediaPageHeader/MediaPageHeader';
 import Container from '@/ui/containers/Container/Container';
@@ -14,6 +14,10 @@ import { getFormattedYoutubeVideosData } from '@/utils/getFormattedYoutubeVideos
 import { getPagePathData } from '@/utils/getPostSeoData';
 import { getSeoData } from '@/utils/getSeoData';
 import { getTranslations } from '@/utils/languageParser';
+
+const LiveStream = dynamic(
+  () => import('@/ui/components/page-specific/live-streams/LiveStream/LiveStream')
+);
 
 export async function generateStaticParams() {
   return [];
