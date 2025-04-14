@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 
 import { RoutePath, PagesIDs } from '@/constants';
-import { PAGE_REVALIDATE_TIME_IN_SECONDS } from '@/constants/mock';
 import { i18n, Locale } from '@/i18n.config';
 import BlogDataApi from '@/services/BlogDataApi';
 import PageContentDataApi from '@/services/PageDataApi';
@@ -13,7 +12,7 @@ import Container from '@/ui/containers/Container/Container';
 import { getPagePathData } from '@/utils/getPostSeoData';
 import { getSeoData } from '@/utils/getSeoData';
 
-export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;
+export const revalidate = 600;
 
 export async function generateStaticParams() {
   return i18n.locales.map(locale => ({

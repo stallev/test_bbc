@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 
 import { RoutePath } from '@/constants';
-import { PAGE_REVALIDATE_TIME_IN_SECONDS } from '@/constants/mock';
 import UpcomingEventsDataApi from '@/services/UpcomingDataApi';
 import styles from '@/styles/pages/upcoming-event.module.scss';
 import { PostParams } from '@/types/postTypes';
@@ -16,7 +15,7 @@ export async function generateStaticParams() {
   return [];
 }
 
-export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;
+export const revalidate = 600;
 
 export async function generateMetadata(props: { params: Promise<PostParams> }): Promise<Metadata> {
   const params = await props.params;

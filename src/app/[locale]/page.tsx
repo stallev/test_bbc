@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 
 import { PagesIDs, RoutePath, YouTubePlaylistIDs, YouTubeApiKeys } from '@/constants';
-import { PAGE_REVALIDATE_TIME_IN_SECONDS, MAP_IDs } from '@/constants/mock';
+import { MAP_IDs } from '@/constants/mock';
 import { i18n, Locale } from '@/i18n.config';
 import BlogDataApi from '@/services/BlogDataApi';
 import PageContentDataApi from '@/services/PageDataApi';
@@ -103,4 +103,4 @@ export default async function Home(props: { params: Promise<{ locale: Locale }> 
   );
 }
 
-export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;
+export const revalidate = 600;

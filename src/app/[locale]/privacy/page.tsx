@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 
 import { RoutePath, PagesIDs } from '@/constants';
-import { PAGE_REVALIDATE_TIME_IN_SECONDS } from '@/constants/mock';
 import { i18n, Locale } from '@/i18n.config';
 import PageContentDataApi from '@/services/PageDataApi';
 import styles from '@/styles/pages/privacy.module.scss';
@@ -16,7 +15,7 @@ export async function generateStaticParams() {
   return [];
 }
 
-export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;
+export const revalidate = 600;
 
 export async function generateMetadata(props: PagePathProps): Promise<Metadata> {
   const params = await props.params;

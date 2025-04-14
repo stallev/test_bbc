@@ -6,9 +6,9 @@ export interface PathProps {
   };
 }
 export interface PagePathProps {
-  params: {
+  params: Promise<{
     locale: Locale;
-  };
+  }>;
 }
 
 export interface TranslationsType {

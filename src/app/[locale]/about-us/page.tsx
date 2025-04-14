@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 import { RoutePath, PagesIDs } from '@/constants';
-import { PAGE_REVALIDATE_TIME_IN_SECONDS, MAP_IDs } from '@/constants/mock';
-import { i18n, Locale } from '@/i18n.config';
+import { MAP_IDs } from '@/constants/mock';
+import { i18n } from '@/i18n.config';
 import PageContentDataApi from '@/services/PageDataApi';
 import StaffDataApi from '@/services/StaffDataApi';
 import styles from '@/styles/pages/about-us.module.scss';
@@ -22,7 +22,7 @@ export async function generateStaticParams() {
   return [];
 }
 
-export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;
+export const revalidate = 600;
 
 export async function generateMetadata(props: PagePathProps): Promise<Metadata> {
   const params = await props.params;
@@ -41,10 +41,8 @@ export async function generateMetadata(props: PagePathProps): Promise<Metadata> 
   return getSeoData({ seoContentData, seoPathData });
 }
 
-export default async function AboutUs(props: { params: Promise<{ locale: Locale }> }) {
-  const params = await props.params;
-
-  const { locale } = params;
+export default async function AboutUs(props: PagePathProps) {
+  const { locale } = await props.params;
 
   const translations = getTranslations(locale);
 

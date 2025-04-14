@@ -1,10 +1,7 @@
 import { Metadata } from 'next';
 
 import { RoutePath } from '@/constants';
-import {
-  SAME_AUTHOR_POST_CARD_POST_PAGE_COUNT,
-  PAGE_REVALIDATE_TIME_IN_SECONDS,
-} from '@/constants/mock';
+import { SAME_AUTHOR_POST_CARD_POST_PAGE_COUNT } from '@/constants/mock';
 import BlogDataApi from '@/services/BlogDataApi';
 import styles from '@/styles/pages/pastors-post.module.scss';
 import { PastorsPostParams } from '@/types/postTypes';
@@ -21,7 +18,7 @@ export async function generateStaticParams() {
   return [];
 }
 
-export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;
+export const revalidate = 600;
 
 export async function generateMetadata(props: {
   params: Promise<PastorsPostParams>;
