@@ -18,7 +18,8 @@ export async function generateStaticParams() {
 
 export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;
 
-export async function generateMetadata({ params }: { params: PostParams }): Promise<Metadata> {
+export async function generateMetadata(props: { params: Promise<PostParams> }): Promise<Metadata> {
+  const params = await props.params;
   const data = await UpcomingEventsDataApi.getUpcomingEventItemDataBySlug(
     params.postSlug,
     params.locale
@@ -36,7 +37,8 @@ export async function generateMetadata({ params }: { params: PostParams }): Prom
   return getSeoData({ seoContentData: data.seo, seoPathData });
 }
 
-export default async function UpcomingEventPage({ params }: { params: PostParams }) {
+export default async function UpcomingEventPage(props: { params: Promise<PostParams> }) {
+  const params = await props.params;
   const postData = await UpcomingEventsDataApi.getUpcomingEventItemDataBySlug(
     params.postSlug,
     params.locale

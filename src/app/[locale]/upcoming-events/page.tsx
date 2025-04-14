@@ -8,7 +8,7 @@ import UpcomingEventsDataApi from '@/services/UpcomingDataApi';
 import styles from '@/styles/pages/upcoming-events.module.scss';
 import { PagePathProps } from '@/types/globalTypes';
 import UpcomingEventsList from '@/ui/components/page-specific/upcoming-event/UpcomingEventsList/UpcomingEventsList';
-import SubscribeForm from '@/ui/components/SubscribeForm/SubscribeForm';
+import SubscribeForm from '@/ui/components/SubscribeForm/ClientSubscribeForm';
 import { Text } from '@/ui/components/ui-kit';
 import Container from '@/ui/containers/Container/Container';
 import { getPagePathData } from '@/utils/getPostSeoData';
@@ -22,7 +22,11 @@ export async function generateStaticParams() {
 
 export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;
 
-export async function generateMetadata({ params: { locale } }: PagePathProps): Promise<Metadata> {
+export async function generateMetadata(props: PagePathProps): Promise<Metadata> {
+  const params = await props.params;
+
+  const { locale } = params;
+
   const pageId =
     locale === i18n.defaultLocale
       ? PagesIDs.UpcomingEventsPage[i18n.defaultLocale]
@@ -37,11 +41,11 @@ export async function generateMetadata({ params: { locale } }: PagePathProps): P
   return getSeoData({ seoContentData, seoPathData });
 }
 
-export default async function UpcomingEventsPage({
-  params: { locale },
-}: {
-  params: { locale: Locale };
-}) {
+export default async function UpcomingEventsPage(props: { params: Promise<{ locale: Locale }> }) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   const pageId =
     locale === i18n.defaultLocale
       ? PagesIDs.UpcomingEventsPage[i18n.defaultLocale]

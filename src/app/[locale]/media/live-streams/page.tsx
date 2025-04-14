@@ -26,7 +26,11 @@ export async function generateStaticParams() {
 
 export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;
 
-export async function generateMetadata({ params: { locale } }: PagePathProps): Promise<Metadata> {
+export async function generateMetadata(props: PagePathProps): Promise<Metadata> {
+  const params = await props.params;
+
+  const { locale } = params;
+
   const pageId =
     locale === i18n.defaultLocale
       ? PagesIDs.LiveStreams[i18n.defaultLocale]
@@ -41,7 +45,11 @@ export async function generateMetadata({ params: { locale } }: PagePathProps): P
   return getSeoData({ seoContentData, seoPathData });
 }
 
-export default async function Livestreams({ params: { locale } }: { params: { locale: Locale } }) {
+export default async function Livestreams(props: { params: Promise<{ locale: Locale }> }) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   const translations = getTranslations(locale);
 
   const { finishedVideos, liveVideos, upcomingVideos } =

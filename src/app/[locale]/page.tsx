@@ -33,15 +33,17 @@ const PastorsBlog = dynamic(
 );
 const Donation = dynamic(() => import('@/ui/components/Donation/Donation'));
 const MapLocation = dynamic(() => import('@/ui/components/MapLocation/MapLocation'));
-const SubscribeForm = dynamic(() => import('@/ui/components/SubscribeForm/SubscribeForm'), {
-  ssr: false,
-});
+const SubscribeForm = dynamic(() => import('@/ui/components/SubscribeForm/ClientSubscribeForm'));
 
 export async function generateStaticParams() {
   return [];
 }
 
-export async function generateMetadata({ params: { locale } }: PagePathProps): Promise<Metadata> {
+export async function generateMetadata(props: PagePathProps): Promise<Metadata> {
+  const params = await props.params;
+
+  const { locale } = params;
+
   const pageId =
     locale === i18n.defaultLocale ? PagesIDs.Home[i18n.defaultLocale] : PagesIDs.Home.ru;
 
@@ -54,7 +56,11 @@ export async function generateMetadata({ params: { locale } }: PagePathProps): P
   return getSeoData({ seoContentData, seoPathData });
 }
 
-export default async function Home({ params: { locale } }: { params: { locale: Locale } }) {
+export default async function Home(props: { params: Promise<{ locale: Locale }> }) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   const translations = getTranslations(locale);
 
   const upcomingEventsData = await UpcomingEventsDataApi.getUpcomingEventsReduced(locale);

@@ -21,7 +21,8 @@ export async function generateStaticParams() {
 
 export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;
 
-export async function generateMetadata({ params }: { params: PostParams }): Promise<Metadata> {
+export async function generateMetadata(props: { params: Promise<PostParams> }): Promise<Metadata> {
+  const params = await props.params;
   const postData = await StaffDataApi.getMinisterItemDataBySlug(params.postSlug, params.locale);
 
   if (!postData) {
@@ -36,7 +37,8 @@ export async function generateMetadata({ params }: { params: PostParams }): Prom
   return getSeoData({ seoContentData: postData.seo, seoPathData });
 }
 
-export default async function StaffPerson({ params }: { params: PostParams }) {
+export default async function StaffPerson(props: { params: Promise<PostParams> }) {
+  const params = await props.params;
   const translations = getTranslations(params.locale);
   const postData = await StaffDataApi.getMinisterItemDataBySlug(params.postSlug, params.locale);
 

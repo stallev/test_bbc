@@ -23,11 +23,10 @@ export async function generateStaticParams() {
 
 export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;
 
-export async function generateMetadata({
-  params,
-}: {
-  params: PastorsPostParams;
+export async function generateMetadata(props: {
+  params: Promise<PastorsPostParams>;
 }): Promise<Metadata> {
+  const params = await props.params;
   const data = await BlogDataApi.getPastorsPostItemDataBySlug(
     params.postSlug,
     params.locale,
@@ -46,7 +45,8 @@ export async function generateMetadata({
   return getSeoData({ seoContentData: data.seo, seoPathData });
 }
 
-export default async function PastorsPostPage({ params }: { params: PastorsPostParams }) {
+export default async function PastorsPostPage(props: { params: Promise<PastorsPostParams> }) {
+  const params = await props.params;
   const translations = getTranslations(params.locale);
   const { postData, postsListBySameAuthor } = await BlogDataApi.getPastorsPostItemDataBySlug(
     params.postSlug,

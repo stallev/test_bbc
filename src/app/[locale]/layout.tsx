@@ -11,13 +11,16 @@ import { getTranslations } from '@/utils/languageParser';
 
 const Player = dynamic(() => import('@/ui/components/Player/Player'));
 
-const Layout = async ({
-  children,
-  params: { locale },
-}: {
+const Layout = async (props: {
   children: React.ReactNode;
-  params: { locale: Locale };
+  params: Promise<{ locale: Locale }>;
 }) => {
+  const params = await props.params;
+
+  const { locale } = params;
+
+  const { children } = props;
+
   const translations = getTranslations(locale);
 
   return (

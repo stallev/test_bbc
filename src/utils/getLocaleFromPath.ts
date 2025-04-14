@@ -3,7 +3,7 @@ import { headers } from 'next/headers';
 import { i18n, Locale } from '@/i18n.config';
 
 export const getLocaleFromPath = async (): Promise<Locale> => {
-  const headersList = headers();
+  const headersList = await headers();
   const pathname = headersList.get('x-pathname') || '';
 
   const segments = pathname.split('/').filter(Boolean);

@@ -26,7 +26,7 @@ export const BG_IMAGE_URL = 'https://testwordpressmedia1.s3.amazonaws.com/bg-hea
 
 export const POST_CARD_HOME_PAGE_COUNT = 2;
 export const SAME_AUTHOR_POST_CARD_POST_PAGE_COUNT = 4;
-export const PAGE_REVALIDATE_TIME_IN_SECONDS = 86400;
+export const PAGE_REVALIDATE_TIME_IN_SECONDS = 86400; // 24 hours
 
 export const MAP_IDs = {
   homePage: '12dfcsvf32emcvmkerRt',

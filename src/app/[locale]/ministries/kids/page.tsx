@@ -25,7 +25,11 @@ export async function generateStaticParams() {
 
 export const revalidate = PAGE_REVALIDATE_TIME_IN_SECONDS;
 
-export async function generateMetadata({ params: { locale } }: PagePathProps): Promise<Metadata> {
+export async function generateMetadata(props: PagePathProps): Promise<Metadata> {
+  const params = await props.params;
+
+  const { locale } = params;
+
   const pageId =
     locale === i18n.defaultLocale
       ? PagesIDs.KidsMinistry[i18n.defaultLocale]
@@ -45,7 +49,11 @@ const PastorsBlog = dynamic(
 );
 const Staff = dynamic(() => import('@/ui/components/page-specific/home/Staff/Staff'));
 
-export default async function KidsMinistry({ params: { locale } }: { params: { locale: Locale } }) {
+export default async function KidsMinistry(props: { params: Promise<{ locale: Locale }> }) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   const translations = getTranslations(locale);
 
   const pageId =

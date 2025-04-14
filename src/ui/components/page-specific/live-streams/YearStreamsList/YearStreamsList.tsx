@@ -19,6 +19,7 @@ const YearStreamsList = ({
   const isSmallDesktop = isSmallWindowSize(width);
   const yearStreamsListRef = useRef<HTMLDivElement>(null);
   const isThisYearSelected = data.yearNumber === selectedStreamsPeriod.year;
+
   const minusedAddedTop = isSmallDesktop ? 70 : 55;
 
   const onCrossClick = () => {

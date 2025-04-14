@@ -21,7 +21,11 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params: { locale } }: PagePathProps): Promise<Metadata> {
+export async function generateMetadata(props: PagePathProps): Promise<Metadata> {
+  const params = await props.params;
+
+  const { locale } = params;
+
   const pageId =
     locale === i18n.defaultLocale
       ? PagesIDs.PastorsBlog[i18n.defaultLocale]
@@ -36,11 +40,11 @@ export async function generateMetadata({ params: { locale } }: PagePathProps): P
   return getSeoData({ seoContentData, seoPathData });
 }
 
-export default async function UpcomingEventsPage({
-  params: { locale },
-}: {
-  params: { locale: Locale };
-}) {
+export default async function UpcomingEventsPage(props: { params: Promise<{ locale: Locale }> }) {
+  const params = await props.params;
+
+  const { locale } = params;
+
   const pageId =
     locale === i18n.defaultLocale
       ? PagesIDs.PastorsBlog[i18n.defaultLocale]
