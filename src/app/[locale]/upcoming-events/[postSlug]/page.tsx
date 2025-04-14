@@ -15,7 +15,7 @@ export async function generateStaticParams() {
   return [];
 }
 
-export const revalidate = 600;
+export const revalidate  = 86400;
 
 export async function generateMetadata(props: { params: Promise<PostParams> }): Promise<Metadata> {
   const params = await props.params;
