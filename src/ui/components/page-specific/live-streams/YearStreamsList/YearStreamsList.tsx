@@ -76,7 +76,7 @@ const YearStreamsList = ({
 
       return (
         <span
-          key={monthItem.monthNumber}
+          key={index}
           className={`
               ${styles['year-streams-list__month']}
               ${
@@ -87,7 +87,7 @@ const YearStreamsList = ({
             `}
           onClick={selectActiveMonth(monthItem.monthNumber)}
         >
-          {monthName}
+          {index}
         </span>
       );
     })
