@@ -75,9 +75,8 @@ const YearStreamsList = ({
       }
 
       return (
-        <Text
-          key={monthItem.monthNumber}
-          textType="span"
+        <span
+          key={index}
           className={`
               ${styles['year-streams-list__month']}
               ${
@@ -88,8 +87,8 @@ const YearStreamsList = ({
             `}
           onClick={selectActiveMonth(monthItem.monthNumber)}
         >
-          {monthName}
-        </Text>
+          {2}
+        </span>
       );
     })
     .filter(Boolean); // Фильтруем null значения
