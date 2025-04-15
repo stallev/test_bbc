@@ -112,7 +112,8 @@ const YearStreamsList = ({
         <div className={styles['year-streams-list__videos-list']}>
           {selectedVideos
             ? selectedVideos.map((video: YoutubeConvertedVideoItemType) => (
-                <YouTubePlayer key={video.id} data={video} locale={locale} />
+                // <YouTubePlayer key={video.id} data={video} locale={locale} />
+                <div key={video?.id}>{video?.title}</div>
               ))
             : null}
         </div>
