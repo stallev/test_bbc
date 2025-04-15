@@ -23,7 +23,7 @@ const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
 
   return (
     <div className={styles['youtube-player']}>
-      <div className={styles['youtube-player__info']}>
+      {/* <div className={styles['youtube-player__info']}>
         <Text
           textType="span"
           className={`
@@ -39,7 +39,7 @@ const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
         <Text textType="span" className={styles['youtube-player__title']}>
           {removeFromFirstPipe(data.title)}
         </Text>
-      </div>
+      </div> */}
       <LiteYouTubeEmbed
         aspectHeight={9}
         aspectWidth={16}

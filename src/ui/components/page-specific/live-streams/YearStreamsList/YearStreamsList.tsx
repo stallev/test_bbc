@@ -111,16 +111,17 @@ const YearStreamsList = ({
         <div className={styles['year-streams-list__months-list']}>{currentYearMonthsList}</div>
         <div className={styles['year-streams-list__videos-list']}>
           {selectedVideos
-            ? selectedVideos.map((video: YoutubeConvertedVideoItemType) => (
-                // <YouTubePlayer key={video.id} data={video} locale={locale} />
-                <div key={video?.id}>
-                  <p>{video?.title}</p>
-                  <p>{video?.id}</p>
-                  <p>{video?.url}</p>
-                  <p>{video?.date}</p>
-                  <p>{video?.status}</p>
-                </div>
-              ))
+            ? selectedVideos.map((video: YoutubeConvertedVideoItemType) => {
+              if (video?.id) {
+                return (
+                  <YouTubePlayer
+                    key={video.id}
+                    data={video}
+                    locale={locale}
+                  />
+                );
+              }
+            })
             : null}
         </div>
       </div>
