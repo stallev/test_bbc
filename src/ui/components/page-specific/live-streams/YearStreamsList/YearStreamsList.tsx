@@ -75,8 +75,9 @@ const YearStreamsList = ({
       }
 
       return (
-        <span
-          key={index}
+        <Text
+          key={monthItem.monthNumber}
+          textType="span"
           className={`
               ${styles['year-streams-list__month']}
               ${
@@ -87,11 +88,11 @@ const YearStreamsList = ({
             `}
           onClick={selectActiveMonth(monthItem.monthNumber)}
         >
-          {2}
-        </span>
+          {monthName}
+        </Text>
       );
     })
-    .filter(Boolean);
+    .filter(Boolean); // Фильтруем null значения
 
   return (
     <div className={styles['year-streams-list']} ref={yearStreamsListRef}>
