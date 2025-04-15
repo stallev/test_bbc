@@ -62,7 +62,37 @@ const YearStreamsList = ({
   const selectedVideos = data.monthListArray.find(
     month => month.monthNumber === selectedStreamsPeriod.month
   )?.videoListArray;
-  
+
+  // Создаем элементы месяцев с дополнительными проверками
+  const currentYearMonthsList = orderedMonths
+    .map(index => {
+      const monthItem = data.monthListArray.find(month => month.monthNumber === index);
+
+      const monthName = monthItem ? getMonthName(monthItem.monthNumber, locale) : '';
+
+      if (!monthItem || !monthName) {
+        return null;
+      }
+
+      return (
+        <span
+          key={index}
+          className={`
+              ${styles['year-streams-list__month']}
+              ${
+                monthItem.monthNumber === selectedStreamsPeriod.month
+                  ? styles['year-streams-list__month--active']
+                  : ''
+              }
+            `}
+          onClick={selectActiveMonth(monthItem.monthNumber)}
+        >
+          {2}
+        </span>
+      );
+    })
+    .filter(Boolean);
+
   return (
     <div className={styles['year-streams-list']} ref={yearStreamsListRef}>
       <div className={styles['year-streams-list__header']}>
@@ -87,9 +117,9 @@ const YearStreamsList = ({
         }`}
       >
         {/* Добавляем проверку на пустой массив */}
-        {/* <div className={styles['year-streams-list__months-list']}>
+        <div className={styles['year-streams-list__months-list']}>
           {currentYearMonthsList.length > 0 ? currentYearMonthsList : null}
-        </div> */}
+        </div>
         <div className={styles['year-streams-list__videos-list']}>
           {selectedVideos && selectedVideos.length > 0
             ? selectedVideos.map((video: YoutubeConvertedVideoItemType) => (
