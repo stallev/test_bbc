@@ -24,7 +24,7 @@ const YearStreamsList = ({
 
   const onCrossClick = () => {
     setSelectedStreamsPeriod(prevState => {
-      const firstMonthInTheList = data.monthListArray[0].monthNumber;
+      const firstMonthInTheList = data.monthListArray[0]?.monthNumber || 0;
 
       const newState = isThisYearSelected
         ? { ...prevState, year: null, month: null }
@@ -63,12 +63,20 @@ const YearStreamsList = ({
     month => month.monthNumber === selectedStreamsPeriod.month
   )?.videoListArray;
 
-  // Create month list elements and filter out null values
+  // Создаем элементы месяцев с дополнительными проверками
   const currentYearMonthsList = orderedMonths
     .map(index => {
       const monthItem = data.monthListArray.find(month => month.monthNumber === index);
+      
+      // Добавляем дополнительную проверку для getMonthName
+      const monthName = monthItem ? getMonthName(monthItem.monthNumber, locale) : '';
+      
+      // Проверяем, что monthName существует
+      if (!monthItem || !monthName) {
+        return null;
+      }
 
-      return monthItem ? (
+      return (
         <Text
           key={monthItem.monthNumber}
           textType="span"
@@ -82,11 +90,11 @@ const YearStreamsList = ({
             `}
           onClick={selectActiveMonth(monthItem.monthNumber)}
         >
-          {getMonthName(monthItem.monthNumber, locale)}
+          {monthName}
         </Text>
-      ) : null;
+      );
     })
-    .filter(Boolean); // This will filter out null values
+    .filter(Boolean); // Фильтруем null значения
 
   return (
     <div className={styles['year-streams-list']} ref={yearStreamsListRef}>
@@ -111,9 +119,12 @@ const YearStreamsList = ({
           isThisYearSelected ? styles['year-streams-list__content--expanded'] : ''
         }`}
       >
-        <div className={styles['year-streams-list__months-list']}>{currentYearMonthsList}</div>
+        {/* Добавляем проверку на пустой массив */}
+        <div className={styles['year-streams-list__months-list']}>
+          {currentYearMonthsList.length > 0 ? currentYearMonthsList : null}
+        </div>
         <div className={styles['year-streams-list__videos-list']}>
-          {selectedVideos
+          {selectedVideos && selectedVideos.length > 0
             ? selectedVideos.map((video: YoutubeConvertedVideoItemType) => (
                 <YouTubePlayer key={video.id} data={video} locale={locale} />
               ))
