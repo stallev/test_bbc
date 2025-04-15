@@ -113,7 +113,13 @@ const YearStreamsList = ({
           {selectedVideos
             ? selectedVideos.map((video: YoutubeConvertedVideoItemType) => (
                 // <YouTubePlayer key={video.id} data={video} locale={locale} />
-                <div key={video?.id}>{video?.title}</div>
+                <div key={video?.id}>
+                  <p>{video?.title}</p>
+                  <p>{video?.id}</p>
+                  <p>{video?.url}</p>
+                  <p>{video?.date}</p>
+                  <p>{video?.status}</p>
+                </div>
               ))
             : null}
         </div>
