@@ -63,27 +63,30 @@ const YearStreamsList = ({
     month => month.monthNumber === selectedStreamsPeriod.month
   )?.videoListArray;
 
-  const currentYearMonthsList = orderedMonths.map(index => {
-    const monthItem = data.monthListArray.find(month => month.monthNumber === index);
+  // Create month list elements and filter out null values
+  const currentYearMonthsList = orderedMonths
+    .map(index => {
+      const monthItem = data.monthListArray.find(month => month.monthNumber === index);
 
-    return monthItem ? (
-      <Text
-        key={monthItem.monthNumber}
-        textType="span"
-        className={`
-            ${styles['year-streams-list__month']}
-            ${
-              monthItem.monthNumber === selectedStreamsPeriod.month
-                ? styles['year-streams-list__month--active']
-                : ''
-            }
-          `}
-        onClick={selectActiveMonth(monthItem.monthNumber)}
-      >
-        {getMonthName(monthItem.monthNumber, locale)}
-      </Text>
-    ) : null;
-  });
+      return monthItem ? (
+        <Text
+          key={monthItem.monthNumber}
+          textType="span"
+          className={`
+              ${styles['year-streams-list__month']}
+              ${
+                monthItem.monthNumber === selectedStreamsPeriod.month
+                  ? styles['year-streams-list__month--active']
+                  : ''
+              }
+            `}
+          onClick={selectActiveMonth(monthItem.monthNumber)}
+        >
+          {getMonthName(monthItem.monthNumber, locale)}
+        </Text>
+      ) : null;
+    })
+    .filter(Boolean); // This will filter out null values
 
   return (
     <div className={styles['year-streams-list']} ref={yearStreamsListRef}>
@@ -110,9 +113,11 @@ const YearStreamsList = ({
       >
         <div className={styles['year-streams-list__months-list']}>{currentYearMonthsList}</div>
         <div className={styles['year-streams-list__videos-list']}>
-          {selectedVideos?.map((video: YoutubeConvertedVideoItemType) => (
-            <YouTubePlayer key={video.id} data={video} locale={locale} />
-          ))}
+          {selectedVideos
+            ? selectedVideos.map((video: YoutubeConvertedVideoItemType) => (
+                <YouTubePlayer key={video.id} data={video} locale={locale} />
+              ))
+            : null}
         </div>
       </div>
     </div>
