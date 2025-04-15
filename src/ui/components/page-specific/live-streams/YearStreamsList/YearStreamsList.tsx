@@ -67,11 +67,9 @@ const YearStreamsList = ({
   const currentYearMonthsList = orderedMonths
     .map(index => {
       const monthItem = data.monthListArray.find(month => month.monthNumber === index);
-      
-      // Добавляем дополнительную проверку для getMonthName
+
       const monthName = monthItem ? getMonthName(monthItem.monthNumber, locale) : '';
-      
-      // Проверяем, что monthName существует
+
       if (!monthItem || !monthName) {
         return null;
       }
