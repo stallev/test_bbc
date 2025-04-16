@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 
@@ -23,7 +25,7 @@ const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
 
   return (
     <div className={styles['youtube-player']}>
-      {data?.title && (
+      {/* {data?.title && (
         <div className={styles['youtube-player__info']}>
           <Text
             textType="span"
@@ -41,7 +43,7 @@ const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
             {removeFromFirstPipe(data.title)}
           </Text>
         </div>
-      )}
+      )} */}
       <LiteYouTubeEmbed
         aspectHeight={9}
         aspectWidth={16}
