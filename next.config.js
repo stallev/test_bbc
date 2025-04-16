@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const { settings } = require("./src/config/config.json");
+const { settings } = require('./src/config/config.json');
 
 const languages = settings.languages;
 const defaultLanguage = settings.default_language;
@@ -52,7 +52,7 @@ const nextConfig = {
     minimumCacheTTL: 31536000,
   },
   reactStrictMode: true,
-  output: "standalone",
+  output: 'standalone',
   compress: true,
   httpAgentOptions: {
     keepAlive: true,
@@ -60,7 +60,7 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/:path*.(html|js|css|jpg|jpeg|png|webp|avif|gif|svg)',
+        source: '/:path*.(html|js|css|jpg|jpeg|png|webp|avif|gif|svg|woff)',
         headers: [
           {
             key: 'Cache-Control',
@@ -102,7 +102,7 @@ const nextConfig = {
           },
           {
             key: 'Cache-Control',
-            value: 'public, max-age=0, s-maxage=86400, stale-while-revalidate=86400',
+            value: 'public, max-age=0, s-maxage=600, stale-while-revalidate=600',
           },
         ],
       },
@@ -122,5 +122,4 @@ const nextConfig = {
   },
 };
 
-module.exports =
-  process.env.ANALYZE === 'true' ? withBundleAnalyzer(nextConfig) : nextConfig;
+module.exports = process.env.ANALYZE === 'true' ? withBundleAnalyzer(nextConfig) : nextConfig;

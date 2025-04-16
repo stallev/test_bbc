@@ -7,7 +7,7 @@ interface changedVideoItemType {
   id: string;
   title: string;
   url: string;
-  date: Date;
+  date: string;
   status: string;
 }
 
@@ -16,9 +16,9 @@ export const getFormattedYoutubeVideosData = (
 ): YearVideoItemsSortedData[] => {
   const addedFieldsData = data.map(item => ({
     ...item,
-    year: item.date.getFullYear(),
-    month: item.date.getMonth(),
-    day: item.date.getDate(),
+    year: new Date(item.date).getFullYear(),
+    month: new Date(item.date).getMonth(),
+    day: new Date(item.date).getDate(),
   }));
 
   const sortedByYear: { [key: number]: changedVideoItemType[] } = addedFieldsData.reduce(

@@ -11,7 +11,7 @@ export interface YoutubeConvertedVideoItemType {
   id: string;
   title: string;
   url: string;
-  date: Date;
+  date: string;
   status: string;
 }
 
@@ -110,7 +110,7 @@ export interface ConvertedYoutubeFetchedVideoItemType {
   id: string;
   title: string;
   url: string;
-  date: Date;
+  date: string;
   status: string;
 }
 

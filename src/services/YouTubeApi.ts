@@ -47,7 +47,7 @@ class YouTubeApiService {
               id: item.id,
               title: item.snippet.title,
               url: `https://youtube.com/watch?v=${item.id}`,
-              date: new Date(item.liveStreamingDetails.actualStartTime) || new Date(),
+              date: item.liveStreamingDetails.actualStartTime,
               status: YouTubeStreamStatus.live,
             });
           case 'upcoming':
@@ -55,7 +55,7 @@ class YouTubeApiService {
               id: item.id,
               title: item.snippet.title,
               url: `https://youtube.com/watch?v=${item.id}`,
-              date: new Date(item?.liveStreamingDetails?.scheduledStartTime) || new Date(),
+              date: item?.liveStreamingDetails?.scheduledStartTime,
               status: YouTubeStreamStatus.upcoming,
             });
           case 'none':
@@ -65,8 +65,8 @@ class YouTubeApiService {
               url: `https://youtube.com/watch?v=${item.id}`,
               status: YouTubeStreamStatus.finished,
               date: !!item.liveStreamingDetails?.actualStartTime
-                ? new Date(item.liveStreamingDetails?.actualStartTime)
-                : new Date(item.snippet?.publishedAt),
+                ? item.liveStreamingDetails?.actualStartTime
+                : item.snippet?.publishedAt,
             });
         }
       });
@@ -116,7 +116,7 @@ class YouTubeApiService {
             id: item.id,
             title: item.snippet.title,
             url: `https://youtube.com/watch?v=${item.id}`,
-            date: new Date(item.liveStreamingDetails.actualStartTime) || new Date(),
+            date: item.liveStreamingDetails.actualStartTime,
             status: YouTubeStreamStatus.live,
           });
         case 'upcoming':
@@ -124,7 +124,7 @@ class YouTubeApiService {
             id: item.id,
             title: item.snippet.title,
             url: `https://youtube.com/watch?v=${item.id}`,
-            date: new Date(item?.liveStreamingDetails?.scheduledStartTime) || new Date(),
+            date: item?.liveStreamingDetails?.scheduledStartTime,
             status: YouTubeStreamStatus.upcoming,
           });
         case 'none':
@@ -134,8 +134,8 @@ class YouTubeApiService {
             url: `https://youtube.com/watch?v=${item.id}`,
             status: YouTubeStreamStatus.finished,
             date: !!item.liveStreamingDetails?.actualStartTime
-              ? new Date(item.liveStreamingDetails?.actualStartTime)
-              : new Date(item.snippet?.publishedAt),
+              ? item.liveStreamingDetails?.actualStartTime
+              : item.snippet?.publishedAt,
           });
       }
     });
