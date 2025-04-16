@@ -1,5 +1,5 @@
 'use client';
-import React, { useMemo } from 'react';
+import React from 'react';
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 import { YouTubeStreamStatus } from '@/constants';
 import { Locale } from '@/i18n.config';
@@ -20,45 +20,30 @@ const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
   const isLiveStream = data?.status === YouTubeStreamStatus.live;
   const title = removeFromFirstPipe(data?.title || '');
 
-  // Используем useMemo для вычисления даты
-  const displayDate = useMemo(() => {
-    // Если это livestream, возвращаем маркер стрима
-    if (isLiveStream) {
-      return translations.live_stream_marker;
-    }
-
-    // Если даты нет, возвращаем пробел
-    if (!data?.date) {
-      return '\u00A0';
-    }
+  const formatDate = () => {
+    if (!data?.date) return '\u00A0';
 
     try {
-      // Преобразуем дату
-      const date = new Date(data.date);
+      if (isNaN(data?.date.getTime())) return '\u00A0';
 
-      // Проверяем валидность даты
-      if (isNaN(date.getTime())) {
-        return '\u00A0';
-      }
+      const options = {
+        day: 'numeric' as const,
+        month: 'long' as const,
+      };
 
-      // Форматируем дату используя Intl.DateTimeFormat вместо toLocaleDateString
-      const formatter = new Intl.DateTimeFormat(locale, {
-        day: 'numeric',
-        month: 'long',
-      });
-
-      return formatter.format(date);
+      return data?.date.toLocaleDateString(locale, options);
     } catch (error) {
       console.error('Error formatting date:', error);
       return '\u00A0';
     }
-  }, [data?.date, locale, isLiveStream, translations]);
+  };
+
+  const displayDate = formatDate();
 
   return (
     <div className={styles['youtube-player']}>
       {data?.title && (
         <div className={styles['youtube-player__info']}>
-          {/* Используем React.Fragment для обертки строки */}
           <Text
             textType="span"
             className={`
@@ -66,10 +51,10 @@ const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
             ${isLiveStream ? styles['youtube-player__info-date--live'] : styles['youtube-player__info-date--published']}
           `}
           >
-            {React.createElement(React.Fragment, null, displayDate)}
+            {isLiveStream ? translations.live_stream_marker : displayDate}
           </Text>
           <Text textType="span" className={styles['youtube-player__title']}>
-            {React.createElement(React.Fragment, null, title)}
+            {title}
           </Text>
         </div>
       )}
@@ -77,8 +62,8 @@ const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
         aspectHeight={9}
         aspectWidth={16}
         noCookie={true}
-        id={data?.id || ''}
-        title={data?.title || ''}
+        id={data.id}
+        title={data.title}
         webp={true}
         wrapperClass={styles['youtube-player__wrap']}
         playerClass={styles['youtube-player__play-button']}
