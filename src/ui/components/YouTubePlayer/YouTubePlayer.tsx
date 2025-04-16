@@ -38,7 +38,8 @@ const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
             {/* {isLiveStream
               ? translations.live_stream_marker
               : getDayMonthFormattedDate(data?.date, locale)} */}
-            {data?.date ? getDayMonthFormattedDate(data.date, locale) : '\u00A0'}
+            {/* {data?.date ? getDayMonthFormattedDate(data.date, locale) : '\u00A0'} */}
+            {data?.date}
           </Text>
 
           <Text textType="span" className={styles['youtube-player__title']}>
