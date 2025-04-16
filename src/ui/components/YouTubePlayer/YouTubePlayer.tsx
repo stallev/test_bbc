@@ -23,6 +23,14 @@ const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
   const translations = getTranslations(locale);
   const isLiveStream = data?.status === YouTubeStreamStatus.live;
   const title = removeFromFirstPipe(data?.title || '');
+  const videoDate = new Date(data.date) || new Date();
+
+  const options = {
+    day: 'numeric' as const,
+    month: 'long' as const,
+  };
+
+  const videoFormattedDate = videoDate.toLocaleDateString(locale, options);
 
   return (
     <div className={styles['youtube-player']}>
@@ -39,7 +47,7 @@ const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
               ? translations.live_stream_marker
               : getDayMonthFormattedDate(data?.date, locale)} */}
             {/* {data?.date ? getDayMonthFormattedDate(data.date, locale) : '\u00A0'} */}
-            {data?.date ? getDayMonthFormattedDate(data.date, locale) : '\u00A0'}
+            {data?.date ? videoFormattedDate : '\u00A0'}
           </Text>
 
           <Text textType="span" className={styles['youtube-player__title']}>
