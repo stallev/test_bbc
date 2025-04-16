@@ -23,23 +23,25 @@ const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
 
   return (
     <div className={styles['youtube-player']}>
-      <div className={styles['youtube-player__info']}>
-        {/* <Text
-          textType="span"
-          className={`
+      {data?.title && (
+        <div className={styles['youtube-player__info']}>
+          <Text
+            textType="span"
+            className={`
             ${styles['youtube-player__info-date']} 
             ${isLiveStream ? styles['youtube-player__info-date--live'] : styles['youtube-player__info-date--published']}
           `}
-        >
-          {isLiveStream
-            ? translations.live_stream_marker
-            : getDayMonthFormattedDate(data?.date, locale)}
-        </Text> */}
+          >
+            {isLiveStream
+              ? translations.live_stream_marker
+              : getDayMonthFormattedDate(data?.date, locale)}
+          </Text>
 
-        <Text textType="span" className={styles['youtube-player__title']}>
-          {removeFromFirstPipe(data.title)}
-        </Text>
-      </div>
+          <Text textType="span" className={styles['youtube-player__title']}>
+            {removeFromFirstPipe(data.title)}
+          </Text>
+        </div>
+      )}
       <LiteYouTubeEmbed
         aspectHeight={9}
         aspectWidth={16}
