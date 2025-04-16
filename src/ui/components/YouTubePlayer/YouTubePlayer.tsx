@@ -53,7 +53,7 @@ const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
           >
             {isLiveStream
               ? translations.live_stream_marker
-              : data?.date.toLocaleDateString(locale, options)}
+              : data?.date.toLocaleDateString('en', options)}
             {/* {isLiveStream ? translations.live_stream_marker : displayDate} */}
           </Text>
           <Text textType="span" className={styles['youtube-player__title']}>
