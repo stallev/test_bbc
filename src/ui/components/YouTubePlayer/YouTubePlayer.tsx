@@ -7,7 +7,6 @@ import { YouTubeStreamStatus } from '@/constants';
 import { Locale } from '@/i18n.config';
 import { YoutubeConvertedVideoItemType } from '@/types/YouTubeDataTypes';
 import { Text } from '@/ui/components/ui-kit';
-import { getDayMonthFormattedDate } from '@/utils/dateFormatter';
 import { removeFromFirstPipe } from '@/utils/getFileNameFromUrl';
 import { getTranslations } from '@/utils/languageParser';
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
@@ -47,7 +46,7 @@ const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
               ? translations.live_stream_marker
               : getDayMonthFormattedDate(data?.date, locale)} */}
             {/* {data?.date ? getDayMonthFormattedDate(data.date, locale) : '\u00A0'} */}
-            {data?.date ? videoFormattedDate : '\u00A0'}
+            {data?.date}
           </Text>
 
           <Text textType="span" className={styles['youtube-player__title']}>
