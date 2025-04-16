@@ -25,7 +25,7 @@ const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
 
   return (
     <div className={styles['youtube-player']}>
-      {/* {data?.title && (
+      {data?.title && data?.date && (
         <div className={styles['youtube-player__info']}>
           <Text
             textType="span"
@@ -39,11 +39,11 @@ const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
               : getDayMonthFormattedDate(data?.date, locale)}
           </Text>
 
-          <Text textType="span" className={styles['youtube-player__title']}>
+          {/* <Text textType="span" className={styles['youtube-player__title']}>
             {removeFromFirstPipe(data.title)}
-          </Text>
+          </Text> */}
         </div>
-      )} */}
+      )}
       <LiteYouTubeEmbed
         aspectHeight={9}
         aspectWidth={16}
