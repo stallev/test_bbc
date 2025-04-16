@@ -67,7 +67,7 @@ const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
       const monthNames = months[locale] || months['en'];
       const month = monthNames[data.date.getMonth()];
 
-      return `${day} ${month}`;
+      return locale === 'en' ? `${month} ${day}` : `${day} ${month}`;
     } catch (error) {
       console.error('Error formatting date:', error);
       return '\u00A0';

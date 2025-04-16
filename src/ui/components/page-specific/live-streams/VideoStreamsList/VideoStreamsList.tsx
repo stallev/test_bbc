@@ -1,5 +1,6 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import React, { useState } from 'react';
 
 import {
@@ -7,7 +8,10 @@ import {
   YearVideoItemsSortedData,
   SelectedStreamsPeriod,
 } from '@/types/YouTubeDataTypes';
-import YearStreamsList from '@/ui/components/page-specific/live-streams/YearStreamsList/YearStreamsList';
+const YearStreamsList = dynamic(
+  () => import('@/ui/components/page-specific/live-streams/YearStreamsList/YearStreamsList'),
+  { ssr: false }
+);
 
 export interface VideoItem {
   title: string;
