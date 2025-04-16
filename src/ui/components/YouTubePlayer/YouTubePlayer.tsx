@@ -22,8 +22,8 @@ const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
   const translations = getTranslations(locale);
   const isLiveStream = data?.status === YouTubeStreamStatus.live;
   const title = removeFromFirstPipe(data?.title || '');
-  // const videoDate = new Date(data.date) || new Date();
-  const videoDate = new Date();
+  const videoDate = data?.date ? new Date(data.date) : new Date();
+  // const videoDate = new Date();
 
   const options = {
     day: 'numeric' as const,
