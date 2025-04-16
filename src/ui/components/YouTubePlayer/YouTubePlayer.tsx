@@ -31,7 +31,43 @@ const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
     try {
       if (isNaN(data?.date.getTime())) return '\u00A0';
 
-      return data?.date.toLocaleDateString(locale, options);
+      const day = data?.date.getDate();
+
+      const months: Record<string, string[]> = {
+        en: [
+          'January',
+          'February',
+          'March',
+          'April',
+          'May',
+          'June',
+          'July',
+          'August',
+          'September',
+          'October',
+          'November',
+          'December',
+        ],
+        ru: [
+          'января',
+          'февраля',
+          'марта',
+          'апреля',
+          'мая',
+          'июня',
+          'июля',
+          'августа',
+          'сентября',
+          'октября',
+          'ноября',
+          'декабря',
+        ],
+      };
+
+      const monthNames = months[locale] || months['en'];
+      const month = monthNames[data.date.getMonth()];
+
+      return `${day} ${month}`;
     } catch (error) {
       console.error('Error formatting date:', error);
       return '\u00A0';
@@ -51,9 +87,7 @@ const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
             ${isLiveStream ? styles['youtube-player__info-date--live'] : styles['youtube-player__info-date--published']}
           `}
           >
-            {isLiveStream
-              ? translations.live_stream_marker
-              : data?.date.toLocaleDateString('en', options)}
+            {isLiveStream ? translations.live_stream_marker : displayDate}
             {/* {isLiveStream ? translations.live_stream_marker : displayDate} */}
           </Text>
           <Text textType="span" className={styles['youtube-player__title']}>
