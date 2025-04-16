@@ -16,6 +16,9 @@ interface CustomImageProps {
   ariaLabel?: string;
   priority?: boolean;
   sizes?: string;
+  placeholder?: string;
+  blurDataURL?: string;
+  quality?: number;
 }
 
 const CustomImage: React.FC<CustomImageProps> = ({
@@ -27,6 +30,9 @@ const CustomImage: React.FC<CustomImageProps> = ({
   ariaLabel = '',
   priority,
   sizes = '100vw',
+  placeholder,
+  blurDataURL,
+  quality = 75,
 }) => {
   return (
     <div
@@ -42,6 +48,9 @@ const CustomImage: React.FC<CustomImageProps> = ({
         alt={alt || ''}
         priority={priority}
         sizes={sizes}
+        placeholder={placeholder ? 'blur' : undefined}
+        blurDataURL={blurDataURL && blurDataURL}
+        quality={quality}
       />
     </div>
   );

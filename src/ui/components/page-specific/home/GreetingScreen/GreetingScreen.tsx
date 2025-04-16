@@ -25,6 +25,10 @@ const GreetingScreen: React.FC<GreetingScreenProps> = ({
         ariaLabel="Background image alt"
         sizes="100vw"
         priority
+        placeholder="blur"
+        blurDataURL="data:image/webp;base64,UklGRiwAAABXRUJQVlA4WAoAAAAgAAAAEAAQAAEAAQCdASoQAAcAAEAnJZgCdLoAAA==
+"
+        quality={60}
       />
 
       <Container>
