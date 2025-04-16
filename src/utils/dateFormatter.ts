@@ -50,11 +50,15 @@ export const getDayMonthFormattedDate = (
   dateString: string,
   locale: string | undefined
 ): string => {
+  if (!dateString) return '';
+
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) return '';
+
   const options = {
     day: 'numeric' as const,
     month: 'long' as const,
   };
-  const date = new Date(dateString);
 
   return date.toLocaleDateString(locale, options);
 };
