@@ -40,9 +40,9 @@ const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
             {data.title}
           </Text>
 
-          {/* <Text textType="span" className={styles['youtube-player__title']}>
+          <Text textType="span" className={styles['youtube-player__title']}>
             {removeFromFirstPipe(data.title)}
-          </Text> */}
+          </Text>
         </div>
       )}
       <LiteYouTubeEmbed
