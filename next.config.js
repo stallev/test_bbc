@@ -60,7 +60,7 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/:path*.(html|js|css|jpg|jpeg|png|webp|avif|gif|svg|woff)',
+        source: '/:path*.(js|css|jpg|jpeg|png|webp|avif|gif|svg|woff)',
         headers: [
           {
             key: 'Cache-Control',
@@ -102,7 +102,7 @@ const nextConfig = {
           },
           {
             key: 'Cache-Control',
-            value: 'public, max-age=0, s-maxage=600, stale-while-revalidate=600',
+            value: 'public, max-age=0, s-maxage=86400, stale-while-revalidate=86400',
           },
         ],
       },

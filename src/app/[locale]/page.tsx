@@ -103,4 +103,4 @@ export default async function Home(props: { params: Promise<{ locale: Locale }> 
   );
 }
 
-export const revalidate = 600;
+export const revalidate = 86400; // 24h
