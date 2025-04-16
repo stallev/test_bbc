@@ -20,16 +20,16 @@ const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
   const isLiveStream = data?.status === YouTubeStreamStatus.live;
   const title = removeFromFirstPipe(data?.title || '');
 
+  const options = {
+    day: 'numeric' as const,
+    month: 'long' as const,
+  };
+
   const formatDate = () => {
     if (!data?.date) return '\u00A0';
 
     try {
       if (isNaN(data?.date.getTime())) return '\u00A0';
-
-      const options = {
-        day: 'numeric' as const,
-        month: 'long' as const,
-      };
 
       return data?.date.toLocaleDateString(locale, options);
     } catch (error) {
@@ -51,7 +51,9 @@ const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
             ${isLiveStream ? styles['youtube-player__info-date--live'] : styles['youtube-player__info-date--published']}
           `}
           >
-            {isLiveStream ? translations.live_stream_marker : data?.date.toUTCString()}
+            {isLiveStream
+              ? translations.live_stream_marker
+              : data?.date.toLocaleDateString(locale, options)}
             {/* {isLiveStream ? translations.live_stream_marker : displayDate} */}
           </Text>
           <Text textType="span" className={styles['youtube-player__title']}>
