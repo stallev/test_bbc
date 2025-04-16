@@ -22,6 +22,7 @@ interface YouTubePlayerProps {
 const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
   const translations = getTranslations(locale);
   const isLiveStream = data?.status === YouTubeStreamStatus.live;
+  const title = removeFromFirstPipe(data?.title || '');
 
   return (
     <div className={styles['youtube-player']}>
@@ -37,11 +38,11 @@ const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
             {/* {isLiveStream
               ? translations.live_stream_marker
               : getDayMonthFormattedDate(data?.date, locale)} */}
-            {data?.date ? getDayMonthFormattedDate(data.date, locale) : ''}
+            {data?.date ? getDayMonthFormattedDate(data.date, locale) : '\u00A0'}
           </Text>
 
           <Text textType="span" className={styles['youtube-player__title']}>
-            {removeFromFirstPipe(data.title)}
+            {title}
           </Text>
         </div>
       )}
