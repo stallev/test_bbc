@@ -25,7 +25,7 @@ const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
 
   return (
     <div className={styles['youtube-player']}>
-      {data?.title && data?.date && (
+      {data?.title && (
         <div className={styles['youtube-player__info']}>
           <Text
             textType="span"
@@ -37,7 +37,7 @@ const YouTubePlayer = ({ data, locale }: YouTubePlayerProps) => {
             {/* {isLiveStream
               ? translations.live_stream_marker
               : getDayMonthFormattedDate(data?.date, locale)} */}
-            {!!data?.date ? getDayMonthFormattedDate(data?.date, locale) : ''}
+            {data?.date}
           </Text>
 
           <Text textType="span" className={styles['youtube-player__title']}>
