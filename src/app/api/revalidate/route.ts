@@ -27,7 +27,7 @@ export async function GET(req: Request) {
 
   return NextResponse.json({
     revalidated: true,
-    now: Date.now(),
+    now: new Date().toUTCString(),
     path: url,
   });
 }
