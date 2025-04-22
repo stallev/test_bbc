@@ -1,5 +1,5 @@
 import { PagesPaths } from './constants/apiConstants.mjs';
-import { fetchLocalePages } from './utils/api.mjs';
+import { revalidatePage } from './utils/api.mjs';
 import { getAllDbItems, putItemsToDb, deleteAllDbItems } from './utils/db.mjs';
 import { getLatestPlaylistItems } from './utils/youtube.mjs';
 
@@ -26,8 +26,8 @@ export const validateYouTubeList = async () => {
       await putItemsToDb(tableName, youtubeItems);
       console.log('Database was empty, inserted new items');
 
-      await fetchLocalePages(PagesPaths.Home);
-      await fetchLocalePages(PagesPaths.LiveStreams);
+      await revalidatePage(PagesPaths.Home);
+      await revalidatePage(PagesPaths.LiveStreams);
     } else {
       const areEqual = compareItemsLists(youtubeItems, dbItems);
       if (areEqual) {
@@ -37,8 +37,8 @@ export const validateYouTubeList = async () => {
         await putItemsToDb(tableName, youtubeItems);
         console.log('Data was updated');
 
-        await fetchLocalePages(PagesPaths.Home);
-        await fetchLocalePages(PagesPaths.LiveStreams);
+        await revalidatePage(PagesPaths.Home);
+        await revalidatePage(PagesPaths.LiveStreams);
       }
     }
 
