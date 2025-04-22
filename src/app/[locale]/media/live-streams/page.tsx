@@ -22,7 +22,7 @@ export async function generateStaticParams() {
   return [];
 }
 
-export const revalidate = 86400; // 24h
+// export const revalidate = 86400; // 24h
 
 export async function generateMetadata(props: PagePathProps): Promise<Metadata> {
   const params = await props.params;
@@ -52,7 +52,7 @@ export default async function Livestreams(props: { params: Promise<{ locale: Loc
 
   const { finishedVideos, liveVideos, upcomingVideos } =
     await YouTubeApiService.getAllYouTubePlaylistItems(
-      YouTubePlaylistIDs.generalLiveStreams,
+      YouTubePlaylistIDs.myStream,
       YouTubeApiKeys.alexander
     );
 

@@ -65,7 +65,7 @@ export default async function Home(props: { params: Promise<{ locale: Locale }> 
 
   const upcomingEventsData = await UpcomingEventsDataApi.getUpcomingEventsReduced(locale);
   const videosData = await YouTubeApiService.getPortionYouTubeStreamsItems(
-    YouTubePlaylistIDs.generalLiveStreams,
+    YouTubePlaylistIDs.myStream,
     YouTubeApiKeys.alexander
   );
   const staffData = await StaffDataApi.getMinisters(locale);
@@ -103,4 +103,4 @@ export default async function Home(props: { params: Promise<{ locale: Locale }> 
   );
 }
 
-export const revalidate = 86400; // 24h
+// export const revalidate = 86400; // 24h
