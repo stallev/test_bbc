@@ -100,15 +100,6 @@ const nextConfig = {
       //   ],
       // },
       {
-        source: '/api/revalidate',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'no-store, no-cache, must-revalidate, max-age=0',
-          },
-        ],
-      },
-      {
         source: '/(.*)',
         headers: [
           {
@@ -134,6 +125,15 @@ const nextConfig = {
           {
             key: 'Cache-Control',
             value: 'public, max-age=0, s-maxage=60, stale-while-revalidate=5',
+          },
+        ],
+      },
+      {
+        source: '/api/revalidate',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-store, no-cache, must-revalidate, max-age=0',
           },
         ],
       },
