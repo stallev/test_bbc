@@ -63,42 +63,51 @@ const nextConfig = {
   },
   async headers() {
     return [
-      // {
-      //   source: '/:path*.(js|css|jpg|jpeg|png|webp|avif|gif|svg|woff)',
-      //   headers: [
-      //     {
-      //       key: 'Cache-Control',
-      //       value: 'public, max-age=31536000, immutable',
-      //     },
-      //   ],
-      // },
-      // {
-      //   source: '/_next/static/:path*',
-      //   headers: [
-      //     {
-      //       key: 'Cache-Control',
-      //       value: 'public, max-age=31536000, immutable',
-      //     },
-      //   ],
-      // },
-      // {
-      //   source: '/_next/static/media/:path*',
-      //   headers: [
-      //     {
-      //       key: 'Cache-Control',
-      //       value: 'public, max-age=31536000, immutable',
-      //     },
-      //   ],
-      // },
-      // {
-      //   source: '/_next/image/:path*',
-      //   headers: [
-      //     {
-      //       key: 'Cache-Control',
-      //       value: 'public, max-age=31536000, immutable',
-      //     },
-      //   ],
-      // },
+      {
+        source: '/:path*.(js|css|jpg|jpeg|png|webp|avif|gif|svg|woff)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/_next/static/media/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/_next/image/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, s-maxage=2592000, stale-while-revalidate=600',
+          },
+        ],
+      },
       {
         source: '/(.*)',
         headers: [
@@ -122,19 +131,10 @@ const nextConfig = {
             key: 'X-DNS-Prefetch-Control',
             value: 'on',
           },
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=0, s-maxage=60, stale-while-revalidate=5',
-          },
-        ],
-      },
-      {
-        source: '/api/revalidate',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'no-store, no-cache, must-revalidate, max-age=0',
-          },
+          // {
+          //   key: 'Cache-Control',
+          //   value: 'public, max-age=0, s-maxage=86400, stale-while-revalidate=86400',
+          // },
         ],
       },
     ];
@@ -142,7 +142,7 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: `/:locale(!${defaultLanguage}|${otherLanguages.join("|")})/:path*`,
+        source: `/:locale(!${defaultLanguage}|${otherLanguages.join('|')})/:path*`,
         destination: `/:locale/:path*`,
       },
       {

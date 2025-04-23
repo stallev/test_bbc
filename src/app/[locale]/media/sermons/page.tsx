@@ -18,7 +18,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export const revalidate = 86400; // 24h
+export const revalidate = 300;
 
 export async function generateMetadata(props: PagePathProps): Promise<Metadata> {
   const params = await props.params;
