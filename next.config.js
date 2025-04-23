@@ -72,33 +72,33 @@ const nextConfig = {
           },
         ],
       },
-      {
-        source: '/_next/static/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        source: '/_next/static/media/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        source: '/_next/image/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
+      // {
+      //   source: '/_next/static/:path*',
+      //   headers: [
+      //     {
+      //       key: 'Cache-Control',
+      //       value: 'public, max-age=31536000, immutable',
+      //     },
+      //   ],
+      // },
+      // {
+      //   source: '/_next/static/media/:path*',
+      //   headers: [
+      //     {
+      //       key: 'Cache-Control',
+      //       value: 'public, max-age=31536000, immutable',
+      //     },
+      //   ],
+      // },
+      // {
+      //   source: '/_next/image/:path*',
+      //   headers: [
+      //     {
+      //       key: 'Cache-Control',
+      //       value: 'public, max-age=31536000, immutable',
+      //     },
+      //   ],
+      // },
       {
         source: '/api/revalidate',
         headers: [
@@ -131,10 +131,10 @@ const nextConfig = {
             key: 'X-DNS-Prefetch-Control',
             value: 'on',
           },
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=0, s-maxage=86400, stale-while-revalidate=60',
-          },
+          // {
+          //   key: 'Cache-Control',
+          //   value: 'public, max-age=0, s-maxage=86400, stale-while-revalidate=60',
+          // },
         ],
       },
     ];
