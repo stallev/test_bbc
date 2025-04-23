@@ -104,7 +104,17 @@ const nextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'no-store, no-cache, must-revalidate, max-age=0',
+            value:
+              'no-store, no-cache, must-revalidate, max-age=0, s-maxage=0, stale-while-revalidate=0',
+          },
+        ],
+      },
+      {
+        source: `/:locale(!${defaultLanguage}|${otherLanguages.join('|')})/:path*`,
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, s-maxage=60, stale-while-revalidate=5',
           },
         ],
       },
@@ -133,7 +143,7 @@ const nextConfig = {
           },
           {
             key: 'Cache-Control',
-            value: 'public, max-age=0, s-maxage=86400, stale-while-revalidate=5',
+            value: 'public, max-age=0, s-maxage=60, stale-while-revalidate=5',
           },
         ],
       },
