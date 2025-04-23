@@ -1,6 +1,8 @@
 import { revalidatePath } from 'next/cache';
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const url = searchParams.get('path');
@@ -16,9 +18,16 @@ export async function GET(req: Request) {
 
   revalidatePath(url);
 
-  return NextResponse.json({
-    revalidated: true,
-    now: new Date().toUTCString(),
-    path: url,
-  });
+  return NextResponse.json(
+    {
+      revalidated: true,
+      now: new Date().toUTCString(),
+      path: url,
+    },
+    {
+      headers: {
+        'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0',
+      },
+    }
+  );
 }
