@@ -63,15 +63,15 @@ const nextConfig = {
   },
   async headers() {
     return [
-      {
-        source: '/:path*.(js|css|jpg|jpeg|png|webp|avif|gif|svg|woff)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
+      // {
+      //   source: '/:path*.(js|css|jpg|jpeg|png|webp|avif|gif|svg|woff)',
+      //   headers: [
+      //     {
+      //       key: 'Cache-Control',
+      //       value: 'public, max-age=31536000, immutable',
+      //     },
+      //   ],
+      // },
       // {
       //   source: '/_next/static/:path*',
       //   headers: [
