@@ -131,10 +131,10 @@ const nextConfig = {
             key: 'X-DNS-Prefetch-Control',
             value: 'on',
           },
-          // {
-          //   key: 'Cache-Control',
-          //   value: 'public, max-age=0, s-maxage=86400, stale-while-revalidate=60',
-          // },
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, s-maxage=60, stale-while-revalidate=60',
+          },
         ],
       },
     ];
