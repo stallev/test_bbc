@@ -53,7 +53,7 @@ const nextConfig = {
         hostname: '3.85.115.123',
       },
     ],
-    minimumCacheTTL: 31536000,
+    // minimumCacheTTL: 31536000,
   },
   reactStrictMode: true,
   output: 'standalone',
