@@ -1,4 +1,4 @@
-import { revalidatePath } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import { NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
@@ -16,7 +16,8 @@ export async function GET(req: Request) {
     return NextResponse.json({ message: 'Path is required' }, { status: 401 });
   }
 
-  revalidatePath(url);
+  // revalidatePath(url);
+  revalidateTag('youtube');
 
   return NextResponse.json(
     {
