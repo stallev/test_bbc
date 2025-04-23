@@ -99,15 +99,15 @@ const nextConfig = {
           },
         ],
       },
-      {
-        source: '/',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=0, s-maxage=2592000, stale-while-revalidate=600',
-          },
-        ],
-      },
+      // {
+      //   source: '/',
+      //   headers: [
+      //     {
+      //       key: 'Cache-Control',
+      //       value: 'public, max-age=0, s-maxage=600, stale-while-revalidate=30',
+      //     },
+      //   ],
+      // },
       {
         source: '/(.*)',
         headers: [
@@ -131,10 +131,10 @@ const nextConfig = {
             key: 'X-DNS-Prefetch-Control',
             value: 'on',
           },
-          // {
-          //   key: 'Cache-Control',
-          //   value: 'public, max-age=0, s-maxage=86400, stale-while-revalidate=86400',
-          // },
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, s-maxage=600, stale-while-revalidate=30',
+          },
         ],
       },
     ];
