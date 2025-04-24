@@ -5,7 +5,7 @@ export const FormFieldLangCodes = {
   email: 'email_field',
   emailRequired: 'email_field_reqired',
   userMessageField: 'user_message_field',
-};
+}
 
 export const FormFieldValidationErrorsLangCodes = {
   firstNameError: 'first_name_field_error',
@@ -13,4 +13,4 @@ export const FormFieldValidationErrorsLangCodes = {
   phoneError: 'phone_field_error',
   emailError: 'email_field_error',
   userMessageFieldError: 'user_message_field_error',
-};
+}

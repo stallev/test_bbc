@@ -1,45 +1,40 @@
-import React from 'react';
-
-import { MobileMenuStateProps, NavBarMenuItemProps } from '@/types/globalTypes';
+import React from "react";
+import { MobileMenuStateProps, NavBarMenuItemProps } from "@/types/globalTypes";
 
 interface useDropdownProps {
-  setMobileMenuState: React.Dispatch<React.SetStateAction<MobileMenuStateProps>>;
-  mobileMenuState: MobileMenuStateProps;
+  setMobileMenuState: React.Dispatch<React.SetStateAction<MobileMenuStateProps>>
+  mobileMenuState: MobileMenuStateProps
 }
 
-const useDropdown = ({ mobileMenuState, setMobileMenuState }: useDropdownProps) => {
-  const { activeDropDownMenuItem } = mobileMenuState;
+const useDropdown = ({mobileMenuState, setMobileMenuState}: useDropdownProps) => {
+  const { isMenuOpen, activeDropDownMenuItem } = mobileMenuState;
 
   const handleClick = (menuItem: NavBarMenuItemProps) => {
-    if (
-      !!menuItem &&
-      !!activeDropDownMenuItem &&
-      activeDropDownMenuItem.label === menuItem?.label
-    ) {
+    if(!!menuItem && !!activeDropDownMenuItem && activeDropDownMenuItem.label === menuItem?.label) {
       setMobileMenuState({
         ...mobileMenuState,
-        activeDropDownMenuItem: false,
-      });
+        activeDropDownMenuItem: false
+      })
     } else {
       setMobileMenuState({
         ...mobileMenuState,
-        activeDropDownMenuItem: menuItem,
-      });
+        activeDropDownMenuItem: menuItem
+      })
     }
   };
 
   const handleMouseEnter = (menuItem: NavBarMenuItemProps) => {
     setMobileMenuState({
       ...mobileMenuState,
-      activeDropDownMenuItem: menuItem,
-    });
+      activeDropDownMenuItem: menuItem
+    })
   };
 
   const handleMouseLeave = () => {
     setMobileMenuState({
       ...mobileMenuState,
-      activeDropDownMenuItem: false,
-    });
+      activeDropDownMenuItem: false
+    })
   };
 
   return { handleMouseEnter, handleMouseLeave, handleClick };

@@ -42,7 +42,6 @@
 
   &__page-link {
     @extend %youtubeFrameHeight;
-    width: 100%;
   }
 
   &__page-link a {
@@ -50,6 +49,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    // width: 100%;
     height: 100%;
     max-width: 400px;
 
@@ -80,32 +80,24 @@
     border: 2px solid $color-red;
     z-index: $z-index-level1;
     background-color: var(--main-bg-color);
-    font-family: $accia-font-family;
+
+    
   }
 
   &__page-link-content {
-    padding: 0 0 $gutter-ml $gutter-ml;
+   padding: 0 0 $gutter-ml $gutter-ml;
 
-    @media screen and (min-width: $desktop) {
-      padding: 0 0 $gutter-lg $gutter-lg;
-    }
-
-    @media screen and (min-width: $largeDesktop) {
-      padding: 0 0 $gutter-xl $gutter-xl;
-    }
+   @media screen and (min-width: $desktop) {
+    padding: 0 0 $gutter-lg $gutter-lg;
   }
 
-  &__page-link-content-top {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  @media screen and (min-width: $largeDesktop) {
+    padding: 0 0 $gutter-xl $gutter-xl;
+  }
 
     svg {
-      fill: $color-red;
-    }
-
-    @media screen and (min-width: $desktop) {
-      gap: 20px;
+      display: inline-block;
+      align-self: flex-start;
     }
   }
 

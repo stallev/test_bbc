@@ -1,6 +1,5 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-
-import { SubscribeToEventsEndpoint } from '@/constants/EndpointsList';
+import { NextApiRequest, NextApiResponse } from "next";
+import { SubscribeToEventsEndpoint } from "@/constants/EndpointsList";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -8,6 +7,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   const data = req.body;
+  console.log('server data', data)
 
   try {
     const response = await fetch(SubscribeToEventsEndpoint.dev, {
@@ -24,7 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (!response.ok) {
       throw new Error(`Error submitting form: ${response.statusText}`);
     }
-
+    
     res.status(200).json(responseData);
   } catch (error) {
     console.error(error);

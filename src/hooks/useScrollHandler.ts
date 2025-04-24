@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
-
-import { useAppContext } from '@/ui/globalState/ContextHook/contextHook';
+import { useState, useEffect } from "react";
+import { useAppContext } from "@/ui/globalState/ContextHook/contextHook";
 
 const useScrollHandler = () => {
   const [visible, setVisible] = useState<boolean>(true);
@@ -17,12 +16,12 @@ const useScrollHandler = () => {
       lastScrollY = scrollY > 0 ? scrollY : 0;
     };
     if (!state.isMenuOpen) {
-      window.addEventListener('scroll', updateScrollDirection);
+      window.addEventListener("scroll", updateScrollDirection);
     } else {
       setVisible(true);
     }
     return () => {
-      window.removeEventListener('scroll', updateScrollDirection);
+      window.removeEventListener("scroll", updateScrollDirection);
     };
   }, [state.isMenuOpen]);
 

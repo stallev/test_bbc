@@ -1,4 +1,4 @@
-import { EndpointsList } from '@/constants';
+import { EndpointsList } from "@/constants";
 
 class RestApiService {
   static async getPageData(id: string) {
@@ -32,18 +32,16 @@ class RestApiService {
         metaTitle: yoast_head_json?.title,
         metaDescription: yoast_head_json?.description,
         canonical: yoast_head_json?.canonical,
-        modifiedTime: yoast_head_json?.article_modified_time
-          ? yoast_head_json?.article_modified_time
-          : '',
+        modifiedTime: yoast_head_json?.article_modified_time ? yoast_head_json?.article_modified_time : '',
         og_locale: yoast_head_json?.og_locale,
         og_type: yoast_head_json?.og_type,
         og_image: {
           type: yoast_head_json?.og_image[0].type ? yoast_head_json?.og_image[0].type : '',
-          url: yoast_head_json?.og_image[0].url,
+          url: yoast_head_json?.og_image[0].url
         },
         schema: yoast_head_json?.schema,
         twitter_card: yoast_head_json?.twitter_card,
-      },
+      }
     };
 
     return data;

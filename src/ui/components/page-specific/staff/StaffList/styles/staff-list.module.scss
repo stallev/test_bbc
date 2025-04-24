@@ -28,23 +28,4 @@
     grid-template-columns: repeat(2, 360px);
     column-gap: 130px;
   }
-
-  &--detailed {
-    display: flex;
-    flex-direction: column;
-    column-gap: 0;
-    row-gap: 50px;
-
-    @media screen and (min-width: $tablet) {
-      row-gap: 80px;
-    }
-
-    @media screen and (min-width: $smallDesktop) {
-      row-gap: 110px;
-    }
-
-    @media screen and (min-width: $largeDesktop) {
-      row-gap: 150px;
-    }
-  }
 }

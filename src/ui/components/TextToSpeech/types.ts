@@ -1,3 +1,3 @@
 export interface TextToSpeechProps {
-  data: string;
+  data: string
 }

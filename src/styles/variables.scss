@@ -19,13 +19,6 @@ $gutter-xl: $gutter-base * 3; // 48
 $gutter-xlg: $gutter-base * 4; // 64
 $gutter-xxlg: $gutter-base * 5; // 80
 
-// Font Family
-$accia-font-family: var(--font-accia-reg);
-$gilroy-semibold-font-family: var(--font-gilroy-semibold);
-$gilroy-medium-font-family: var(--font-gilroy-medium);
-$gilroy-regular-font-family: var(--font-gilroy-regular);
-$livret-display-font-family: var(--font-livret-display);
-
 // Font Sizes
 $font-size-xxxs: 8px;
 $font-size-xxs: 10px;
@@ -160,5 +153,3 @@ $navDropDown-link-width: 100%;
 $navDropDown-link-padding: 8px;
 
 $smallMobileBlogWidth: 320px;
-
-$staff-person-card-deg: 12deg;

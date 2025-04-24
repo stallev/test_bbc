@@ -6,4 +6,4 @@ export const getSubstringBeforeLastSlash = (str: string): string => {
   }
 
   return str.substring(0, lastIndex);
-};
+}

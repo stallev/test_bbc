@@ -1,5 +1,5 @@
-import { SeoBlock, GeneralInfoBlock } from './commonGraphqlFragments';
-import { FullGutenbergBlockList } from './gutenbergGraphqlFragments';
+import { FullGutenbergBlockList } from "./gutenbergGraphqlFragments";
+import { SeoBlock, GeneralInfoBlock } from "./commonGraphqlFragments";
 
 export const getMarkdownPageContentData = `query getMarkdownPageContentData ($id: ID!, $idType: PageIdType) {
   page(id: $id, idType: $idType) {

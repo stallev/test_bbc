@@ -1,4 +1,4 @@
-import { RoutePath, NavBarLinksNames } from '.';
+import { RoutePath, NavBarLinksNames,  } from ".";
 
 export const FooterNavBarGeneralLinks = [
   {

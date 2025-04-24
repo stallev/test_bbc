@@ -7,5 +7,4 @@ export const GutenbergBlocksTypes = {
   audio: 'audio',
   video: 'video',
   quote: 'quote',
-  list: 'list',
 };

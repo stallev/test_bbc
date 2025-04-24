@@ -1,7 +1,5 @@
-import { UpcomingEventCardItemProps } from '../../upcoming-event/UpcomingEventCard/types';
+import { UpcomingEventCardItemProps  } from "../UpcomingEventCard/types";
 
 export interface UpcomingEventListProps {
-  data: UpcomingEventCardItemProps[];
-  translations: Record<string, string>;
-  isLandingPage?: boolean;
+  data: UpcomingEventCardItemProps[]
 }

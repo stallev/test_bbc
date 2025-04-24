@@ -9,7 +9,7 @@
     background-color: $color-gray;
   }
 
-  &.custom-button--primary {
+  &--primary {
     @extend %secondaryBtnLink;
   }
 
@@ -21,7 +21,6 @@
     color: $color-white;
     font-weight: 400;
     font-size: 16px;
-    font-family: $accia-font-family;
 
     @media screen and (min-width: $tablet) {
       padding: 10px 25px;
@@ -29,7 +28,7 @@
     }
 
     @media screen and (min-width: $largeDesktop) {
-      padding: 12px 35px;
+      padding: 16px 40px;
       border-radius: 5px;
       font-size: 35px;
     }

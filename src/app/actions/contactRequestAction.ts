@@ -1,23 +1,22 @@
-'use server';
+"use server"
 
-import { ContactFormsEndpoints } from '@/constants/EndpointsList';
-import { ContactFormsEndpointsTypes, ContactFormActionInputTypes } from '@/types/formTypes';
+import { ContactFormsEndpoints } from "@/constants/EndpointsList";
+import { ContactFormsEndpointsTypes, ContactFormActionInputTypes } from "@/types/formTypes";
 
 type ResponseType = {
   status: number;
   message?: string;
-};
+}
 
 // Определяем тип для ключей ContactFormsEndpointsTypes
 type EndpointKeys = keyof typeof ContactFormsEndpoints;
 
 export const contactRequestAction = async ({
-  data,
-  contactType,
+  data, contactType
 }: ContactFormActionInputTypes): Promise<string> => {
   const endpointType = ContactFormsEndpointsTypes[contactType] as EndpointKeys;
   const url = ContactFormsEndpoints[endpointType];
-
+  console.log('data', data)
   try {
     const response = await fetch(url, {
       method: 'POST',
@@ -26,28 +25,30 @@ export const contactRequestAction = async ({
       },
       body: JSON.stringify(data),
     });
+    console.log('action resp', response)
 
     if (!response.ok) {
       const errorResponse: ResponseType = {
         status: response.status,
-        message: response.statusText || 'Failed to submit form',
+        message: response.statusText || 'Failed to submit form'
       };
       return JSON.stringify(errorResponse);
     }
-
+    
     const successResponse: ResponseType = {
       status: 200,
-      message: 'Form submitted successfully',
+      message: 'Form submitted successfully'
     };
-
+    
     return JSON.stringify(successResponse);
-  } catch (error: unknown) {
-    console.error('Contact form submission error:', error);
 
+  } catch (error) {
+    console.error('Contact form submission error:', error);
+    
     const errorResponse: ResponseType = {
       status: 500,
-      message: error instanceof Error ? error.message : 'Internal server error',
+      message: error instanceof Error ? error.message : 'Internal server error'
     };
     return JSON.stringify(errorResponse);
   }
-};
+}

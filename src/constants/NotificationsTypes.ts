@@ -18,5 +18,5 @@ export const NotificationTypes = {
       type: 'warning',
       langTextCode: 'already_subscribed_text',
     },
-  },
-};
+  }
+}

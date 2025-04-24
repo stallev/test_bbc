@@ -1,17 +1,16 @@
-'use client';
+"use client"
 
 import React from 'react';
 import AudioPlayer from 'react-h5-audio-player';
-import { IoCloseCircle } from 'react-icons/io5';
-
 import { useUpdatePlayerInformation } from '@/hooks/useUpdatePlayerInformation';
+import { useAppContext } from "@/ui/globalState/ContextHook/contextHook";
+import { IoCloseCircle } from "react-icons/io5";
 import { Text, Button } from '@/ui/components/ui-kit';
-import { useAppContext } from '@/ui/globalState/ContextHook/contextHook';
 
 import styles from './styles/player.module.scss';
 import 'react-h5-audio-player/src/styles.scss';
 
-const Player: React.FC = () => {
+const Player:React.FC = () => {
   const setActiveSermon = useUpdatePlayerInformation();
   const { state } = useAppContext();
 
@@ -23,21 +22,30 @@ const Player: React.FC = () => {
     });
   };
   return (
-    state.playerData.isVisiblePlayer && (
+    state.playerData.isVisiblePlayer && 
       <div className={styles.player}>
         <div className={styles.player__header}>
-          <Text textType="p" className={styles['player__track-name']}>
+          <Text
+            textType='p'
+            className={styles["player__track-name"]}
+          >
             {state.playerData.trackName}
           </Text>
 
-          <Button onClick={onStopSermonPlaying} className={styles['player__close-button']}>
+          <Button
+            onClick={onStopSermonPlaying}
+            className={styles["player__close-button"]}
+          >
             <IoCloseCircle />
           </Button>
         </div>
-        <AudioPlayer className={styles.player__body} autoPlay src={state.playerData.trackSrc} />
+        <AudioPlayer
+          className={styles.player__body}
+          autoPlay
+          src={state.playerData.trackSrc}
+        />
       </div>
-    )
-  );
-};
+  )
+}
 
-export default Player;
+export default Player

@@ -14,8 +14,6 @@
   &__title {
     font-size: 15px;
     color: var(--text-main-color);
-    font-weight: 500;
-    font-family: $gilroy-medium-font-family;
 
     @media screen and (min-width: $tablet) {
       font-size: $font-size-lms;
@@ -40,12 +38,9 @@
     margin-bottom: $gutter-sm;
 
     &-date {
-      flex-shrink: 0;
       padding: 0 $gutter-md 0 0;
       font-size: 13px;
       line-height: 15px;
-      font-weight: 500;
-      font-family: $gilroy-medium-font-family;
   
       @media screen and (min-width: $smallDesktop) {
         font-size: $font-size-md;
@@ -59,7 +54,12 @@
 
 
       &--live {
-        @extend %liveStreamsStyle;
+        background-color: $color-red;
+        padding-right: $gutter-lg;
+
+        @media screen and (min-width: $largeDesktop) {
+          padding-right: $gutter-xlg;
+        }
       }
   
       &--published {
@@ -75,35 +75,31 @@
 }
 
 .youtube-player__play-button {
+  position: relative;
+  width: 30px;
+  height: 33px;
+  background: none;
+}
+
+.youtube-player__play-button::before,
+.youtube-player__play-button::after {
+  content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 29px;
-  height: 31px;
-  border: 0px;
-  background-color: transparent;
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 65 70' role='presentation'%3E%3Cpath fill='%23FFFFFF' fill-rule='evenodd' clip-rule='evenodd' d='M64.0183 34.6212L11.9712 69.0344V61.2818L0.246094 69.0344V0.20802L11.9712 7.9606V0.208008L64.0183 34.6212ZM11.9712 10.4804L2.54229 4.28662V64.9558L11.9712 58.762V10.4804ZM14.2674 64.9558L60.4465 34.6212L14.2674 4.28661V64.9558Z'%3E%3C/path%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
+  background: white;
+}
 
-  @media screen and (min-width: $tablet) {
-    width: 35px;
-    height: 38px;
-  }
+.youtube-player__play-button::before {
+  width: 5px;
+  height: 100%;
+  left: 0;
+  top: 0;
+  clip-path: polygon(0 0, 100% 20%, 100% 80%, 0 100%);
+}
 
-  @media screen and (min-width: $smallDesktop) {
-    width: 40px;
-    height: 45px;
-  }
-
-  @media screen and (min-width: $desktop) {
-    width: 46px;
-    height: 51px;
-  }
-
-  @media screen and (min-width: $largeDesktop) {
-    width: 52px;
-    height: 56px;
-  }
+.youtube-player__play-button::after {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  clip-path: polygon(10% 10%, 90% 50%, 10% 90%);
 }

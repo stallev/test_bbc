@@ -3,20 +3,11 @@
 
 .privacy {
   &__title {
-    @extend %h1PageTitleStyle;
-  }
-
-  &__container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    @extend %paddingTopHeader;
+    @extend %pageTitleStyles;
   }
 
   &__page-content {
-    display: flex;
-
-    h5 {
-      @extend %h5PrivacyTermsStyle;
-    }
+    margin-top: $gutter-xl;
   }
 }

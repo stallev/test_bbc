@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const { settings } = require('./src/config/config.json');
+const { settings } = require("./src/config/config.json");
 
 const languages = settings.languages;
 const defaultLanguage = settings.default_language;
@@ -14,15 +14,15 @@ const cspHeader = `
   default-src 'self';
   script-src 'self' 'unsafe-eval' 'unsafe-inline' https://maps.googleapis.com https://maps.google.com;
   style-src 'self' 'unsafe-inline';
-  img-src 'self' blob: data: https://i.ytimg.com https://*.ytimg.com https://testwordpressmedia1.s3.amazonaws.com https://maps.googleapis.com https://maps.gstatic.com;
-  font-src 'self' data:;
+  img-src 'self' blob: data: https://i.ytimg.com https://testwordpressmedia1.s3.amazonaws.com https://maps.googleapis.com https://maps.gstatic.com;
+  font-src 'self';
   object-src 'none';
   base-uri 'self';
   form-action 'self';
   frame-ancestors 'none';
   upgrade-insecure-requests;
-  frame-src 'self' https://i.ytimg.com https://wallet.subsplash.com https://subsplash.com https://www.youtube-nocookie.com/ https://testwordpressmedia1.s3.amazonaws.com/ https://www.youtube.com/;
-  connect-src 'self' https://i.ytimg.com https://api.iconify.design https://testchurchapi.stallevs.ru/graphql https://testchurchapi.stallevs.ru/wp-json/timeline/timeline-data https://testchurchapi.stallevs.ru/wp-json/events/upcoming-events-list https://www.googleapis.com/youtube/v3/playlistItems https://youtube.googleapis.com/youtube/v3/videos https://maps.googleapis.com;
+  frame-src 'self' https://wallet.subsplash.com https://subsplash.com https://www.youtube-nocookie.com/ https://testwordpressmedia1.s3.amazonaws.com/;
+  connect-src 'self' https://api.iconify.design https://testchurchapi.stallevs.ru/graphql https://testchurchapi.stallevs.ru/wp-json/timeline/timeline-data https://testchurchapi.stallevs.ru/wp-json/events/upcoming-events-list https://www.googleapis.com/youtube/v3/playlistItems https://youtube.googleapis.com/youtube/v3/videos https://maps.googleapis.com;
   media-src 'self' https://testwordpressmedia1.s3.amazonaws.com https://testchurchapi.stallevs.ru/;
 `;
 
@@ -31,83 +31,17 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [425, 570, 768, 1024],
     imageSizes: [16, 64, 96, 128, 256, 384, 512],
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'testwordpressmedia1.s3.amazonaws.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'secure.gravatar.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'testchurchapi.stallevs.ru',
-      },
-      {
-        protocol: 'https',
-        hostname: 'i.ytimg.com',
-      },
-      {
-        protocol: 'https',
-        hostname: '3.85.115.123',
-      },
-    ],
-    // minimumCacheTTL: 31536000,
+    domains: ['testwordpressmedia1.s3.amazonaws.com', 'secure.gravatar.com', 'testchurchapi.stallevs.ru', '3.85.115.123'],
+    minimumCacheTTL: 86400,
   },
   reactStrictMode: true,
-  output: 'standalone',
+  output: "standalone",
   compress: true,
   httpAgentOptions: {
     keepAlive: true,
   },
   async headers() {
     return [
-      {
-        source: '/:path*.(js|css|jpg|jpeg|png|webp|avif|gif|svg|woff)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        source: '/_next/static/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        source: '/_next/static/media/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        source: '/_next/image/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      // {
-      //   source: '/',
-      //   headers: [
-      //     {
-      //       key: 'Cache-Control',
-      //       value: 'public, max-age=0, s-maxage=600, stale-while-revalidate=30',
-      //     },
-      //   ],
-      // },
       {
         source: '/(.*)',
         headers: [
@@ -117,32 +51,28 @@ const nextConfig = {
           },
           {
             key: 'Strict-Transport-Security',
-            value: 'max-age=63072000; includeSubDomains; preload',
+            value: 'max-age=63072000; includeSubDomains; preload'
           },
           {
             key: 'X-Frame-Options',
-            value: 'SAMEORIGIN',
+            value: 'SAMEORIGIN'
           },
           {
             key: 'X-Content-Type-Options',
-            value: 'nosniff',
+            value: 'nosniff'
           },
           {
             key: 'X-DNS-Prefetch-Control',
-            value: 'on',
-          },
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=0, s-maxage=900, stale-while-revalidate=30',
+            value: 'on'
           },
         ],
       },
-    ];
+    ]
   },
   async rewrites() {
     return [
       {
-        source: `/:locale(!${defaultLanguage}|${otherLanguages.join('|')})/:path*`,
+        source: `/:locale(!${defaultLanguage}|${otherLanguages.join("|")})/:path*`,
         destination: `/:locale/:path*`,
       },
       {
@@ -153,4 +83,5 @@ const nextConfig = {
   },
 };
 
-module.exports = process.env.ANALYZE === 'true' ? withBundleAnalyzer(nextConfig) : nextConfig;
+module.exports =
+  process.env.ANALYZE === 'true' ? withBundleAnalyzer(nextConfig) : nextConfig;

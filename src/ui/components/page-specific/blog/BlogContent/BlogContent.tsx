@@ -1,17 +1,21 @@
-'use client';
-
-import dynamic from 'next/dynamic';
 import React, { useState, useEffect } from 'react';
-
-import { CARDS_PORTION, DEFAULT_BLOG_POSTS_FILTER_STATE } from '@/constants/mock';
-
-import { BlogContentProps, BlogPostsStateProps, BlogFiltersProps } from './types';
+import dynamic from 'next/dynamic';
+import useTranslationFunction from '@/hooks/useTranslationFunction';
+import { CARDS_PORTION } from '@/constants/mock';
+import { DEFAULT_BLOG_POSTS_FILTER_STATE } from '@/constants/mock';
 import BlogFilters from '../BlogFilters/BlogFilters';
+import { BlogContentProps, BlogPostsStateProps, BlogFiltersProps } from './types';
+
 import styles from './styles/blog-content.module.scss';
 
 const BlogCardsList = dynamic(() => import('../BlogCardsList/BlogCardsList'));
 
-const BlogContent: React.FC<BlogContentProps> = ({ postsData, postsCategories }) => {
+const BlogContent:React.FC<BlogContentProps> = ({
+  postsData,
+  postsCategories,
+}) => {
+  const translate = useTranslationFunction();
+
   const [posts, setPosts] = useState<BlogPostsStateProps>({
     currentPosts: postsData.slice(0, CARDS_PORTION),
     searchedPosts: [],
@@ -20,13 +24,13 @@ const BlogContent: React.FC<BlogContentProps> = ({ postsData, postsCategories })
 
   const [offset, setOffset] = useState(CARDS_PORTION);
 
-  const isActiveSearchedPosts = filters !== DEFAULT_BLOG_POSTS_FILTER_STATE;
+  const isActiveSearchedPosts = filters != DEFAULT_BLOG_POSTS_FILTER_STATE;
 
   const fetchMoreData = () => {
-    const newData = postsData.slice(offset, offset + CARDS_PORTION);
+    const newData = postsData.slice(offset, offset + CARDS_PORTION); 
     setPosts({
       ...posts,
-      currentPosts: [...posts.currentPosts, ...newData],
+      currentPosts: [...posts.currentPosts, ...newData]
     });
     setOffset(offset + CARDS_PORTION);
   };
@@ -36,10 +40,11 @@ const BlogContent: React.FC<BlogContentProps> = ({ postsData, postsCategories })
       currentPosts: postsData.slice(0, CARDS_PORTION),
       searchedPosts: [],
     });
+
   }, [postsData]);
 
   return (
-    <div className={styles['blog-content']}>
+    <div className={styles["blog-content"]}>
       <BlogFilters
         categoriesData={postsCategories}
         fullPostsList={postsData}
@@ -48,7 +53,7 @@ const BlogContent: React.FC<BlogContentProps> = ({ postsData, postsCategories })
         setPosts={setPosts}
         posts={posts}
       />
-
+      
       <BlogCardsList
         data={!isActiveSearchedPosts ? posts.currentPosts : posts.searchedPosts}
         fetchMoreData={fetchMoreData}
@@ -56,7 +61,7 @@ const BlogContent: React.FC<BlogContentProps> = ({ postsData, postsCategories })
         isReducedList={false}
       />
     </div>
-  );
-};
+  )
+}
 
 export default BlogContent;

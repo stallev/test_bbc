@@ -1,44 +1,34 @@
-import { Metadata } from 'next';
+import { Metadata } from "next";
+import { DEFAULT_FEATURED_IMAGE } from "@/constants/mock";
+import { getSubstringBeforeLastSlash } from "@/utils/getSubstringBeforeLastSlash";
+import { getTranslations } from "@/utils/languageParser";
+import { GetSeoDataProps } from "@/types/globalTypes";
 
-import { DEFAULT_FEATURED_IMAGE } from '@/constants/mock';
-import { GetSeoDataProps } from '@/types/globalTypes';
-import { getSubstringBeforeLastSlash } from '@/utils/getSubstringBeforeLastSlash';
-import { getTranslations } from '@/utils/languageParser';
 
-export const getSeoData = ({ seoContentData, seoPathData }: GetSeoDataProps): Metadata => {
+export const getSeoData = ({ seoContentData, seoPathData}: GetSeoDataProps): Metadata => {
   const { asPath, locale, defaultLocale } = seoPathData;
 
   const translations = getTranslations(locale);
-  const {
-    data = {} as {
-      featuredImageUrl?: string;
-      slug?: string;
-      alternateLinksSlugs?: {
-        en?: string;
-        ru?: string;
-      };
-      title?: string;
-      metaDesc?: string;
-    },
-    isPostType = false,
-  } = seoContentData || {};
+  const { data, isPostType } = seoContentData;
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
   const normalizedPath = asPath !== '/' ? asPath : '';
 
-  const ogImageUrl = !!data?.featuredImageUrl ? data.featuredImageUrl : DEFAULT_FEATURED_IMAGE;
+  const ogImageUrl = !!data?.featuredImageUrl
+    ? data.featuredImageUrl
+    : DEFAULT_FEATURED_IMAGE;
 
   const imageFileExtension = ogImageUrl.substring(ogImageUrl.lastIndexOf('.') + 1);
 
   const getCanonicalUrl = () => {
     let canonicalUrl = '';
-    if (!isPostType && locale === defaultLocale) {
+    if (!isPostType && locale == defaultLocale) {
       canonicalUrl = `${siteUrl}${normalizedPath}`;
     }
     if (!isPostType && locale !== defaultLocale) {
       canonicalUrl = `${siteUrl}/${locale}${normalizedPath}`;
     }
-    if (isPostType && locale === defaultLocale) {
+    if (isPostType && locale == defaultLocale) {
       canonicalUrl = `${siteUrl}${getSubstringBeforeLastSlash(normalizedPath)}/${data?.slug}`;
     }
     if (isPostType && locale !== defaultLocale) {
@@ -46,7 +36,7 @@ export const getSeoData = ({ seoContentData, seoPathData }: GetSeoDataProps): Me
     }
 
     return canonicalUrl;
-  };
+  }
 
   const getAlternateLangsUrls = () => {
     let alternateLangsUrls = {
@@ -58,28 +48,28 @@ export const getSeoData = ({ seoContentData, seoPathData }: GetSeoDataProps): Me
       alternateLangsUrls = {
         en: `${siteUrl}${normalizedPath}`,
         ru: `${siteUrl}/ru${normalizedPath}`,
-      };
+      }
     }
 
     if (isPostType) {
       alternateLangsUrls = {
         en: `${siteUrl}${getSubstringBeforeLastSlash(normalizedPath)}/${data?.alternateLinksSlugs?.en}`,
         ru: `${siteUrl}/ru${getSubstringBeforeLastSlash(normalizedPath)}/${data?.alternateLinksSlugs?.ru}`,
-      };
+      }
     }
 
     return alternateLangsUrls;
-  };
+  }
 
   const canonicalUrl = getCanonicalUrl();
   const alternateLangsUrls = getAlternateLangsUrls();
 
-  const ogLocale = `${locale}_${locale?.toUpperCase()}`;
-
+  const ogLocale = `${locale}_${locale?.toUpperCase()}`
+ 
   return {
     title: data?.title,
     description: data?.metaDesc ? data?.metaDesc : translations.site_description,
-    robots: 'noindex, nofollow',
+    robots: "noindex, nofollow",
     alternates: {
       canonical: canonicalUrl,
       languages: alternateLangsUrls,
@@ -96,7 +86,7 @@ export const getSeoData = ({ seoContentData, seoPathData }: GetSeoDataProps): Me
           height: 600,
           alt: data?.title,
           type: `image/${imageFileExtension}`,
-        },
+        }
       ],
       siteName: translations.site_name,
     },
@@ -104,6 +94,6 @@ export const getSeoData = ({ seoContentData, seoPathData }: GetSeoDataProps): Me
       title: data?.title,
       description: data?.metaDesc ? data?.metaDesc : translations.site_description,
       images: ogImageUrl,
-    },
-  };
-};
+    }
+  }
+}
