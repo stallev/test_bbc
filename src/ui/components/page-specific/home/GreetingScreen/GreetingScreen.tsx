@@ -2,7 +2,7 @@ import React from 'react';
 
 import { LinkTypes } from '@/constants/LinkTypes';
 import { RoutePath } from '@/constants/RoutePath';
-import { CustomImage, CustomLink, Text, Icon } from '@/ui/components/ui-kit';
+import { CustomLink, Text, Icon } from '@/ui/components/ui-kit';
 import Container from '@/ui/containers/Container/Container';
 
 import styles from './styles/greeting-screen.module.scss';
@@ -18,19 +18,6 @@ const GreetingScreen: React.FC<GreetingScreenProps> = ({
 }) => {
   return (
     <div className={styles['greeting-screen']}>
-      <CustomImage
-        imageName="heroSectionBg"
-        className={styles['greeting-screen__image']}
-        alt="Background image alt"
-        ariaLabel="Background image alt"
-        sizes="100vw"
-        priority
-        placeholder="blur"
-        blurDataURL="data:image/webp;base64,UklGRiwAAABXRUJQVlA4WAoAAAAgAAAAEAAQAAEAAQCdASoQAAcAAEAnJZgCdLoAAA==
-"
-        quality={60}
-      />
-
       <Container>
         <div className={styles['greeting-screen__content-wrap']}>
           <div className={styles['greeting-screen__content']}>
