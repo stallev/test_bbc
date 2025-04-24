@@ -1,7 +1,8 @@
-import { useContext } from "react";
-import { AppContext } from "@/ui/globalState/AppContext";
-import { NotificationData } from "@/ui/globalState/Reducer/reducer";
-import { ActionType } from "@/ui/globalState/Actions/action";
+import { useContext } from 'react';
+
+import { ActionType } from '@/ui/globalState/Actions/action';
+import { AppContext } from '@/ui/globalState/AppContext';
+import { NotificationData } from '@/ui/globalState/Reducer/reducer';
 
 export const useToggleNotification = () => {
   const { dispatch } = useContext(AppContext);
@@ -18,4 +19,4 @@ export const useToggleNotification = () => {
   };
 
   return updateNotificationData;
-}
+};

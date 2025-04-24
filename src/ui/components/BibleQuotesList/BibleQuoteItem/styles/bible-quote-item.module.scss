@@ -11,6 +11,7 @@
     margin-bottom: 20px;
     width: fit-content;
     font-weight: 500;
+    font-family: $gilroy-medium-font-family;
     font-size: 18px;
 
     @media screen and (min-width: $smallDesktop) {
@@ -27,6 +28,7 @@
 
   &__content {
     font-size: 12px;
+    font-family: $gilroy-regular-font-family;;
 
     @media screen and (min-width: $smallDesktop) {
       font-size: 15px;

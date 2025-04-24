@@ -1,9 +1,28 @@
-@import './variables.scss';
+@import "./variables.scss";
+
+%pageTopPaddingSize {
+  padding-top: $header-height;
+
+  @media screen and (min-width: $tablet) {
+    margin-top: 40px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    margin-top: 60px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    margin-top: 90px;
+  }
+}
 
 %h1PageTitleStyle {
-  margin-bottom: 20px;
+  @extend %pageTopPaddingSize;
+
+  font-family: $accia-font-family;
   text-align: center;
   font-size: 50px;
+  font-weight: 400;
   line-height: 1.2;
   color: var(--text-main-color);
 
@@ -24,47 +43,92 @@
 }
 
 %h2Style {
-  margin-top: $gutter-xs;
-  margin-bottom: -$gutter-sm;
-  font-size: 28px;
-  line-height: 1.4;
-  font-weight: $font-weight-bold;
+  width: 100%;
+  text-align: center;
+  font-family: $accia-font-family;
+  font-size: 40px;
+  line-height: 1;
+  font-weight: 400;
+  color: var(--text-main-color);
 
   @media screen and (min-width: $tablet) {
-    font-size: $font-size-lg;
+    font-size: 60px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    font-size: 70px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    font-size: 80px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    font-size: 100px;
   }
 }
 
 %h3Style {
-  margin-top: $gutter-xs;
-  margin-bottom: -$gutter-sm;
-  font-size: 28px;
-  line-height: 1.4;
-  font-weight: $font-weight-bold;
+  margin-top: 10px;
+  text-align: center;
+  font-family: $accia-font-family;
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 400;
+  color: var(--text-main-color);
 
   @media screen and (min-width: $tablet) {
-    font-size: 30px;
+    margin-top: 20px;
+    font-size: 40px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    margin-top: 25px;
+    font-size: 50px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    margin-top: 30px;
+    font-size: 60px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    font-size: 72px;
   }
 }
 
 %h4Style {
-  margin-top: $gutter-xs;
-  margin-bottom: -$gutter-sm;
-  font-size: $font-size-md;
-  line-height: 1.4;
-  font-weight: $font-weight-bold;
+  font-family: $accia-font-family;
+  font-size: 25px;
+  line-height: 1;
+  font-weight: 400;
+  color: var(--text-main-color);
 
   @media screen and (min-width: $tablet) {
-    font-size: 28px;
+    font-size: 30px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    font-size: 40px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    font-size: 48px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    font-size: 54px;
   }
 }
 
 %h3SubsectionStyle {
   margin-bottom: 27px;
+  width: 100%;
   text-align: center;
   font-size: 40px;
   line-height: 1;
   font-weight: 400;
+  font-family: $accia-font-family;
   color: var(--text-main-color);
 
   @media screen and (min-width: $tablet) {
@@ -84,14 +148,52 @@
 }
 
 %h5Style {
-  margin-top: $gutter-xs;
-  margin-bottom: -$gutter-sm;
+  margin-top: 22px;
   font-size: 22px;
-  line-height: 1.4;
-  font-weight: $font-weight-bold;
+  line-height: 1;
+  font-weight: 700;
+  font-family: $accia-font-family;
+  color: var(--text-main-color);
 
   @media screen and (min-width: $tablet) {
     font-size: 26px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    font-size: 30px;
+  }
+}
+
+%h5PrivacyTermsStyle {
+  @extend %h5Style;
+
+  &::first-letter {
+    color: $color-red;
+    letter-spacing: 8px;
+
+    @media screen and (min-width: $smallDesktop) {
+     letter-spacing: 14px;
+    }
+  }
+
+  &:not(:nth-child(1)) {
+    margin-top: 30px;
+
+    @media screen and (min-width: $tablet) {
+      margin-top: 34px;
+    }
+
+    @media screen and (min-width: $smallDesktop) {
+      margin-top: 40px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      margin-top: 50px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      margin-top: 60px;
+    }
   }
 }
 
@@ -103,23 +205,46 @@
 }
 
 %paddingTopHeader {
-  padding-top: calc($header-height + $gutter-ml);
+  padding-top: calc($header-height + 10px);
 
   @media screen and (min-width: $tablet) {
-    padding-top: calc($header-height + $gutter-lg);
+    padding-top: calc($header-height + 40px);
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    padding-top: calc($header-height + 50px);
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    padding-top: calc($header-height + 87px);
   }
 }
 
 %pageTitleStyles {
-  font-size: $font-size-lg;
-  line-height: $line-height-lg;
+  @extend %paddingTopHeader;
+
+  margin-bottom: 40px;
+  font-size: 50px;
+  line-height: 1;
+  font-family: $accia-font-family;
+  font-weight: 400;
   text-align: center;
   font-weight: $font-weight-bold;
   color: var(--text-main-color);
 
   @media screen and (min-width: $tablet) {
-    font-size: $font-size-xl;
-    line-height: $line-height-xl;
+    margin-bottom: 80px;
+    font-size: 64px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    margin-bottom: 120px;
+    font-size: 86px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    margin-bottom: 200px;
+    font-size: 110px;
   }
 }
 
@@ -134,27 +259,135 @@
   color: var(--text-main-color);
 }
 
-%paragraphDescriptionTextStyle {
+%pageParagraphDescriptionTextStyle {
   color: var(--text-main-color);
-  font-size: 13px;
-  line-height: 15px;
+  font-size: 14px;
+  line-height: 1.2;
   font-weight: 400;
+  font-family: $gilroy-regular-font-family;
+
+  @media screen and (min-width: $tablet) {
+    font-size: 18px;
+  }
 
   @media screen and (min-width: $smallDesktop) {
     font-size: 24px;
-    line-height: 27px;
   }
+
+  @media screen and (min-width: $desktop) {
+    font-size: 32px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    font-size: 40px;
+  }
+}
+
+%smallParagraphMediumDescriptionTextStyle {
+  margin-top: 10px;
+  text-align: justify;
+  color: var(--text-main-color);
+  font-size: 13px;
+  line-height: 1.6;
+  font-weight: 500;
+  font-family: $gilroy-medium-font-family;
+
+  @media screen and (min-width: $tablet) {
+    margin-top: 12px;
+    font-size: 16px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    margin-top: 14px;
+    font-size: 18px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    margin-top: 18px;
+    font-size: 22px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    margin-top: 20px;
+    font-size: 24px;
+  }
+}
+
+%smallParagraphRegularDescriptionTextStyle {
+  color: var(--text-main-color);
+  font-size: 13px;
+  line-height: 1.2;
+  font-weight: 400;
+  font-family: $gilroy-regular-font-family;
+
+  @media screen and (min-width: $tablet) {
+    font-size: 16px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    font-size: 18px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    font-size: 22px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    font-size: 24px;
+  }
+}
+
+%eventPeriodStyle {
+  display: flex;
+  gap: 10px;
+  font-family: $gilroy-semibold-font-family;
+  font-weight: 500;
+  line-height: 1;
+  font-size: 15px;
+
+  @media screen and (min-width: $tablet) {
+    font-size: 22px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    font-size: 28px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    font-size: 36px;
+  }
+}
+
+%eventPeriodDateValueStyle {
+  display: inline-block;
+  padding-right: 10px;
+  border-right: 2px solid $color-red;
+
+  @media screen and (min-width: $tablet) {
+    padding-right: 15px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    padding-right: 22px;
+  }
+}
+
+%eventPeriodTimeValueStyle {
+  display: inline-block;
+  color: var(--text-main-color);
 }
 
 %inputLabelStyle {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  width: 100%;
   color: var(--text-main-color);
   background-color: var(--main-bg-color);
   font-size: 20px;
   line-height: 1;
   font-weight: 400;
+  font-family: $accia-font-family;
 
   @media screen and (min-width: $tablet) {
     font-size: 25px;
@@ -174,12 +407,13 @@
   display: flex;
   align-items: center;
   gap: $gutter-sm;
-  padding: $gutter-ms $gutter-ms $gutter-sm;
+  padding: $gutter-ms 6px $gutter-sm;
   border: 1px solid $color-white;
   border-radius: $border-radius-ms;
   font-weight: $font-weight-default;
   font-size: $font-size-md;
   line-height: $line-height-md;
+  font-family: $accia-font-family;
   color: $color-white;
   transition: all 0.3 ease-in;
 
@@ -229,18 +463,23 @@
 %secondaryBtnLink {
   display: flex;
   align-items: center;
-  gap: $gutter-md;
+  gap: 16px;
   width: fit-content;
-  padding: $gutter-ms $gutter-ms $gutter-sm;
+  box-sizing: border-box;
+  padding: 4px 12px 2px;
   background-color: var(--main-bg-color);
-  border: 1px solid $color-red !important;
+  border: 1px solid $color-red;
   box-shadow: none;
-  border-radius: $border-radius-ms;
+  border-radius: 3px;
   font-weight: $font-weight-default;
-  font-size: $font-size-md;
-  line-height: $line-height-md;
+  font-size: 21px;
+  font-family: $accia-font-family;
+  line-height: 1;
   color: $color-red;
-  transition: all 0.3 ease-in;
+
+  @media screen and (min-width: $desktop) {
+    border-radius: 5px;
+  }
 
   &:hover,
   &:active,
@@ -250,34 +489,56 @@
     color: $color-white;
 
     svg {
+      display: block;
       fill: $color-white;
     }
   }
 
   svg {
-    width: 22px;
-    height: 21px;
+    width: 17px;
+    height: 16px;
     fill: $color-red;
 
     @media screen and (min-width: $tablet) {
+      width: 22px;
+      height: 21px;
+    }
+
+    @media screen and (min-width: $smallDesktop) {
+      width: 28px;
+      height: 27px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
       width: 34px;
       height: 32px;
     }
   }
 
   @media screen and (min-width: $tablet) {
-    gap: $gutter-ml;
+    gap: 20px;
     border-radius: 5px;
-    padding: $gutter-md $gutter-md 14px;
-    font-size: $font-size-lg;
-    line-height: $line-height-lg;
+    font-size: 24px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    padding: 10px 16px 6px;
+    font-size: 28px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    font-size: 34px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    font-size: 44px;
   }
 }
 
 %btnStyles {
   outline: none;
   border: none;
-  transition: all .3s linear;
+  transition: all 0.3s linear;
   cursor: pointer;
   box-shadow: $button-shadow;
 }
@@ -288,7 +549,7 @@
   outline: none;
   cursor: pointer;
   box-shadow: $button-shadow;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 
   &:hover {
     background-color: $color-gray;
@@ -297,17 +558,23 @@
 
 %structuredSingleMediaItem {
   position: relative;
-  height: 180px;
-  width: 250px;
-
-  @media screen and (min-width: $mobile) {
-    height: 300px;
-    width: 400px;
-  }
+  height: 200px;
+  width: 100%;
 
   @media screen and (min-width: $tablet) {
-    height: 400px;
-    width: 530px;
+    height: 420px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    height: 550px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    height: 700px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    height: 860px;
   }
 
   img {
@@ -328,19 +595,24 @@
 }
 
 %section {
-  padding: $gutter-xl 0 0;
   background-color: var(--main-bg-color);
+}
+
+%sectionGaps {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
 
   @media screen and (min-width: $tablet) {
-    padding-top: $gutter-xlg;
+    gap: 100px;
   }
 
   @media screen and (min-width: $smallDesktop) {
-    padding-top: $gutter-xxlg;
+    gap: 130px;
   }
 
   @media screen and (min-width: $largeDesktop) {
-    padding-top: 130px;
+    gap: 200px;
   }
 }
 
@@ -351,6 +623,7 @@
   line-height: 38px;
   font-weight: $font-weight-default;
   color: var(--text-main-color);
+  font-family: $accia-font-family;
 
   @media screen and (min-width: $tablet) {
     margin-bottom: $gutter-xlg;
@@ -375,19 +648,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: $gutter-ml;
-  margin-bottom: $gutter-lg;
+  row-gap: 50px;
 
-  @media screen and (min-width: $smallDesktop) {
+  @media screen and (min-width: $tablet) {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-content: flex-start;
     align-items: stretch;
-    margin-bottom: $gutter-xlg;
+    row-gap: 60px;
+    column-gap: 32px;
 
     article:nth-child(2n) {
       transform: translateY(200px);
-      transition: transform 2s ease-out;
+      transition: transform 1s ease-out;
     }
 
     &.animated {
@@ -397,9 +670,14 @@
     }
   }
 
-
   @media screen and (min-width: $desktop) {
-    gap: $gutter-xl;
+    row-gap: 80px;
+    column-gap: 48px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    column-gap: 64px;
+    row-gap: 100px;
   }
 }
 
@@ -427,13 +705,14 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  min-width: 280px;
+  width: 100%;
   max-width: 350px;
   color: var(--text-main-color);
 
   @media screen and (min-width: $tablet) {
     max-width: none;
-    width: 350px;
+    min-width: 0;
+    width: auto;
   }
 
   @media screen and (min-width: $smallDesktop) {
@@ -444,6 +723,7 @@
 %postCardStartDateStyles {
   margin-bottom: $gutter-ms;
   font-style: italic;
+  font-family: $livret-display-font-family;
   font-weight: 300;
   font-size: 20px;
   line-height: 1;
@@ -459,22 +739,8 @@
   height: 250px;
   margin-bottom: 30px;
 
-  &::before {
-    position: absolute;
-    content: '';
-    display: block;
-    width: 100%;
-    height: 90%;
-    top: 0;
-    left: 0;
-    z-index: $z-index-level1;
-    background:
-      linear-gradient(rgba(250, 248, 242, 1),
-        rgba(250, 248, 242, 0));
-  }
-
   @media screen and (min-width: $tablet) {
-    height: 400px;
+    height: 250px;
     margin-bottom: 35px;
   }
 
@@ -489,34 +755,50 @@
   @media screen and (min-width: $largeDesktop) {
     height: 580px;
   }
+}
 
-  %postCardTitleStyles {
-    margin-bottom: $gutter-ms;
-    font-size: 23px;
-    line-height: 1;
-    font-weight: 500;
+%liveStreamsStyle {
+  display: inline-block;
+  padding: 6px 26px;
+  background-color: $color-red;
+  font-size: 13px;
+  line-height: 15px;
+  font-weight: 500;
+  font-family: $gilroy-medium-font-family;
+  color: $color-white;
 
-    @media screen and (min-width: $smallDesktop) {
-      margin-bottom: $gutter-md;
-      font-size: 28px;
-    }
+  @media screen and (min-width: $smallDesktop) {
+    padding: 8px 28px;
+    font-size: $font-size-md;
+    line-height: $line-height-md;
   }
 
-  %postCardDescriptionStyles {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-bottom: $gutter-xl;
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 1;
-    background-color: aqua !important;
+  @media screen and (min-width: $largeDesktop) {
+    padding: 10px 32px;
+    font-size: 30px;
+    line-height: 30px;
+  }
+}
 
-    @media screen and (min-width: $smallDesktop) {
-      margin-bottom: $gutter-lg;
-      font-size: 18px;
-    }
+%customSelectStyles {
+  font-size: 14px;
+  line-height: 1.1;
+  font-weight: 400;
+  font-family: $gilroy-regular-font-family;
+
+  @media screen and (min-width: $tablet) {
+    font-size: 18px;
+  }
+
+  @media screen and (min-width: $smallDesktop) {
+    font-size: 22px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    font-size: 26px;
+  }
+
+  @media screen and (min-width: $largeDesktop) {
+    font-size: 29px;
   }
 }

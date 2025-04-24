@@ -1,43 +1,46 @@
-import { WPPostSeoType, ImageLinks } from "./CommonWPDataTypes"
+import { WPPostSeoType, ImageLinks } from './CommonWPDataTypes';
+import { GutenbergBlockType } from './PageContentDataTypes';
 
 export interface RenderedPastorCardDataType {
-  data: TranslationFetchedData
+  data: TranslationFetchedData;
 }
 
 export interface FetchedStaffPersonDataType {
   minister: {
-    translation: TranslationFetchedData
-  }
+    translation: TranslationFetchedData;
+  };
 }
 
 export interface TranslationFetchedData {
-  seo: WPPostSeoType
-  ministerFirstName: string
-  ministerLastName: string
-  ministerPosition: string
-  ministerDepartment: string
-  ministerDescription: string
-  slug: string
-  excerpt: string
-  translations: Translation[]
-  ministerPhoto?: MinisterPhoto[]
-  imageLinks: ImageLinks
+  seo: WPPostSeoType;
+  ministerFirstName: string;
+  ministerLastName: string;
+  ministerPosition: string;
+  ministerDepartment: string;
+  ministerDescription: string;
+  ministerUserSlug: string;
+  blocks: GutenbergBlockType[];
+  slug: string;
+  excerpt: string;
+  translations: Translation[];
+  ministerPhoto?: MinisterPhoto[];
+  imageLinks: ImageLinks;
 }
 
 export interface Schema {
-  pageType: string[]
+  pageType: string[];
 }
 
 export interface Translation {
-  slug: string
-  language: Language
+  slug: string;
+  language: Language;
 }
 
 export interface Language {
-  code: string
+  code: string;
 }
 
 export interface MinisterPhoto {
-  size: string
-  url: string
+  size: string;
+  url: string;
 }

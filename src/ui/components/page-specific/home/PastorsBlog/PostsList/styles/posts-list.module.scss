@@ -3,15 +3,6 @@
 
 .posts-list {
   @extend %animatedArticlesListStyles;
-  margin-bottom: 70px;
-
-  @media screen and (min-width: $smallDesktop) {
-    margin-bottom: 100px;
-  }
-
-  @media screen and (min-width: $largeDesktop) {
-    margin-bottom: 200px;
-  }
 
   &__blog-link {
     display: flex;
@@ -23,10 +14,14 @@
     width: 100%;
     max-width: 350px;
 
-    @media screen and (min-width: $smallDesktop) {
+    @media screen and (min-width: $tablet) {
       align-self: flex-start;
-      height: 444px;
+      height: 284px;
       border: 2px solid $color-red;
+    }
+
+    @media screen and (min-width: $smallDesktop) {
+      height: 444px;
     }
 
     @media screen and (min-width: $desktop) {
@@ -39,12 +34,14 @@
 
     a {
       display: flex;
-      align-items: center;
       justify-content: center;
-      gap: $gutter-xs;
+      align-items: center;
+      gap: 10px;
 
-      @media screen and (min-width: $smallDesktop) {
-        gap: $gutter-ml;
+      @media screen and (min-width: $tablet) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
       }
     }
 
@@ -66,7 +63,8 @@
     span {
       font-size: 32px;
       line-height: 1.2;
-      color: var(--text-main-color);
+      color: $color-red;
+      font-family: $accia-font-family;
 
       @media screen and (min-width: $smallDesktop) {
         font-size: 70px;

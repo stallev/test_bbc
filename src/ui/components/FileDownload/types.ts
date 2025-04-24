@@ -1,5 +1,5 @@
 export interface FileDownloadProps {
-  src: string
-  label: string
-  className?: string
+  src: string;
+  label: string;
+  className?: string;
 }

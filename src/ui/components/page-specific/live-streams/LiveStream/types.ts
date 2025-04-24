@@ -1,6 +1,7 @@
+import { YoutubeConvertedVideoItemType } from '@/types/YouTubeDataTypes';
 export interface LiveStreamTypes {
   data: {
-    liveVideos: any[],
-    upcomingVideos: any[],
-  }
-};
+    liveVideos: YoutubeConvertedVideoItemType[] | [];
+    upcomingVideos: YoutubeConvertedVideoItemType[] | [];
+  };
+}

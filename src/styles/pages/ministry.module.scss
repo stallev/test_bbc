@@ -2,18 +2,11 @@
 @import '../placeholders.scss';
 
 .ministry {
-  padding-bottom: $gutter-lg;
-
-  @media screen and (min-width: $smallDesktop) {
-    padding-bottom: $gutter-xl;
-  }
-
   &__title {
-    @extend %paddingTopHeader;
-    @extend %pageTitleStyles;
+    @extend %h1PageTitleStyle;
   }
 
   &__page-content {
-    margin-top: $gutter-xl;
+    @extend %sectionGaps;
   }
 }

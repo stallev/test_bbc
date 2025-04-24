@@ -1,6 +1,5 @@
-import { CustomDatePickerProps } from './types';
-
 import styles from './styles/custom-date-picker.module.scss';
+import { CustomDatePickerProps } from './types';
 
 const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
   selectedValue,
@@ -17,15 +16,14 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
       onChangeValue(date);
     }
   };
-
   return (
-    <label className={`${styles["custom-date-picker"]} ${className}`}>
-      <span className={styles["custom-date-picker__name"]}>{title}</span>
+    <label className={`${styles['custom-date-picker']} ${className}`}>
+      <span className={styles['custom-date-picker__name']}>{title}</span>
 
       <input
         type="date"
-        className={styles["custom-date-picker__input"]}
-        value={selectedValue.toISOString().slice(0, 10)} 
+        className={styles['custom-date-picker__input']}
+        value={selectedValue.toISOString().slice(0, 10)}
         onChange={handleDateChange}
         min={minDate?.toISOString().slice(0, 10)}
         max={maxDate?.toISOString().slice(0, 10)}

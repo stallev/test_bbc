@@ -1,4 +1,4 @@
 export interface AudioProps {
-  src: string
-  label: string
+  src: string;
+  label: string;
 }

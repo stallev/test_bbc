@@ -7,7 +7,7 @@ export interface IFormInput {
 }
 
 export interface eventSubscriptionInputDataType {
-  email: string
+  email: string;
 }
 
 export const ContactFormsEndpointsTypes = {
@@ -19,14 +19,14 @@ export const ContactFormsEndpointsTypes = {
 export type ContactFormType = keyof typeof ContactFormsEndpointsTypes;
 
 export interface ContactFormInputDataType {
-  firstName: string
-  userMessage: string
-  contactWilling?: string
-  phone: string
-  email: string
+  firstName: string;
+  userMessage: string;
+  contactWilling?: string;
+  phone: string;
+  email: string;
 }
 
 export interface ContactFormActionInputTypes {
-  data: ContactFormInputDataType
-  contactType: ContactFormType
+  data: ContactFormInputDataType;
+  contactType: ContactFormType;
 }

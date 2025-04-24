@@ -1,38 +1,46 @@
-"use client"
+'use client';
 
-import React from 'react';
 import Link from 'next/link';
+import React from 'react';
+
 import { RoutePath } from '@/constants';
-import { Text, CustomImage } from '@/ui/components/ui-kit';
+import { useClientTranslationFunction, useLocale } from '@/hooks/useLocale';
+import { i18n } from '@/i18n.config';
+import { Text, CustomImage, CustomLink } from '@/ui/components/ui-kit';
 import ReadMoreLink from '@/ui/components/ui-kit/ReadMoreLink/ReadMoreLink';
 import { getDayMonthFormattedDate } from '@/utils/dateFormatter';
-import { useClientTranslationFunction, useLocale } from '@/hooks/useLocale';
-import { BlogCardDataProps } from './types';
 
 import styles from './styles/blog-card.module.scss';
+import { BlogCardProps } from './types';
 
-const BlogCard: React.FC<BlogCardDataProps> = ({
+const BlogCard = ({
   data,
-  index = 1
+  index = 1,
+  isLandingPage = false,
+}: {
+  data: BlogCardProps;
+  index: number;
+  isLandingPage?: boolean;
 }) => {
   const translate = useClientTranslationFunction();
   const locale = useLocale();
 
-  const postLink = `${RoutePath.Blog}/${data.slug}`;
-  const imagePriorityLoading = index < 1 ? true : false;
+  const postLink = `${RoutePath.BlogAuthor}/${data.author.slug}/${data.slug}`;
+  const authorPageLink =
+    locale === i18n.defaultLocale
+      ? `${RoutePath.Staff}/${data.author.slug}`
+      : `${RoutePath.Staff}/${data.author.slug}-ru`;
+  const imagePriorityLoading = !isLandingPage ? (index < 1 ? true : false) : false;
 
   return (
-    <article className={styles["blog-card"]}>
-      <Text
-        textType='span'
-        className={styles['blog-card__start-date']}
-      >
+    <article className={styles['blog-card']}>
+      <Text textType="span" className={styles['blog-card__start-date']}>
         {getDayMonthFormattedDate(data.simpleDate, locale)}
       </Text>
 
       <CustomImage
         imageURL={data.featuredImageData.featuredImageUrl}
-        className={styles["blog-card__image"]}
+        className={styles['blog-card__image']}
         alt={data.title}
         priority={imagePriorityLoading}
         ariaLabel={data.title}
@@ -43,36 +51,26 @@ const BlogCard: React.FC<BlogCardDataProps> = ({
         aria-label="Blog post link"
         tabIndex={0}
         href={postLink}
-        className={styles["blog-card__title"]}
+        className={styles['blog-card__title']}
       >
-        <Text
-          textType='h2'
-        >
-          {data.title}
-        </Text>
+        <Text textType="h2">{data.title}</Text>
       </Link>
 
-      <Text
-        textType='p'
-        className={styles["blog-card__description"]}
-      >
+      <Text textType="p" className={styles['blog-card__description']}>
         {data.excerpt}
       </Text>
-      
-      <Text
-        textType='p'
-        className={styles["blog-card__author"]}
-      >
+
+      <CustomLink to={authorPageLink} className={styles['blog-card__author']}>
         {data.author.authorFullName}
-      </Text>
+      </CustomLink>
 
       <ReadMoreLink
         to={postLink}
-        label={translate("more_link_label")}
+        label={translate('more_link_label')}
         className={styles['blog-card__readmore-link']}
       />
     </article>
-  )
+  );
 };
 
 export default BlogCard;

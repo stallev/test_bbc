@@ -2,22 +2,114 @@
 @import '../placeholders.scss';
 
 .not-found {
-  &__title {
-    @extend %paddingTopHeader;
-    @extend %pageTitleStyles;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  // padding-top: $header-height;
+  min-height: 100vh;
+
+  &__title-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
   }
 
-  &__page-content {
-    margin-top: $gutter-xl;
+  &__title {
+    font-family: $gilroy-regular-font-family;
+    font-weight: 400;
+    font-size: 172px;
+    line-height: .9;
+    color: $color-red;
 
-    p {
-      text-align: center;
+    @media screen and (min-width: $tablet) {
+      font-size: 250px;
+    }
+
+    @media screen and (min-width: $smallDesktop) {
+      font-size: 350px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      font-size: 400px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      font-size: 500px;
+    }
+  }
+
+  &__title-error-text {
+    position: absolute;
+    text-align: center;
+    font-weight: 400;
+    font-size: 35px;
+    font-family: $accia-font-family;
+    color: var(--text-main-color);
+
+    @media screen and (min-width: $tablet) {
+      font-size: 45px;
+    }
+
+    @media screen and (min-width: $smallDesktop) {
+      font-size: 60px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      font-size: 80px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      font-size: 100px;
+    }
+  }
+
+  &__description {
+    margin-top: 40px;
+    width: fit-content;
+    align-self: center;
+    text-align: center;
+    font-size: 16px;
+    line-height: .9;
+    font-family: $accia-font-family;
+    font-weight: 400;
+    color: var(--text-main-color);
+
+    @media screen and (min-width: $tablet) {
+      font-size: 24px;
+    }
+
+    @media screen and (min-width: $smallDesktop) {
+      font-size: 28px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      font-size: 32px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      font-size: 42px;
     }
   }
 
   &__back-to-homepage-link {
     display: block;
     width: fit-content;
-    margin: $gutter-lg auto 0 auto;
+    align-items: center;
+    margin-top: 87px;
+
+    @media screen and (min-width: $tablet) {
+      font-size: 55px;
+    }
+
+    @media screen and (min-width: $smallDesktop) {
+      font-size: 50px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      margin-top: 42px;
+    }
   }
 }

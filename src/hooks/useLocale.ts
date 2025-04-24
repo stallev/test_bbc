@@ -1,11 +1,17 @@
+import { usePathname } from 'next/navigation';
 
-import { useParams } from 'next/navigation'
-import { Locale } from "@/i18n.config";
+import { i18n, Locale } from '@/i18n.config';
 import { getTranslations } from '@/utils/languageParser';
 
 export const useLocale = () => {
-  const params = useParams();
-  return params.locale as Locale;
+  const pathname = usePathname();
+  const possibleLang = pathname.split('/')[1];
+
+  const locale = i18n.locales.includes(possibleLang as Locale)
+    ? (possibleLang as Locale)
+    : i18n.defaultLocale;
+
+  return locale as Locale;
 };
 
 export const useClientTranslationFunction = () => {
@@ -13,12 +19,12 @@ export const useClientTranslationFunction = () => {
   const translations = getTranslations(locale);
 
   const translate = (key: string) => {
-    if(key in translations) {
-      return translations[key as keyof typeof translations]
+    if (!!translations && key in translations) {
+      return translations[key as keyof typeof translations];
     }
 
     return key;
-  }
+  };
 
   return translate;
-}
+};

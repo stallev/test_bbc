@@ -2,6 +2,8 @@
 
 .navbar {
   display: none;
+  font-weight: 500;
+  font-family: $gilroy-medium-font-family;
 
   &__label {
     display: flex;
@@ -35,11 +37,47 @@
     &:hover {
       color: $color-red;
     }
+  }
 
+  &__link--outlined {
+    padding: 0;
+    border-radius: 6px;
+    border: 1px solid $color-red;
+
+    a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    a:hover {
+      svg path,
+      svg circle {
+        stroke: $color-red;
+      }
+    }
+
+    svg path,
+    svg circle {
+      stroke: var(--text-main-color);
+      stroke-width: 1.5px;
+      transition: all 0.3s ease;
+    }
   }
 
   @media (min-width: $smallDesktop) {
     display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  @media (min-width: $desktop) {
     gap: 40px;
   }
 
@@ -69,7 +107,6 @@
     text-align: center;
     padding: $navDropDown-padding;
     z-index: $navDropDown-z-index;
-    
 
     @media (min-width: $smallDesktop) {
       position: absolute;
@@ -84,6 +121,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      padding: 7px;
       width: $navDropDown-link-width;
       font-size: 13px;
       line-height: 20px;

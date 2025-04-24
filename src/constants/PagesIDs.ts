@@ -1,5 +1,3 @@
-import LiveStream from "@/ui/components/page-specific/live-streams/LiveStream/LiveStream";
-
 export const PagesIDs = {
   Home: {
     en: '60',
@@ -125,4 +123,4 @@ export const PagesIDs = {
     en: '725',
     ru: '730',
   },
-}
+};

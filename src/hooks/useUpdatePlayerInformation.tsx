@@ -1,7 +1,8 @@
-import { useContext } from "react";
-import { AppContext } from "@/ui/globalState/AppContext";
-import { PlayerData } from "@/ui/globalState/Reducer/reducer";
-import { ActionType } from "@/ui/globalState/Actions/action";
+import { useContext } from 'react';
+
+import { ActionType } from '@/ui/globalState/Actions/action';
+import { AppContext } from '@/ui/globalState/AppContext';
+import { PlayerData } from '@/ui/globalState/Reducer/reducer';
 
 export const useUpdatePlayerInformation = () => {
   const { dispatch } = useContext(AppContext);
@@ -13,9 +14,9 @@ export const useUpdatePlayerInformation = () => {
         isVisiblePlayer: data.isVisiblePlayer,
         trackName: data.trackName,
         trackSrc: data.trackSrc,
-      }
+      },
     });
   };
 
   return updatePlayerData;
-}
+};

@@ -3,14 +3,14 @@ import React, { FC } from 'react';
 import styles from './styles/button.module.scss';
 
 interface CustomButtonProps {
-  buttonTitle?: string,
-  className?: string,
-  isSubmit?: boolean,
-  onClick?: () => void,
-  type?: string,
-  disabled?: boolean,
-  tabIndex?: number,
-  children?: React.ReactNode
+  buttonTitle?: string;
+  className?: string;
+  isSubmit?: boolean;
+  onClick?: () => void;
+  type?: string;
+  disabled?: boolean;
+  tabIndex?: number;
+  children?: React.ReactNode;
 }
 
 const Button: FC<CustomButtonProps> = ({
@@ -28,11 +28,11 @@ const Button: FC<CustomButtonProps> = ({
       className={`
         ${styles['custom-button']}
         ${styles[`custom-button--${type}`]}
-        ${className}`
-      }
+        ${className}`}
       type={isSubmit ? 'submit' : 'button'}
       onClick={onClick || undefined}
       tabIndex={tabIndex}
+      disabled={disabled}
     >
       {buttonTitle && buttonTitle}
       {children && children}
