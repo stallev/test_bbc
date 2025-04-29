@@ -19,25 +19,25 @@ export async function generateMetadata(props: PagePathProps): Promise<Metadata> 
   const { locale } = params;
   const pageId =
     locale === i18n.defaultLocale
-      ? PagesIDs.KidsMinistry[i18n.defaultLocale]
-      : PagesIDs.KidsMinistry.ru;
+      ? PagesIDs.WomenMinistry[i18n.defaultLocale]
+      : PagesIDs.WomenMinistry.ru;
   const { seo: seoContentData } = await MinistryDataApi.getMinistryPageData(pageId, locale);
   const seoPathData = getPagePathData({
     locale,
-    path: RoutePath.KidsMinistry,
+    path: RoutePath.WomenMinistry,
   });
   return getSeoData({ seoContentData, seoPathData });
 }
 
-export default async function KidsMinistry(props: { params: Promise<{ locale: Locale }> }) {
+export default async function WomenMinistry(props: { params: Promise<{ locale: Locale }> }) {
   const params = await props.params;
   const { locale } = params;
   const translations = getTranslations(locale);
 
   const pageId =
     locale === i18n.defaultLocale
-      ? PagesIDs.KidsMinistry[i18n.defaultLocale]
-      : PagesIDs.KidsMinistry.ru;
+      ? PagesIDs.WomenMinistry[i18n.defaultLocale]
+      : PagesIDs.WomenMinistry.ru;
 
   const { ministryInfoData } = await MinistryDataApi.getMinistryPageData(pageId, locale);
 

@@ -80,21 +80,23 @@ const NavBar: React.FC<NavBarProps> = ({ setMobileMenuState, mobileMenuState }) 
                 </div>
               </div>
 
-              {!!activeDropDownMenuItem && activeDropDownMenuItem.label === label && (
-                <div className={styles.navbar__submenu}>
-                  {children.map(({ link, label }, index) => (
-                    <CustomLink
-                      key={index}
-                      ariaLabel={translate(label) as string}
-                      to={link}
-                      className={styles['navbar__submenu-link']}
-                      type={LinkTypes.navLink}
-                    >
-                      {translate(label)}
-                    </CustomLink>
-                  ))}
-                </div>
-              )}
+              <div
+                className={`
+                  ${styles.navbar__submenu} ${!!activeDropDownMenuItem && activeDropDownMenuItem.label === label ? styles['navbar__submenu--active'] : ''}
+                `}
+              >
+                {children.map(({ link, label }, index) => (
+                  <CustomLink
+                    key={index}
+                    ariaLabel={translate(label) as string}
+                    to={link}
+                    className={styles['navbar__submenu-link']}
+                    type={LinkTypes.navLink}
+                  >
+                    {translate(label)}
+                  </CustomLink>
+                ))}
+              </div>
             </>
           )}
         </div>

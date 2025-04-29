@@ -39,7 +39,7 @@ export async function generateStaticParams() {
   return [];
 }
 
-export const revalidate = 16006400;
+export const revalidate = 300;
 
 export async function generateMetadata(props: PagePathProps): Promise<Metadata> {
   const params = await props.params;
@@ -67,7 +67,7 @@ export default async function Home(props: { params: Promise<{ locale: Locale }> 
 
   const upcomingEventsData = await UpcomingEventsDataApi.getUpcomingEventsReduced(locale);
   const videosData = await YouTubeApiService.getPortionYouTubeStreamsItems(
-    YouTubePlaylistIDs.myStream,
+    YouTubePlaylistIDs.generalLiveStreams,
     YouTubeApiKeys.alexander
   );
   const staffData = await StaffDataApi.getMinisters(locale);

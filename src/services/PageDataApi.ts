@@ -16,7 +16,7 @@ class PageContentDataApi {
     };
 
     const { page } = await fetchAPI(getMarkdownPageContentData, { variables });
-    const featuredImageUrl = !!page.featuredImage
+    const featuredImageUrl = !!page?.featuredImage
       ? page.featuredImage.node.mediaItemUrl
       : DEFAULT_FEATURED_IMAGE;
 

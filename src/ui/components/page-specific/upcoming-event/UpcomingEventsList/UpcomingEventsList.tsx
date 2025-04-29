@@ -18,6 +18,10 @@ const UpcomingEventsList = ({
   const listRef = useRef<HTMLDivElement>(null);
   const isAnimated = useOnceIntersection(listRef);
 
+  if (!data.length) {
+    return <p>No upcoming events data</p>;
+  }
+
   return (
     <div
       ref={listRef}

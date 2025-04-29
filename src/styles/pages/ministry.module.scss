@@ -2,11 +2,13 @@
 @import '../placeholders.scss';
 
 .ministry {
+  @extend %sectionGaps;
+  
   &__title {
     @extend %h1PageTitleStyle;
   }
 
-  &__page-content {
+  &__page-content, &__layout-content {
     @extend %sectionGaps;
   }
 }

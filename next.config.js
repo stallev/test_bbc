@@ -137,15 +137,15 @@ const nextConfig = {
           },
         ],
       },
-      {
-        source: '/',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=0, s-maxage=16006400, stale-while-revalidate=30',
-          },
-        ],
-      },
+      // {
+      //   source: '/',
+      //   headers: [
+      //     {
+      //       key: 'Cache-Control',
+      //       value: 'public, max-age=0, s-maxage=86400, stale-while-revalidate=30',
+      //     },
+      //   ],
+      // },
     ];
   },
   async rewrites() {

@@ -1,0 +1,12 @@
+@import "../../../../../../styles/variables.scss";
+@import "../../../../../../styles/placeholders.scss";
+
+.ministry-page-content {
+  &__title {
+    @extend %h1PageTitleStyle;
+  }
+
+  &__info {
+    @extend %sectionGaps;
+  }
+}

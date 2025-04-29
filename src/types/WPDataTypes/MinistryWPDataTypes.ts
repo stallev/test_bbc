@@ -1,12 +1,14 @@
 import { SeoContentDataProps } from '../globalTypes';
-import { GutenbergBlock } from './GutenbergBlocksTypes';
+import { ConvertedGutenbergBlockType } from './GutenbergBlocksTypes';
 
 export interface MinistryConvertedDataType {
-  title: string;
-  slug: string;
-  pageContent: GutenbergBlock[];
   seo: SeoContentDataProps;
-  featuredImageUrl: string;
+  ministryInfoData: MinistryInfoDataType;
+}
+
+export interface MinistryInfoDataType {
+  title: string;
+  pageContent: ConvertedGutenbergBlockType[];
   ministryDays: string;
   ministryHours: string;
   ministryShortDescription: string;

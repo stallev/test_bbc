@@ -52,28 +52,32 @@ export const PagesIDs = {
     ru: '607',
   },
   KidsMinistry: {
-    en: '460',
-    ru: '463',
+    en: '788',
+    ru: '793',
   },
   YouthMinistry: {
-    en: '485',
-    ru: '488',
+    en: '826',
+    ru: '828',
   },
   WorshipMinistry: {
-    en: '491',
-    ru: '495',
+    en: '995',
+    ru: '997',
   },
-  SmallGroups: {
-    en: '592',
-    ru: '595',
+  SmallGroupsMinistry: {
+    en: '972',
+    ru: '974',
   },
-  Missionary: {
-    en: '598',
-    ru: '601',
+  MissionaryMinistry: {
+    en: '981',
+    ru: '989',
   },
   FamilyMinistry: {
-    en: '523',
-    ru: '525',
+    en: '991',
+    ru: '993',
+  },
+  WomenMinistry: {
+    en: '1000',
+    ru: '1002',
   },
   Participation: {
     en: '498',

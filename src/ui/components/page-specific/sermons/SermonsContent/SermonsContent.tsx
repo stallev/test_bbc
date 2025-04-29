@@ -56,6 +56,10 @@ const SermonsContent: React.FC<SermonsContentProps> = ({
     });
   }, [sermonsData]);
 
+  if (!sermonsData.length) {
+    return <p>No sermons data</p>;
+  }
+
   return (
     <div className={styles['sermons-content']}>
       <Container isNarrowContent>

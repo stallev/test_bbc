@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { GutenbergBlock } from '@/types/WPDataTypes/GutenbergBlocksTypes';
+import { ConvertedGutenbergBlockType } from '@/types/WPDataTypes/GutenbergBlocksTypes';
 import { MinistryImageData } from '@/types/WPDataTypes/MinistryWPDataTypes';
 import Container from '@/ui/containers/Container/Container';
 
@@ -11,7 +11,7 @@ import styles from './styles/ministry-info.module.scss';
 interface MininistryInfoProps {
   translations: Record<string, string>;
   data: {
-    pageContent: GutenbergBlock[];
+    pageContent: ConvertedGutenbergBlockType[];
     ministryDays: string;
     ministryHours: string;
     ministryShortDescription: string;

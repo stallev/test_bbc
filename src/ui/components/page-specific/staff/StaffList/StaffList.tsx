@@ -5,6 +5,10 @@ import StaffPersonCard from '../StaffPersonCard/StaffPersonCard';
 import styles from './styles/staff-list.module.scss';
 
 const StaffList = ({ data, translations, isDetailed = false }: StaffListProps) => {
+  if (!data?.length) {
+    return <p>No pastors data</p>;
+  }
+
   return (
     <div
       className={`

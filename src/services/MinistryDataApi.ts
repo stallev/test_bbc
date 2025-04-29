@@ -1,6 +1,7 @@
 import { DEFAULT_FEATURED_IMAGE } from '@/constants/mock';
 import { getMinistryData } from '@/graphql/ministryQueries';
 import { SeoContentDataProps } from '@/types/globalTypes';
+import { ConvertedGutenbergBlockType } from '@/types/WPDataTypes/GutenbergBlocksTypes';
 import {
   MinistryMediaGallerySize,
   MinistryMediaGalleryItem,
@@ -69,18 +70,22 @@ class MinistryDataApi {
       isPostType: false,
     };
 
-    const pageContent = convertGutenbergBlocksData(blocks);
+    const pageContent = convertGutenbergBlocksData(
+      blocks
+    ) as unknown as ConvertedGutenbergBlockType[];
 
-    return {
+    const ministryInfoData = {
       title,
-      slug,
       pageContent,
-      seo,
-      featuredImageUrl,
       ministryDays,
       ministryHours,
       ministryShortDescription,
       ministryImagesData,
+    };
+
+    return {
+      seo,
+      ministryInfoData,
     };
   }
 }

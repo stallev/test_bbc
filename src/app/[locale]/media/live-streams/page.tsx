@@ -52,7 +52,7 @@ export default async function Livestreams(props: { params: Promise<{ locale: Loc
 
   const { finishedVideos, liveVideos, upcomingVideos } =
     await YouTubeApiService.getAllYouTubePlaylistItems(
-      YouTubePlaylistIDs.myStream,
+      YouTubePlaylistIDs.generalLiveStreams,
       YouTubeApiKeys.alexander
     );
 

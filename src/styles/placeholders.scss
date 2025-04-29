@@ -283,14 +283,12 @@
   }
 }
 
-%smallParagraphMediumDescriptionTextStyle {
+%smallParagraphTextStyle {
   margin-top: 10px;
   text-align: justify;
   color: var(--text-main-color);
   font-size: 13px;
-  line-height: 1.6;
-  font-weight: 500;
-  font-family: $gilroy-medium-font-family;
+  line-height: 1.4;
 
   @media screen and (min-width: $tablet) {
     margin-top: 12px;
@@ -313,28 +311,16 @@
   }
 }
 
+%smallParagraphMediumDescriptionTextStyle {
+  @extend %smallParagraphTextStyle;
+  font-weight: 500;
+  font-family: $gilroy-medium-font-family;
+}
+
 %smallParagraphRegularDescriptionTextStyle {
-  color: var(--text-main-color);
-  font-size: 13px;
-  line-height: 1.2;
+  @extend %smallParagraphTextStyle;
   font-weight: 400;
   font-family: $gilroy-regular-font-family;
-
-  @media screen and (min-width: $tablet) {
-    font-size: 16px;
-  }
-
-  @media screen and (min-width: $smallDesktop) {
-    font-size: 18px;
-  }
-
-  @media screen and (min-width: $desktop) {
-    font-size: 22px;
-  }
-
-  @media screen and (min-width: $largeDesktop) {
-    font-size: 24px;
-  }
 }
 
 %eventPeriodStyle {

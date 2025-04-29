@@ -72,7 +72,7 @@
     @extend %eventPeriodTimeValueStyle;
   }
   
-  &__text {
-    color: var(--text-main-color);
+  &__text p {
+    @extend %smallParagraphMediumDescriptionTextStyle;
   }
 }
