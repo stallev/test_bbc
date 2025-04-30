@@ -29,8 +29,8 @@ const cspHeader = `
 const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
-    deviceSizes: [425, 570, 768, 1024],
-    imageSizes: [16, 64, 96, 128, 256, 384, 512],
+    deviceSizes: [360, 768, 1280, 1920],
+    imageSizes: [64, 128, 256, 384],
     remotePatterns: [
       {
         protocol: 'https',
