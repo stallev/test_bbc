@@ -1,4 +1,5 @@
-export const SiteUrl = 'https://testchurchapi.stallevs.ru';
+export const BACKEND_DOMAIN = 'testchurchapi.stallevs.ru';
+export const SiteUrl = `https://${BACKEND_DOMAIN}`;
 
 export const PostsQueryMaxCount = 10000;
 

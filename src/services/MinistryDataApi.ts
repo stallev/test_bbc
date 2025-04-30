@@ -6,8 +6,10 @@ import {
   MinistryMediaGallerySize,
   MinistryMediaGalleryItem,
   MinistryConvertedDataType,
+  MinistryImageData,
 } from '@/types/WPDataTypes/MinistryWPDataTypes';
 import { convertGutenbergBlocksData } from '@/utils/convertGutenbergBlocksData';
+import { getBase64BlurData } from '@/utils/getBase64BlurData';
 
 import { fetchAPI } from './WordPressFetchAPI';
 
@@ -53,12 +55,19 @@ class MinistryDataApi {
       ? featuredImage.node.mediaItemUrl
       : DEFAULT_FEATURED_IMAGE;
 
-    const ministryImagesData = ministryMediaGallery.map(({ node }: MinistryMediaGalleryItem) => ({
-      caption: node?.caption,
-      filename: node?.filename,
-      alt: node?.alt,
-      imageUrl: this.getImageUrl(node?.sizes),
-    }));
+    const ministryImagesData: MinistryImageData[] = await Promise.all(
+      ministryMediaGallery.map(async ({ node }: MinistryMediaGalleryItem) => {
+        const imageBase64Url = await getBase64BlurData(this.getImageUrl(node?.sizes));
+
+        return {
+          caption: node?.caption,
+          filename: node?.filename,
+          alt: node?.alt,
+          imageUrl: this.getImageUrl(node?.sizes),
+          imageBase64Url,
+        };
+      })
+    );
 
     const seo: SeoContentDataProps = {
       data: {

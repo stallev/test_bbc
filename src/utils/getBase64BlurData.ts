@@ -1,5 +1,5 @@
 import { getPlaiceholder } from 'plaiceholder';
-import { SiteUrl } from '@/constants/EndpointsList';
+import { BACKEND_DOMAIN } from '@/constants/EndpointsList';
 import { S3_BUCKET_NAME } from '@/constants/mock';
 
 const cache = new Map<string, string>();
@@ -10,13 +10,14 @@ const cache = new Map<string, string>();
  * @returns A Base64 string for the blurred image or a fallback placeholder on error.
  * @throws Error if the image URL is invalid or from an unauthorized domain.
  */
-export async function getBase64BlurData(imageUrl: string): Promise<string> {
+export const getBase64BlurData = async (imageUrl: string): Promise<string> => {
   if (!imageUrl.match(/^https?:\/\/.+\.(jpeg|jpg|png|webp)$/i)) {
     throw new Error('Invalid image URL');
   }
 
-  const allowedDomains = [`${S3_BUCKET_NAME}.s3.amazonaws.com`, SiteUrl];
+  const allowedDomains = [`${S3_BUCKET_NAME}.s3.amazonaws.com`, BACKEND_DOMAIN];
   const url = new URL(imageUrl);
+
   if (!allowedDomains.includes(url.hostname)) {
     throw new Error('Image URL from unauthorized domain');
   }
@@ -48,4 +49,4 @@ export async function getBase64BlurData(imageUrl: string): Promise<string> {
 
     return 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkqAcAAIUAgUW0RjgAAAAASUVORK5CYII=';
   }
-}
+};

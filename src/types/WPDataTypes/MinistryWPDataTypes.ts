@@ -20,6 +20,7 @@ export interface MinistryImageData {
   filename: string;
   alt: string;
   imageUrl: string;
+  imageBase64Url: string;
 }
 
 export interface Seo {

@@ -39,6 +39,8 @@ const MinistrySlider: React.FC<MinistrySliderProps> = ({ images }) => {
               className={styles['ministry-slider__slide-image']}
               sizes="(max-width: 768px) 25vw, 20vw"
               priority={index < 1}
+              placeholder="blur"
+              blurDataURL={image.imageBase64Url}
             />
           </SwiperSlide>
         ))}
