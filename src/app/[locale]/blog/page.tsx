@@ -12,7 +12,7 @@ import Container from '@/ui/containers/Container/Container';
 import { getPagePathData } from '@/utils/getPostSeoData';
 import { getSeoData } from '@/utils/getSeoData';
 
-export const revalidate = 300;
+export const revalidate = 60;
 
 export async function generateStaticParams() {
   return i18n.locales.map(locale => ({

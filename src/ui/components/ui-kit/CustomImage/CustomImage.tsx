@@ -1,6 +1,5 @@
 'use client';
 
-import cx from 'classnames';
 import Image from 'next/image';
 import React from 'react';
 
@@ -36,7 +35,7 @@ const CustomImage: React.FC<CustomImageProps> = ({
 }) => {
   return (
     <div
-      className={cx(styles['custom-image'], className)}
+      className={`${styles['custom-image']} ${className ? className : ''}`}
       onClick={onClick}
       aria-label={ariaLabel}
       role={onClick ? 'button' : 'none'}

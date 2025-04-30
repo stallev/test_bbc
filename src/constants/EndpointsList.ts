@@ -1,4 +1,4 @@
-const SiteUrl = 'https://testchurchapi.stallevs.ru';
+export const SiteUrl = 'https://testchurchapi.stallevs.ru';
 
 export const PostsQueryMaxCount = 10000;
 

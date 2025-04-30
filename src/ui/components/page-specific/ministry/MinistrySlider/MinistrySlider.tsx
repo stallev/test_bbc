@@ -22,7 +22,7 @@ const MinistrySlider: React.FC<MinistrySliderProps> = ({ images }) => {
     <Container className={styles['ministry-slider__container']} isSliderContent>
       <Swiper
         slidesPerView={5}
-        centeredSlides={true}
+        // centeredSlides={true}
         loop={true}
         className={`${styles['ministry-slider']} ministry-page-slider`}
         breakpoints={{

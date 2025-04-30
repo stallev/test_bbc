@@ -105,25 +105,45 @@
     align-items: center;
     width: 100%;
     text-align: center;
-    padding: $navDropDown-padding;
+    padding: 0;
     z-index: $navDropDown-z-index;
-    visibility: hidden;
-    opacity: 0;
-    transition: all 0.3 ease;
+    height: 0;
+    overflow: hidden;
+    transition: 
+        height 1s ease,
+        max-height 1s ease,
+        padding 1s ease;
 
-    @media (min-width: $smallDesktop) {
+    @media screen and (min-width: $smallDesktop) {
       position: absolute;
       top: 40px;
+      height: fit-content;
       width: fit-content;
       margin: auto;
       box-shadow: $navDropDown-box-shadow;
       background-color: var(--main-bg-color);
+      visibility: hidden;
+      opacity: 0;
+      transition: 
+          visibility 0.3s ease,
+          opacity 0.3s ease;
     }
 
     &--active {
-      display: flex;
-      visibility: visible;
-      opacity: 1;
+      height: auto;
+      max-height: 500px;
+      padding: $navDropDown-padding;
+      transition: 
+          height 1s ease,
+          max-height 1s ease,
+          padding 1s ease;
+
+      @media screen and (min-width: $smallDesktop) {
+        display: flex;
+        min-height: none;
+        visibility: visible;
+        opacity: 1;
+      }
     }
 
     &-link {

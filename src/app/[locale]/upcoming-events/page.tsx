@@ -19,7 +19,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export const revalidate = 300;
+export const revalidate = 60;
 
 export async function generateMetadata(props: PagePathProps): Promise<Metadata> {
   const params = await props.params;

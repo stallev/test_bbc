@@ -13,7 +13,7 @@ interface MinistryPageContentProps {
 
 const MinistryPageContent = ({ ministryInfoData, translations }: MinistryPageContentProps) => {
   return (
-    <Container>
+    <Container className={styles['ministry-page-content__container']}>
       <Text textType="h1" className={styles['ministry-page-content__title']}>
         {ministryInfoData.title}
       </Text>

@@ -87,18 +87,18 @@ export const MainNavBarLinks = [
         link: RoutePath.AboutUs,
         label: NavBarLinksNames.AboutChurchLinkName,
       },
-      {
-        link: RoutePath.OurBeliefs,
-        label: NavBarLinksNames.OurBeliefs,
-      },
+      // {
+      //   link: RoutePath.OurBeliefs,
+      //   label: NavBarLinksNames.OurBeliefs,
+      // },
       // {
       //   link: RoutePath.Timeline,
       //   label: NavBarLinksNames.Timeline,
       // },
-      {
-        link: RoutePath.GospelPage,
-        label: NavBarLinksNames.GospelPageLinkName,
-      },
+      // {
+      //   link: RoutePath.GospelPage,
+      //   label: NavBarLinksNames.GospelPageLinkName,
+      // },
     ],
   },
 

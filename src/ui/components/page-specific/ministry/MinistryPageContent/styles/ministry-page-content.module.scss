@@ -6,7 +6,31 @@
     @extend %h1PageTitleStyle;
   }
 
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @media screen and (min-width: $tablet) {
+      gap: 0;
+    }
+  }
+
   &__info {
-    @extend %sectionGaps;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    @media screen and (min-width: $tablet) {
+      gap: 40px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      gap: 50px;
+    }
+
+    @media screen and (min-width: $largeDesktop) {
+      gap: 70px;
+    }
   }
 }
