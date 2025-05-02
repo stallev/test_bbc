@@ -6,7 +6,7 @@ const cache = new Map<string, string>();
 
 /**
  * Generates a Base64 blur placeholder for an image using Plaiceholder.
- * @param imageUrl - URL of the image to process (e.g., https://example.com/image.jpg).
+ * @param imageUrl - URL of the image to process.
  * @returns A Base64 string for the blurred image or a fallback placeholder on error.
  * @throws Error if the image URL is invalid or from an unauthorized domain.
  */
