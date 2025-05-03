@@ -1,26 +1,25 @@
 import dynamic from 'next/dynamic';
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import { Locale } from '@/i18n.config';
 import styles from '@/styles/Home.module.scss';
-import Footer from '@/ui/components/Footer/Footer';
 import Header from '@/ui/components/Header/Header';
-import Notification from '@/ui/components/ui-kit/Notification/Notification';
+import ClientPlayer from '@/ui/components/Player/ClientPlayer';
+import Loader from '@/ui/components/ui-kit/Loader/Loader';
+import ClientNotification from '@/ui/components/ui-kit/Notification/ClientNotification';
 import Providers from '@/ui/containers/Providers/Providers';
 import { getTranslations } from '@/utils/languageParser';
 
-const Player = dynamic(() => import('@/ui/components/Player/Player'));
+// Отложенная загрузка неприоритетных компонентов
+const Footer = dynamic(() => import('@/ui/components/Footer/Footer'), { ssr: true });
 
 const Layout = async (props: {
   children: React.ReactNode;
   params: Promise<{ locale: Locale }>;
 }) => {
   const params = await props.params;
-
   const { locale } = params;
-
   const { children } = props;
-
   const translations = getTranslations(locale);
 
   return (
@@ -31,9 +30,13 @@ const Layout = async (props: {
 
       <Footer translations={translations} locale={locale} />
 
-      <Notification translations={translations} />
+      <Suspense fallback={<Loader />}>
+        <ClientNotification translations={translations} />
+      </Suspense>
 
-      <Player />
+      <Suspense fallback={null}>
+        <ClientPlayer />
+      </Suspense>
     </Providers>
   );
 };
