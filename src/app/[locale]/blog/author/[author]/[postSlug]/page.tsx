@@ -74,6 +74,7 @@ export default async function PastorsPostPage(props: { params: Promise<PastorsPo
           imageURL={postData.featuredImageData.featuredImageUrl}
           alt={postData.title}
           className={styles['pastors-post__post-image']}
+          priority
         />
       )}
 

@@ -13,7 +13,7 @@ interface CustomImageProps {
   onClick?: () => void;
   alt?: string;
   ariaLabel?: string;
-  priority?: boolean;
+  priority: boolean;
   sizes?: string;
   placeholder?: string;
   blurDataURL?: string;
@@ -27,14 +27,14 @@ const CustomImage: React.FC<CustomImageProps> = ({
   onClick,
   alt,
   ariaLabel = '',
-  priority,
+  priority = false,
   sizes = '100vw',
   placeholder,
   blurDataURL,
   quality = 75,
 }) => {
   console.log('priority', priority);
-  console.log('imageURL', imageURL);
+  console.log('imageName', imageName || imageURL);
   return (
     <div
       className={`${styles['custom-image']} ${className ? className : ''}`}
@@ -47,7 +47,7 @@ const CustomImage: React.FC<CustomImageProps> = ({
         src={imageURL || (imageName ? getImages[imageName] : '')}
         fill
         alt={alt || ''}
-        priority
+        priority={priority}
         sizes={sizes}
         placeholder={placeholder ? 'blur' : undefined}
         blurDataURL={blurDataURL && blurDataURL}
