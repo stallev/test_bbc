@@ -33,6 +33,8 @@ const CustomImage: React.FC<CustomImageProps> = ({
   blurDataURL,
   quality = 75,
 }) => {
+  console.log('priority', priority);
+  console.log('imageURL', imageURL);
   return (
     <div
       className={`${styles['custom-image']} ${className ? className : ''}`}
@@ -45,7 +47,7 @@ const CustomImage: React.FC<CustomImageProps> = ({
         src={imageURL || (imageName ? getImages[imageName] : '')}
         fill
         alt={alt || ''}
-        priority={priority}
+        priority
         sizes={sizes}
         placeholder={placeholder ? 'blur' : undefined}
         blurDataURL={blurDataURL && blurDataURL}
