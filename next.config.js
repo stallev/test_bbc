@@ -61,11 +61,6 @@ const nextConfig = {
   httpAgentOptions: {
     keepAlive: true,
   },
-  experimental: {
-    // optimizeCss: true, // Включаем оптимизацию CSS
-    optimizePackageImports: ['lodash', 'date-fns', 'react-icons'], // Оптимизируем тяжелые пакеты
-    webVitalsAttribution: ['CLS', 'LCP'], // Улучшаем отслеживание метрик Web Vitals
-  },
   async headers() {
     return [
       {
