@@ -1,6 +1,6 @@
-import Head from 'next/head';
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
+import Head from 'next/head';
 import { Suspense } from 'react';
 
 import { PagesIDs, RoutePath, YouTubePlaylistIDs, YouTubeApiKeys } from '@/constants';
