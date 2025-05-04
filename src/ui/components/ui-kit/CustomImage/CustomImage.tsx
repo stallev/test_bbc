@@ -13,7 +13,7 @@ interface CustomImageProps {
   onClick?: () => void;
   alt?: string;
   ariaLabel?: string;
-  priority: boolean;
+  priority?: boolean;
   sizes?: string;
   placeholder?: string;
   blurDataURL?: string;
