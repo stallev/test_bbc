@@ -80,7 +80,7 @@ export default async function Home(props: { params: Promise<{ locale: Locale }> 
   const postsData = await BlogDataApi.getLastPostsDataHomePageByLang(locale);
 
   return (
-    <>
+    <div className={styles['home__page-content']}>
       <Head>
         <link
           rel="preload"
@@ -89,38 +89,36 @@ export default async function Home(props: { params: Promise<{ locale: Locale }> 
           fetchPriority="high"
         />
       </Head>
-      <div className={styles['home__page-content']}>
-        <FixedPageLink link={RoutePath.Giving} iconName="donateIcon" label="Giving" />
+      <FixedPageLink link={RoutePath.Giving} iconName="donateIcon" label="Giving" />
 
-        <GreetingScreen
-          events_link_label={translations.upcoming_events_nav_link}
-          about_church_link_label={translations.about_church_nav_link_text}
-        />
+      <GreetingScreen
+        events_link_label={translations.upcoming_events_nav_link}
+        about_church_link_label={translations.about_church_nav_link_text}
+      />
 
-        <LiveStreamsDynamic data={videosData} locale={locale} />
+      <LiveStreamsDynamic data={videosData} locale={locale} />
 
-        <Suspense fallback={<Loader />}>
-          <UpcomingEventsSection locale={locale} translations={translations} />
-        </Suspense>
+      <Suspense fallback={<Loader />}>
+        <UpcomingEventsSection locale={locale} translations={translations} />
+      </Suspense>
 
-        <Container>
-          <SubscribeForm />
-        </Container>
+      <Container>
+        <SubscribeForm />
+      </Container>
 
-        <Ministries translations={translations} />
+      <Ministries translations={translations} />
 
-        <Suspense fallback={<Loader />}>
-          <StaffSection locale={locale} translations={translations} />
-        </Suspense>
+      <Suspense fallback={<Loader />}>
+        <StaffSection locale={locale} translations={translations} />
+      </Suspense>
 
-        <PastorsBlog data={postsData} translations={translations} />
+      <PastorsBlog data={postsData} translations={translations} />
 
-        <Container>
-          <Donation isDonationPage={false} translations={translations} />
-        </Container>
+      <Container>
+        <Donation isDonationPage={false} translations={translations} />
+      </Container>
 
-        <MapLocation mapId={MAP_IDs.homePage} />
-      </div>
-    </>
+      <MapLocation mapId={MAP_IDs.homePage} />
+    </div>
   );
 }
