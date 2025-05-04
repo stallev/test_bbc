@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
 
 import { RoutePath } from '@/constants';
 import { SAME_AUTHOR_POST_CARD_POST_PAGE_COUNT } from '@/constants/mock';
@@ -70,12 +71,21 @@ export default async function PastorsPostPage(props: { params: Promise<PastorsPo
       <BlogPostAuthorDate date={postData.date} author={postData.author.authorFullName} />
 
       {postData.featuredImageData.isExist && (
-        <CustomImage
-          imageURL={postData.featuredImageData.featuredImageUrl}
-          alt={postData.title}
-          className={styles['pastors-post__post-image']}
-          priority
-        />
+        <>
+          <CustomImage
+            imageURL={postData.featuredImageData.featuredImageUrl}
+            alt={postData.title}
+            className={styles['pastors-post__post-image']}
+            priority
+          />
+          <Image
+            src="https://testchurchapi.stallevs.ru/wp-content/uploads/2024/01/1-min.jpg"
+            alt="Test"
+            width={500}
+            height={300}
+            priority={true}
+          />
+        </>
       )}
 
       <StructuredMarkdownContent

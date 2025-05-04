@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
@@ -79,37 +80,47 @@ export default async function Home(props: { params: Promise<{ locale: Locale }> 
   const postsData = await BlogDataApi.getLastPostsDataHomePageByLang(locale);
 
   return (
-    <div className={styles['home__page-content']}>
-      <FixedPageLink link={RoutePath.Giving} iconName="donateIcon" label="Giving" />
+    <>
+      <Head>
+        <link
+          rel="preload"
+          href="https://testwordpressmedia1.s3.amazonaws.com/001assets/hero_section_bg.webp"
+          as="image"
+          fetchPriority="high"
+        />
+      </Head>
+      <div className={styles['home__page-content']}>
+        <FixedPageLink link={RoutePath.Giving} iconName="donateIcon" label="Giving" />
 
-      <GreetingScreen
-        events_link_label={translations.upcoming_events_nav_link}
-        about_church_link_label={translations.about_church_nav_link_text}
-      />
+        <GreetingScreen
+          events_link_label={translations.upcoming_events_nav_link}
+          about_church_link_label={translations.about_church_nav_link_text}
+        />
 
-      <LiveStreamsDynamic data={videosData} locale={locale} />
+        <LiveStreamsDynamic data={videosData} locale={locale} />
 
-      <Suspense fallback={<Loader />}>
-        <UpcomingEventsSection locale={locale} translations={translations} />
-      </Suspense>
+        <Suspense fallback={<Loader />}>
+          <UpcomingEventsSection locale={locale} translations={translations} />
+        </Suspense>
 
-      <Container>
-        <SubscribeForm />
-      </Container>
+        <Container>
+          <SubscribeForm />
+        </Container>
 
-      <Ministries translations={translations} />
+        <Ministries translations={translations} />
 
-      <Suspense fallback={<Loader />}>
-        <StaffSection locale={locale} translations={translations} />
-      </Suspense>
+        <Suspense fallback={<Loader />}>
+          <StaffSection locale={locale} translations={translations} />
+        </Suspense>
 
-      <PastorsBlog data={postsData} translations={translations} />
+        <PastorsBlog data={postsData} translations={translations} />
 
-      <Container>
-        <Donation isDonationPage={false} translations={translations} />
-      </Container>
+        <Container>
+          <Donation isDonationPage={false} translations={translations} />
+        </Container>
 
-      <MapLocation mapId={MAP_IDs.homePage} />
-    </div>
+        <MapLocation mapId={MAP_IDs.homePage} />
+      </div>
+    </>
   );
 }
