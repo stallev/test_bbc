@@ -6,6 +6,7 @@ export interface UpcomingEventListProps {
   translations: Record<string, string>;
   isLandingPage?: boolean;
 }
+
 export interface UpcomingEventsSectionProps {
   locale: Locale;
   translations: Record<string, string>;

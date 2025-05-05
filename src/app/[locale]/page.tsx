@@ -1,36 +1,29 @@
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
-import Head from 'next/head';
-import { Suspense } from 'react';
 
 import { PagesIDs, RoutePath, YouTubePlaylistIDs, YouTubeApiKeys } from '@/constants';
 import { MAP_IDs } from '@/constants/mock';
 import { i18n, Locale } from '@/i18n.config';
 import BlogDataApi from '@/services/BlogDataApi';
 import PageContentDataApi from '@/services/PageDataApi';
-// import UpcomingEventsDataApi from '@/services/UpcomingDataApi';
 import YouTubeApiService from '@/services/YouTubeApi';
 import styles from '@/styles/pages/home.module.scss';
 import { PagePathProps } from '@/types/globalTypes';
 import FixedPageLink from '@/ui/components/FixedPageLink/FixedPageLink';
+import LazyLoader from '@/ui/components/LazyLoader/LazyLoader';
 import GreetingScreen from '@/ui/components/page-specific/home/GreetingScreen/GreetingScreen';
-import { Loader } from '@/ui/components/ui-kit';
+import ClientMinistries from '@/ui/components/page-specific/home/Ministries/ClientMinistries';
+import ClientStaff from '@/ui/components/page-specific/home/Staff/ClientStaff';
+import ClientSubscribeForm from '@/ui/components/SubscribeForm/ClientSubscribeForm';
 import Container from '@/ui/containers/Container/Container';
 import { getPagePathData } from '@/utils/getPostSeoData';
 import { getSeoData } from '@/utils/getSeoData';
 import { getTranslations } from '@/utils/languageParser';
 
-const StaffSection = dynamic(() => import('@/ui/components/page-specific/home/Staff/StaffSection'));
+const ClientUpcomingEvents = dynamic(
+  () => import('@/ui/components/page-specific/home/UpcomingEvents/ClientUpcomingEvents')
+);
 
-const UpcomingEventsSection = dynamic(
-  () => import('@/ui/components/page-specific/home/UpcomingEvents/UpcomingEventsSection')
-);
-const Ministries = dynamic(
-  () => import('@/ui/components/page-specific/home/Ministries/Ministries'),
-  {
-    loading: () => <Loader />,
-  }
-);
 const LiveStreamsDynamic = dynamic(
   () => import('@/ui/components/page-specific/home/LiveStreams/LiveStreams')
 );
@@ -39,7 +32,6 @@ const PastorsBlog = dynamic(
 );
 const Donation = dynamic(() => import('@/ui/components/Donation/Donation'));
 const MapLocation = dynamic(() => import('@/ui/components/MapLocation/MapLocation'));
-const SubscribeForm = dynamic(() => import('@/ui/components/SubscribeForm/ClientSubscribeForm'));
 
 export async function generateStaticParams() {
   return [];
@@ -76,19 +68,10 @@ export default async function Home(props: { params: Promise<{ locale: Locale }> 
     YouTubePlaylistIDs.generalLiveStreams,
     YouTubeApiKeys.alexander
   );
-
   const postsData = await BlogDataApi.getLastPostsDataHomePageByLang(locale);
 
   return (
     <div className={styles['home__page-content']}>
-      <Head>
-        <link
-          rel="preload"
-          href="https://testwordpressmedia1.s3.amazonaws.com/001assets/hero_section_bg.webp"
-          as="image"
-          fetchPriority="high"
-        />
-      </Head>
       <FixedPageLink link={RoutePath.Giving} iconName="donateIcon" label="Giving" />
 
       <GreetingScreen
@@ -98,19 +81,12 @@ export default async function Home(props: { params: Promise<{ locale: Locale }> 
 
       <LiveStreamsDynamic data={videosData} locale={locale} />
 
-      <Suspense fallback={<Loader />}>
-        <UpcomingEventsSection locale={locale} translations={translations} />
-      </Suspense>
-
-      <Container>
-        <SubscribeForm />
-      </Container>
-
-      <Ministries translations={translations} />
-
-      <Suspense fallback={<Loader />}>
-        <StaffSection locale={locale} translations={translations} />
-      </Suspense>
+      <LazyLoader>
+        <ClientUpcomingEvents locale={locale} translations={translations} />
+        <ClientSubscribeForm />
+        <ClientMinistries translations={translations} />
+        <ClientStaff locale={locale} translations={translations} />
+      </LazyLoader>
 
       <PastorsBlog data={postsData} translations={translations} />
 

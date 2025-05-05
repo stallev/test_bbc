@@ -27,14 +27,12 @@ const CustomImage: React.FC<CustomImageProps> = ({
   onClick,
   alt,
   ariaLabel = '',
-  priority = false,
+  priority,
   sizes = '100vw',
   placeholder,
   blurDataURL,
   quality = 75,
 }) => {
-  console.log('priority', priority);
-  console.log('imageName', imageName || imageURL);
   return (
     <div
       className={`${styles['custom-image']} ${className ? className : ''}`}
