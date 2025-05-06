@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Loader } from '../ui-kit';
 
+import styles from './styles/lazy-loader.module.scss';
+
 export default function LazyLoader({ children }: { children: React.ReactNode }) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -23,7 +25,7 @@ export default function LazyLoader({ children }: { children: React.ReactNode }) 
   }, []);
 
   return (
-    <div ref={ref}>
+    <div className={styles['lazy-loader']} ref={ref}>
       {isVisible ? (
         children
       ) : (
