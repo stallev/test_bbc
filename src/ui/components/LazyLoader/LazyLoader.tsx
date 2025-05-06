@@ -1,12 +1,15 @@
 'use client';
 
-import { useLCP } from '@/hooks/useLCP';
-import { Loader } from '@/ui/components/ui-kit';
+import { Suspense } from 'react';
+import { useLazyHydration } from '@/hooks/useLazyHydration';
+import { Loader } from '../ui-kit';
 
-export default function LazyLoader({ children }: { children: React.ReactNode }) {
-  const isLCPCompleted = useLCP();
+const LazyLoader = ({ children }: { children: React.ReactNode }) => {
+  const shouldLoad = useLazyHydration();
 
-  if (!isLCPCompleted) return <Loader />;
+  if (!shouldLoad) return <div id="lazy-root" />;
 
-  return <>{children}</>;
-}
+  return <Suspense fallback={<Loader />}>{children}</Suspense>;
+};
+
+export default LazyLoader;
