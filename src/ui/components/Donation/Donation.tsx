@@ -11,7 +11,7 @@ const DonationForm = dynamic(
   () => import('@/ui/components/page-specific/giving/DonationForm/DonationForm')
 );
 
-interface DonationProps {
+export interface DonationProps {
   translations: Record<string, string>;
   isDonationPage: boolean;
 }

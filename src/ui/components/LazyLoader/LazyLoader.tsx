@@ -1,36 +1,15 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { Suspense } from 'react';
+import { useLazyHydration } from '@/hooks/useLazyHydration';
 import { Loader } from '../ui-kit';
 
-export default function LazyLoader({ children }: { children: React.ReactNode }) {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+const LazyLoader = ({ children }: { children: React.ReactNode }) => {
+  const shouldLoad = useLazyHydration();
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: '0px 0px 200px 0px' } // Предзагрузка за 200px до попадания в viewport
-    );
+  if (!shouldLoad) return <div id="lazy-root" />;
 
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
+  return <Suspense fallback={<Loader />}>{children}</Suspense>;
+};
 
-  return (
-    <div ref={ref}>
-      {isVisible ? (
-        children
-      ) : (
-        <div style={{ height: '600px' }}>
-          <Loader />
-        </div>
-      )}
-    </div>
-  );
-}
+export default LazyLoader;
