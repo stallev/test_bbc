@@ -1,12 +1,38 @@
 'use client';
 
-import { useLCP } from '@/hooks/useLCP';
-import { Loader } from '@/ui/components/ui-kit';
+import { useEffect, useRef, useState } from 'react';
+import { Loader } from '../ui-kit';
+
+import styles from './styles/lazy-loader.module.scss';
 
 export default function LazyLoader({ children }: { children: React.ReactNode }) {
-  const isLCPCompleted = useLCP();
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
-  if (!isLCPCompleted) return <Loader />;
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '0px 0px 200px 0px' } // Предзагрузка за 200px до попадания в viewport
+    );
 
-  return <>{children}</>;
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div className={styles['lazy-loader']} ref={ref}>
+      {isVisible ? (
+        children
+      ) : (
+        <div style={{ height: '600px' }}>
+          <Loader />
+        </div>
+      )}
+    </div>
+  );
 }
