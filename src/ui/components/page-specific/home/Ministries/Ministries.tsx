@@ -6,7 +6,7 @@ import Container from '@/ui/containers/Container/Container';
 import MinistriesList from './MinistriesList/MinistriesList';
 import styles from './styles/ministries.module.scss';
 
-interface MinistriesProps {
+export interface MinistriesProps {
   translations: Record<string, string>;
 }
 

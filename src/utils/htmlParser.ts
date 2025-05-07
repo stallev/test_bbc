@@ -1,4 +1,4 @@
-import { JSDOM } from 'jsdom';
+import { parse as parseHtml } from 'node-html-parser';
 
 interface QuoteResult {
   quoteText: string;
@@ -6,13 +6,11 @@ interface QuoteResult {
 }
 
 export const parseQuoteBlock = (html: string): QuoteResult => {
-  const dom = new JSDOM(html);
-  const document = dom.window.document;
-
-  const quoteElement = document.querySelector('blockquote p');
+  const root = parseHtml(html);
+  const quoteElement = root.querySelector('blockquote p');
   const quoteText = quoteElement?.textContent || '';
 
-  const citeElement = document.querySelector('blockquote cite');
+  const citeElement = root.querySelector('blockquote cite');
   const cite = citeElement?.textContent || '';
 
   return {
