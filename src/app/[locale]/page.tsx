@@ -1,33 +1,46 @@
 import { Metadata } from 'next';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 
 import { PagesIDs, RoutePath, YouTubePlaylistIDs, YouTubeApiKeys } from '@/constants';
 import { MAP_IDs } from '@/constants/mock';
 import { i18n, Locale } from '@/i18n.config';
+import BlogDataApi from '@/services/BlogDataApi';
 import PageContentDataApi from '@/services/PageDataApi';
+import StaffDataApi from '@/services/StaffDataApi';
+import UpcomingEventsDataApi from '@/services/UpcomingDataApi';
 import YouTubeApiService from '@/services/YouTubeApi';
 import styles from '@/styles/pages/home.module.scss';
 import { PagePathProps } from '@/types/globalTypes';
-import ClientHomeDonation from '@/ui/components/Donation/ClientHomeDonation';
+import Donation from '@/ui/components/Donation/Donation';
 import FixedPageLink from '@/ui/components/FixedPageLink/FixedPageLink';
-import LazyLoader from '@/ui/components/LazyLoader/LazyLoader';
-import ClientMaplocation from '@/ui/components/MapLocation/ClientMapLocation';
+import MapLocation from '@/ui/components/MapLocation/MapLocation';
 import GreetingScreen from '@/ui/components/page-specific/home/GreetingScreen/GreetingScreen';
-import ClientMinistries from '@/ui/components/page-specific/home/Ministries/ClientMinistries';
-import ClientPastorsBlog from '@/ui/components/page-specific/home/PastorsBlog/ClientPastorsBlog';
-import ClientStaff from '@/ui/components/page-specific/home/Staff/ClientStaff';
+import LiveStreams from '@/ui/components/page-specific/home/LiveStreams/LiveStreams';
+import Ministries from '@/ui/components/page-specific/home/Ministries/Ministries';
+import PastorsBlog from '@/ui/components/page-specific/home/PastorsBlog/PastorsBlog';
+import Staff from '@/ui/components/page-specific/home/Staff/Staff';
+import UpcomingEvents from '@/ui/components/page-specific/home/UpcomingEvents/UpcomingEvents';
 import ClientSubscribeForm from '@/ui/components/SubscribeForm/ClientSubscribeForm';
+import Container from '@/ui/containers/Container/Container';
 import { getPagePathData } from '@/utils/getPostSeoData';
 import { getSeoData } from '@/utils/getSeoData';
 import { getTranslations } from '@/utils/languageParser';
 
-const ClientUpcomingEvents = dynamic(
-  () => import('@/ui/components/page-specific/home/UpcomingEvents/ClientUpcomingEvents')
-);
-
-const LiveStreamsDynamic = dynamic(
-  () => import('@/ui/components/page-specific/home/LiveStreams/LiveStreams')
-);
+// const UpcomingEvents = dynamic(
+//   () => import('@/ui/components/page-specific/home/UpcomingEvents/UpcomingEvents')
+// );
+// const Ministries = dynamic(
+//   () => import('@/ui/components/page-specific/home/Ministries/Ministries')
+// );
+// const LiveStreamsDynamic = dynamic(
+//   () => import('@/ui/components/page-specific/home/LiveStreams/LiveStreams')
+// );
+// const PastorsBlog = dynamic(
+//   () => import('@/ui/components/page-specific/home/PastorsBlog/PastorsBlog')
+// );
+// const Donation = dynamic(() => import('@/ui/components/Donation/Donation'));
+// const MapLocation = dynamic(() => import('@/ui/components/MapLocation/MapLocation'));
+// const SubscribeForm = dynamic(() => import('@/ui/components/SubscribeForm/ClientSubscribeForm'));
 
 export async function generateStaticParams() {
   return [];
@@ -59,10 +72,13 @@ export default async function Home(props: { params: Promise<{ locale: Locale }> 
 
   const translations = getTranslations(locale);
 
+  const upcomingEventsData = await UpcomingEventsDataApi.getUpcomingEventsReduced(locale);
   const videosData = await YouTubeApiService.getPortionYouTubeStreamsItems(
     YouTubePlaylistIDs.generalLiveStreams,
     YouTubeApiKeys.alexander
   );
+  const staffData = await StaffDataApi.getMinisters(locale);
+  const postsData = await BlogDataApi.getLastPostsDataHomePageByLang(locale);
 
   return (
     <div className={styles['home__page-content']}>
@@ -73,17 +89,25 @@ export default async function Home(props: { params: Promise<{ locale: Locale }> 
         about_church_link_label={translations.about_church_nav_link_text}
       />
 
-      <LiveStreamsDynamic data={videosData} locale={locale} />
+      <LiveStreams data={videosData} locale={locale} />
 
-      <LazyLoader>
-        <ClientUpcomingEvents locale={locale} translations={translations} />
+      <UpcomingEvents data={upcomingEventsData} translations={translations} />
+
+      <Container>
         <ClientSubscribeForm />
-        <ClientMinistries translations={translations} />
-        <ClientStaff locale={locale} translations={translations} />
-        <ClientPastorsBlog locale={locale} translations={translations} />
-        <ClientHomeDonation isDonationPage={false} translations={translations} />
-        <ClientMaplocation mapId={MAP_IDs.homePage} />
-      </LazyLoader>
+      </Container>
+
+      <Ministries translations={translations} />
+
+      <Staff data={staffData} translations={translations} />
+
+      <PastorsBlog data={postsData} translations={translations} />
+
+      <Container>
+        <Donation isDonationPage={false} translations={translations} />
+      </Container>
+
+      <MapLocation mapId={MAP_IDs.homePage} />
     </div>
   );
 }

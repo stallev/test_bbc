@@ -8,7 +8,7 @@ import { useOnceIntersection } from '@/hooks/useOnceIntersection';
 
 import styles from './styles/map-location.module.scss';
 
-export interface MapLocationProps {
+interface MapLocationProps {
   mapId: string;
 }
 

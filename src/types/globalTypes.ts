@@ -68,8 +68,3 @@ export interface MobileMenuStateProps {
   isMenuOpen: boolean;
   activeDropDownMenuItem: NavBarMenuItemProps;
 }
-
-export interface ClientSectionProps {
-  locale: Locale;
-  translations: Record<string, string>;
-}

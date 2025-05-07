@@ -9,7 +9,7 @@ import { AppContext } from '@/ui/globalState/AppContext';
 import { Text } from '..';
 import styles from './styles/notification.module.scss';
 
-export interface NotificationProps {
+interface NotificationProps {
   translations: Record<string, string>;
 }
 
