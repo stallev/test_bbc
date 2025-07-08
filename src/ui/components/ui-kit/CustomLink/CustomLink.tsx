@@ -38,7 +38,7 @@ const CustomLink: React.FC<CustomLinkProps> = ({
       onMouseEnter={onHover}
       className={`${styles['custom-link']} ${styles[`custom-link--${type}`]} ${className}`}
     >
-      <Link aria-label={ariaLabel || label} href={href} prefetch={false}>
+      <Link aria-label={ariaLabel || label} href={href} prefetch={true}>
         {label && label}
         {children}
       </Link>
