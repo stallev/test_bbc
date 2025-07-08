@@ -11,7 +11,6 @@ import { getPathnameParams } from '@/utils/languageParser';
 import styles from './styles/language-switcher.module.scss';
 
 const LanguageSwitcher = () => {
-  // const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const pathname = usePathname();
 
@@ -25,8 +24,6 @@ const LanguageSwitcher = () => {
   const handleLanguageChange = () => {
     setIsLoading(true);
     document.cookie = `${LANGUAGE_COOKIE_NAME}=${availableLocale}; max-age=${LANGUAGE_COOKIE_MAX_AGE}; path=/`;
-    console.log('newPathname', newPathname);
-    // router.push(newPathname);
   };
 
   useEffect(() => {
