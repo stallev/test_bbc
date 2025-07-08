@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { AiOutlineGlobal } from 'react-icons/ai';
 import { LANGUAGE_COOKIE_NAME, LANGUAGE_COOKIE_MAX_AGE } from '@/constants/generalAppConstants';
@@ -11,7 +11,7 @@ import { getPathnameParams } from '@/utils/languageParser';
 import styles from './styles/language-switcher.module.scss';
 
 const LanguageSwitcher = () => {
-  const router = useRouter();
+  // const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const pathname = usePathname();
 
@@ -26,7 +26,7 @@ const LanguageSwitcher = () => {
     setIsLoading(true);
     document.cookie = `${LANGUAGE_COOKIE_NAME}=${availableLocale}; max-age=${LANGUAGE_COOKIE_MAX_AGE}; path=/`;
     console.log('newPathname', newPathname);
-    router.push(newPathname);
+    // router.push(newPathname);
   };
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const LanguageSwitcher = () => {
 
   return (
     <Link
-      prefetch={true}
+      prefetch={false}
       href={newPathname}
       onClick={handleLanguageChange}
       className={styles['language-switcher']}
