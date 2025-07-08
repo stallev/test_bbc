@@ -15,16 +15,16 @@ const cspHeader = `
   default-src 'self';
   script-src 'self' 'unsafe-eval' 'unsafe-inline' blob: https://maps.googleapis.com https://*.gstatic.com https://maps.google.com;
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-  img-src 'self' blob: data: https://i.ytimg.com https://*.ytimg.com https://wordmedia.storage.googleapis.com https://*.googleapis.com https://maps.gstatic.com;
+  img-src 'self' blob: data: https://i.ytimg.com https://*.ytimg.com https://wordmedia.storage.googleapis.com https://*.googleapis.com https://maps.gstatic.com https://word-service-2aojvifglq-uc.a.run.app;
   font-src 'self' data: https://fonts.gstatic.com;
   object-src 'none';
   base-uri 'self';
   form-action 'self';
   frame-ancestors 'none';
   upgrade-insecure-requests;
-  frame-src 'self' https://i.ytimg.com https://wallet.subsplash.com https://subsplash.com https://www.youtube-nocookie.com/ https://wordmedia.storage.googleapis.com/ https://www.youtube.com/;
-  connect-src 'self' data: blob: https://i.ytimg.com https://www.googleapis.com/youtube/v3/playlistItems https://youtube.googleapis.com/youtube/v3/videos https://*.googleapis.com https://www.gstatic.com;
-  media-src 'self' https://wordmedia.storage.googleapis.com;
+  frame-src 'self' https://i.ytimg.com https://wallet.subsplash.com https://subsplash.com https://www.youtube-nocookie.com/ https://wordmedia.storage.googleapis.com/ https://www.youtube.com/ https://word-service-2aojvifglq-uc.a.run.app;
+  connect-src 'self' data: blob: https://i.ytimg.com https://www.googleapis.com/youtube/v3/playlistItems https://youtube.googleapis.com/youtube/v3/videos https://*.googleapis.com https://www.gstatic.com https://word-service-2aojvifglq-uc.a.run.app;
+  media-src 'self' https://wordmedia.storage.googleapis.com https://word-service-2aojvifglq-uc.a.run.app;
   worker-src blob:;
 `;
 
@@ -40,11 +40,15 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'storage.googleapis.com',
+        hostname: 'i.ytimg.com',
       },
       {
         protocol: 'https',
-        hostname: 'i.ytimg.com',
+        hostname: '*word-service-2aojvifglq-uc.a.run.app',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.googleapis.com',
       },
     ],
     // minimumCacheTTL: 31536000,

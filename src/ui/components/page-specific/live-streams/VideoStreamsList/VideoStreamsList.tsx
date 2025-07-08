@@ -27,9 +27,9 @@ const VideoStreamsList: React.FC<VideoStreamsListProps> = ({ data, locale }) => 
 
   return (
     <div className="">
-      {data.map((year: YearVideoItemsSortedData) => (
+      {data.map((year: YearVideoItemsSortedData, index: number) => (
         <YearStreamsList
-          key={year.yearNumber}
+          key={index}
           data={year}
           locale={locale}
           selectedStreamsPeriod={selectedStreamsPeriod}

@@ -16,8 +16,8 @@ const SermonCardsList: React.FC<SermonCardsListProps> = ({ data, fetchMoreData, 
       hasMore={hasMore}
       loader={<Loader />}
     >
-      {data.map((item: RenderingSermonCardDataType) => (
-        <SermonCard key={item.sermonAudio} data={item} />
+      {data.map((item: RenderingSermonCardDataType, index: number) => (
+        <SermonCard key={index} data={item} />
       ))}
     </InfiniteScroll>
   );
