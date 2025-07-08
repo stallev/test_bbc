@@ -25,6 +25,7 @@ const LanguageSwitcher = () => {
   const handleLanguageChange = () => {
     setIsLoading(true);
     document.cookie = `${LANGUAGE_COOKIE_NAME}=${availableLocale}; max-age=${LANGUAGE_COOKIE_MAX_AGE}; path=/`;
+    console.log('newPathname', newPathname);
     router.push(newPathname);
   };
 
