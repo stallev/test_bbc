@@ -44,17 +44,25 @@ const Header = () => {
       )}
 
       <div className={styles.header__content}>
-        <Logo translations={translations} />
+        <Logo ariaLabel={translations['site_name']} />
 
-        <NavBar setMobileMenuState={setMobileMenuState} mobileMenuState={mobileMenuState} />
+        <NavBar
+          setMobileMenuState={setMobileMenuState}
+          mobileMenuState={mobileMenuState}
+          toggleMobileMenu={toggleMobileMenu}
+        />
 
-        <div className={styles.header__tooglers}>
-          <Hamburger toggleMobileMenu={toggleMobileMenu} isMenuOpen={mobileMenuState.isMenuOpen} />
+        {!mobileMenuState.isMenuOpen && (
+          <div className={styles.header__tooglers}>
+            <Hamburger
+              toggleMobileMenu={toggleMobileMenu}
+              isMenuOpen={mobileMenuState.isMenuOpen}
+            />
+            <ThemeSwitcher />
 
-          <ThemeSwitcher />
-
-          <LanguageSwitcher />
-        </div>
+            <LanguageSwitcher />
+          </div>
+        )}
       </div>
     </header>
   );

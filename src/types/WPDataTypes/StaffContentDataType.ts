@@ -1,4 +1,3 @@
-import { WPPostSeoType, ImageLinks } from './CommonWPDataTypes';
 import { GutenbergBlockType } from './PageContentDataTypes';
 
 export interface RenderedPastorCardDataType {
@@ -12,19 +11,18 @@ export interface FetchedStaffPersonDataType {
 }
 
 export interface TranslationFetchedData {
-  seo: WPPostSeoType;
-  ministerFirstName: string;
-  ministerLastName: string;
-  ministerPosition: string;
-  ministerDepartment: string;
-  ministerDescription: string;
-  ministerUserSlug: string;
+  pastorName: string;
+  pastorPosition: string;
+  pastorUserSlug: string;
+  pastorDepartment: string;
+  title: string;
   blocks: GutenbergBlockType[];
   slug: string;
   excerpt: string;
   translations: Translation[];
   ministerPhoto?: MinisterPhoto[];
-  imageLinks: ImageLinks;
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
+  featuredImage: any;
 }
 
 export interface Schema {

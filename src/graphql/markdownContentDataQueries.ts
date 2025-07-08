@@ -1,13 +1,12 @@
 import { SeoBlock, GeneralInfoBlock } from './commonGraphqlFragments';
 import { FullGutenbergBlockList } from './gutenbergGraphqlFragments';
 
-export const getMarkdownPageContentData = `query getMarkdownPageContentData ($id: ID!, $idType: PageIdType) {
-  page(id: $id, idType: $idType) {
+export const getMarkdownPageContentData = `query getMarkdownPageContentData ($slug: ID!) {
+  page(id: $slug, idType: URI) {
     title
     slug
     ${FullGutenbergBlockList}
     ${GeneralInfoBlock}
-    ${SeoBlock}
   }
 }
 `;

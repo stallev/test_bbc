@@ -1,17 +1,15 @@
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 
-import { YouTubePlaylistIDs, YouTubeApiKeys, RoutePath, PagesIDs } from '@/constants';
+import { YouTubePlaylistIDs, YouTubeApiKeys, RoutePath, PagesSlugs } from '@/constants';
 import { i18n, Locale } from '@/i18n.config';
-import PageContentDataApi from '@/services/PageDataApi';
 import YouTubeApiService from '@/services/YouTubeApi';
 import { PagePathProps } from '@/types/globalTypes';
 import LiveStream from '@/ui/components/page-specific/live-streams/LiveStream/LiveStream';
 import MediaPageHeader from '@/ui/components/page-specific/media/MediaPageHeader/MediaPageHeader';
 import Container from '@/ui/containers/Container/Container';
 import { getFormattedYoutubeVideosData } from '@/utils/getFormattedYoutubeVideosData';
-import { getPagePathData } from '@/utils/getPostSeoData';
-import { getSeoData } from '@/utils/getSeoData';
+import { getPageSeoData } from '@/utils/getPageSeoData';
 import { getTranslations } from '@/utils/languageParser';
 
 const VideoStreamsList = dynamic(
@@ -29,18 +27,12 @@ export async function generateMetadata(props: PagePathProps): Promise<Metadata> 
 
   const { locale } = params;
 
-  const pageId =
+  const pageSlug =
     locale === i18n.defaultLocale
-      ? PagesIDs.LiveStreams[i18n.defaultLocale]
-      : PagesIDs.LiveStreams.ru;
+      ? PagesSlugs.LiveStreams[i18n.defaultLocale]
+      : PagesSlugs.LiveStreams.ru;
 
-  const { seo: seoContentData } = await PageContentDataApi.getPageContentData(pageId);
-  const seoPathData = getPagePathData({
-    locale,
-    path: RoutePath.LiveStreams,
-  });
-
-  return getSeoData({ seoContentData, seoPathData });
+  return await getPageSeoData({ pageSlug, locale, pagePath: RoutePath.LiveStreams });
 }
 
 export default async function Livestreams(props: { params: Promise<{ locale: Locale }> }) {

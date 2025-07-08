@@ -27,8 +27,8 @@ const UpcomingEventsList = ({
       ref={listRef}
       className={`${styles['upcoming-events-list']} ${isAnimated ? styles.animated : ''}`}
     >
-      {data.map(item => (
-        <UpcomingEventCard key={item.slug} data={item} isLandingPage={isLandingPage} />
+      {data.map((item, index) => (
+        <UpcomingEventCard key={index} data={item} isLandingPage={isLandingPage} />
       ))}
     </div>
   );

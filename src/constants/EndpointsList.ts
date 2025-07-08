@@ -1,28 +1,17 @@
-export const BACKEND_DOMAIN = 'testchurchapi.stallevs.ru';
-export const SiteUrl = `https://${BACKEND_DOMAIN}`;
+const SERVICE_ENDPOINT = process.env.SERVICE_API_ENDPOINT;
+export const DOMAIN_NAME = SERVICE_ENDPOINT;
 
 export const PostsQueryMaxCount = 10000;
 
 export const EndpointsList = {
-  PagesStandartRestEndpoint: `${SiteUrl}/wp-json/wp/v2/pages/`,
-  MediaStandartRestEndpoint: `${SiteUrl}/wp-json/wp/v2/media/`,
-  AboutUsRestEndpoint: `${SiteUrl}/wp-json/custom/v1/about-us-page/`,
-  UpcomingEventsCustomRestEndpoint: `${SiteUrl}/wp-json/events/upcoming-events-list`,
-  MinistersCustomRestEndpoint: `${SiteUrl}/wp-json/ministers/selected-ministers-list`,
-  TimelineCustomRestEndpoint: `${SiteUrl}/wp-json/timeline/timeline-data`,
+  AboutUsRestEndpoint: `${SERVICE_ENDPOINT}/api/word/page/`,
+
+  MinistersCustomRestEndpoint: `${SERVICE_ENDPOINT}/api/ministers/selected-ministers-list`, // why not pull from the API
+
+  UpcomingEventsCustomRestEndpoint: `${SERVICE_ENDPOINT}/api/word/upcoming/event/list`,
 };
 
-export const InnerApiEndponts = {
-  GetInTouch: '/api/get-in-touch',
-  SubscribeEvent: '/api/subscribe-event',
-};
-
-export const ContactFormsEndpointsIndex = {
-  getInTouch: 'getInTouch',
-  sendParticipationInfo: 'sendParticipationInfo',
-  prayerRequest: 'prayerRequest',
-};
-
+//TODO: move to our custom endpoint
 export const ContactFormsEndpoints = {
   getInTouch: 'https://u6gzu94upe.execute-api.us-east-1.amazonaws.com/default/ContactUsRequest',
   sendParticipationInfo:
@@ -37,5 +26,5 @@ export const SubscribeToEventsEndpoint = {
 };
 
 export const WordpressGraphQLEndpoint = {
-  dev: `${SiteUrl}/graphql`,
+  dev: `${SERVICE_ENDPOINT}/graphql`,
 };

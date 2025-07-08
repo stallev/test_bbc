@@ -1,6 +1,6 @@
 import { PostsQueryMaxCount } from '@/constants';
 
-import { SeoBlock, FeaturedImageBlock } from './commonGraphqlFragments';
+import { FeaturedImageBlock } from './commonGraphqlFragments';
 import { FullGutenbergBlockList } from './gutenbergGraphqlFragments';
 
 export const getTimelineEventData = `query getTimelineEventData ($id: ID!, $idType: TimelineEventIdType!, $language: LanguageCodeEnum!) {
@@ -26,7 +26,6 @@ export const getTimelineEventDataBySlug = `query getTimelineEventDataBySlug ($sl
       title
       timelineEventDate
       ${FeaturedImageBlock}
-      ${SeoBlock}
       ${FullGutenbergBlockList}
       slug
       translations {

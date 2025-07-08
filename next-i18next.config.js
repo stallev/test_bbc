@@ -1,11 +1,6 @@
-const path = require('path');
+import { i18n } from './src/i18n.config';
 
 module.exports = {
-  i18n: {
-    locales: ["en", "ru"],
-    defaultLocale: "en",
-  },
-  // localeDetection: false,
-  localePath: path.resolve('./public/locales'),
+  i18n,
   localeStructure: '{{lng}}/{{ns}}',
 };

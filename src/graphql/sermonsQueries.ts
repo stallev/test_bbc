@@ -11,10 +11,11 @@ export const getSermonsList = `query getSermonsList ($language: LanguageCodeFilt
         sermonYoutubeLink
         sermonBookChapter
         sermonBookChapterTextNumber
-        sermonPhoto {
-          name
-          sourceUrl
-        }
+        #TODO: issue is this even used or not
+        #sermonPhoto {
+        #  name
+        #  sourceUrl
+        #}
         sermonsTopics {
           nodes {
             id

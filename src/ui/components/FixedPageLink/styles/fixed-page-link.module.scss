@@ -7,10 +7,20 @@
   right: 5vw;
   border-radius: 50%;
   border: 1px solid $color-red;
-  z-index: $z-index-level2;
+  z-index: $z-index-level4;
   box-shadow: $button-shadow;
   overflow: hidden;
   background-color: var(--main-bg-color);
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--color-red);
+
+      svg path {
+        stroke: $color-white;
+      }
+    }
+  }
 
   @media (min-width: $smallDesktop) {
     border: 2px solid $color-red;

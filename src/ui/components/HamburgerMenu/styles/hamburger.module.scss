@@ -21,4 +21,33 @@
   @media (min-width: $smallDesktop) {
     display: none;
   }
+
+  svg.hamburger__cross {
+    z-index: $z-index-level6;
+    height: 29px ;
+    width: 29px;
+    border-radius: 50%;
+
+    circle {
+      stroke: var(--fill-main-color);
+    }
+
+    line {
+      stroke: var(--fill-main-color);
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: var(--color-red);
+        
+        circle {
+          stroke: var(--color-red);
+        }
+  
+        line {
+          stroke: $color-white;
+        }
+      }
+    }
+  }
 }

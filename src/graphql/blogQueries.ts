@@ -1,6 +1,6 @@
 import { PostsQueryMaxCount } from '@/constants';
 
-import { SeoBlock, FeaturedImageBlock, AuthorInfoBlock } from './commonGraphqlFragments';
+import { FeaturedImageBlock, AuthorInfoBlock } from './commonGraphqlFragments';
 import { FullGutenbergBlockList } from './gutenbergGraphqlFragments';
 
 const ShortPostData = `
@@ -16,7 +16,6 @@ const ShortPostData = `
     }
     ${FeaturedImageBlock}
     ${AuthorInfoBlock}
-    ${SeoBlock}
   }`;
 
 export const getPastorsPostsByLang = `query getPastorsPostsByLang ($language: LanguageCodeFilterEnum) {
@@ -60,7 +59,6 @@ export const getPastorsPostData = `query getPastorsPostData ($id: ID!, $idType: 
       ${AuthorInfoBlock}
       ${FullGutenbergBlockList}
       ${FeaturedImageBlock}
-      ${SeoBlock}
       translations {
         slug
         language {

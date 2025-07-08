@@ -117,7 +117,7 @@ export interface BlogPostProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   blocks: any;
   featuredImageData: PostFeaturedImageData;
-  seo: SeoPostProps;
+  seo?: SeoPostProps;
 }
 
 export interface PostFeaturedImageData {

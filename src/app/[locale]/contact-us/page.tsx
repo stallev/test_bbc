@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 
-import { RoutePath, PagesIDs } from '@/constants';
-import { MAP_IDs } from '@/constants/mock';
+import { RoutePath, PagesSlugs } from '@/constants';
 import { i18n, Locale } from '@/i18n.config';
 import PageContentDataApi from '@/services/PageDataApi';
 import styles from '@/styles/pages/contact-us.module.scss';
@@ -10,8 +9,7 @@ import ChurchContactsInfo from '@/ui/components/ContactsInfo/ChurchContactsInfo'
 import MapLocation from '@/ui/components/MapLocation/MapLocation';
 import { Text, Icon } from '@/ui/components/ui-kit';
 import Container from '@/ui/containers/Container/Container';
-import { getPagePathData } from '@/utils/getPostSeoData';
-import { getSeoData } from '@/utils/getSeoData';
+import { getPageSeoData } from '@/utils/getPageSeoData';
 
 export async function generateStaticParams() {
   return i18n.locales.map(locale => ({
@@ -26,16 +24,12 @@ export async function generateMetadata(props: PagePathProps): Promise<Metadata> 
 
   const { locale } = params;
 
-  const pageId =
-    locale === i18n.defaultLocale ? PagesIDs.Contacts[i18n.defaultLocale] : PagesIDs.Contacts.ru;
+  const pageSlug =
+    locale === i18n.defaultLocale
+      ? PagesSlugs.Contacts[i18n.defaultLocale]
+      : PagesSlugs.Contacts.ru;
 
-  const { seo: seoContentData } = await PageContentDataApi.getPageContentData(pageId);
-  const seoPathData = getPagePathData({
-    locale,
-    path: RoutePath.Contacts,
-  });
-
-  return getSeoData({ seoContentData, seoPathData });
+  return await getPageSeoData({ pageSlug, locale, pagePath: RoutePath.Contacts });
 }
 
 export default async function ContactUs(props: { params: Promise<{ locale: Locale }> }) {
@@ -43,10 +37,12 @@ export default async function ContactUs(props: { params: Promise<{ locale: Local
 
   const { locale } = params;
 
-  const pageId =
-    locale === i18n.defaultLocale ? PagesIDs.Contacts[i18n.defaultLocale] : PagesIDs.Contacts.ru;
+  const pageSlug =
+    locale === i18n.defaultLocale
+      ? PagesSlugs.Contacts[i18n.defaultLocale]
+      : PagesSlugs.Contacts.ru;
 
-  const { title } = await PageContentDataApi.getPageContentData(pageId);
+  const { title } = await PageContentDataApi.getPageContentData(pageSlug);
 
   return (
     <>
@@ -60,7 +56,7 @@ export default async function ContactUs(props: { params: Promise<{ locale: Local
           <Icon iconName="smallLogo" className={styles['contact-us__icon']} />
         </div>
       </Container>
-      <MapLocation mapId={MAP_IDs.homePage} />
+      <MapLocation />
     </>
   );
 }

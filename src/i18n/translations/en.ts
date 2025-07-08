@@ -56,6 +56,8 @@ export const en = {
   reading_time: 'read',
   aria_label_link_go_to: 'Go to ',
   aria_label_page: 'page ',
+  aria_label_close_menu: 'Close menu',
+  aria_label_navigation_menu: 'Navigation menu',
   success_form_submit_notification: 'Message sent',
   error_form_submit_notification: 'Something went wrong ...',
   send_button: 'Send',

@@ -1,15 +1,11 @@
-import { ImageLinks } from '@/types/WPDataTypes/CommonWPDataTypes';
-
 export interface StaffPersonCardDataProps {
-  ministerFirstName: string;
-  ministerLastName: string;
-  ministerPosition: string;
-  ministerDepartment: string;
-  ministerDescription: string;
-  excerpt: string;
-  slug: string;
-  imageLinks: ImageLinks;
+  path?: string;
+  title?: string;
+  position?: string;
+  excerpt?: string;
+  photo?: string;
 }
+
 export interface StaffPersonCardProps {
   data: StaffPersonCardDataProps;
   isDetailed?: boolean;

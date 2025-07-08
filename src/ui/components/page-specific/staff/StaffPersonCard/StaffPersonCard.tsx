@@ -29,7 +29,7 @@ const StaffPersonCard: React.FC<StaffPersonCardProps> = ({
         <div className={styles['staff-person-card__image-wrap']}>
           <CustomImage
             className={styles['staff-person-card__image']}
-            imageURL={data.imageLinks.large}
+            imageURL={data.photo}
             priority={priorityFetching}
             sizes="38vw"
           />
@@ -38,11 +38,11 @@ const StaffPersonCard: React.FC<StaffPersonCardProps> = ({
 
       <div className={styles['staff-person-card__info']}>
         <Text textType="span" className={styles['staff-person-card__position']}>
-          {data.ministerPosition}
+          {data.position || ''}
         </Text>
 
         <Text textType="h3" className={styles['staff-person-card__name']}>
-          {`${data.ministerFirstName} ${data.ministerLastName}`}
+          {`${data.title}`}
         </Text>
 
         {isDetailed && (
@@ -50,12 +50,13 @@ const StaffPersonCard: React.FC<StaffPersonCardProps> = ({
             {data?.excerpt && stripHtmlTags(data.excerpt)}
           </Text>
         )}
-
-        <ReadMoreLink
-          to={`${RoutePath.Staff}/${data.slug}`}
-          label={translations.read_more_label}
-          className={styles['staff-person-card__read-more']}
-        />
+        {data.path && (
+          <ReadMoreLink
+            to={`${RoutePath.Staff}/${data.path}`}
+            label={translations.read_more_label}
+            className={styles['staff-person-card__read-more']}
+          />
+        )}
       </div>
     </article>
   );

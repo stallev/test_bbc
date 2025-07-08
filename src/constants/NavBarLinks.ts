@@ -59,10 +59,6 @@ export const NavBarMinistryLinks = [
     label: NavBarLinksNames.FamilyMinistry,
   },
   {
-    link: RoutePath.WorshipMinistry,
-    label: NavBarLinksNames.WorshipMinistry,
-  },
-  {
     link: RoutePath.WomenMinistry,
     label: NavBarLinksNames.WomenMinistry,
   },
@@ -87,18 +83,6 @@ export const MainNavBarLinks = [
         link: RoutePath.AboutUs,
         label: NavBarLinksNames.AboutChurchLinkName,
       },
-      // {
-      //   link: RoutePath.OurBeliefs,
-      //   label: NavBarLinksNames.OurBeliefs,
-      // },
-      // {
-      //   link: RoutePath.Timeline,
-      //   label: NavBarLinksNames.Timeline,
-      // },
-      // {
-      //   link: RoutePath.GospelPage,
-      //   label: NavBarLinksNames.GospelPageLinkName,
-      // },
     ],
   },
 
@@ -116,25 +100,16 @@ export const MainNavBarLinks = [
       },
     ],
   },
-
   {
     link: RoutePath.UpcomingEvents,
     label: NavBarLinksNames.UpcomingEvents,
     children: [],
   },
-
   {
     link: RoutePath.Contacts,
     label: NavBarLinksNames.ContactsLinkName,
     children: [],
   },
-
-  {
-    link: RoutePath.Blog,
-    label: NavBarLinksNames.Blog,
-    children: [],
-  },
-
   {
     link: RoutePath.Giving,
     label: NavBarLinksNames.GivingLinkName,

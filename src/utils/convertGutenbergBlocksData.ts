@@ -8,6 +8,9 @@ import { removeClasses, stripHtmlTags } from './stripHtmlTags';
 import { getFileNameFromUrl } from '.';
 
 export const convertGutenbergBlocksData = (blocks: GutenbergBlockType[]): GutenbergBlock[] => {
+  if (!blocks || !Array.isArray(blocks)) {
+    return [];
+  }
   return blocks
     .filter((item: GutenbergBlockType) => !!item.name)
     .sort((a: GutenbergBlockType, b: GutenbergBlockType) => a.order - b.order)

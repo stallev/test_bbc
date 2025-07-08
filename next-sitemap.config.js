@@ -5,7 +5,7 @@ const blogSitemapUrl = `${siteUrl}/blog/blog-sitemap.xml`;
 const timelineEventsSitemapUrl = `${siteUrl}/timeline/timeline-sitemap.xml`;
 const staffSitemapUrl = `${siteUrl}/staff/staff-sitemap.xml`;
 const policies = [
-  { 
+  {
     userAgent: '*',
     disallow: [
       '*?*',

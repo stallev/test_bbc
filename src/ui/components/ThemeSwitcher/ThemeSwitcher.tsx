@@ -2,8 +2,7 @@
 
 import { useTheme } from 'next-themes';
 import { useState, useEffect } from 'react';
-import { BsSun } from 'react-icons/bs';
-import { PiMoonStarsFill } from 'react-icons/pi';
+import Icon from '@/ui/components/ui-kit/Icon';
 
 import styles from './styles/theme-switcher.module.scss';
 
@@ -27,8 +26,8 @@ const ThemeSwitcher = () => {
   }
 
   return (
-    <div onClick={toggleTheme} className={styles['theme-switcher']}>
-      {newThemeValue === 'dark' ? <PiMoonStarsFill /> : <BsSun />}
+    <div onClick={toggleTheme} aria-label="Theme switcher" className={styles['theme-switcher']}>
+      {newThemeValue === 'dark' ? <Icon iconName="darkTheme" /> : <Icon iconName="lightTheme" />}
     </div>
   );
 };

@@ -1,0 +1,33 @@
+steps:
+  - name: "node:22"
+    entrypoint: "npm"
+    args: ["ci"]
+  - name: "node:22"
+    entrypoint: "npm"
+    env:
+      - "NEXT_TELEMETRY_DISABLED=1"
+      - "SERVICE_API_ENDPOINT=${_PROD_SERVICE_ENDPOINT}"
+      - "NEXT_PUBLIC_MAPS_API_KEY=${_MAPS_API_KEY}"
+      - "NEXT_PUBLIC_SITE_URL=${_SITE_URL}"
+    args: ["run", "build"]
+  - name: "docker"
+    args:
+      [
+        "build",
+        "-t",
+        "${BUILD_ID}",
+        "-t",
+        "${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}",
+        ".",
+      ]
+images:
+  - "${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}"
+
+logsBucket: "gs://${PROJECT_ID}_cloudbuild"
+substitutions:
+  _LOCATION: us-central1
+  _REPOSITORY: default
+  _IMAGE: word-client
+  _PROD_SERVICE_ENDPOINT: ""
+  _MAPS_API_KEY: ""
+  _SITE_URL: ""

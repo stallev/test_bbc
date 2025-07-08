@@ -9,6 +9,9 @@ import styles from './styles/donation-form.module.scss';
 const DonationForm: React.FC = () => {
   const donationRef = useRef<HTMLDivElement>(null);
   const isIframeVisible = useOnceIntersection(donationRef);
+  if (process.env.NODE_ENV === 'development') {
+    return <>Dev environment skip loading subsplash frame</>;
+  }
   return (
     <div className={styles['donation-form']} ref={donationRef}>
       {isIframeVisible && (

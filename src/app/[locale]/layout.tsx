@@ -1,14 +1,15 @@
+import dynamic from 'next/dynamic';
 import React from 'react';
 
 import { Locale } from '@/i18n.config';
 import styles from '@/styles/Home.module.scss';
-import ClientFooter from '@/ui/components/Footer/ClientFooter';
+import Footer from '@/ui/components/Footer/Footer';
 import Header from '@/ui/components/Header/Header';
-import LazyLoader from '@/ui/components/LazyLoader/LazyLoader';
-import ClientPlayer from '@/ui/components/Player/ClientPlayer';
-import ClientNotification from '@/ui/components/ui-kit/Notification/ClientNotification';
+import Notification from '@/ui/components/ui-kit/Notification/Notification';
 import Providers from '@/ui/containers/Providers/Providers';
 import { getTranslations } from '@/utils/languageParser';
+
+const Player = dynamic(() => import('@/ui/components/Player/Player'));
 
 const Layout = async (props: {
   children: React.ReactNode;
@@ -28,13 +29,11 @@ const Layout = async (props: {
 
       <main className={styles.main}>{children}</main>
 
-      <LazyLoader>
-        <ClientFooter translations={translations} locale={locale} />
+      <Footer translations={translations} locale={locale} />
 
-        <ClientNotification translations={translations} />
+      <Notification translations={translations} />
 
-        <ClientPlayer />
-      </LazyLoader>
+      <Player />
     </Providers>
   );
 };

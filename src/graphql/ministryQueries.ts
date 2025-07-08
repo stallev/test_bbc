@@ -1,13 +1,13 @@
-import { SeoBlock, FeaturedImageBlock } from './commonGraphqlFragments';
+import { PostsQueryMaxCount } from '@/constants';
+import { FeaturedImageBlock } from './commonGraphqlFragments';
 import { FullGutenbergBlockList } from './gutenbergGraphqlFragments';
 
-export const getMinistryData = `query getMinistryData ($id: ID!, $idType: MinistryIdType!, $language: LanguageCodeEnum!) {
-  ministry(id: $id, idType: $idType) {
+export const getMinistryData = `query getMinistryData ($postSlug: ID!, $language: LanguageCodeEnum!) {
+  ministry(id: $postSlug, idType: SLUG) {
     translation(language: $language) {
       slug
       title
       ${FullGutenbergBlockList}
-      ${SeoBlock}
       ${FeaturedImageBlock}
       excerpt
       ministryDays
@@ -28,6 +28,18 @@ export const getMinistryData = `query getMinistryData ($id: ID!, $idType: Minist
             url
           }
         }
+      }
+    }
+  }
+}
+`;
+
+export const getMinistriesPostsSitemapData = `query getMinistriesPostsSitemapData {
+  ministries(where: {status: PUBLISH, language: EN}, first: ${PostsQueryMaxCount}) {
+    edges {
+      node {
+        slug
+        modified
       }
     }
   }

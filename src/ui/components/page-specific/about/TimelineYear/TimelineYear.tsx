@@ -6,7 +6,7 @@ import Container from '@/ui/containers/Container/Container';
 import styles from './styles/timeline-year.module.scss';
 
 const TimelineYear = ({ data }: { data: TimelineDataItemProps }) => {
-  const isShortDesripted = !!data.year_descr.length;
+  const isShortDesripted = !!data.year_desc.length;
 
   return (
     <>
@@ -22,7 +22,7 @@ const TimelineYear = ({ data }: { data: TimelineDataItemProps }) => {
 
             {isShortDesripted && (
               <Text textType="p" className={styles['timeline-year__short-descr']}>
-                {data.year_descr}
+                {data.year_desc}
               </Text>
             )}
           </div>
@@ -31,9 +31,9 @@ const TimelineYear = ({ data }: { data: TimelineDataItemProps }) => {
 
       {data.images.length > 0 && (
         <div className={styles['timeline-year__images']}>
-          {data.images.map(image => (
+          {data.images.map((image, index) => (
             <CustomImage
-              key={image.id}
+              key={index}
               imageURL={image.url}
               alt={image.alt}
               className={styles['timeline-year__image']}
@@ -42,11 +42,11 @@ const TimelineYear = ({ data }: { data: TimelineDataItemProps }) => {
         </div>
       )}
 
-      {!!data.year_additional_descr.length && (
+      {!!data.year_additional_desc.length && (
         <Container>
           <MarkdownContent
             className={styles['timeline-year__additional-descr']}
-            content={data.year_additional_descr}
+            content={data.year_additional_desc}
           />
         </Container>
       )}

@@ -1,10 +1,11 @@
 /** @type {import('next').NextConfig} */
 const { settings } = require('./src/config/config.json');
+const path = require('path');
 
 const languages = settings.languages;
 const defaultLanguage = settings.default_language;
 
-const otherLanguages = languages.filter((lang) => lang !== defaultLanguage);
+const otherLanguages = languages.filter(lang => lang !== defaultLanguage);
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
@@ -12,18 +13,19 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 const cspHeader = `
   default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' https://maps.googleapis.com https://maps.google.com;
-  style-src 'self' 'unsafe-inline';
-  img-src 'self' blob: data: https://i.ytimg.com https://*.ytimg.com https://testwordpressmedia1.s3.amazonaws.com https://maps.googleapis.com https://maps.gstatic.com;
-  font-src 'self' data:;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' blob: https://maps.googleapis.com https://*.gstatic.com https://maps.google.com;
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  img-src 'self' blob: data: https://i.ytimg.com https://*.ytimg.com https://wordmedia.storage.googleapis.com https://*.googleapis.com https://maps.gstatic.com;
+  font-src 'self' data: https://fonts.gstatic.com;
   object-src 'none';
   base-uri 'self';
   form-action 'self';
   frame-ancestors 'none';
   upgrade-insecure-requests;
-  frame-src 'self' https://i.ytimg.com https://wallet.subsplash.com https://subsplash.com https://www.youtube-nocookie.com/ https://testwordpressmedia1.s3.amazonaws.com/ https://www.youtube.com/;
-  connect-src 'self' https://i.ytimg.com https://api.iconify.design https://testchurchapi.stallevs.ru/graphql https://testchurchapi.stallevs.ru/wp-json/timeline/timeline-data https://testchurchapi.stallevs.ru/wp-json/events/upcoming-events-list https://testchurchapi.stallevs.ru/wp-json/ministers/selected-ministers-list https://www.googleapis.com/youtube/v3/playlistItems https://youtube.googleapis.com/youtube/v3/videos https://maps.googleapis.com;
-  media-src 'self' https://testwordpressmedia1.s3.amazonaws.com https://testchurchapi.stallevs.ru/;
+  frame-src 'self' https://i.ytimg.com https://wallet.subsplash.com https://subsplash.com https://www.youtube-nocookie.com/ https://wordmedia.storage.googleapis.com/ https://www.youtube.com/;
+  connect-src 'self' data: blob: https://i.ytimg.com https://www.googleapis.com/youtube/v3/playlistItems https://youtube.googleapis.com/youtube/v3/videos https://*.googleapis.com https://www.gstatic.com;
+  media-src 'self' https://wordmedia.storage.googleapis.com;
+  worker-src blob:;
 `;
 
 const nextConfig = {
@@ -34,23 +36,15 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'testwordpressmedia1.s3.amazonaws.com',
+        hostname: 'wordmedia.storage.googleapis.com',
       },
       {
         protocol: 'https',
-        hostname: 'secure.gravatar.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'testchurchapi.stallevs.ru',
+        hostname: 'storage.googleapis.com',
       },
       {
         protocol: 'https',
         hostname: 'i.ytimg.com',
-      },
-      {
-        protocol: 'https',
-        hostname: '3.85.115.123',
       },
     ],
     // minimumCacheTTL: 31536000,

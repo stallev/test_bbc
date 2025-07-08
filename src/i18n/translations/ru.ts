@@ -56,6 +56,8 @@ export const ru = {
   reading_time: 'время чтения',
   aria_label_link_go_to: 'Перейти к ',
   aria_label_page: 'страница',
+  aria_label_close_menu: 'Закрыть меню',
+  aria_label_navigation_menu: 'Меню навигации',
   success_form_submit_notification: 'Сообщение отправлено',
   error_form_submit_notification: 'Что-то пошло не так ...',
   send_button: 'Отправить',

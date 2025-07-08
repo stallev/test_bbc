@@ -33,10 +33,10 @@ export interface GetSeoDataProps {
 
 export interface SeoContentDataProps {
   data: {
-    metaDesc: string;
-    schema: Schema;
+    metaDesc?: string;
+    schema?: Schema;
     title: string;
-    twitterDescription: string;
+    twitterDescription?: string;
     featuredImageUrl?: string;
     slug?: string;
     canonicalUrl?: string;
@@ -67,9 +67,4 @@ export type NavBarMenuItemProps =
 export interface MobileMenuStateProps {
   isMenuOpen: boolean;
   activeDropDownMenuItem: NavBarMenuItemProps;
-}
-
-export interface ClientSectionProps {
-  locale: Locale;
-  translations: Record<string, string>;
 }

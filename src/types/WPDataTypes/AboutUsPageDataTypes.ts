@@ -1,16 +1,14 @@
 export interface AboutUsPageDataProps {
-  about_us_data: AboutUsData;
-  mission_data: OurMissionDataProps;
-}
-
-export interface AboutUsData {
+  title: string;
+  slug: string;
   timeline_data: TimelineDataItemProps[] | [];
+  mission_data: OurMissionDataProps;
 }
 
 export interface TimelineDataItemProps {
   year_title: string;
-  year_descr: string;
-  year_additional_descr: string;
+  year_desc: string;
+  year_additional_desc: string;
   images: Image[] | [];
 }
 

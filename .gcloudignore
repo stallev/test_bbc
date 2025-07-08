@@ -1,0 +1,13 @@
+#!include:.gitignore
+.gitignore
+.gcloudignore
+.git
+.devcontainer
+.vscode
+.temp
+.github
+awsbackend
+docs
+cypress
+.env
+.env.development.local

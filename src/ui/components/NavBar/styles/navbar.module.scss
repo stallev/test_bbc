@@ -1,34 +1,104 @@
 @import "../../../../styles/variables.scss";
 
 .navbar {
-  display: none;
-  font-weight: 500;
-  font-family: $gilroy-medium-font-family;
+  position: static;
+  transform: translateX(100%);
+  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+
+  &--show {
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    padding: 0 $gutter-lg $gutter-lg $gutter-lg;
+    width: 90%;
+    max-width: 400px;
+    height: 100vh;
+    background-color: var(--main-bg-color);
+    box-shadow: $navDropDown-box-shadow;
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+    z-index: $z-index-level6;
+
+    @media (min-width: $smallDesktop) {
+      display: none;
+    }
+
+    .navbar__content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-top: $gutter-base;
+    }
+  }
+  
+  @media screen and (min-width: $smallDesktop) {
+    transform: none;
+    transition: none;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: $header-height;
+  }
+
+  &__content {
+    display: none;
+    flex-grow: 2;
+    font-weight: 500;
+    font-family: $gilroy-medium-font-family;
+
+    @media (min-width: $smallDesktop) {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-grow: 1;
+    }
+  
+    @media (min-width: $desktop) {
+      gap: 40px;
+    }
+  }
 
   &__label {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
   }
 
   &__item {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 190px;
+    align-items: flex-start;
+    width: 100%;
 
     @media (min-width: $smallDesktop) {
       align-items: center;
       width: inherit;
     }
+    
+    &:last-child {
+      margin-top: auto;
+
+      @media (min-width: $smallDesktop) {
+        margin-top: 0;
+      }
+    }
   }
 
   &__link {
-    padding: $gutter-xs 0;
+    width: 100%;
     font-style: normal;
     font-weight: $font-weight-default;
-    font-size: 15px;
-    line-height: $line-height-ms;
-    text-align: right;
+    font-size: 23px;
+    line-height: 1.7;
+    text-align: left;
     color: var(--text-secondary-color);
     opacity: 0.9;
     cursor: pointer;
@@ -37,29 +107,48 @@
     &:hover {
       color: $color-red;
     }
+
+    @media (min-width: $smallDesktop) {
+      font-size: 16px;
+      line-height: $line-height-ms;
+    }
   }
 
   &__link--outlined {
     padding: 0;
     border-radius: 6px;
     border: 1px solid $color-red;
+    width: fit-content;
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: $color-red;
+        span {
+          color: $color-white;
+        }
+
+        svg path,
+        svg circle {
+          stroke: $color-white;
+        }
+      }
+    }
 
     a {
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 10px;
+      padding: 4px 8px;
+      transition: all 0.3s ease;
     }
 
     svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    a:hover {
-      svg path,
-      svg circle {
-        stroke: $color-red;
+      width: 28px;
+      height: 28px;
+      
+      @media screen and (min-width: $smallDesktop) {
+        width: 20px;
+        height: 20px;
       }
     }
 
@@ -71,41 +160,12 @@
     }
   }
 
-  @media (min-width: $smallDesktop) {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-  }
-
-  @media (min-width: $desktop) {
-    gap: 40px;
-  }
-
-  &--show {
-    position: absolute;
-    top: $header-height;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    row-gap: $gutter-md;
-    align-items: flex-end;
-    padding: $gutter-lg 0;
-    width: 100%;
-    background-color: var(--main-bg-color);
-
-    @media (min-width: $smallDesktop) {
-      display: none;
-    }
-  }
-
   &__submenu {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     text-align: center;
-    padding: 0;
     z-index: $navDropDown-z-index;
     height: 0;
     overflow: hidden;
@@ -116,9 +176,9 @@
 
     @media screen and (min-width: $smallDesktop) {
       position: absolute;
-      top: 40px;
       height: fit-content;
       width: fit-content;
+      top: 40px;
       margin: auto;
       box-shadow: $navDropDown-box-shadow;
       background-color: var(--main-bg-color);
@@ -132,7 +192,7 @@
     &--active {
       height: auto;
       max-height: 500px;
-      padding: $navDropDown-padding;
+      padding-left: $gutter-ms;
       transition: 
           height 1s ease,
           max-height 1s ease,
@@ -143,22 +203,34 @@
         min-height: none;
         visibility: visible;
         opacity: 1;
+        padding: 24px;
+      }
+
+      a {
+        @media screen and (min-width: $smallDesktop) {
+          width: 100%;
+        }
       }
     }
 
     &-link {
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
-      padding: 7px;
       width: $navDropDown-link-width;
-      font-size: 13px;
-      line-height: 20px;
+      font-size: 23px;
+      line-height: 1.7;
       color: var(--text-secondary-color);
       text-decoration: none;
 
       &:hover {
         color: $color-red;
+      }
+
+      @media (min-width: $smallDesktop) {
+        width: 100%;
+        font-size: 16px;
+        text-align: center;
       }
     }
   }
@@ -171,13 +243,26 @@
       color: $color-red;
     }
   }
+
+  &__footer {
+    display: flex;
+    gap: 16px;
+    align-items: flex-end;
+    align-self: flex-end;
+    width: fit-content;
+    margin-top: 60px;
+  }
 }
 
 .arrowIcon {
   display: flex;
   color: $color-red;
   justify-content: center;
-  margin: 5px;
-  width: 8px;
-  height: 7px;
+  width: 26px;
+  height: auto;
+
+  @media (min-width: $smallDesktop) {
+    width: 10px;
+    margin-left: 5px;
+  }
 }

@@ -1,6 +1,5 @@
-import { NavBarLinksNames, RoutePath } from '@/constants';
 import { Locale } from '@/i18n.config';
-import { CustomLink, Text } from '@/ui/components/ui-kit';
+import Text from '@/ui/components/ui-kit/Text';
 import Container from '@/ui/containers/Container/Container';
 
 import FooterNavBar from './FooterNavBar/FooterNavBar';
@@ -24,22 +23,8 @@ const Footer: React.FC<FooterProps> = ({ translations, locale }) => {
 
         <div className={styles.footer__bottom}>
           <Text textType="p" className={styles.footer__copyright}>
-            {`ⓒ Bible Baptist Church | 2000-${new Date().getFullYear()} | ${translations.copyright_text}`}
+            {`ⓒ Bible Baptist Church | ${new Date().getFullYear()} | ${translations.copyright_text}`}
           </Text>
-
-          <nav className={styles['footer__bottom-nav']}>
-            <CustomLink
-              to={RoutePath.Terms}
-              label={translations[NavBarLinksNames.Terms]}
-              className={styles['footer__bottom-nav-link']}
-            />
-            |
-            <CustomLink
-              to={RoutePath.PrivacyPolicy}
-              label={translations[NavBarLinksNames.PrivacyPolicy]}
-              className={styles['footer__bottom-nav-link']}
-            />
-          </nav>
         </div>
       </footer>
     </Container>

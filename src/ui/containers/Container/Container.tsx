@@ -3,7 +3,7 @@ import React from 'react';
 
 import styles from './styles/container.module.scss';
 
-export interface ContainerProps {
+interface ContainerProps {
   children: React.ReactNode;
   isMarkdownContent?: boolean;
   isNarrowContent?: boolean;

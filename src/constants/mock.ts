@@ -20,7 +20,8 @@ export const S3_BUCKET_NAME = 'testwordpressmedia1';
 export const S3_BUCKET_URL = `https://${S3_BUCKET_NAME}.s3.amazonaws.com/`;
 
 export const NO_IMAGE = `${S3_BUCKET_URL}001assets/no_image_available.jpg`;
-export const DEFAULT_FEATURED_IMAGE = `${process.env.NEXT_PUBLIC_SITE_URL}/default-og-image.jpg`;
+export const DEFAULT_FEATURED_IMAGE = `/default-og-image.jpg`;
+// export const DEFAULT_FEATURED_IMAGE = `${process.env.NEXT_PUBLIC_SITE_URL}/default-og-image.jpg`;
 
 export const DEFAULT_LOCALE = 'en';
 
@@ -30,17 +31,12 @@ export const POST_CARD_HOME_PAGE_COUNT = 2;
 export const SAME_AUTHOR_POST_CARD_POST_PAGE_COUNT = 4;
 export const PAGE_REVALIDATE_TIME_IN_SECONDS = 600;
 
-export const MAP_IDs = {
-  homePage: '12dfcsvf32emcvmkerRt',
-  contactsPage: '12dfcsvf32emcvmkerRn',
-};
-
 export const ContactsInfo = {
   email: 'takemetochurch@gmail.com',
   address: '7635 Auburn Blvd, Citrus Heights, CA 95610',
   phonePrint: '+1 (800) 469-92-69',
   phoneValue: '+18004699269',
-  workHours: '6:00 – 21:00',
+  workHours: '6:00 am — 9:00 pm',
 };
 
 export const PASTORS_POST_BLOCK_ID = 'pastorsPosts';

@@ -84,6 +84,7 @@ export const getSeoData = ({ seoContentData, seoPathData }: GetSeoDataProps): Me
       canonical: canonicalUrl,
       languages: alternateLangsUrls,
     },
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || '//'),
     openGraph: {
       url: canonicalUrl,
       title: data?.title,

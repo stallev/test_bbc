@@ -8,14 +8,15 @@
   display: flex;
   background-color: var(--main-bg-color);
   width: 100%;
-  z-index: $z-index-level4;
+  z-index: $z-index-level5;
   transition: 0.8s;
 
   &__overlay {
     position: absolute;
     width: 100vw;
-    height: 100vh;
-    z-index: $z-index-level4;
+    height: calc(100vh + $header-height);
+    z-index: $z-index-level5;
+    background: rgba(0, 0, 0, 0.5);
   }
 
   &__content {
@@ -32,7 +33,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 24px;
+    gap: 10px;
+
+    @media screen and (min-width: 360px) {
+      gap: 24px;
+    }
   }
 
   &.visible {

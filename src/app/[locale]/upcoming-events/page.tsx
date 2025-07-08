@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import { RoutePath, PagesIDs } from '@/constants';
+import { RoutePath, PagesSlugs } from '@/constants';
 import { i18n, Locale } from '@/i18n.config';
 import PageContentDataApi from '@/services/PageDataApi';
 import UpcomingEventsDataApi from '@/services/UpcomingDataApi';
@@ -10,8 +10,7 @@ import UpcomingEventsList from '@/ui/components/page-specific/upcoming-event/Upc
 import SubscribeForm from '@/ui/components/SubscribeForm/ClientSubscribeForm';
 import { Text } from '@/ui/components/ui-kit';
 import Container from '@/ui/containers/Container/Container';
-import { getPagePathData } from '@/utils/getPostSeoData';
-import { getSeoData } from '@/utils/getSeoData';
+import { getPageSeoData } from '@/utils/getPageSeoData';
 
 export async function generateStaticParams() {
   return i18n.locales.map(locale => ({
@@ -26,18 +25,12 @@ export async function generateMetadata(props: PagePathProps): Promise<Metadata> 
 
   const { locale } = params;
 
-  const pageId =
+  const pageSlug =
     locale === i18n.defaultLocale
-      ? PagesIDs.UpcomingEventsPage[i18n.defaultLocale]
-      : PagesIDs.UpcomingEventsPage.ru;
+      ? PagesSlugs.UpcomingEvents[i18n.defaultLocale]
+      : PagesSlugs.UpcomingEvents.ru;
 
-  const { seo: seoContentData } = await PageContentDataApi.getPageContentData(pageId);
-  const seoPathData = getPagePathData({
-    locale,
-    path: RoutePath.UpcomingEvents,
-  });
-
-  return getSeoData({ seoContentData, seoPathData });
+  return await getPageSeoData({ pageSlug, locale, pagePath: RoutePath.UpcomingEvents });
 }
 
 export default async function UpcomingEventsPage(props: { params: Promise<{ locale: Locale }> }) {
@@ -45,12 +38,12 @@ export default async function UpcomingEventsPage(props: { params: Promise<{ loca
 
   const { locale } = params;
 
-  const pageId =
+  const pageSlug =
     locale === i18n.defaultLocale
-      ? PagesIDs.UpcomingEventsPage[i18n.defaultLocale]
-      : PagesIDs.UpcomingEventsPage.ru;
+      ? PagesSlugs.UpcomingEvents[i18n.defaultLocale]
+      : PagesSlugs.UpcomingEvents.ru;
 
-  const { title } = await PageContentDataApi.getPageContentData(pageId);
+  const { title } = await PageContentDataApi.getPageContentData(pageSlug);
   const upcomingEventsData = await UpcomingEventsDataApi.getUpcomingEvents(locale);
 
   return (

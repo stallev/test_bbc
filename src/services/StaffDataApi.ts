@@ -1,6 +1,6 @@
 import { EndpointsList } from '@/constants';
 import {
-  getMinisterData,
+  getPastorData,
   getMinistersSlugs,
   getMinistersPostsSitemapData,
 } from '@/graphql/staffQueries';
@@ -20,19 +20,6 @@ import { fetchAPI } from './WordPressFetchAPI';
 
 class StaffDataApi {
   static getOtherImagesSizesUrls(item: TranslationFetchedData) {
-    if (!!item.ministerPhoto) {
-      let featuredImageLinks: { [key: string]: string } = {};
-
-      item.ministerPhoto.map(({ size, url }: { size: string; url: string }) => {
-        featuredImageLinks = { ...featuredImageLinks, [size]: url };
-
-        return featuredImageLinks;
-      });
-
-      delete item.ministerPhoto;
-      item.imageLinks = featuredImageLinks;
-    }
-
     return item;
   }
 
@@ -50,7 +37,7 @@ class StaffDataApi {
       idType,
     };
 
-    const result = await fetchAPI(getMinisterData, { variables }).then(
+    const result = await fetchAPI(getPastorData, { variables }).then(
       ({ minister: { translation } }: FetchedStaffPersonDataType) =>
         this.getOtherImagesSizesUrls(translation)
     );
@@ -68,46 +55,48 @@ class StaffDataApi {
       idType: 'SLUG',
     };
 
-    const fetchedData = await fetchAPI(getMinisterData, { variables });
+    const fetchedData = await fetchAPI(getPastorData, { variables });
 
-    if (!fetchedData?.minister) {
+    if (!fetchedData?.pastor) {
       return null;
     }
 
-    if (!!fetchedData?.minister) {
+    if (!!fetchedData?.pastor) {
       const {
-        minister: { translation },
+        pastor: { translation },
       } = fetchedData;
 
       const postData = this.getOtherImagesSizesUrls(translation);
       const blocks = convertGutenbergBlocksData(postData.blocks);
 
       return <MinisterPostDataProps>{
-        ...postData,
+        title: postData.title,
+        slug: postData.slug,
+        excerpt: postData.excerpt,
+        pastorName: postData.pastorName,
+        pastorDepartment: postData.pastorDepartment,
+        pastorPosition: postData.pastorPosition,
+        pastorUserSlug: postData.pastorUserSlug,
         blocks,
-        seo: this.getMinisterPageSeoData(postData, locale),
+        featuredImage: postData.featuredImage?.node.sourceUrl || null,
       };
     }
   }
 
   static getMinisterPageSeoData(postData: TranslationFetchedData, locale: string) {
-    const featuredImageUrl = !!postData?.imageLinks?.medium?.length
-      ? postData.imageLinks.medium
-      : postData?.imageLinks?.full;
+    const featuredImageUrl = '';
     const otherLanguageCode = postData.translations[0].language.code.toLowerCase();
     const otherTranslationSlug = postData.translations[0].slug;
 
     const seo: SeoContentDataProps = {
       data: {
-        ...postData.seo,
         featuredImageUrl,
         slug: postData.slug,
-        title: postData.ministerFirstName + ' ' + postData.ministerLastName,
+        title: postData.title,
         alternateLinksSlugs: {
           [locale]: postData.slug,
           [otherLanguageCode]: otherTranslationSlug,
         },
-        twitterDescription: postData.seo.metaDesc,
       },
       isPostType: true,
     };
@@ -122,7 +111,7 @@ class StaffDataApi {
     for (const item of res) {
       const itemData = await this.getMinisterItemData(item, locale.toUpperCase());
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { seo, translations, ...ministerData } = itemData;
+      const { translations, ...ministerData } = itemData;
 
       resultItems.push(ministerData);
     }

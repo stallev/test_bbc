@@ -9,20 +9,29 @@ import { convertGutenbergBlocksData } from '@/utils/convertGutenbergBlocksData';
 import { fetchAPI } from './WordPressFetchAPI';
 
 class PageContentDataApi {
-  static async getPageContentData(id: string, idType = 'DATABASE_ID') {
+  static async getPageContentData(slug: string) {
     const variables = {
-      id,
-      idType,
+      slug: `/${slug}/`,
     };
 
     const { page } = await fetchAPI(getMarkdownPageContentData, { variables });
+
+    if (!page) {
+      console.error('Page not found for slug:', variables.slug);
+      // TODO: find a graceful solution for throw errors
+      // throw new Error(`Page not found for slug: ${variables.slug}`);
+      page['slug'] = slug;
+      page['title'] = 'Page Not Found';
+      page['translations'] = null;
+    }
+
     const featuredImageUrl = !!page?.featuredImage
       ? page.featuredImage.node.mediaItemUrl
       : DEFAULT_FEATURED_IMAGE;
 
     const seo: SeoContentDataProps = {
       data: {
-        ...page.seo,
+        // ...page.seo,
         featuredImageUrl,
         title: page.title,
         slug: page.slug,
@@ -44,8 +53,8 @@ class PageContentDataApi {
     };
   }
 
-  static async getAboutUsData(id: string): Promise<AboutUsPageDataProps> {
-    const response = await fetch(`${EndpointsList.AboutUsRestEndpoint}${id}`);
+  static async getAboutUsData(slug: string): Promise<AboutUsPageDataProps> {
+    const response = await fetch(`${EndpointsList.AboutUsRestEndpoint}${slug}`);
     const data = await response.json();
 
     return data;

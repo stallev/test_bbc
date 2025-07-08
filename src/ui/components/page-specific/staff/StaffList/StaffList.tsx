@@ -19,7 +19,7 @@ const StaffList = ({ data, translations, isDetailed = false }: StaffListProps) =
       {data.map((personCard, index) => (
         <StaffPersonCard
           isDetailed={isDetailed}
-          key={personCard.slug}
+          key={personCard.path}
           data={personCard}
           translations={translations}
           index={index}

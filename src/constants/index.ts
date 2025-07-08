@@ -1,5 +1,5 @@
 export { EndpointsList, WordpressGraphQLEndpoint, PostsQueryMaxCount } from './EndpointsList';
-export { PagesIDs } from './PagesIDs';
+export { PagesSlugs } from './PagesSlugs';
 export { LinkTypes } from './LinkTypes';
 export { ButtonTypes } from './ButtonTypes';
 export { InputTypes } from './InputTypes';

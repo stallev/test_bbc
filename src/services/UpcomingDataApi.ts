@@ -3,10 +3,9 @@ import { DEFAULT_FEATURED_IMAGE } from '@/constants/mock';
 import {
   getUpcomingEventData,
   getUpcomingEventDataBySlug,
-  getUpcomingEventsSlugs,
   getUpcomingEventsSitemapData,
 } from '@/graphql/upcomingEventsQueries';
-import { PostNodeSlugType, PostSitemapSourceData } from '@/types/WPDataTypes/CommonWPDataTypes';
+import { PostSitemapSourceData } from '@/types/WPDataTypes/CommonWPDataTypes';
 import { ConvertedGutenbergBlockType } from '@/types/WPDataTypes/GutenbergBlocksTypes';
 import {
   FetchedRestUpcomingEventType,
@@ -35,11 +34,9 @@ class UpcomingEventsDataApi {
       idType,
     };
 
-    const {
-      upcoming: { translation },
-    } = await fetchAPI(getUpcomingEventData, { variables });
+    const { upcoming } = await fetchAPI(getUpcomingEventData, { variables });
 
-    return translation;
+    return upcoming.translation;
   }
 
   static async getUpcomingEventItemDataBySlug(
@@ -108,22 +105,6 @@ class UpcomingEventsDataApi {
     const items = await this.getUpcomingEvents(locale);
 
     return items.slice(0, 3);
-  }
-
-  static async getUpcomingEventsPaths() {
-    const {
-      allUpcoming: { edges: nodes },
-    } = await fetchAPI(getUpcomingEventsSlugs);
-
-    const paths = nodes.map(({ node }: { node: PostNodeSlugType }) => {
-      return {
-        params: {
-          postSlug: node.slug,
-        },
-      };
-    });
-
-    return paths;
   }
 
   static async getUpcomingEventsSitemapData() {

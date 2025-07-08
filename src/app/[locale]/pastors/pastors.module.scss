@@ -1,0 +1,8 @@
+@use "../../../styles/variables";
+
+.error {
+  &_title {
+    margin-top: 100px;
+    color: variables.$color-red;
+  }
+}

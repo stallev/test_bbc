@@ -1,6 +1,7 @@
 import { DEFAULT_FEATURED_IMAGE } from '@/constants/mock';
-import { getMinistryData } from '@/graphql/ministryQueries';
+import { getMinistryData, getMinistriesPostsSitemapData } from '@/graphql/ministryQueries';
 import { SeoContentDataProps } from '@/types/globalTypes';
+import { PostSitemapSourceData } from '@/types/WPDataTypes/CommonWPDataTypes';
 import { ConvertedGutenbergBlockType } from '@/types/WPDataTypes/GutenbergBlocksTypes';
 import {
   MinistryMediaGallerySize,
@@ -25,14 +26,12 @@ class MinistryDataApi {
   }
 
   static async getMinistryPageData(
-    id: string,
-    locale: string,
-    idType = 'DATABASE_ID'
+    postSlug: string,
+    locale: string
   ): Promise<MinistryConvertedDataType> {
     const variables = {
-      id,
+      postSlug,
       language: locale.toUpperCase(),
-      idType,
     };
 
     const {
@@ -40,13 +39,13 @@ class MinistryDataApi {
         translation: {
           featuredImage,
           title,
-          seo: seoData,
-          slug,
+          // seo: seoData,
           blocks,
           ministryDays,
           ministryHours,
           ministryMediaGallery,
           ministryShortDescription,
+          slug,
         },
       },
     } = await fetchAPI(getMinistryData, { variables });
@@ -71,7 +70,7 @@ class MinistryDataApi {
 
     const seo: SeoContentDataProps = {
       data: {
-        ...seoData,
+        // ...seoData,
         featuredImageUrl,
         title,
         slug,
@@ -96,6 +95,21 @@ class MinistryDataApi {
       seo,
       ministryInfoData,
     };
+  }
+
+  static async getMinistriesSitemapData() {
+    const {
+      ministries: { edges: nodes },
+    } = await fetchAPI(getMinistriesPostsSitemapData);
+
+    const postsData = nodes.map(({ node }: { node: PostSitemapSourceData }) => {
+      return {
+        slug: node.slug,
+        modified: node.modified,
+      };
+    });
+
+    return postsData;
   }
 }
 

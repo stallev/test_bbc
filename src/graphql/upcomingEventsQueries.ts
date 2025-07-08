@@ -1,6 +1,6 @@
 import { PostsQueryMaxCount } from '@/constants';
 
-import { SeoBlock, FeaturedImageBlock } from './commonGraphqlFragments';
+import { FeaturedImageBlock } from './commonGraphqlFragments';
 import { FullGutenbergBlockList } from './gutenbergGraphqlFragments';
 
 export const getUpcomingEventData = `query getUpcomingEventData ($id: ID!, $idType: UpcomingIdType!, $language: LanguageCodeEnum!) {
@@ -23,7 +23,6 @@ export const getUpcomingEventDataBySlug = `query getUpcomingEventDataBySlug ($sl
     translation(language: $language) {
       ${FeaturedImageBlock}
       ${FullGutenbergBlockList}
-      ${SeoBlock}
       upcomingEventStart
       upcomingEventEnd
       title
@@ -33,17 +32,6 @@ export const getUpcomingEventDataBySlug = `query getUpcomingEventDataBySlug ($sl
         language {
           code
         }
-      }
-    }
-  }
-}
-`;
-
-export const getUpcomingEventsSlugs = `query getUpcomingEventsSlugs {
-  allUpcoming(where: {status: PUBLISH}, first: ${PostsQueryMaxCount}) {
-    edges {
-      node {
-        slug
       }
     }
   }

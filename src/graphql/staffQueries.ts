@@ -1,29 +1,83 @@
 import { PostsQueryMaxCount } from '@/constants';
 
-import { SeoBlock } from './commonGraphqlFragments';
-import { FullGutenbergBlockList } from './gutenbergGraphqlFragments';
-
-export const getMinisterData = `query getMinisterData ($id: ID!, $idType: MinisterIdType!, $language: LanguageCodeEnum!) {
-  minister(id: $id, idType: $idType) {
+export const getPastorData = `query getMinisterData ($id: ID!, $language: LanguageCodeEnum!){
+pastor(id: $id, idType: SLUG) {
     translation(language: $language) {
-      ${SeoBlock}
-      ministerFirstName
-      ministerLastName
-      ministerPosition
-      ministerDepartment
-      ministerDescription
-      ministerUserSlug
+      title
       slug
       excerpt
-      ${FullGutenbergBlockList}
-      ministerPhoto {
-        size
-        url
+      pastorName
+      pastorPosition
+      pastorUserSlug
+      pastorDepartment
+      blocks {
+        ... on CoreParagraphBlock {
+          name
+          order
+          saveContent
+        }
+        ... on CoreImageBlock {
+          name
+          order
+          mediaItem {
+            node {
+              mediaItemUrl
+              caption
+            }
+          }
+        }
+        ... on CoreHeadingBlock {
+          name
+          order
+          saveContent
+          attributes {
+            ... on CoreHeadingBlockAttributes {
+              level
+            }
+          }
+        }
+        ... on CorePullquoteBlock {
+          name
+          order
+          originalContent
+          innerBlocks {
+            saveContent
+            dynamicContent
+            name
+            order
+          }
+        }
+        ... on CoreListBlock {
+          saveContent
+          name
+          order
+        }
+        ... on CoreGalleryBlock {
+          name
+          order
+          innerBlocks {
+            ... on CoreImageBlock {
+              mediaItem {
+                node {
+                  mediaItemUrl
+                  caption
+                }
+              }
+              name
+              order
+            }
+          }
+        }
       }
       translations {
         slug
         language {
           code
+        }
+      }
+      featuredImage {
+        node {
+          sourceUrl
         }
       }
     }

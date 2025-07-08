@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 
 import useWindowDimensions from '@/hooks/useWindowDimensions';
-import { isDesktopSize, isSmallWindowSize } from '@/hooks/useWindowSizeType';
+import { isSmallWindowSize } from '@/hooks/useWindowSizeType';
 import { YearStreamsListProps, YoutubeConvertedVideoItemType } from '@/types/YouTubeDataTypes';
 import { Text, Icon } from '@/ui/components/ui-kit';
 import YouTubePlayer from '@/ui/components/YouTubePlayer/YouTubePlayer';
@@ -55,17 +55,11 @@ const YearStreamsList = ({
     }));
   };
 
-  const orderedMonths = isDesktopSize(width)
-    ? [0, 4, 8, 1, 5, 9, 2, 6, 10, 3, 7, 11]
-    : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-
   const selectedVideos = data.monthListArray.find(
     month => month.monthNumber === selectedStreamsPeriod.month
   )?.videoListArray;
 
-  const currentYearMonthsList = orderedMonths.map(index => {
-    const monthItem = data.monthListArray.find(month => month.monthNumber === index);
-
+  const currentYearMonthsList = data.monthListArray.map(monthItem => {
     return monthItem ? (
       <Text
         key={monthItem.monthNumber}

@@ -1,5 +1,4 @@
 import { ConvertedGutenbergBlockType } from './GutenbergBlocksTypes';
-import { SeoContentDataProps } from '../globalTypes';
 
 interface Translation {
   slug: string;
@@ -9,18 +8,16 @@ interface Translation {
 }
 
 export interface MinisterPostDataProps {
-  ministerFirstName: string;
-  ministerLastName: string;
-  ministerPosition: string;
-  ministerDepartment: string;
-  ministerDescription: string;
-  ministerUserSlug: string;
+  title: string;
   slug: string;
   excerpt: string;
+  pastorName: string;
+  pastorPosition: string;
+  pastorUserSlug: string;
+  pastorDepartment: string;
   blocks: ConvertedGutenbergBlockType[];
-  imageLinks: Record<string, string>;
+  featuredImage: string | null;
   translations: Translation[];
-  seo: SeoContentDataProps;
 }
 
 export interface MinisterIDFetchedData {

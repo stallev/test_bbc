@@ -8,11 +8,17 @@
   box-shadow: none;
   background-color: transparent;
   cursor: pointer;
+  width: 24px;
+  height: 24px;
 
   svg {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     fill: var(--fill-main-color);
+
+    circle, path {
+      stroke: var(--text-main-color);
+    }
   }
 
   &__skeleton {

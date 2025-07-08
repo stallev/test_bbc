@@ -1,5 +1,5 @@
-import { RoutePath } from "../../../src/constants/RoutePath";
-import { PagesDataProps } from "./constantTypes";
+import { PagesDataProps } from './constantTypes';
+import { RoutePath } from '../../../src/constants/RoutePath';
 
 export const PagesData: PagesDataProps = {
   Home: {
@@ -14,9 +14,9 @@ export const PagesData: PagesDataProps = {
     path: RoutePath.Sermons,
     title: 'Sermons',
   },
-  GetInTouch: {
-    path: RoutePath.GetInTouch,
-    title: 'Get In Touch',
+  Contacts: {
+    path: RoutePath.Contacts,
+    title: 'Contacts Us',
   },
   Blog: {
     path: RoutePath.Blog,
@@ -24,11 +24,11 @@ export const PagesData: PagesDataProps = {
   },
   AboutUs: {
     path: RoutePath.AboutUs,
-    title: 'About us',
+    title: 'About Us',
   },
   Giving: {
     path: RoutePath.Giving,
-    title: 'Donation',
+    title: 'You can support us:',
   },
   LiveStreams: {
     path: RoutePath.LiveStreams,
@@ -46,60 +46,56 @@ export const PagesData: PagesDataProps = {
     path: RoutePath.PrivacyPolicy,
     title: 'Privacy policy',
   },
-  PrayerRequest: {
-    path: RoutePath.PrayerRequest,
-    title: 'Prayer Request',
-  },
-  GospelPage: {
-    path: RoutePath.GospelPage,
-    title: 'What is the Gospel?',
-  },
-  OurBeliefs: {
-    path: RoutePath.OurBeliefs,
-    title: 'Our Beliefs',
-  },
+  // GospelPage: {
+  //   path: RoutePath.GospelPage,
+  //   title: 'What is the Gospel?',
+  // },
+  // OurBeliefs: {
+  //   path: RoutePath.OurBeliefs,
+  //   title: 'Our Beliefs',
+  // },
   KidsMinistry: {
     path: RoutePath.KidsMinistry,
     title: 'Kids ministry',
   },
-  YouthMinistry: {
-    path: RoutePath.YouthMinistry,
-    title: 'Youth ministry',
-  },
-  WorshipMinistry: {
-    path: RoutePath.WorshipMinistry,
-    title: 'Worship ministry',
-  },
-  FamilyMinistry: {
-    path: RoutePath.FamilyMinistry,
-    title: 'Family ministry',
-  },
-  MissionaryMinistry: {
-    path: RoutePath.MissionaryMinistry,
-    title: 'Missionary',
-  },
-  SmallGroupsMinistry: {
-    path: RoutePath.SmallGroupsMinistry,
-    title: 'Small groups',
-  },
-  Participation: {
-    path: RoutePath.Participation,
-    title: 'Participation in worship',
-  },
-  Timeline: {
-    path: RoutePath.Timeline,
-    title: 'Timeline',
-  },
-  Phones: {
-    path: RoutePath.Phones,
-    title: 'Phones',
-  },
-  Baptism: {
-    path: RoutePath.Baptism,
-    title: 'Baptism',
-  },
-  Marriage: {
-    path: RoutePath.Marriage,
-    title: 'Marriage',
-  },
-}
+  // YouthMinistry: {
+  //   path: RoutePath.YouthMinistry,
+  //   title: 'Youth ministry',
+  // },
+  // WorshipMinistry: {
+  //   path: RoutePath.WorshipMinistry,
+  //   title: 'Worship ministry',
+  // },
+  // FamilyMinistry: {
+  //   path: RoutePath.FamilyMinistry,
+  //   title: 'Family ministry',
+  // },
+  // MissionaryMinistry: {
+  //   path: RoutePath.MissionaryMinistry,
+  //   title: 'Missionary',
+  // },
+  // SmallGroupsMinistry: {
+  //   path: RoutePath.SmallGroupsMinistry,
+  //   title: 'Small groups',
+  // },
+  // Participation: {
+  //   path: RoutePath.Participation,
+  //   title: 'Participation in worship',
+  // },
+  // Timeline: {
+  //   path: RoutePath.Timeline,
+  //   title: 'Timeline',
+  // },
+  // Phones: {
+  //   path: RoutePath.Phones,
+  //   title: 'Phones',
+  // },
+  // Baptism: {
+  //   path: RoutePath.Baptism,
+  //   title: 'Baptism',
+  // },
+  // Marriage: {
+  //   path: RoutePath.Marriage,
+  //   title: 'Marriage',
+  // },
+};

@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import { RoutePath, PagesIDs } from '@/constants';
+import { RoutePath, PagesSlugs } from '@/constants';
 import { i18n, Locale } from '@/i18n.config';
 import PageContentDataApi from '@/services/PageDataApi';
 import styles from '@/styles/pages/privacy.module.scss';
@@ -8,8 +8,7 @@ import { PagePathProps } from '@/types/globalTypes';
 import StructuredMarkdownContent from '@/ui/components/StructuredMarkdownContent/StructuredMarkdownContent';
 import { Text } from '@/ui/components/ui-kit';
 import Container from '@/ui/containers/Container/Container';
-import { getPagePathData } from '@/utils/getPostSeoData';
-import { getSeoData } from '@/utils/getSeoData';
+import { getPageSeoData } from '@/utils/getPageSeoData';
 
 export async function generateStaticParams() {
   return [];
@@ -22,16 +21,12 @@ export async function generateMetadata(props: PagePathProps): Promise<Metadata> 
 
   const { locale } = params;
 
-  const pageId =
-    locale === i18n.defaultLocale ? PagesIDs.Privacy[i18n.defaultLocale] : PagesIDs.Privacy.ru;
+  const pageSlug =
+    locale === i18n.defaultLocale
+      ? PagesSlugs.PrivacyPolicy[i18n.defaultLocale]
+      : PagesSlugs.PrivacyPolicy.ru;
 
-  const { seo: seoContentData } = await PageContentDataApi.getPageContentData(pageId);
-  const seoPathData = getPagePathData({
-    locale,
-    path: RoutePath.PrivacyPolicy,
-  });
-
-  return getSeoData({ seoContentData, seoPathData });
+  return await getPageSeoData({ pageSlug, locale, pagePath: RoutePath.PrivacyPolicy });
 }
 
 export default async function Privacy(props: { params: Promise<{ locale: Locale }> }) {
@@ -39,10 +34,12 @@ export default async function Privacy(props: { params: Promise<{ locale: Locale 
 
   const { locale } = params;
 
-  const pageId =
-    locale === i18n.defaultLocale ? PagesIDs.Privacy[i18n.defaultLocale] : PagesIDs.Privacy.ru;
+  const pageSlug =
+    locale === i18n.defaultLocale
+      ? PagesSlugs.PrivacyPolicy[i18n.defaultLocale]
+      : PagesSlugs.PrivacyPolicy.ru;
 
-  const { title, pageContent } = await PageContentDataApi.getPageContentData(pageId);
+  const { title, pageContent } = await PageContentDataApi.getPageContentData(pageSlug);
 
   return (
     <>

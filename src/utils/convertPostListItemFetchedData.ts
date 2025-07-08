@@ -50,6 +50,6 @@ export const convertPostListItemFetchedData = (
     author: convertAuthorData(data.author),
     // topics: [],
     topics: getPostTopics(data.pastorsPostsCategories),
-    readingTime: data.seo.readingTime || 1,
+    readingTime: data?.seo?.readingTime || 1,
   };
 };

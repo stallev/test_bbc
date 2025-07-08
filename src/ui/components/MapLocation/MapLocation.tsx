@@ -1,41 +1,48 @@
 'use client';
 
-import { Map, AdvancedMarker, APIProvider } from '@vis.gl/react-google-maps';
-import React, { useRef } from 'react';
-
-import { GENERAL_GOOGLE_API_KEY } from '@/constants/APIs';
+import {
+  AdvancedMarker,
+  AdvancedMarkerAnchorPoint,
+  APIProvider,
+  Map,
+  Pin,
+  RenderingType,
+} from '@vis.gl/react-google-maps';
+import { useRef } from 'react';
 import { useOnceIntersection } from '@/hooks/useOnceIntersection';
-
 import styles from './styles/map-location.module.scss';
 
-export interface MapLocationProps {
-  mapId: string;
-}
-
-const center = {
-  lat: 38.7052416, // default latitude
-  lng: -121.2940813, // default longitude
-};
-
-const libraries = ['geometry', 'places'];
-
-const MapLocation = ({ mapId }: MapLocationProps) => {
+const MapLocation = () => {
   const mapRef = useRef<HTMLDivElement>(null);
   const isMapVisible = useOnceIntersection(mapRef);
+  const apiKey = process.env.NEXT_PUBLIC_MAPS_API_KEY || '';
+  const markerPosition = {
+    lat: 38.7051,
+    lng: -121.29131,
+  };
 
   return (
     <div ref={mapRef}>
       {isMapVisible && (
-        <APIProvider apiKey={GENERAL_GOOGLE_API_KEY} libraries={libraries}>
+        <APIProvider apiKey={apiKey}>
           <Map
-            defaultCenter={center}
+            defaultCenter={markerPosition}
             defaultZoom={12}
-            gestureHandling={'greedy'}
             disableDefaultUI={true}
-            mapId={mapId}
+            mapId={'21291ed2b8ff8b0df6ebc38c'}
+            renderingType={RenderingType.VECTOR}
             className={styles['map-location']}
           >
-            <AdvancedMarker position={center} />
+            <AdvancedMarker position={markerPosition} title={'Bible Baptist Church'}>
+              <Pin background={'#ff3838'} glyphColor={'#bb0000'} borderColor={'#da0000'} />
+            </AdvancedMarker>
+            <AdvancedMarker
+              position={markerPosition}
+              anchorPoint={AdvancedMarkerAnchorPoint.LEFT_BOTTOM}
+              className={styles['maker-name']}
+            >
+              <span>Bible Baptist Church</span>
+            </AdvancedMarker>
           </Map>
         </APIProvider>
       )}
