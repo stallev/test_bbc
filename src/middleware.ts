@@ -24,7 +24,6 @@ export function middleware(request: NextRequest) {
   }
 
   let locale = request.cookies.get(LANGUAGE_COOKIE_NAME)?.value;
-  console.log('locale', locale);
 
   if (!locale) {
     const acceptLanguage = request.headers.get('accept-language');
