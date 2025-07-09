@@ -22,7 +22,7 @@ const cspHeader = `
   form-action 'self';
   frame-ancestors 'none';
   upgrade-insecure-requests;
-  frame-src 'self' https://i.ytimg.com https://wallet.subsplash.com https://subsplash.com https://www.youtube-nocookie.com/ https://wordmedia.storage.googleapis.com/ https://www.youtube.com/;
+  frame-src 'self' https://i.ytimg.com https://wallet.subsplash.com https://subsplash.com https://www.youtube-nocookie.com/ https://www.youtube.com/;
   connect-src 'self' data: blob: https://i.ytimg.com https://www.googleapis.com/youtube/v3/playlistItems https://youtube.googleapis.com/youtube/v3/videos https://*.googleapis.com https://www.gstatic.com;
   media-src 'self' https://wordmedia.storage.googleapis.com https://word-service-2aojvifglq-uc.a.run.app;
   worker-src blob:;
@@ -41,6 +41,10 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'word-service-2aojvifglq-uc.a.run.app',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.ytimg.com',
       },
       {
         protocol: 'https',
