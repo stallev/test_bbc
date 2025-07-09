@@ -32,7 +32,7 @@ const LanguageSwitcher = () => {
 
   return (
     <Link
-      prefetch={true}
+      prefetch={false}
       href={newPathname}
       onClick={handleLanguageChange}
       className={styles['language-switcher']}
