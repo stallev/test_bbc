@@ -15,7 +15,7 @@ const cspHeader = `
   default-src 'self';
   script-src 'self' 'unsafe-eval' 'unsafe-inline' blob: https://maps.googleapis.com https://*.gstatic.com https://maps.google.com;
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-  img-src 'self' blob: data: https://i.ytimg.com https://*.ytimg.com https://*.googleapis.com https://maps.gstatic.com https://word-service-2aojvifglq-uc.a.run.app;
+  img-src 'self' blob: data: https://i.ytimg.com https://*.ytimg.com https://wordmedia.storage.googleapis.com https://*.googleapis.com https://maps.gstatic.com;
   font-src 'self' data: https://fonts.gstatic.com;
   object-src 'none';
   base-uri 'self';
@@ -38,14 +38,6 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'wordmedia.storage.googleapis.com',
       },
-      {
-        protocol: 'https',
-        hostname: 'word-service-2aojvifglq-uc.a.run.app',
-      },
-      {
-        protocol: 'https',
-        hostname: '*.googleapis.com',
-      },
     ],
     // minimumCacheTTL: 31536000,
   },
@@ -58,7 +50,8 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/:path*.(js|css|jpg|jpeg|png|webp|avif|gif|svg|woff)',
+        source:
+          '/_next/static/(media|css|chunks)/:file*\\.(js|css|jpg|jpeg|png|webp|avif|gif|svg|woff)',
         headers: [
           {
             key: 'Cache-Control',
@@ -66,42 +59,6 @@ const nextConfig = {
           },
         ],
       },
-      {
-        source: '/_next/static/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        source: '/_next/static/media/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        source: '/_next/image/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      // {
-      //   source: '/',
-      //   headers: [
-      //     {
-      //       key: 'Cache-Control',
-      //       value: 'public, max-age=0, s-maxage=600, stale-while-revalidate=30',
-      //     },
-      //   ],
-      // },
       {
         source: '/(.*)',
         headers: [
