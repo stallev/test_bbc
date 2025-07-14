@@ -2,8 +2,11 @@ import { SeoContentDataProps } from '../globalTypes';
 import { ConvertedGutenbergBlockType } from './GutenbergBlocksTypes';
 
 export interface MinistryConvertedDataType {
-  seo: SeoContentDataProps;
-  ministryInfoData: MinistryInfoDataType;
+  data?: {
+    seo: SeoContentDataProps;
+    ministryInfoData: MinistryInfoDataType;
+  };
+  notFound: boolean;
 }
 
 export interface MinistryInfoDataType {
@@ -12,7 +15,7 @@ export interface MinistryInfoDataType {
   ministryDays: string;
   ministryHours: string;
   ministryShortDescription: string;
-  ministryImagesData: MinistryImageData[];
+  ministryImagesData?: MinistryImageData[];
 }
 
 export interface MinistryImageData {

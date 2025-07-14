@@ -22,7 +22,7 @@ interface MininistryInfoProps {
 const MinistryInfo = ({ data, translations }: MininistryInfoProps) => {
   return (
     <div className={styles['ministry-info']}>
-      <MinistrySlider images={data.ministryImagesData} />
+      {data.ministryImagesData.length > 0 && <MinistrySlider images={data.ministryImagesData} />}
 
       <Container>
         <MinistryDescription

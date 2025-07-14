@@ -36,7 +36,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'wordmedia.storage.googleapis.com',
+        hostname: 'storage.googleapis.com',
       },
     ],
     // minimumCacheTTL: 31536000,

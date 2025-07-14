@@ -34,39 +34,52 @@ class MinistryDataApi {
       language: locale.toUpperCase(),
     };
 
+    const { ministry } = await fetchAPI(getMinistryData, { variables });
+
+    if (!ministry || !ministry.translation) {
+      return {
+        data: undefined,
+        notFound: true,
+      };
+    }
+
     const {
-      ministry: {
-        translation: {
-          featuredImage,
-          title,
-          // seo: seoData,
-          blocks,
-          ministryDays,
-          ministryHours,
-          ministryMediaGallery,
-          ministryShortDescription,
-          slug,
-        },
+      translation: {
+        featuredImage,
+        title,
+        // seo: seoData,
+        blocks,
+        ministryDays,
+        ministryHours,
+        ministryMediaGallery,
+        ministryShortDescription,
+        slug,
       },
-    } = await fetchAPI(getMinistryData, { variables });
+    } = ministry;
+
+    const isMinistryMediaGalleryValidData =
+      ministryMediaGallery.length > 0 &&
+      ministryMediaGallery.every((item: MinistryMediaGalleryItem) => item.node.filename.length > 0);
 
     const featuredImageUrl = !!featuredImage
       ? featuredImage.node.mediaItemUrl
       : DEFAULT_FEATURED_IMAGE;
 
-    const ministryImagesData: MinistryImageData[] = await Promise.all(
-      ministryMediaGallery.map(async ({ node }: MinistryMediaGalleryItem) => {
-        const imageBase64Url = await getBase64BlurData(this.getImageUrl(node?.sizes));
+    const ministryImagesData: MinistryImageData[] | null = isMinistryMediaGalleryValidData
+      ? await Promise.all(
+          ministryMediaGallery.map(async ({ node }: MinistryMediaGalleryItem) => {
+            const imageBase64Url = await getBase64BlurData(this.getImageUrl(node?.sizes));
 
-        return {
-          caption: node?.caption,
-          filename: node?.filename,
-          alt: node?.alt,
-          imageUrl: this.getImageUrl(node?.sizes),
-          imageBase64Url,
-        };
-      })
-    );
+            return {
+              caption: node?.caption,
+              filename: node?.filename,
+              alt: node?.alt,
+              imageUrl: this.getImageUrl(node?.sizes),
+              imageBase64Url,
+            };
+          })
+        )
+      : [];
 
     const seo: SeoContentDataProps = {
       data: {
@@ -92,8 +105,11 @@ class MinistryDataApi {
     };
 
     return {
-      seo,
-      ministryInfoData,
+      data: {
+        seo,
+        ministryInfoData,
+      },
+      notFound: false,
     };
   }
 

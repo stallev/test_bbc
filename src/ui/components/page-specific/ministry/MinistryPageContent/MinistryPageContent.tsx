@@ -19,7 +19,13 @@ const MinistryPageContent = ({ ministryInfoData, translations }: MinistryPageCon
       </Text>
 
       <div className={styles['ministry-page-content__info']}>
-        <MinistryInfo translations={translations} data={ministryInfoData} />
+        <MinistryInfo
+          translations={translations}
+          data={{
+            ...ministryInfoData,
+            ministryImagesData: ministryInfoData?.ministryImagesData ?? [],
+          }}
+        />
 
         {!!ministryInfoData?.pageContent.length && (
           <StructuredMarkdownContent

@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { RoutePath } from '@/constants/RoutePath';
 import MinistryDataApi from '@/services/MinistryDataApi';
 import { PostParams } from '@/types/postTypes';
@@ -16,7 +17,8 @@ export const revalidate = 60;
 export async function generateMetadata(props: { params: Promise<PostParams> }): Promise<Metadata> {
   const params = await props.params;
   const { locale, postSlug } = params;
-  const { seo: seoContentData } = await MinistryDataApi.getMinistryPageData(postSlug, locale);
+  const ministryPageData = await MinistryDataApi.getMinistryPageData(postSlug, locale);
+  const seoContentData = ministryPageData?.data?.seo;
   const seoPathData = getPagePathData({
     locale,
     path: `${RoutePath.Ministries}/${postSlug}`,
@@ -29,7 +31,12 @@ export default async function PostMinistry(props: { params: Promise<PostParams> 
   const { locale, postSlug } = params;
   const translations = getTranslations(locale);
 
-  const { ministryInfoData } = await MinistryDataApi.getMinistryPageData(postSlug, locale);
+  const ministryPageData = await MinistryDataApi.getMinistryPageData(postSlug, locale);
+  const ministryInfoData = ministryPageData?.data?.ministryInfoData;
+
+  if (!ministryInfoData || ministryPageData?.notFound) {
+    return notFound();
+  }
 
   return <MinistryPageContent ministryInfoData={ministryInfoData} translations={translations} />;
 }
