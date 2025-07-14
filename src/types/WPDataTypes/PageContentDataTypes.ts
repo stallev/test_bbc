@@ -1,11 +1,8 @@
 import { SeoContentDataProps } from '@/types/globalTypes';
 
-import { ConvertedGutenbergBlockType } from './GutenbergBlocksTypes';
-
 export interface PageContentDataType {
   title: string;
   slug: string;
-  pageContent: ConvertedGutenbergBlockType[];
   seo: SeoContentDataProps;
   translations: Translation[];
   featuredImage: string;

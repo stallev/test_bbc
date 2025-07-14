@@ -51,7 +51,7 @@ export default async function Sermons(props: { params: Promise<{ locale: Locale 
       </Container>
 
       {/* <SermonsContent
-        contentData={pageData.pageContent}
+        contentData={pageData.content}
         sermonsCategories={categories}
         sermonsData={sermonsData}
       /> */}

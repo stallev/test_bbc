@@ -1,6 +1,5 @@
-import { PostFeaturedImageData } from '../postTypes';
-import { ConvertedGutenbergBlockType } from './GutenbergBlocksTypes';
 import { SeoContentDataProps } from '../globalTypes';
+import { PostFeaturedImageData } from '../postTypes';
 export interface FetchedRestUpcomingEventType {
   id: string;
   title: string;
@@ -13,7 +12,6 @@ export interface FetchedRestUpcomingEventType {
 }
 
 export interface UpcomingEventDataProps {
-  blocks: ConvertedGutenbergBlockType[];
   featuredImageData: PostFeaturedImageData;
   seo: SeoContentDataProps;
   title: string;

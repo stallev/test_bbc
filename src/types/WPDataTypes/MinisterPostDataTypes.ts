@@ -1,4 +1,4 @@
-import { ConvertedGutenbergBlockType } from './GutenbergBlocksTypes';
+import { ParsedHTMLBlock } from '../postTypes';
 
 interface Translation {
   slug: string;
@@ -15,8 +15,8 @@ export interface MinisterPostDataProps {
   pastorPosition: string;
   pastorUserSlug: string;
   pastorDepartment: string;
-  blocks: ConvertedGutenbergBlockType[];
   featuredImage: string | null;
+  content: ParsedHTMLBlock[];
   translations: Translation[];
 }
 

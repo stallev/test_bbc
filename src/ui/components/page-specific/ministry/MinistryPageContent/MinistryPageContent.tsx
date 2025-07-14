@@ -27,12 +27,7 @@ const MinistryPageContent = ({ ministryInfoData, translations }: MinistryPageCon
           }}
         />
 
-        {!!ministryInfoData?.pageContent.length && (
-          <StructuredMarkdownContent
-            isFontSizeResizable={false}
-            content={ministryInfoData.pageContent}
-          />
-        )}
+        <StructuredMarkdownContent isFontSizeResizable={false} content={ministryInfoData.content} />
       </div>
     </Container>
   );

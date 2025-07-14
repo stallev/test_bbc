@@ -6,7 +6,6 @@ import {
   getUpcomingEventsSitemapData,
 } from '@/graphql/upcomingEventsQueries';
 import { PostSitemapSourceData } from '@/types/WPDataTypes/CommonWPDataTypes';
-import { ConvertedGutenbergBlockType } from '@/types/WPDataTypes/GutenbergBlocksTypes';
 import {
   FetchedRestUpcomingEventType,
   UpcomingEventDataProps,
@@ -14,9 +13,7 @@ import {
 import { UpcomingEventCardItemProps } from '@/ui/components/page-specific/upcoming-event/UpcomingEventCard/types';
 import { stripHtmlTags } from '@/utils';
 import { convertFeaturedImageData } from '@/utils/convertFeaturedImageData';
-import { convertGutenbergBlocksData } from '@/utils/convertGutenbergBlocksData';
 import { getPostSeoData } from '@/utils/getPostSeoData';
-
 import { fetchAPI } from './WordPressFetchAPI';
 
 class UpcomingEventsDataApi {
@@ -55,13 +52,7 @@ class UpcomingEventsDataApi {
         upcomingBy: { translation },
       } = fetchedData;
 
-      const convertedBlocks = convertGutenbergBlocksData(translation.blocks);
-      if (!Array.isArray(convertedBlocks)) {
-        throw new Error('Invalid blocks data format');
-      }
-
       return {
-        blocks: convertedBlocks as unknown as ConvertedGutenbergBlockType[],
         featuredImageData: convertFeaturedImageData(translation.featuredImage),
         seo: getPostSeoData(translation, locale),
         title: translation.title,

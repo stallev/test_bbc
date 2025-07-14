@@ -44,7 +44,7 @@ export default async function StaffPerson(props: { params: Promise<PostParams> }
       </div>
 
       <StructuredMarkdownContent
-        content={postData.blocks}
+        content={postData.content}
         className={styles['staff-person__structured-content']}
         isFontSizeResizable={false}
       />

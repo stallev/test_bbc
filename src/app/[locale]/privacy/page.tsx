@@ -39,7 +39,7 @@ export default async function Privacy(props: { params: Promise<{ locale: Locale 
       ? PagesSlugs.PrivacyPolicy[i18n.defaultLocale]
       : PagesSlugs.PrivacyPolicy.ru;
 
-  const { title, pageContent } = await PageContentDataApi.getPageContentData(pageSlug);
+  const { title, content } = await PageContentDataApi.getPageContentData(pageSlug);
 
   return (
     <>
@@ -49,7 +49,7 @@ export default async function Privacy(props: { params: Promise<{ locale: Locale 
         </Text>
 
         <StructuredMarkdownContent
-          content={pageContent}
+          content={content}
           className={styles['privacy__page-content']}
           isFontSizeResizable={false}
         />

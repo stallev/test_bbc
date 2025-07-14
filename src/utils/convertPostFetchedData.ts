@@ -6,13 +6,12 @@ import {
   BlogPostProps,
   Translation,
 } from '@/types/postTypes';
-import { GutenbergBlockType } from '@/types/WPDataTypes/PageContentDataTypes';
 import { getLocaleFormattedDate } from '@/utils/dateFormatter';
 
 import { convertAuthorData } from './convertAuthorData';
 import { convertFeaturedImageData } from './convertFeaturedImageData';
-import { convertGutenbergBlocksData } from './convertGutenbergBlocksData';
 
+import { parseBlocks } from './htmlParser';
 import { stripHtmlTags } from '.';
 
 export interface FullPostFetchedDataProps {
@@ -21,7 +20,7 @@ export interface FullPostFetchedDataProps {
   excerpt: string;
   date: string;
   author: AuthorNodeProps;
-  blocks: GutenbergBlockType[];
+  content: string;
   featuredImage: FeaturedImageMediaItemUrlProps;
   seo: SeoPostProps;
   translations: Translation[];
@@ -38,7 +37,7 @@ export const convertPostFetchedData = (
     slug: data.slug,
     featuredImageData: convertFeaturedImageData(data.featuredImage),
     author: convertAuthorData(data.author),
-    blocks: convertGutenbergBlocksData(data.blocks),
+    content: parseBlocks(data.content),
     seo: data.seo,
   };
 };

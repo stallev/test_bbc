@@ -14,8 +14,8 @@ import {
   FetchedStaffPersonDataType,
   TranslationFetchedData,
 } from '@/types/WPDataTypes/StaffContentDataType';
-import { convertGutenbergBlocksData } from '@/utils/convertGutenbergBlocksData';
 
+import { parseBlocks } from '@/utils/htmlParser';
 import { fetchAPI } from './WordPressFetchAPI';
 
 class StaffDataApi {
@@ -67,7 +67,6 @@ class StaffDataApi {
       } = fetchedData;
 
       const postData = this.getOtherImagesSizesUrls(translation);
-      const blocks = convertGutenbergBlocksData(postData.blocks);
 
       return <MinisterPostDataProps>{
         title: postData.title,
@@ -77,7 +76,7 @@ class StaffDataApi {
         pastorDepartment: postData.pastorDepartment,
         pastorPosition: postData.pastorPosition,
         pastorUserSlug: postData.pastorUserSlug,
-        blocks,
+        content: parseBlocks(translation.content),
         featuredImage: postData.featuredImage?.node.sourceUrl || null,
       };
     }
