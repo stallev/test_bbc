@@ -1,0 +1,12 @@
+@import '../../../../../styles/variables.scss';
+@import '../../../../../styles/placeholders.scss';
+
+.list {
+  margin: 1em 0;
+  padding-left: 1.5em;
+}
+
+.list__item {
+  margin-bottom: 0.5em;
+  line-height: 1.5;
+} 

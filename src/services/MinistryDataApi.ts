@@ -2,16 +2,15 @@ import { DEFAULT_FEATURED_IMAGE } from '@/constants/mock';
 import { getMinistryData, getMinistriesPostsSitemapData } from '@/graphql/ministryQueries';
 import { SeoContentDataProps } from '@/types/globalTypes';
 import { PostSitemapSourceData } from '@/types/WPDataTypes/CommonWPDataTypes';
-import { ConvertedGutenbergBlockType } from '@/types/WPDataTypes/GutenbergBlocksTypes';
 import {
   MinistryMediaGallerySize,
   MinistryMediaGalleryItem,
   MinistryConvertedDataType,
   MinistryImageData,
 } from '@/types/WPDataTypes/MinistryWPDataTypes';
-import { convertGutenbergBlocksData } from '@/utils/convertGutenbergBlocksData';
 import { getBase64BlurData } from '@/utils/getBase64BlurData';
 
+import { parseBlocks } from '@/utils/htmlParser';
 import { fetchAPI } from './WordPressFetchAPI';
 
 class MinistryDataApi {
@@ -48,7 +47,7 @@ class MinistryDataApi {
         featuredImage,
         title,
         // seo: seoData,
-        blocks,
+        content,
         ministryDays,
         ministryHours,
         ministryMediaGallery,
@@ -91,13 +90,9 @@ class MinistryDataApi {
       isPostType: false,
     };
 
-    const pageContent = convertGutenbergBlocksData(
-      blocks
-    ) as unknown as ConvertedGutenbergBlockType[];
-
     const ministryInfoData = {
       title,
-      pageContent,
+      content: parseBlocks(content),
       ministryDays,
       ministryHours,
       ministryShortDescription,

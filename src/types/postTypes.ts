@@ -1,11 +1,6 @@
 import { Locale } from '@/i18n.config';
 import { BlogCardProps } from '@/ui/components/page-specific/blog/BlogCard/types';
 
-import { PageContentDataType } from './WPDataTypes/PageContentDataTypes';
-
-export interface StandartPageDataType {
-  pageData: PageContentDataType;
-}
 export interface BlogPageCardsListProps {
   postsList: BlogCardProps[];
   authorsList: PostCategoryConvertedListItem[];
@@ -114,8 +109,7 @@ export interface BlogPostProps {
   excerpt: string;
   date: string;
   author: authorFinishedContentProps;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  blocks: any;
+  content: ParsedHTMLBlock[];
   featuredImageData: PostFeaturedImageData;
   seo?: SeoPostProps;
 }
@@ -150,4 +144,22 @@ export interface Translation {
   language: {
     code: string;
   };
+}
+
+export interface HtmlBlockAttributes {
+  headingType?: number;
+  listType?: 'ul' | 'ol';
+  url?: string;
+  caption?: string;
+  quoteText?: string;
+  cite?: string;
+}
+
+export interface ParsedHTMLBlock {
+  name: string;
+  content: string;
+  filtered: string;
+  attributes: HtmlBlockAttributes;
+  order: number;
+  children: ParsedHTMLBlock[];
 }

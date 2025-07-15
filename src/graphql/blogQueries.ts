@@ -1,7 +1,6 @@
 import { PostsQueryMaxCount } from '@/constants';
 
 import { FeaturedImageBlock, AuthorInfoBlock } from './commonGraphqlFragments';
-import { FullGutenbergBlockList } from './gutenbergGraphqlFragments';
 
 const ShortPostData = `
   nodes {
@@ -56,8 +55,8 @@ export const getPastorsPostData = `query getPastorsPostData ($id: ID!, $idType: 
       slug
       excerpt
       date
+      content
       ${AuthorInfoBlock}
-      ${FullGutenbergBlockList}
       ${FeaturedImageBlock}
       translations {
         slug

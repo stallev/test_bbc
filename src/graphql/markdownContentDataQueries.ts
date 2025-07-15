@@ -1,11 +1,10 @@
 import { SeoBlock, GeneralInfoBlock } from './commonGraphqlFragments';
-import { FullGutenbergBlockList } from './gutenbergGraphqlFragments';
 
 export const getMarkdownPageContentData = `query getMarkdownPageContentData ($slug: ID!) {
   page(id: $slug, idType: URI) {
     title
     slug
-    ${FullGutenbergBlockList}
+    content
     ${GeneralInfoBlock}
   }
 }
@@ -15,7 +14,7 @@ export const getMarkdownTimeEventContentData = `query getMarkdownTimeEventConten
   timelineEvent(id: $id, idType: $idType) {
     title
     slug
-    ${FullGutenbergBlockList}
+    content
     ${GeneralInfoBlock}
     ${SeoBlock}
   }

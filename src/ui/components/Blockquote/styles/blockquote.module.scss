@@ -59,6 +59,7 @@
 
   &__content-paragraph {
     flex-shrink: 2;
+    margin-top: 0 !important;
     text-align: center;
     font-family: $livret-display-font-family !important;
     font-style: italic;

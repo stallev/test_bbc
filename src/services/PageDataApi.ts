@@ -3,9 +3,7 @@ import { DEFAULT_FEATURED_IMAGE } from '@/constants/mock';
 import { getMarkdownPageContentData } from '@/graphql/markdownContentDataQueries';
 import { SeoContentDataProps } from '@/types/globalTypes';
 import { AboutUsPageDataProps } from '@/types/WPDataTypes/AboutUsPageDataTypes';
-import { ConvertedGutenbergBlockType } from '@/types/WPDataTypes/GutenbergBlocksTypes';
-import { convertGutenbergBlocksData } from '@/utils/convertGutenbergBlocksData';
-
+import { parseBlocks } from '@/utils/htmlParser';
 import { fetchAPI } from './WordPressFetchAPI';
 
 class PageContentDataApi {
@@ -39,14 +37,10 @@ class PageContentDataApi {
       isPostType: false,
     };
 
-    const pageContent = convertGutenbergBlocksData(
-      page.blocks
-    ) as unknown as ConvertedGutenbergBlockType[];
-
     return {
       title: page.title,
       slug: page.slug,
-      pageContent,
+      content: parseBlocks(page.content),
       seo,
       translations: page?.translations,
       featuredImage: page?.featuredImage,

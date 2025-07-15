@@ -8,4 +8,10 @@ export const GutenbergBlocksTypes = {
   video: 'video',
   quote: 'quote',
   list: 'list',
+  listItem: 'list-item',
+  code: 'code',
+  preformatted: 'preformatted',
+  verse: 'verse',
+  separator: 'hr',
+  cite: 'cite',
 };

@@ -1,0 +1,10 @@
+@import '../../../../../styles/variables.scss';
+@import '../../../../../styles/placeholders.scss';
+
+.preformatted {
+  border-radius: 4px;
+  padding: 18px 0;
+  font-size: 18px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+} 

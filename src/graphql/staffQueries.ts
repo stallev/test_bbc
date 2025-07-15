@@ -10,65 +10,7 @@ pastor(id: $id, idType: SLUG) {
       pastorPosition
       pastorUserSlug
       pastorDepartment
-      blocks {
-        ... on CoreParagraphBlock {
-          name
-          order
-          saveContent
-        }
-        ... on CoreImageBlock {
-          name
-          order
-          mediaItem {
-            node {
-              mediaItemUrl
-              caption
-            }
-          }
-        }
-        ... on CoreHeadingBlock {
-          name
-          order
-          saveContent
-          attributes {
-            ... on CoreHeadingBlockAttributes {
-              level
-            }
-          }
-        }
-        ... on CorePullquoteBlock {
-          name
-          order
-          originalContent
-          innerBlocks {
-            saveContent
-            dynamicContent
-            name
-            order
-          }
-        }
-        ... on CoreListBlock {
-          saveContent
-          name
-          order
-        }
-        ... on CoreGalleryBlock {
-          name
-          order
-          innerBlocks {
-            ... on CoreImageBlock {
-              mediaItem {
-                node {
-                  mediaItemUrl
-                  caption
-                }
-              }
-              name
-              order
-            }
-          }
-        }
-      }
+      content
       translations {
         slug
         language {

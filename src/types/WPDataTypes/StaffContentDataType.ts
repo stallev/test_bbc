@@ -1,5 +1,3 @@
-import { GutenbergBlockType } from './PageContentDataTypes';
-
 export interface RenderedPastorCardDataType {
   data: TranslationFetchedData;
 }
@@ -16,7 +14,6 @@ export interface TranslationFetchedData {
   pastorUserSlug: string;
   pastorDepartment: string;
   title: string;
-  blocks: GutenbergBlockType[];
   slug: string;
   excerpt: string;
   translations: Translation[];

@@ -1,10 +1,10 @@
-import { ConvertedGutenbergBlockType } from '@/types/WPDataTypes/GutenbergBlocksTypes';
+import { ParsedHTMLBlock } from '@/types/postTypes';
 import { RenderingSermonCardDataType } from '@/types/WPDataTypes/SermonPostsDataTypes';
 
 import { SermonsCategoriesListProps } from '../SermonFilters/types';
 
 export interface SermonsContentProps {
-  contentData?: ConvertedGutenbergBlockType[];
+  contentData?: ParsedHTMLBlock[];
   sermonsData: RenderingSermonCardDataType[];
   sermonsCategories: SermonsCategoriesListProps;
 }

@@ -5,7 +5,7 @@ import UpcomingEventsDataApi from '@/services/UpcomingDataApi';
 import styles from '@/styles/pages/upcoming-event.module.scss';
 import { PostParams } from '@/types/postTypes';
 import EventPeriod from '@/ui/components/page-specific/upcoming-event/EventPeriod/EventPeriod';
-import StructuredMarkdownContent from '@/ui/components/StructuredMarkdownContent/StructuredMarkdownContent';
+// import StructuredMarkdownContent from '@/ui/components/StructuredMarkdownContent/StructuredMarkdownContent';
 import { Text, CustomImage } from '@/ui/components/ui-kit';
 import Container from '@/ui/containers/Container/Container';
 import { getPagePathData } from '@/utils/getPostSeoData';
@@ -71,11 +71,11 @@ export default async function UpcomingEventPage(props: { params: Promise<PostPar
         />
       )}
 
-      <StructuredMarkdownContent
-        content={postData.blocks}
+      {/* <StructuredMarkdownContent
+        content={postData.content}
         className={styles['upcoming-event__page-content']}
         isFontSizeResizable={false}
-      />
+      /> */}
     </Container>
   );
 }

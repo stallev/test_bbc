@@ -105,4 +105,9 @@
   &__single-image-wrap {
     @extend %structuredSingleMediaItem;
   }
+
+  hr {
+    margin: 20px 0;
+    width: 100%;
+  }
 }

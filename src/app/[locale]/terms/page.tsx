@@ -35,7 +35,7 @@ export default async function Terms(props: { params: Promise<{ locale: Locale }>
   const pageSlug =
     locale === i18n.defaultLocale ? PagesSlugs.Terms[i18n.defaultLocale] : PagesSlugs.Terms.ru;
 
-  const { title, pageContent } = await PageContentDataApi.getPageContentData(pageSlug);
+  const { title, content } = await PageContentDataApi.getPageContentData(pageSlug);
 
   return (
     <>
@@ -45,7 +45,7 @@ export default async function Terms(props: { params: Promise<{ locale: Locale }>
         </Text>
 
         <StructuredMarkdownContent
-          content={pageContent}
+          content={content}
           className={styles['terms__page-content']}
           isFontSizeResizable={false}
         />

@@ -1,5 +1,5 @@
 import { SeoContentDataProps } from '../globalTypes';
-import { ConvertedGutenbergBlockType } from './GutenbergBlocksTypes';
+import { ParsedHTMLBlock } from '../postTypes';
 
 export interface MinistryConvertedDataType {
   data?: {
@@ -11,7 +11,7 @@ export interface MinistryConvertedDataType {
 
 export interface MinistryInfoDataType {
   title: string;
-  pageContent: ConvertedGutenbergBlockType[];
+  content: ParsedHTMLBlock[];
   ministryDays: string;
   ministryHours: string;
   ministryShortDescription: string;

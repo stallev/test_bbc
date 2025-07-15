@@ -1,7 +1,6 @@
 import { PostsQueryMaxCount } from '@/constants';
 
 import { FeaturedImageBlock } from './commonGraphqlFragments';
-import { FullGutenbergBlockList } from './gutenbergGraphqlFragments';
 
 export const getUpcomingEventData = `query getUpcomingEventData ($id: ID!, $idType: UpcomingIdType!, $language: LanguageCodeEnum!) {
   upcoming(id: $id, idType: $idType) {
@@ -22,7 +21,6 @@ export const getUpcomingEventDataBySlug = `query getUpcomingEventDataBySlug ($sl
   upcomingBy(slug: $slug) {
     translation(language: $language) {
       ${FeaturedImageBlock}
-      ${FullGutenbergBlockList}
       upcomingEventStart
       upcomingEventEnd
       title
