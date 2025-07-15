@@ -8,7 +8,6 @@ import styles from './styles/timeline-year.module.scss';
 
 const TimelineYear = ({ data }: { data: TimelineDataItemProps }) => {
   const isShortDesripted = !!data.year_desc.length;
-  console.log(data);
 
   return (
     <>
