@@ -110,10 +110,11 @@ function processBlock(element: Element, order: number): ParsedHTMLBlock | null {
     case 'blockquote':
       name = GutenbergBlocksTypes.quote;
       content = removeClasses(element.outerHTML);
-      const quoteP = element.querySelector('p');
-      attributes.quoteText = quoteP?.textContent?.trim() || '';
+      // Aggregate all <p> elements' text content
+      const quotePs = Array.from(element.querySelectorAll('p'));
+      attributes.quoteText = quotePs.length > 0 ? quotePs[0].textContent?.trim() || '' : '';
       attributes.cite = element.querySelector('cite')?.textContent?.trim() || '';
-      filtered = quoteP?.textContent?.trim() || '';
+      filtered = quotePs.map(p => p.textContent?.trim() || '').join('\n');
       Array.from(element.children).forEach((child, index) => {
         const childBlock = processBlock(child, index);
         if (childBlock) children.push(childBlock);

@@ -1,11 +1,9 @@
-'use client';
 import { TimelineDataItemProps } from '@/types/WPDataTypes/AboutUsPageDataTypes';
 import TimelineYear from '@/ui/components/page-specific/about/TimelineYear/TimelineYear';
 
 import styles from './styles/timeline.module.scss';
 
 const Timeline = ({ data }: { data: TimelineDataItemProps[] | [] }) => {
-  console.log('timeline data', data);
   if (!data.length) {
     return null;
   }

@@ -39,10 +39,6 @@ export const ContactsInfo = {
   workHours: '6:00 am — 9:00 pm',
 };
 
-export const TEST_HTML_CONTENT = `
-\n<p>Some paragraph</p>\n\n\n\n<h2 class=\"wp-block-heading\">Heading2</h2>\n\n\n\n<ol class=\"wp-block-list\">\n<li>list item 1</li>\n\n\n\n<li>list item 2</li>\n</ol>\n\n\n\n<blockquote class=\"wp-block-quote is-layout-flow wp-block-quote-is-layout-flow\">\n<p>My quote<br></p>\n<cite>My citation</cite></blockquote>\n\n\n\n<blockquote class=\"wp-block-quote is-layout-flow wp-block-quote-is-layout-flow\"></blockquote>\n\n\n\n<figure class=\"wp-block-image size-large\"><img loading=\"lazy\" decoding=\"async\" width=\"1518\" height=\"2024\" src=\"https://wordmedia.storage.googleapis.com/98884c8a-img_9321-1518x2024.webp\" alt=\"\" class=\"wp-image-202\" srcset=\"https://wordmedia.storage.googleapis.com/98884c8a-img_9321-1518x2024.webp 1518w, https://wordmedia.storage.googleapis.com/98884c8a-img_9321-768x1024.webp 768w, https://wordmedia.storage.googleapis.com/98884c8a-img_9321-1152x1536.webp 1152w, https://wordmedia.storage.googleapis.com/98884c8a-img_9321-1536x2048.webp 1536w, https://wordmedia.storage.googleapis.com/98884c8a-img_9321-scaled.webp 1920w\" sizes=\"(max-width: 1518px) 100vw, 1518px\" /></figure>\n\n\n\n<p>Change block type or style</p>\n\n\n\n<p>Code block</p>\n\n\n\n<pre class=\"wp-block-code\"><code>git add .</code></pre>\n\n\n\n<pre class=\"wp-block-preformatted\"><strong>Preformatted text</strong></pre>\n\n\n\n<hr class=\"wp-block-separator has-alpha-channel-opacity\"/>\n\n\n\n<p></p>\n
-`;
-
 export const PASTORS_POST_BLOCK_ID = 'pastorsPosts';
 
 export const videoData = [

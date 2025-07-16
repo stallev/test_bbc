@@ -46,16 +46,24 @@ const StructuredMarkdownContent = ({
                   {block.filtered}
                 </Text>
               );
-            case 'heading':
+            case 'heading': {
+              const headingType = block.attributes?.headingType;
+              const isValidHeadingType =
+                typeof headingType === 'number' && headingType >= 1 && headingType <= 6;
+
+              if (!isValidHeadingType) {
+                return null;
+              }
+
               return (
                 <Text
                   key={block.order}
-                  textType={`h${block.attributes.headingType}`}
+                  textType={`h${headingType}`}
                   fontSize={
                     isFontSizeResizable
                       ? currentBlocksFontSizes &&
                         currentBlocksFontSizes[
-                          `h${block.attributes.headingType}` as keyof typeof currentBlocksFontSizes
+                          `h${headingType}` as keyof typeof currentBlocksFontSizes
                         ]
                       : null
                   }
@@ -63,6 +71,7 @@ const StructuredMarkdownContent = ({
                   {typeof block.filtered === 'string' ? block.filtered : ''}
                 </Text>
               );
+            }
             case GutenbergBlocksTypes.image:
               return (
                 <CustomImage

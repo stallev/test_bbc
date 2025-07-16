@@ -2,11 +2,8 @@ import { SeoContentDataProps } from '../globalTypes';
 import { ParsedHTMLBlock } from '../postTypes';
 
 export interface MinistryConvertedDataType {
-  data?: {
-    seo: SeoContentDataProps;
-    ministryInfoData: MinistryInfoDataType;
-  };
-  notFound: boolean;
+  seo: SeoContentDataProps;
+  ministryInfoData: MinistryInfoDataType;
 }
 
 export interface MinistryInfoDataType {

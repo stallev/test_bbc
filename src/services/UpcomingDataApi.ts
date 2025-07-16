@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import { EndpointsList } from '@/constants';
 import { DEFAULT_FEATURED_IMAGE } from '@/constants/mock';
 import {
@@ -5,6 +6,7 @@ import {
   getUpcomingEventDataBySlug,
   getUpcomingEventsSitemapData,
 } from '@/graphql/upcomingEventsQueries';
+import { i18n } from '@/i18n.config';
 import { PostSitemapSourceData } from '@/types/WPDataTypes/CommonWPDataTypes';
 import {
   FetchedRestUpcomingEventType,
@@ -31,9 +33,25 @@ class UpcomingEventsDataApi {
       idType,
     };
 
-    const { upcoming } = await fetchAPI(getUpcomingEventData, { variables });
+    const fetchUpcomingEvent = async (lang: string) => {
+      const { upcoming } = await fetchAPI(getUpcomingEventData, {
+        variables: { ...variables, language: lang },
+      });
+      return upcoming;
+    };
 
-    return upcoming.translation;
+    let upcomingEventData = await fetchUpcomingEvent(variables.language);
+
+    if (!upcomingEventData || !upcomingEventData.translation) {
+      const fallbackLang = locale === i18n.defaultLocale ? 'RU' : i18n.defaultLocale.toUpperCase();
+      upcomingEventData = await fetchUpcomingEvent(fallbackLang);
+
+      if (!upcomingEventData || !upcomingEventData.translation) {
+        return null;
+      }
+    }
+
+    return upcomingEventData.translation;
   }
 
   static async getUpcomingEventItemDataBySlug(
@@ -45,24 +63,34 @@ class UpcomingEventsDataApi {
       language: locale.toUpperCase(),
     };
 
-    const fetchedData = await fetchAPI(getUpcomingEventDataBySlug, { variables });
+    const fetchUpcomingEvent = async (lang: string) => {
+      const { upcomingBy } = await fetchAPI(getUpcomingEventDataBySlug, {
+        variables: { ...variables, language: lang },
+      });
+      return upcomingBy;
+    };
 
-    if (!!fetchedData?.upcomingBy) {
-      const {
-        upcomingBy: { translation },
-      } = fetchedData;
+    let upcomingByData = await fetchUpcomingEvent(variables.language);
 
-      return {
-        featuredImageData: convertFeaturedImageData(translation.featuredImage),
-        seo: getPostSeoData(translation, locale),
-        title: translation.title,
-        slug: translation.slug,
-        upcomingEventStart: translation.upcomingEventStart,
-        upcomingEventEnd: translation.upcomingEventEnd,
-      };
+    if (!upcomingByData || !upcomingByData.translation) {
+      const fallbackLang = locale === i18n.defaultLocale ? 'RU' : i18n.defaultLocale.toUpperCase();
+      upcomingByData = await fetchUpcomingEvent(fallbackLang);
+
+      if (!upcomingByData || !upcomingByData.translation) {
+        return notFound();
+      }
     }
 
-    return null;
+    const translation = upcomingByData.translation;
+
+    return {
+      featuredImageData: convertFeaturedImageData(translation.featuredImage),
+      seo: getPostSeoData(translation, locale),
+      title: translation.title,
+      slug: translation.slug,
+      upcomingEventStart: translation.upcomingEventStart,
+      upcomingEventEnd: translation.upcomingEventEnd,
+    };
   }
 
   static async getUpcomingEvents(locale: string): Promise<UpcomingEventCardItemProps[]> {
@@ -71,6 +99,8 @@ class UpcomingEventsDataApi {
 
     for (const item of res) {
       const itemData = await this.getUpcomingEventItemData(item, locale.toUpperCase());
+      if (!itemData) continue;
+
       const featuredImageUrl = !!itemData.featuredImage
         ? itemData.featuredImage.node.mediaItemUrl
         : DEFAULT_FEATURED_IMAGE;

@@ -1,19 +1,18 @@
+import { notFound } from 'next/navigation';
 import { EndpointsList } from '@/constants';
 import {
   getPastorData,
   getMinistersSlugs,
   getMinistersPostsSitemapData,
 } from '@/graphql/staffQueries';
+import { i18n } from '@/i18n.config';
 import { SeoContentDataProps } from '@/types/globalTypes';
 import { PostNodeSlugType, PostSitemapSourceData } from '@/types/WPDataTypes/CommonWPDataTypes';
 import {
   MinisterPostDataProps,
   MinisterIDFetchedData,
 } from '@/types/WPDataTypes/MinisterPostDataTypes';
-import {
-  FetchedStaffPersonDataType,
-  TranslationFetchedData,
-} from '@/types/WPDataTypes/StaffContentDataType';
+import { TranslationFetchedData } from '@/types/WPDataTypes/StaffContentDataType';
 
 import { parseBlocks } from '@/utils/htmlParser';
 import { fetchAPI } from './WordPressFetchAPI';
@@ -37,12 +36,25 @@ class StaffDataApi {
       idType,
     };
 
-    const result = await fetchAPI(getPastorData, { variables }).then(
-      ({ minister: { translation } }: FetchedStaffPersonDataType) =>
-        this.getOtherImagesSizesUrls(translation)
-    );
+    const fetchMinister = async (lang: string) => {
+      const { minister } = await fetchAPI(getPastorData, {
+        variables: { ...variables, language: lang },
+      });
+      return minister;
+    };
 
-    return result;
+    let ministerData = await fetchMinister(variables.language);
+
+    if (!ministerData || !ministerData.translation) {
+      const fallbackLang = locale === i18n.defaultLocale ? 'RU' : i18n.defaultLocale.toUpperCase();
+      ministerData = await fetchMinister(fallbackLang);
+
+      if (!ministerData || !ministerData.translation) {
+        return null;
+      }
+    }
+
+    return this.getOtherImagesSizesUrls(ministerData.translation);
   }
 
   static async getMinisterItemDataBySlug(
@@ -55,31 +67,37 @@ class StaffDataApi {
       idType: 'SLUG',
     };
 
-    const fetchedData = await fetchAPI(getPastorData, { variables });
+    const fetchMinister = async (lang: string) => {
+      const { pastor } = await fetchAPI(getPastorData, {
+        variables: { ...variables, language: lang },
+      });
+      return pastor;
+    };
 
-    if (!fetchedData?.pastor) {
-      return null;
+    let pastorData = await fetchMinister(variables.language);
+
+    if (!pastorData || !pastorData.translation) {
+      const fallbackLang = locale === i18n.defaultLocale ? 'RU' : i18n.defaultLocale.toUpperCase();
+      pastorData = await fetchMinister(fallbackLang);
+
+      if (!pastorData?.translation) {
+        return notFound();
+      }
     }
 
-    if (!!fetchedData?.pastor) {
-      const {
-        pastor: { translation },
-      } = fetchedData;
+    const postData = this.getOtherImagesSizesUrls(pastorData.translation);
 
-      const postData = this.getOtherImagesSizesUrls(translation);
-
-      return <MinisterPostDataProps>{
-        title: postData.title,
-        slug: postData.slug,
-        excerpt: postData.excerpt,
-        pastorName: postData.pastorName,
-        pastorDepartment: postData.pastorDepartment,
-        pastorPosition: postData.pastorPosition,
-        pastorUserSlug: postData.pastorUserSlug,
-        content: parseBlocks(translation.content),
-        featuredImage: postData.featuredImage?.node.sourceUrl || null,
-      };
-    }
+    return <MinisterPostDataProps>{
+      title: postData.title,
+      slug: postData.slug,
+      excerpt: postData.excerpt,
+      pastorName: postData.pastorName,
+      pastorDepartment: postData.pastorDepartment,
+      pastorPosition: postData.pastorPosition,
+      pastorUserSlug: postData.pastorUserSlug,
+      content: parseBlocks(pastorData.translation.content),
+      featuredImage: postData.featuredImage?.node.sourceUrl || null,
+    };
   }
 
   static getMinisterPageSeoData(postData: TranslationFetchedData, locale: string) {
@@ -109,10 +127,9 @@ class StaffDataApi {
 
     for (const item of res) {
       const itemData = await this.getMinisterItemData(item, locale.toUpperCase());
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { translations, ...ministerData } = itemData;
+      if (!itemData) continue;
 
-      resultItems.push(ministerData);
+      resultItems.push(itemData);
     }
 
     return resultItems;
