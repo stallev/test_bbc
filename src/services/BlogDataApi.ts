@@ -1,4 +1,3 @@
-import { notFound } from 'next/navigation';
 import { POST_CARD_HOME_PAGE_COUNT } from '@/constants/mock';
 import {
   getPastorsPostData,
@@ -9,7 +8,6 @@ import {
   getPastorsPostsByLangAndAuthor,
 } from '@/graphql/blogQueries';
 import { Locale } from '@/i18n.config';
-import { i18n } from '@/i18n.config';
 import { PastorsPostCategoryNodeProps } from '@/types/postTypes';
 import { PostNodeSlugType, PostSitemapSourceData } from '@/types/WPDataTypes/CommonWPDataTypes';
 import { convertPostFetchedData } from '@/utils/convertPostFetchedData';
@@ -103,32 +101,25 @@ class BlogDataApi {
       idType,
     };
 
-    const fetchPastorsPost = async (lang: string) => {
-      const { pastorsPost } = await fetchAPI(getPastorsPostData, {
-        variables: { ...variables, language: lang },
-      });
-      return pastorsPost;
-    };
+    const fetchedData = await fetchAPI(getPastorsPostData, { variables });
 
-    let pastorsPostData = await fetchPastorsPost(variables.language);
+    if (!!fetchedData?.pastorsPost) {
+      const {
+        pastorsPost: { translation },
+      } = fetchedData;
 
-    if (!pastorsPostData || !pastorsPostData.translation) {
-      const fallbackLang = locale === i18n.defaultLocale ? 'RU' : i18n.defaultLocale.toUpperCase();
-      pastorsPostData = await fetchPastorsPost(fallbackLang);
+      const data = convertPostFetchedData(translation, locale);
 
-      if (!pastorsPostData || !pastorsPostData.translation) {
-        return notFound();
-      }
+      const postsListBySameAuthor = await BlogDataApi.getPostsDataByLangAndAuthor(locale, author);
+
+      return {
+        postData: data,
+        seo: getPostSeoData(translation, locale),
+        postsListBySameAuthor,
+      };
     }
 
-    const data = convertPostFetchedData(pastorsPostData.translation, locale);
-    const postsListBySameAuthor = await BlogDataApi.getPostsDataByLangAndAuthor(locale, author);
-
-    return {
-      postData: data,
-      seo: getPostSeoData(pastorsPostData.translation, locale),
-      postsListBySameAuthor,
-    };
+    return {};
   }
 
   static async getAllPastorsPostsPaths() {

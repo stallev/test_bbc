@@ -2,7 +2,6 @@ import { TimelineDataItemProps } from '@/types/WPDataTypes/AboutUsPageDataTypes'
 import MarkdownContent from '@/ui/components/MarkdownContent/MarkdownContent';
 import { CustomImage, Text } from '@/ui/components/ui-kit';
 import Container from '@/ui/containers/Container/Container';
-import { getBase64BlurData } from '@/utils/getBase64BlurData';
 
 import styles from './styles/timeline-year.module.scss';
 
@@ -32,20 +31,14 @@ const TimelineYear = ({ data }: { data: TimelineDataItemProps }) => {
 
       {data.images.length > 0 && (
         <div className={styles['timeline-year__images']}>
-          {data.images.map(async (image, index) => {
-            const imageBase64Url = await getBase64BlurData(image.url);
-
-            return (
-              <CustomImage
-                key={index}
-                imageURL={image.url}
-                alt={image.alt}
-                className={styles['timeline-year__image']}
-                placeholder="blur"
-                blurDataURL={imageBase64Url}
-              />
-            );
-          })}
+          {data.images.map((image, index) => (
+            <CustomImage
+              key={index}
+              imageURL={image.url}
+              alt={image.alt}
+              className={styles['timeline-year__image']}
+            />
+          ))}
         </div>
       )}
 

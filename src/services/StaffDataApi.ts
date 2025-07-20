@@ -1,18 +1,19 @@
-import { notFound } from 'next/navigation';
 import { EndpointsList } from '@/constants';
 import {
   getPastorData,
   getMinistersSlugs,
   getMinistersPostsSitemapData,
 } from '@/graphql/staffQueries';
-import { i18n } from '@/i18n.config';
 import { SeoContentDataProps } from '@/types/globalTypes';
 import { PostNodeSlugType, PostSitemapSourceData } from '@/types/WPDataTypes/CommonWPDataTypes';
 import {
   MinisterPostDataProps,
   MinisterIDFetchedData,
 } from '@/types/WPDataTypes/MinisterPostDataTypes';
-import { TranslationFetchedData } from '@/types/WPDataTypes/StaffContentDataType';
+import {
+  FetchedStaffPersonDataType,
+  TranslationFetchedData,
+} from '@/types/WPDataTypes/StaffContentDataType';
 
 import { parseBlocks } from '@/utils/htmlParser';
 import { fetchAPI } from './WordPressFetchAPI';
@@ -36,25 +37,12 @@ class StaffDataApi {
       idType,
     };
 
-    const fetchMinister = async (lang: string) => {
-      const { minister } = await fetchAPI(getPastorData, {
-        variables: { ...variables, language: lang },
-      });
-      return minister;
-    };
+    const result = await fetchAPI(getPastorData, { variables }).then(
+      ({ minister: { translation } }: FetchedStaffPersonDataType) =>
+        this.getOtherImagesSizesUrls(translation)
+    );
 
-    let ministerData = await fetchMinister(variables.language);
-
-    if (!ministerData || !ministerData.translation) {
-      const fallbackLang = locale === i18n.defaultLocale ? 'RU' : i18n.defaultLocale.toUpperCase();
-      ministerData = await fetchMinister(fallbackLang);
-
-      if (!ministerData || !ministerData.translation) {
-        return null;
-      }
-    }
-
-    return this.getOtherImagesSizesUrls(ministerData.translation);
+    return result;
   }
 
   static async getMinisterItemDataBySlug(
@@ -67,37 +55,31 @@ class StaffDataApi {
       idType: 'SLUG',
     };
 
-    const fetchMinister = async (lang: string) => {
-      const { pastor } = await fetchAPI(getPastorData, {
-        variables: { ...variables, language: lang },
-      });
-      return pastor;
-    };
+    const fetchedData = await fetchAPI(getPastorData, { variables });
 
-    let pastorData = await fetchMinister(variables.language);
-
-    if (!pastorData || !pastorData.translation) {
-      const fallbackLang = locale === i18n.defaultLocale ? 'RU' : i18n.defaultLocale.toUpperCase();
-      pastorData = await fetchMinister(fallbackLang);
-
-      if (!pastorData?.translation) {
-        return notFound();
-      }
+    if (!fetchedData?.pastor) {
+      return null;
     }
 
-    const postData = this.getOtherImagesSizesUrls(pastorData.translation);
+    if (!!fetchedData?.pastor) {
+      const {
+        pastor: { translation },
+      } = fetchedData;
 
-    return <MinisterPostDataProps>{
-      title: postData.title,
-      slug: postData.slug,
-      excerpt: postData.excerpt,
-      pastorName: postData.pastorName,
-      pastorDepartment: postData.pastorDepartment,
-      pastorPosition: postData.pastorPosition,
-      pastorUserSlug: postData.pastorUserSlug,
-      content: parseBlocks(pastorData.translation.content),
-      featuredImage: postData.featuredImage?.node.sourceUrl || null,
-    };
+      const postData = this.getOtherImagesSizesUrls(translation);
+
+      return <MinisterPostDataProps>{
+        title: postData.title,
+        slug: postData.slug,
+        excerpt: postData.excerpt,
+        pastorName: postData.pastorName,
+        pastorDepartment: postData.pastorDepartment,
+        pastorPosition: postData.pastorPosition,
+        pastorUserSlug: postData.pastorUserSlug,
+        content: parseBlocks(translation.content),
+        featuredImage: postData.featuredImage?.node.sourceUrl || null,
+      };
+    }
   }
 
   static getMinisterPageSeoData(postData: TranslationFetchedData, locale: string) {
@@ -127,9 +109,10 @@ class StaffDataApi {
 
     for (const item of res) {
       const itemData = await this.getMinisterItemData(item, locale.toUpperCase());
-      if (!itemData) continue;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { translations, ...ministerData } = itemData;
 
-      resultItems.push(itemData);
+      resultItems.push(ministerData);
     }
 
     return resultItems;
