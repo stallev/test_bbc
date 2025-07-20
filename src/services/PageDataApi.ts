@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import { EndpointsList } from '@/constants';
 import { DEFAULT_FEATURED_IMAGE } from '@/constants/mock';
 import { getMarkdownPageContentData } from '@/graphql/markdownContentDataQueries';
@@ -15,12 +16,7 @@ class PageContentDataApi {
     const { page } = await fetchAPI(getMarkdownPageContentData, { variables });
 
     if (!page) {
-      console.error('Page not found for slug:', variables.slug);
-      // TODO: find a graceful solution for throw errors
-      // throw new Error(`Page not found for slug: ${variables.slug}`);
-      page['slug'] = slug;
-      page['title'] = 'Page Not Found';
-      page['translations'] = null;
+      return notFound();
     }
 
     const featuredImageUrl = !!page?.featuredImage

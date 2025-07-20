@@ -1,5 +1,7 @@
+import { notFound } from 'next/navigation';
 import { DEFAULT_FEATURED_IMAGE } from '@/constants/mock';
 import { getMinistryData, getMinistriesPostsSitemapData } from '@/graphql/ministryQueries';
+import { i18n } from '@/i18n.config';
 import { SeoContentDataProps } from '@/types/globalTypes';
 import { PostSitemapSourceData } from '@/types/WPDataTypes/CommonWPDataTypes';
 import {
@@ -33,13 +35,22 @@ class MinistryDataApi {
       language: locale.toUpperCase(),
     };
 
-    const { ministry } = await fetchAPI(getMinistryData, { variables });
+    const fetchMinistry = async (lang: string) => {
+      const { ministry } = await fetchAPI(getMinistryData, {
+        variables: { ...variables, language: lang },
+      });
+      return ministry;
+    };
 
-    if (!ministry || !ministry.translation) {
-      return {
-        data: undefined,
-        notFound: true,
-      };
+    let ministryData = await fetchMinistry(variables.language);
+
+    if (!ministryData || !ministryData.translation) {
+      const fallbackLang = locale === i18n.defaultLocale ? 'RU' : i18n.defaultLocale.toUpperCase();
+      ministryData = await fetchMinistry(fallbackLang);
+
+      if (!ministryData || !ministryData.translation) {
+        return notFound();
+      }
     }
 
     const {
@@ -54,11 +65,11 @@ class MinistryDataApi {
         ministryShortDescription,
         slug,
       },
-    } = ministry;
+    } = ministryData;
 
     const isMinistryMediaGalleryValidData =
       ministryMediaGallery.length > 0 &&
-      ministryMediaGallery.every((item: MinistryMediaGalleryItem) => item.node.filename.length > 0);
+      ministryMediaGallery.every((item: MinistryMediaGalleryItem) => item.node.sizes.length);
 
     const featuredImageUrl = !!featuredImage
       ? featuredImage.node.mediaItemUrl
@@ -100,11 +111,8 @@ class MinistryDataApi {
     };
 
     return {
-      data: {
-        seo,
-        ministryInfoData,
-      },
-      notFound: false,
+      seo,
+      ministryInfoData,
     };
   }
 
