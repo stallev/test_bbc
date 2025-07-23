@@ -15,7 +15,7 @@ import {
 import { UpcomingEventCardItemProps } from '@/ui/components/page-specific/upcoming-event/UpcomingEventCard/types';
 import { stripHtmlTags } from '@/utils';
 import { convertFeaturedImageData } from '@/utils/convertFeaturedImageData';
-import { getPostSeoData } from '@/utils/getPostSeoData';
+// import { getPostSeoData } from '@/utils/getPostSeoData';
 import { fetchAPI } from './WordPressFetchAPI';
 
 class UpcomingEventsDataApi {
@@ -57,9 +57,9 @@ class UpcomingEventsDataApi {
   static async getUpcomingEventItemDataBySlug(
     slug: string,
     locale: string
-  ): Promise<UpcomingEventDataProps | null> {
+  ): Promise<UpcomingEventDataProps> {
     const variables = {
-      slug,
+      slug: decodeURIComponent(slug),
       language: locale.toUpperCase(),
     };
 
@@ -85,7 +85,7 @@ class UpcomingEventsDataApi {
 
     return {
       featuredImageData: convertFeaturedImageData(translation.featuredImage),
-      seo: getPostSeoData(translation, locale),
+      // seo: getPostSeoData(seoData, locale),
       title: translation.title,
       slug: translation.slug,
       upcomingEventStart: translation.upcomingEventStart,
@@ -95,12 +95,10 @@ class UpcomingEventsDataApi {
 
   static async getUpcomingEvents(locale: string): Promise<UpcomingEventCardItemProps[]> {
     const res = await this.getUpcomingEventsItemsIDs();
-    console.log(res);
     const resultItems = [];
 
     for (const item of res) {
-      const itemData = await this.getUpcomingEventItemData(item, locale.toUpperCase());
-      console.log('itemData', itemData);
+      const itemData = await this.getUpcomingEventItemData(item, locale);
       if (!itemData) continue;
 
       const featuredImageUrl = !!itemData.featuredImage

@@ -22,7 +22,7 @@ export interface FullPostFetchedDataProps {
   author: AuthorNodeProps;
   content: string;
   featuredImage: FeaturedImageMediaItemUrlProps;
-  seo: SeoPostProps;
+  seo?: SeoPostProps;
   translations: Translation[];
 }
 
@@ -36,7 +36,7 @@ export const convertPostFetchedData = (
     date: getLocaleFormattedDate(data.date, locale),
     slug: data.slug,
     featuredImageData: convertFeaturedImageData(data.featuredImage),
-    author: convertAuthorData(data.author),
+    author: convertAuthorData(data?.author),
     content: parseBlocks(data.content),
     seo: data.seo,
   };

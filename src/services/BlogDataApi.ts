@@ -8,8 +8,7 @@ import {
   getPastorsPostsCategoriesByLang,
   getPastorsPostsByLangAndAuthor,
 } from '@/graphql/blogQueries';
-import { Locale } from '@/i18n.config';
-import { i18n } from '@/i18n.config';
+import { Locale, i18n } from '@/i18n.config';
 import { PastorsPostCategoryNodeProps } from '@/types/postTypes';
 import { PostNodeSlugType, PostSitemapSourceData } from '@/types/WPDataTypes/CommonWPDataTypes';
 import { convertPostFetchedData } from '@/utils/convertPostFetchedData';

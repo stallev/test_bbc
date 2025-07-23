@@ -6,6 +6,15 @@ export const FeaturedImageBlock = `
   }
 `;
 
+export const TranslationsBlock = `
+  translations {
+    slug
+    language {
+      code
+    }
+  }
+`;
+
 export const SeoBlock = `
   seo {
     metaDesc

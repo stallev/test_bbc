@@ -13,7 +13,7 @@ export interface FetchedRestUpcomingEventType {
 
 export interface UpcomingEventDataProps {
   featuredImageData: PostFeaturedImageData;
-  seo: SeoContentDataProps;
+  seo?: SeoContentDataProps;
   title: string;
   slug: string;
   upcomingEventStart: string;
