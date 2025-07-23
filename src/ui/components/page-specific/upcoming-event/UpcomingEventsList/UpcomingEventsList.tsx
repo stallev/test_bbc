@@ -17,6 +17,7 @@ const UpcomingEventsList = ({
 }) => {
   const listRef = useRef<HTMLDivElement>(null);
   const isAnimated = useOnceIntersection(listRef);
+  console.log('upcoming evebt endpoint api', process.env.SERVICE_API_ENDPOINT);
 
   if (!data.length) {
     return <p>No upcoming events data</p>;

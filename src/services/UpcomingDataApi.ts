@@ -95,10 +95,12 @@ class UpcomingEventsDataApi {
 
   static async getUpcomingEvents(locale: string): Promise<UpcomingEventCardItemProps[]> {
     const res = await this.getUpcomingEventsItemsIDs();
+    console.log(res);
     const resultItems = [];
 
     for (const item of res) {
       const itemData = await this.getUpcomingEventItemData(item, locale.toUpperCase());
+      console.log('itemData', itemData);
       if (!itemData) continue;
 
       const featuredImageUrl = !!itemData.featuredImage
