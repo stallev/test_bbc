@@ -2,24 +2,25 @@
 
 import { useLinkStatus } from 'next/link';
 import { useEffect, useState } from 'react';
-
-import styles from './styles/link-status-indicator.module.scss';
+import Loader from '../Loader/Loader';
 
 export default function LinkStatusIndicator() {
   const [showLoader, setShowLoader] = useState(false);
   const { pending } = useLinkStatus();
 
   useEffect(() => {
+    let timer: NodeJS.Timeout;
+
     if (pending) {
-      setShowLoader(true);
-      console.log('showLoader value', showLoader);
-      console.log('current timestamp', new Date().toISOString());
+      timer = setTimeout(() => {
+        setShowLoader(true);
+      }, 200);
     } else {
       setShowLoader(false);
-      console.log('showLoader value', showLoader);
-      console.log('current timestamp', new Date().toISOString());
     }
+
+    return () => clearTimeout(timer);
   }, [pending, showLoader]);
 
-  return pending ? <div role="status" aria-label="Loading" className={styles['spinner']} /> : null;
+  return pending ? <Loader isFullScreen={true} /> : null;
 }

@@ -6,7 +6,25 @@
   height: $header-height;
   margin: 0 auto;
 
-  div {
+  &--full-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--text-main-color);
+    z-index: $z-index-level7;
+    opacity: 0.5;
+  }
+
+  &__spinner {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__spinner div {
     position: absolute;
     top: 42%;
     width: 8px;
