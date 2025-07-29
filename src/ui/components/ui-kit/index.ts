@@ -10,3 +10,4 @@ export { default as CustomTextarea } from './CustomTextarea/CustomTextarea';
 export { default as CustomSimpleSelect } from './CustomSimpleSelect';
 export { default as CustomDatePicker } from './CustomDatePicker';
 export { default as ReadMoreLink } from './ReadMoreLink/ReadMoreLink';
+export { default as LinkStatusIndicator } from './LinkStatusIndicator/LinkStatusIndicator';

@@ -1,0 +1,54 @@
+.link-status-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+  animation: fadeIn 300ms ease-in-out;
+
+  &__spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top-color: #3498db;
+    animation: spin 1s ease-in-out infinite;
+    opacity: 0;
+    animation:
+      fadeIn 300ms 100ms forwards,
+      spin 1s linear infinite;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Добавляем темную тему
+:global(.dark-theme) {
+  .link-status-indicator {
+    background-color: rgba(0, 0, 0, 0.7);
+
+    &__spinner {
+      border: 3px solid rgba(255, 255, 255, 0.1);
+      border-top-color: #3498db;
+    }
+  }
+}
