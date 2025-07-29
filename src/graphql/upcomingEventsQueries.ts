@@ -1,6 +1,6 @@
 import { PostsQueryMaxCount } from '@/constants';
 
-import { FeaturedImageBlock, AuthorInfoBlock, TranslationsBlock } from './commonGraphqlFragments';
+import { FeaturedImageBlock, TranslationsBlock } from './commonGraphqlFragments';
 
 export const getUpcomingEventData = `query getUpcomingEventData ($id: ID!, $idType: UpcomingIdType!, $language: LanguageCodeEnum!) {
   upcoming(id: $id, idType: $idType) {
@@ -27,7 +27,6 @@ export const getUpcomingEventDataBySlug = `query getUpcomingEventDataBySlug ($sl
       slug
       excerpt
       date
-      ${AuthorInfoBlock}
       ${TranslationsBlock}
     }
   }
