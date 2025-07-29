@@ -18,6 +18,7 @@ interface CustomLinkProps {
   ariaLabel?: string;
   onCLick?: () => void;
   onHover?: () => void;
+  forcePrefetch?: boolean;
 }
 
 const CustomLink: React.FC<CustomLinkProps> = ({

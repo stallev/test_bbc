@@ -1,16 +1,19 @@
-import { usePathname } from 'next/navigation';
+'use client';
+
+import { usePathname, useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
 import { IoCaretDownSharp, IoCaretUpSharp } from 'react-icons/io5';
 
 import { LinkTypes } from '@/constants/LinkTypes';
 import { MainNavBarLinks } from '@/constants/NavBarLinks';
 import useDropdown from '@/hooks/useDropDown';
-import { useClientTranslationFunction } from '@/hooks/useLocale';
+import { useClientTranslationFunction, useLocale } from '@/hooks/useLocale';
 
 import Hamburger from '@/ui/components/HamburgerMenu/Hamburger';
 import LanguageSwitcher from '@/ui/components/LanguageSwitcher/LanguageSwitcher';
 import Logo from '@/ui/components/Logo/Logo';
 import ThemeSwitcher from '@/ui/components/ThemeSwitcher/ThemeSwitcher';
+import { slugSelector } from '@/utils/slugSelector';
 import { NavBarProps } from './types';
 import { CustomLink, Text, Icon } from '../ui-kit';
 
@@ -18,6 +21,8 @@ import styles from './styles/navbar.module.scss';
 
 const NavBar = ({ setMobileMenuState, mobileMenuState, toggleMobileMenu }: NavBarProps) => {
   const pathname = usePathname();
+  const router = useRouter();
+  const locale = useLocale();
 
   const { handleMouseEnter, handleMouseLeave, handleClick } = useDropdown({
     setMobileMenuState,
@@ -32,6 +37,30 @@ const NavBar = ({ setMobileMenuState, mobileMenuState, toggleMobileMenu }: NavBa
       activeDropDownMenuItem: false,
     });
   }, [pathname, setMobileMenuState]);
+
+  useEffect(() => {
+    const prefetchSubmenuLinks = async () => {
+      console.log('prefetching submenu links');
+      const submenuLinks = MainNavBarLinks.filter(({ children }) => children?.length > 0);
+      console.log('submenuLinks', submenuLinks);
+
+      for (const parentLink of submenuLinks) {
+        if (parentLink.children && parentLink.children.length > 0) {
+          for (const childLink of parentLink.children) {
+            try {
+              const localizedPath = slugSelector(locale, childLink.link);
+              console.log('prefetching:', localizedPath);
+              router.prefetch(localizedPath);
+            } catch (error) {
+              console.error('Error prefetching:', childLink.link, error);
+            }
+          }
+        }
+      }
+    };
+
+    prefetchSubmenuLinks();
+  }, [pathname, router, locale]);
 
   return (
     <div className={`${styles.navbar} ${isMenuOpen ? styles['navbar--show'] : ''}`}>
