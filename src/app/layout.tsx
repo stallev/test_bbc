@@ -1,5 +1,4 @@
 import localFont from 'next/font/local';
-import LinkStatusIndicator from '@/ui/components/ui-kit/LinkStatusIndicator/LinkStatusIndicator';
 import './global.css';
 
 const acciaReg = localFont({
@@ -53,7 +52,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         suppressHydrationWarning={true}
         className={`${acciaReg.variable} ${gilroyMedium.variable} ${gilroyRegular.variable} ${ttLivretDisplay.variable} ${gilroySemibold.variable}`}
       >
-        <LinkStatusIndicator />
         {children}
       </body>
     </html>

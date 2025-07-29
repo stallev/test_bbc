@@ -2,29 +2,24 @@
 
 import { useLinkStatus } from 'next/link';
 import { useEffect, useState } from 'react';
+
 import styles from './styles/link-status-indicator.module.scss';
 
-const LinkStatusIndicator = () => {
-  const { pending } = useLinkStatus();
+export default function LinkStatusIndicator() {
   const [showLoader, setShowLoader] = useState(false);
+  const { pending } = useLinkStatus();
 
   useEffect(() => {
-    let timer: NodeJS.Timeout;
     if (pending) {
-      timer = setTimeout(() => setShowLoader(true), 100);
+      setShowLoader(true);
+      console.log('showLoader value', showLoader);
+      console.log('current timestamp', new Date().toISOString());
     } else {
       setShowLoader(false);
+      console.log('showLoader value', showLoader);
+      console.log('current timestamp', new Date().toISOString());
     }
-    return () => clearTimeout(timer);
-  }, [pending]);
+  }, [pending, showLoader]);
 
-  if (!showLoader) return null;
-
-  return (
-    <div className={styles['link-status-indicator']} aria-hidden="true">
-      <div className={styles['link-status-indicator__spinner']}></div>
-    </div>
-  );
-};
-
-export default LinkStatusIndicator;
+  return pending ? <div role="status" aria-label="Loading" className={styles['spinner']} /> : null;
+}
