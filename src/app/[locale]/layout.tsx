@@ -5,6 +5,7 @@ import { Locale } from '@/i18n.config';
 import styles from '@/styles/Home.module.scss';
 import Footer from '@/ui/components/Footer/Footer';
 import Header from '@/ui/components/Header/Header';
+import NavigationIndicator from '@/ui/components/NavigationIndicator/NavigationIndicator';
 import Notification from '@/ui/components/ui-kit/Notification/Notification';
 import Providers from '@/ui/containers/Providers/Providers';
 import { getTranslations } from '@/utils/languageParser';
@@ -25,6 +26,7 @@ const Layout = async (props: {
 
   return (
     <Providers>
+      <NavigationIndicator />
       <Header />
 
       <main className={styles.main}>{children}</main>

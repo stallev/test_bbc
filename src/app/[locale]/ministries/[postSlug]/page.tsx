@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Metadata } from 'next';
 import { RoutePath } from '@/constants/RoutePath';
 import MinistryDataApi from '@/services/MinistryDataApi';
@@ -6,6 +7,7 @@ import MinistryPageContent from '@/ui/components/page-specific/ministry/Ministry
 import { getPagePathData } from '@/utils/getPostSeoData';
 import { getSeoData } from '@/utils/getSeoData';
 import { getTranslations } from '@/utils/languageParser';
+import Loading from '../loading';
 
 export async function generateStaticParams() {
   return [];
@@ -25,12 +27,21 @@ export async function generateMetadata(props: { params: Promise<PostParams> }): 
   return getSeoData({ seoContentData, seoPathData });
 }
 
+// Компонент для асинхронной загрузки данных
+async function MinistryContent({ locale, postSlug }: { locale: string; postSlug: string }) {
+  const translations = getTranslations(locale);
+  const { ministryInfoData } = await MinistryDataApi.getMinistryPageData(postSlug, locale);
+  
+  return <MinistryPageContent ministryInfoData={ministryInfoData} translations={translations} />;
+}
+
 export default async function PostMinistry(props: { params: Promise<PostParams> }) {
   const params = await props.params;
   const { locale, postSlug } = params;
-  const translations = getTranslations(locale);
 
-  const { ministryInfoData } = await MinistryDataApi.getMinistryPageData(postSlug, locale);
-
-  return <MinistryPageContent ministryInfoData={ministryInfoData} translations={translations} />;
+  return (
+    <Suspense fallback={<Loading />}>
+      <MinistryContent locale={locale} postSlug={postSlug} />
+    </Suspense>
+  );
 }

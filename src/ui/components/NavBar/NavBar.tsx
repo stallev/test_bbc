@@ -1,21 +1,19 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
-// import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
 import { IoCaretDownSharp, IoCaretUpSharp } from 'react-icons/io5';
 
 import { LinkTypes } from '@/constants/LinkTypes';
 import { MainNavBarLinks } from '@/constants/NavBarLinks';
 import useDropdown from '@/hooks/useDropDown';
-import { useClientTranslationFunction } from '@/hooks/useLocale';
-// import { useClientTranslationFunction, useLocale } from '@/hooks/useLocale';
+import { useClientTranslationFunction, useLocale } from '@/hooks/useLocale';
 
 import Hamburger from '@/ui/components/HamburgerMenu/Hamburger';
 import LanguageSwitcher from '@/ui/components/LanguageSwitcher/LanguageSwitcher';
 import Logo from '@/ui/components/Logo/Logo';
 import ThemeSwitcher from '@/ui/components/ThemeSwitcher/ThemeSwitcher';
-// import { slugSelector } from '@/utils/slugSelector';
+import { slugSelector } from '@/utils/slugSelector';
 import { NavBarProps } from './types';
 import { CustomLink, Text, Icon } from '../ui-kit';
 
@@ -23,8 +21,8 @@ import styles from './styles/navbar.module.scss';
 
 const NavBar = ({ setMobileMenuState, mobileMenuState, toggleMobileMenu }: NavBarProps) => {
   const pathname = usePathname();
-  // const router = useRouter();
-  // const locale = useLocale();
+  const router = useRouter();
+  const locale = useLocale();
 
   const { handleMouseEnter, handleMouseLeave, handleClick } = useDropdown({
     setMobileMenuState,
@@ -40,28 +38,28 @@ const NavBar = ({ setMobileMenuState, mobileMenuState, toggleMobileMenu }: NavBa
     });
   }, [pathname, setMobileMenuState]);
 
-  // useEffect(() => {
-  //   const prefetchSubmenuLinks = async () => {
-  //     const submenuLinks = MainNavBarLinks.filter(({ children }) => children?.length > 0);
+  useEffect(() => {
+    const prefetchSubmenuLinks = async () => {
+      const submenuLinks = MainNavBarLinks.filter(({ children }) => children?.length > 0);
 
-  //     for (const parentLink of submenuLinks) {
-  //       if (parentLink.children && parentLink.children.length > 0) {
-  //         for (const childLink of parentLink.children) {
-  //           try {
-  //             const localizedPath = slugSelector(locale, childLink.link);
-  //             router.prefetch(localizedPath);
-  //           } catch (error) {
-  //             console.error('Error prefetching:', childLink.link, error);
-  //           }
-  //         }
-  //       }
-  //     }
-  //   };
+      for (const parentLink of submenuLinks) {
+        if (parentLink.children && parentLink.children.length > 0) {
+          for (const childLink of parentLink.children) {
+            try {
+              const localizedPath = slugSelector(locale, childLink.link);
+              router.prefetch(localizedPath);
+            } catch (error) {
+              console.error('Error prefetching:', childLink.link, error);
+            }
+          }
+        }
+      }
+    };
 
-  //   if (isMenuOpen) {
-  //     prefetchSubmenuLinks();
-  //   }
-  // }, [pathname, router, locale, isMenuOpen]);
+    if (isMenuOpen) {
+      prefetchSubmenuLinks();
+    }
+  }, [pathname, router, locale, isMenuOpen]);
 
   return (
     <div className={`${styles.navbar} ${isMenuOpen ? styles['navbar--show'] : ''}`}>
@@ -126,7 +124,7 @@ const NavBar = ({ setMobileMenuState, mobileMenuState, toggleMobileMenu }: NavBa
                       to={link}
                       className={styles['navbar__submenu-link']}
                       type={LinkTypes.navLink}
-                      prefetch={null}
+                      prefetch={true}
                     >
                       {translate(label)}
                     </CustomLink>
