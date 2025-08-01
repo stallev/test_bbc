@@ -1,19 +1,18 @@
 'use client';
 
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import styles from './styles/navigation-indicator.module.scss';
 
 export default function NavigationIndicator() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const [isNavigating, setIsNavigating] = useState(false);
 
   useEffect(() => {
     setIsNavigating(true);
     const timer = setTimeout(() => setIsNavigating(false), 300);
     return () => clearTimeout(timer);
-  }, [pathname, searchParams]);
+  }, [pathname]);
 
   if (!isNavigating) return null;
 

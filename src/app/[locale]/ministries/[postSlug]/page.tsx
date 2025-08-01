@@ -1,5 +1,5 @@
-import { Suspense } from 'react';
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 import { RoutePath } from '@/constants/RoutePath';
 import MinistryDataApi from '@/services/MinistryDataApi';
 import { PostParams } from '@/types/postTypes';
@@ -29,9 +29,9 @@ export async function generateMetadata(props: { params: Promise<PostParams> }): 
 
 // Компонент для асинхронной загрузки данных
 async function MinistryContent({ locale, postSlug }: { locale: string; postSlug: string }) {
-  const translations = getTranslations(locale);
+  const translations = getTranslations(locale as 'en' | 'ru');
   const { ministryInfoData } = await MinistryDataApi.getMinistryPageData(postSlug, locale);
-  
+
   return <MinistryPageContent ministryInfoData={ministryInfoData} translations={translations} />;
 }
 
