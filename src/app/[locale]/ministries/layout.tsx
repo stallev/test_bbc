@@ -1,8 +1,10 @@
 // import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
 import { Locale } from '@/i18n.config';
 // import BlogDataApi from '@/services/BlogDataApi';
 // import StaffDataApi from '@/services/StaffDataApi';
 import ministryStyles from '@/styles/pages/ministry.module.scss';
+import LoadingMinistryPage from './loading';
 // import { getTranslations } from '@/utils/languageParser';
 
 // const PastorsBlog = dynamic(
@@ -23,13 +25,15 @@ export default async function MinistryLayout(props: {
   // const postsData = await BlogDataApi.getLastPostsDataHomePageByLang(locale);
 
   return (
-    <div className={ministryStyles.ministry}>
-      <div>{children}</div>
+    <Suspense fallback={<LoadingMinistryPage />}>
+      <div className={ministryStyles.ministry}>
+        <div>{children}</div>
 
-      <div className={ministryStyles['ministry__layout-content']}>
-        {/* <Staff data={staffData} translations={translations} /> */}
-        {/* <PastorsBlog data={postsData} translations={translations} /> */}
+        <div className={ministryStyles['ministry__layout-content']}>
+          {/* <Staff data={staffData} translations={translations} /> */}
+          {/* <PastorsBlog data={postsData} translations={translations} /> */}
+        </div>
       </div>
-    </div>
+    </Suspense>
   );
 }
