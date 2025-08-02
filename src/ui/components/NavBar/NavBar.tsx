@@ -56,10 +56,8 @@ const NavBar = ({ setMobileMenuState, mobileMenuState, toggleMobileMenu }: NavBa
       }
     };
 
-    if (isMenuOpen) {
-      prefetchSubmenuLinks();
-    }
-  }, [pathname, router, locale, isMenuOpen]);
+    prefetchSubmenuLinks();
+  }, [pathname, router, locale]);
 
   return (
     <div className={`${styles.navbar} ${isMenuOpen ? styles['navbar--show'] : ''}`}>
