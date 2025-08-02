@@ -1,4 +1,4 @@
-@import '../../../../../../styles/variables.scss';
+@import "../../../../../../styles/variables.scss";
 
 .greeting-screen {
   position: relative;
@@ -82,14 +82,6 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-  }
-
-  &__link span {
-    width: min-content;
-
-    @media screen and (min-width: $mobile-sm) {
-      width: auto;
-    }
   }
 
   &__description {
