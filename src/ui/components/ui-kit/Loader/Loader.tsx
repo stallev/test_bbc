@@ -2,13 +2,19 @@ import React from 'react';
 
 import styles from './styles/loader.module.scss';
 
-const Loader: React.FC = () => {
+interface LoaderProps {
+  isFullScreen?: boolean;
+}
+
+const Loader = ({ isFullScreen = false }: LoaderProps) => {
   return (
-    <div className={styles.loader}>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+    <div className={`${styles.loader} ${isFullScreen ? styles['loader--full-screen'] : ''}`}>
+      <div className={styles['loader__spinner']}>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
   );
 };
