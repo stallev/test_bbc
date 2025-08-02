@@ -5,7 +5,6 @@ import React from 'react';
 
 import { useLocale } from '@/hooks/useLocale';
 import { slugSelector } from '@/utils/slugSelector';
-import LinkStatusIndicator from '../LinkStatusIndicator/LinkStatusIndicator';
 
 import styles from './styles/custom-link.module.scss';
 
@@ -18,7 +17,6 @@ interface CustomLinkProps {
   ariaLabel?: string;
   onCLick?: () => void;
   onHover?: () => void;
-  forcePrefetch?: boolean;
 }
 
 const CustomLink: React.FC<CustomLinkProps> = ({
@@ -42,7 +40,6 @@ const CustomLink: React.FC<CustomLinkProps> = ({
     >
       <Link aria-label={ariaLabel || label} href={href} prefetch={true}>
         {label && label}
-        <LinkStatusIndicator />
         {children}
       </Link>
     </div>
