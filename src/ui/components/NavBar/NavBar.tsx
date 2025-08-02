@@ -1,3 +1,5 @@
+'use client';
+
 import { usePathname } from 'next/navigation';
 import React, { useEffect } from 'react';
 import { IoCaretDownSharp, IoCaretUpSharp } from 'react-icons/io5';
@@ -7,6 +9,8 @@ import { MainNavBarLinks } from '@/constants/NavBarLinks';
 import useDropdown from '@/hooks/useDropDown';
 import { useClientTranslationFunction } from '@/hooks/useLocale';
 
+import useWindowDimensions from '@/hooks/useWindowDimensions';
+import { isTabletWindowSize } from '@/hooks/useWindowSizeType';
 import Hamburger from '@/ui/components/HamburgerMenu/Hamburger';
 import LanguageSwitcher from '@/ui/components/LanguageSwitcher/LanguageSwitcher';
 import Logo from '@/ui/components/Logo/Logo';
@@ -24,6 +28,9 @@ const NavBar = ({ setMobileMenuState, mobileMenuState, toggleMobileMenu }: NavBa
     mobileMenuState,
   });
   const { isMenuOpen, activeDropDownMenuItem } = mobileMenuState;
+  const { width } = useWindowDimensions();
+  const isMobile = isTabletWindowSize(width);
+  console.log('isMobile', isMobile);
   const translate = useClientTranslationFunction();
 
   useEffect(() => {
@@ -53,6 +60,7 @@ const NavBar = ({ setMobileMenuState, mobileMenuState, toggleMobileMenu }: NavBa
                   iconName ? styles['navbar__link--outlined'] : ''
                 }`}
                 type={LinkTypes.navLink}
+                prefetch={true}
               >
                 {iconName ? (
                   <>
@@ -96,7 +104,7 @@ const NavBar = ({ setMobileMenuState, mobileMenuState, toggleMobileMenu }: NavBa
                       to={link}
                       className={styles['navbar__submenu-link']}
                       type={LinkTypes.navLink}
-                      prefetch={null}
+                      prefetch={isMobile ? false : true}
                     >
                       {translate(label)}
                     </CustomLink>

@@ -25,15 +25,15 @@ export default async function MinistryLayout(props: {
   // const postsData = await BlogDataApi.getLastPostsDataHomePageByLang(locale);
 
   return (
-    <Suspense fallback={<LoadingMinistryPage />}>
-      <div className={ministryStyles.ministry}>
+    <div className={ministryStyles.ministry}>
+      <Suspense fallback={<LoadingMinistryPage />}>
         <div>{children}</div>
 
         <div className={ministryStyles['ministry__layout-content']}>
           {/* <Staff data={staffData} translations={translations} /> */}
           {/* <PastorsBlog data={postsData} translations={translations} /> */}
         </div>
-      </div>
-    </Suspense>
+      </Suspense>
+    </div>
   );
 }

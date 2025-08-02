@@ -20,7 +20,7 @@ interface CustomLinkProps {
   prefetch?: boolean | null;
 }
 
-const CustomLink: React.FC<CustomLinkProps> = ({
+const CustomLink = ({
   to,
   label = '',
   ariaLabel = '',
@@ -29,10 +29,11 @@ const CustomLink: React.FC<CustomLinkProps> = ({
   type = 'link',
   onCLick,
   onHover,
-  prefetch = true,
+  prefetch = false,
 }: CustomLinkProps) => {
   const locale = useLocale();
   const href = slugSelector(locale, to);
+  console.log('prefetch for link', href, prefetch);
 
   return (
     <div
@@ -40,7 +41,7 @@ const CustomLink: React.FC<CustomLinkProps> = ({
       onMouseEnter={onHover}
       className={`${styles['custom-link']} ${styles[`custom-link--${type}`]} ${className}`}
     >
-      <Link aria-label={ariaLabel || label} href={href} prefetch={prefetch}>
+      <Link aria-label={ariaLabel || label} href={href} prefetch={false}>
         {label && label}
         {children}
       </Link>
