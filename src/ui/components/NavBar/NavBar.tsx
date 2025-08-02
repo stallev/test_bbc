@@ -96,6 +96,7 @@ const NavBar = ({ setMobileMenuState, mobileMenuState, toggleMobileMenu }: NavBa
                       to={link}
                       className={styles['navbar__submenu-link']}
                       type={LinkTypes.navLink}
+                      prefetch={null}
                     >
                       {translate(label)}
                     </CustomLink>
